@@ -1,0 +1,300 @@
+# example of ARAnyM config file (by default stored in $HOME/.aranym/config)
+
+[GLOBAL]
+# FastRAM size in megabytes.
+FastRAM = 0
+
+# Atari floppy device (GEMDOS A:) is mapped to host floppy block device
+Floppy = /dev/fd0
+
+# location of TOS 4.04 ROM image (can be full path, relative to config file or relative to HOME directory)
+TOS = ROM
+
+# location of EmuTOS (can be full path, relative to config file or relative to HOME directory)
+EmuTOS = emutos-aranym.img
+
+# location of FreeMiNT kernel (full path)
+Bootstrap =
+
+# FreeMiNT configuration
+BootstrapArgs =
+
+# default boot drive for FreeMiNT
+BootDrive =
+
+# UTC (GMT) or localtime? Set GMT for Linux-m68k or FreeMiNT with timezones
+GMTime = No
+
+
+# Hotkeys: invoke certain ARAnyM functions by pressing a key combination
+# Format: function = key code : modifiers combination
+[HOTKEYS]
+# open up the SETUP GUI
+Setup = Pause
+
+# quit ARAnyM immediately
+Quit = LS+Pause
+
+# reboot ARAnyM (like pressing the Reset button on a real machine)
+Reboot = LC+Pause
+
+# free mouse and keyboard focus - mouse can leave the ARAnyM window
+Ungrab = LS+LC+LA+Escape
+
+# call the internal debugger (if compiled in)
+Debug = LA+Pause
+
+# make a copy of the screen to file in BMP format in current directory
+Screenshot = PrintScreen
+
+# switch ARAnyM to fullscreen (or back to a window mode)
+Fullscreen = ScrollLock
+
+
+[STARTUP]
+# grab mouse at ARAnyM startup
+GrabMouse = Yes
+
+# start ARAnyM with debugger
+Debugger = No
+
+
+[IKBD]
+# if enabled (set to Yes) then mouse wheel sends Eiffel scancodes
+# if disabled (set to No) then mouse wheel simulates Up/Down arrow keys
+WheelEiffel = No
+
+# AltGr key is the Alt key on the right of Space Bar on PC102+ keyboards
+# if enabled then the AltGr key sends same scancode as on Milan computer
+# if disabled then the AltGr key behaves just like the normal Alt key
+AltGr = Yes
+
+
+[JIT]
+# enable JIT compiler
+JIT = Yes
+
+# enable JIT compiler for FPU (if JIT compiler is enabled)
+JITFPU = Yes
+
+# size of cache for compiled code
+JITCacheSize = 8192
+
+# enable lazy flush (invalidation) of JIT cache
+JITLazyFlush = 1
+
+# disable compiling of certain instructions (16-bit mask)
+JITBlackList = 
+
+# ???
+JITInline = No
+
+[VIDEO]
+# start ARAnyM in fullscreen
+FullScreen = No
+
+# set the booting color depth (-1 = follow NVRAM setting)
+BootColorDepth = -1
+
+# VIDEL generated screen copied to host screen at 50/VidelRefresh (50/2 = 25 Hz)
+VidelRefresh = 2
+
+# set the connected monitor (-1 = follow NVRAM setting)
+VidelMonitor = -1
+
+
+[TOS]
+# patch TOS _MCH cookie value (50000 means ARAnyM - 30000 would mean Falcon)
+Cookie_MCH = 50000
+
+# redirect TOS bconout characters to the host console window
+RedirConsole = No
+
+
+# IDE Devices configuration
+# update the Cylinders/Heads/SectorsPerTrack according to your drive geometry!
+# Range: IDE0-IDE1
+[IDE0]
+Present = Yes
+IsCDROM = No
+ByteSwap = No
+ReadOnly = No
+Path = ~/.aranym/diskImageC
+Cylinders = 2100
+Heads = 16
+SectorsPerTrack = 63
+ModelName = Master
+
+
+# Direct partitions configuration
+# Range: PARTITION0-PARTITION7 is mapped to SCSI0-SCSI7
+[PARTITION0]
+Path = 
+Present = No
+PartID = BGM
+ByteSwap = No
+ReadOnly = No
+
+
+# HostFS access with hostfs.xfs
+# Format: GEMDOS drive = host path
+# Range: A-Z
+[HOSTFS]
+A = 
+B = 
+C = 
+D = 
+E = 
+F = 
+G = 
+
+
+[OPENGL]
+# Enable OpenGL rendering for the atari screen
+#  (ARAnyM must be compiled with OpenGL support)
+Enabled = No
+
+# Use linear filtering on the atari screen
+Filtered = No
+
+# If you don't want to use default GL library, set this value to your
+#  favorite libGL file.
+Library =
+
+
+# Networking (FreeMiNT with aranym.xif)
+# Range: ETH0-ETH3
+[ETH0]
+# Type: ptp or bridge
+Type = ptp
+# host tunnel device name
+Tunnel = tap0
+HostIP = 192.168.0.1
+AtariIP = 192.168.0.2
+Netmask = 255.255.255.0
+# enter your desired MAC Address here in the format "aa:bb:cc:dd:ee:ff"
+MAC =
+
+
+[LILO]
+# Full path to a (optionally gzipped) kernel image
+Kernel = linux.bin
+
+# Command line to pass to the kernel
+Args = root=/dev/ram video=atafb:vga16 load_ramdisk=1
+
+# Full path to a (optionally gzipped) ramdisk file
+Ramdisk = root.bin
+
+
+[MIDI]
+# Type of MIDI port emulation:
+#  none -> No output
+#  file -> Output to file
+#  sequencer -> Use /dev/sequencer device under Linux
+Type = file
+# Output to file, filename
+File = /tmp/aranym-midi.bin
+# Output to Linux /dev/sequencer device
+Sequencer = /dev/sequencer
+
+
+[CDROMS]
+# MetaDOS physical device letter = SDL CD-ROM drive number
+# Range: A-Z
+A = 2
+W = 1
+Z = 0
+
+
+[AUTOZOOM]
+# Automatically resize the atari screen to the host screen size
+Enabled = No
+
+# Use integer coefficients to resize the atari screen
+IntegerCoefs = No
+
+# Use a fixed host screen size whenever the Atari screen size changes
+#  If in fullscreen, you can set FixedSize=Yes Width=0 and Height=0
+#  to use current host video mode
+FixedSize = No
+
+# Width of host screen if fixed size
+Width = 800
+
+# Height of host sceren if fixed size
+Height = 600
+
+
+[NFOSMESA]
+# Channel size (16 if you are using libOSMesa16, or 32 for libOSMesa32)
+ChannelSize = 0
+# Library to load for standard OpenGL functions (not needed for libOSMesa[16,32])
+LibGL = libGL.so
+# Library to load for OSMesa rendering functions
+LibOSMesa = libOSMesa.so
+
+
+[PARALLEL]
+# Type of parallel port emulation:
+#  file -> Output to file
+#  x86 -> Hardware access under Linux/X86
+#  parport -> Use /dev/parport device under Linux
+Type = file
+# Output to file: filename, stdout, or stderr
+File = stderr
+#  File = stdout
+#  File = stderr
+# Linux parport device for Type=parport
+Parport = /dev/parport0
+
+
+[NATFEATS]
+# CD-ROM driver to use
+#  linux -> Use Linux ioctls() for CD-ROM access (audio and data)
+#  sdl -> Use SDL functions for CD-ROM access (audio only)
+CDROM = sdl
+#  CDROM = linux
+
+# VDI renderer to use
+#  soft -> Standard software renderer
+#  opengl -> Hardware accelerated renderer
+Vdi = soft
+#  Vdi = opengl
+
+
+[NFVDI]
+# Tell Aranym whether to use host mouse cursor, or standard Atari cursor
+UseHostMouseCursor = No
+
+
+[AUDIO]
+# Host audio device settings
+#  Frequency
+Frequency = 22050
+#  Number of channels (2 for stereo, 1 for mono)
+Channels = 2
+#  Bits per channel (8 or 16)
+Bits = 16
+#  Size of buffer in samples
+Samples = 1024
+
+
+[JOYSTICKS]
+# Joysticks settings
+#  <Atari joystick name> = <SDL joystick number>
+Ikbd0 = -1
+Ikbd1 = 0
+JoypadA = -1
+JoypadB = -1
+# For host -> Joypad button mapping:
+#                A B C Pause Option 0 1 2 3 4/L 5 6/R 7/X 8/Y 9/Z * #
+JoypadAButtons = 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+JoypadBButtons = 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+# Example for Saitek P990, only KP2,5,0 not available
+#JoypadAButtons = 9 3 0 13 12 14 6 15 7 4 16 5 8 2 1 10 11
+
+
+[SERIAL]
+# SCC emulation: Linux serial port device driver
+Serport = /dev/ttyS0

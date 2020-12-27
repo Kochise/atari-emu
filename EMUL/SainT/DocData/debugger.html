@@ -1,0 +1,167 @@
+<html>
+<head>
+<title>Debugger</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body text="#000000" background="fondpageblanc.gif">
+<table width="100%" border="0">
+  <tr> 
+    <td> 
+      <div align="center"><font face="Verdana, Arial, Helvetica, sans-serif" size="5" color="#FF0000">Debugger</font></div>
+    </td>
+  </tr>
+  <tr> 
+    <td height="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"></font></td>
+  </tr>
+  <tr> 
+    <td height="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#FF0000"><i>NOTE: 
+      Debugger is only used by programmer, and it's not activated by default. 
+      To enable it, just add &quot;-debug&quot; to the command line of your SainT 
+      shortcut. Using that option, a new &quot;Debug&quot; menu item appair.</i></font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"></font></td>
+  </tr>
+  <tr> 
+    <td height="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"></font></td>
+  </tr>
+  <tr> 
+    <td bgcolor="#33FF99"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Who 
+      are using this ?</b></font></td>
+  </tr>
+  <tr> 
+    <td height="691"> 
+      <p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">As all emulators, 
+        SainT has a lots of compatibility problem. If you're a programmer, you 
+        can help us to track nasty CPU or timing bugs. You can use the debugger 
+        to give us ideas about some demo or games crash.</font></p>
+      <p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Just click 
+        on the &quot;Debug&quot; logo at top of the screen, and you should get 
+        that page:</font></p>
+      <p align="center"><img src="debug.gif" width="806" height="608"></p>
+    </td>
+  </tr>
+  <tr> 
+    <td height="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"></font></td>
+  </tr>
+  <tr> 
+    <td bgcolor="#33FF99"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Registers</b></font></td>
+  </tr>
+  <tr> 
+    <td height="17"> 
+      <p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">This is standard 
+        68000 registers. In supervisor mode, A7' is the user stack pointer. The 
+        CS register is the &quot;Cycle Counter&quot; and tells you at wich cycle 
+        you are from the last VBL. That counter is reseted each VBL.</font></p>
+    </td>
+  </tr>
+  <tr> 
+    <td><font face="Verdana, Arial, Helvetica, sans-serif" size="2"></font></td>
+  </tr>
+  <tr> 
+    <td bgcolor="#33FF99"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Changing 
+      focus </b></font></td>
+  </tr>
+  <tr> 
+    <td height="17"> 
+      <p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">You can change 
+        focus between Disassembly and MemoryDump window simply by clicking on 
+        it. (Please notice sometimes you have to change focus by clicking on memorydump 
+        then disassembly, because of a nasty focus bug we have to fix)</font></p>
+    </td>
+  </tr>
+  <tr> 
+    <td><font face="Verdana, Arial, Helvetica, sans-serif" size="2"></font></td>
+  </tr>
+  <tr> 
+    <td bgcolor="#33FF99"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Breakpoints</b></font></td>
+  </tr>
+  <tr> 
+    <td height="99"> 
+      <p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">SainT offer 
+        three types of breakpoints:</font></p>
+      <ul>
+        <li><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Classic 
+          code breakpoint:</b> Simply click between the adress and instruction 
+          to add or remove breakpoints. (see the screeshot). A red dot indicate 
+          a breakpoint is valid. To run the program using breakpoints, simply 
+          press F5 key.</font></li>
+        <li><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Interrupt 
+          breakpoint: You can activate some interrupt breakpoints by clicking 
+          on various check-box (Timer A/B/C/D, ACIA, etc.). As always, run the 
+          program using F5 to use that feature.</font></li>
+        <li><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Time breakpoint: 
+          Use the &quot;T&quot; key in the disassembly window. Very nice feature: 
+          enter a number of NOPs after the VBL to break the program. For exemple, 
+          if you want to see a upper border routine, just enter 4224 (33*128). 
+          <i><b>Warning: enter the time-breakpoint in &quot;nop&quot; (4 cycles) 
+          and in decimal.</b></i></font></li>
+      </ul>
+    </td>
+  </tr>
+  <tr> 
+    <td><font face="Verdana, Arial, Helvetica, sans-serif" size="2"></font></td>
+  </tr>
+  <tr> 
+    <td bgcolor="#33FF99"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Disassembly</b></font></td>
+  </tr>
+  <tr> 
+    <td height="94"> 
+      <p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Display disassembled 
+        code. You can use cursor key. Here are the usefull keys:</font></p>
+      <ul>
+        <li><font face="Verdana, Arial, Helvetica, sans-serif" size="2">F6: Step 
+          into</font></li>
+        <li><font face="Verdana, Arial, Helvetica, sans-serif" size="2">F7: Step 
+          over</font></li>
+        <li><font face="Verdana, Arial, Helvetica, sans-serif" size="2">F8: Skip 
+          instruction (not executed)</font></li>
+        <li><font face="Verdana, Arial, Helvetica, sans-serif" size="2">G : Go 
+          to adress</font></li>
+        <li><font face="Verdana, Arial, Helvetica, sans-serif" size="2">F5: Run 
+          the emulator in &quot;debug mode&quot; (slower but breakpoints are actives)</font></li>
+        <li><font face="Verdana, Arial, Helvetica, sans-serif" size="2">T : Cycle 
+          breakpoint</font></li>
+      </ul>
+    </td>
+  </tr>
+  <tr> 
+    <td><font face="Verdana, Arial, Helvetica, sans-serif" size="2"></font></td>
+  </tr>
+  <tr> 
+    <td bgcolor="#33FF99"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Memory 
+      dump </b></font></td>
+  </tr>
+  <tr> 
+    <td height="37"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2">Simply 
+      click on the memory dump to get the focus. Then you can click on the byte 
+      you want. Then, simply enter hexa-decimal values to change the memory in 
+      real time. (Warning: the byte-cursor is not displayed every time, have to 
+      fix it too :-))</font></td>
+  </tr>
+  <tr> 
+    <td><font face="Verdana, Arial, Helvetica, sans-serif" size="2"></font></td>
+  </tr>
+  <tr> 
+    <td><font face="Verdana, Arial, Helvetica, sans-serif" size="2"></font></td>
+  </tr>
+  <tr> 
+    <td height="7"> 
+      <hr>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <div align="center"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><img src="logosaint.jpg" width="284" height="159"></font></div>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <div align="center"><font face="Verdana, Arial, Helvetica, sans-serif" size="1">SainT 
+        1998-2002 Written by James Boulton and Arnaud Carr&eacute;</font></div>
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp; </p>
+</body>
+</html>

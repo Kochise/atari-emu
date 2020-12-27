@@ -1,0 +1,95 @@
+Kronos 1.0 documentation					Belfort 25 april 2002
+
+Kronos use Gem Dynamic Library (LDG) to work, this library can work
+on all Gem computer, and can share a lib beetween diffrent client.
+
+This library are support by Dominique Bereziat and Olivier Landemarre
+
+Kronos use this standard library:
+
+	- SCREEN.LDG True Color transformation and screen managment 
+	(Guillaume Tello - Olivier Landemarre)
+	- IGIF.LDI (an LDG library for a sp‚cific function to load picture)
+	this library can load GIF pictures (Pierre Gougelet - Olivier Landemarre)
+	- Tiny_GL.LDG very small and incomplete OpenGL like library from 
+	Fabrice Bellard (Atari port : Olivier Landemarre)
+	
+Kronos use specific library for tests (so you can change what you want with
+if something you not agree! and you can see source code of this test)
+
+	- CPU.LDG, VDI.LDG, DISK.LDG, FPUxx.LDG
+	
+	
+Kronos is compile with GCC 2.8.1 (Christian Felsh port), Mintlib 48, Mgemlib 40
+(http://gemtos.free.fr) and libm (http://gemtos.free.fr)
+
+Apple OpenGL 3D figure come from Eureka software of Francois Le Coat
+
+Raytracing picture was made by Frederic Boudet with Inshape 3 modeler and
+raytracer under MagicMac (modeler part) and raytracing was made with the
+specific PPC version of raytracer part of Inshape 3 under MacOS
+
+I have made this software with a GEM code g‚n‚rator to manage GEM interface.
+
+Thanks to Francois Le Coat and Eric Reboux for their tests!
+
+
+
+To use Kronos you need:
+
+Video : 640 * 400 minimum and black and white, but should be use in 640 * 480
+to see all dialogs box.
+Memory :  near 4Mo
+Systems : no restriction
+
+Better config: True color video (24 -32 bits) and 20Mo of ram
+
+
+What is Kronos?
+
+Kronos is a bench software.
+
+
+Bugs :
+
+The alpha version (0.80) failled in 256 colors, TOS<4.0 ... should be fix!
+It stay problems with:
+
+MagicPC for Video memory transfert and disk speed tests (cf FAQ). Emulators
+results should be in general take with a lot of precautions!
+
+Hades 60 + TOS 3 + cache = Copyback + AES 3, bus error
+
+
+
+Tests evaluation in Kronos:
+
+CPU : memory access and operation in the cache of the processor and registers
+
+FPU
+
+STRam speed, Video speed transfert
+
+VDI
+
+Disk speed transfert and access with Fopen() Fread() Fwrite(), Fcreate()
+and Fdelete() function system
+
+OpenGL : Good test near true application use FPU and intensive memory access
+
+
+With this I have port the BYTEBench from the magazine Byte to complete
+if you want your tests, to compare with a PC Pentium 90, but it is made for
+a P90 not a Falcon! so this could be very long!!!!!!
+
+Comparison refrence file
+
+To work Kronos need a refrence file of results, this file is name DEFAULT.ABH
+this file can be replace by an other .ABH file made with Kronos, this file
+need to be with all the tests (Has MagicPC can't perform all tests the results
+for MagicPC could not become the refrence!). "Results1" and "Results2" can
+be load from Kronos menu but can be load at the start if Kronos can find
+KRONOS1.ABH and KRONOS2.ABH file in it's directory.
+
+How work Kronos?
+

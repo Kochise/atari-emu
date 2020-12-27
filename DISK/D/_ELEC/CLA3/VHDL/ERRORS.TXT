@@ -1,0 +1,80 @@
+CLA-VHDL MANUAL ERRORS [30/5/95]
+=================================
+
+After writing & printing the manual for CLA, I noticed that there was
+a small discrepancy between CLA-VHDL and a proper VHDL compiler.
+
+The manual shows the following example:
+
+   -- D-FlipFlip Model 
+   -------------------------------------------------- 
+   ENTITY dflipflop IS 
+      PORT(d:IN BIT; clock:IN BIT; 
+          q:OUT bit; qbar:OUT BIT; 
+         ); 
+   END test; 
+ 
+   ARCHITECTURE structure OF dflipflop IS 
+   BEGIN 
+      PROCESS(clock) 
+      BEGIN 
+   -- This bit is only executed if clock goes 0->1 
+         q<=d; 
+         qbar<=NOT q; 
+      END PROCESS; 
+   END;
+
+This uses an assignment from an output port ( qbar<=NOT q ). This
+is illegal in VHDL, so I've closed that loophole in the compiler.
+
+You now CANNOT make assignments from output ports.
+
+Unfortunately this does mean that the manual's example programs
+no longer work. The correct version of the D-flipflop should read:
+
+   -- D-FlipFlip Model 
+   -------------------------------------------------- 
+   ENTITY dflipflop IS 
+      PORT(d:IN BIT; clock:IN BIT; 
+          q:OUT bit; qbar:OUT BIT; 
+         ); 
+   END test; 
+ 
+   ARCHITECTURE structure OF dflipflop IS 
+   BEGIN 
+      PROCESS(clock) 
+      BEGIN 
+   -- This bit is only executed if clock goes 0->1 
+         q<=d; 
+         qbar<=NOT d;
+      END PROCESS;
+   END;
+
+And, in fact a better model of the D-flipflop can be produced using
+the following architecture:
+
+   ARCHITECTURE structure2 OF dflipflop IS 
+   SIGNAL int_state:bit;
+   BEGIN 
+      PROCESS(clock) 
+      BEGIN
+   -- int_state is an internal register which hold the current state
+         int_state<=d;
+      END PROCESS;
+   -- derive the outputs from the current state
+      q<=int_state;
+      qbar<=NOT int_state;
+   END;
+
+This will work better, as qbar will now always be NOT(q) - in the
+original version, q=qbar until after the first clock. Also, this
+implmentation will use only one register, whereas the original used
+two (you use a register for every assignment made within a process).
+
+Craig.
+  __                              _ 
+  | \        | |                 / | WatchThisSpace - something wonderful
+  |_/ A T A  \/| N C E R T A I N  /   is happening on 'Distant Earth' ;)
+--------------------------------- o --------------------------------------
+Craig Graham. EMAIL: craig.graham@newcastle.ac.uk 
+              Webspace: http://www.ncl.ac.uk/~n08z7

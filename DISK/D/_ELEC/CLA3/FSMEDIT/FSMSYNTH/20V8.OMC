@@ -1,0 +1,8 @@
+FSMsynth Device Definition 
+DEVICE:20V8 
+PINS:20 
+OMC:10 
+0,0,0,0,0,0 
+0,0,0,0,0,0 
+0,8,8,8,8,8 
+8,8,8,8,8,0

@@ -1,0 +1,124 @@
+1) Compilation requirements
+---------------------------
+
+For compiling ARAnyM you will need libSDL, version at least 1.2.10.
+You can get it from http://www.libsdl.org/ or from your OS distribution vendor.
+
+If you want to compile source fetched from Git you also need
+automake, libtool and autoconf (http://www.gnu.org/ or your OS vendor).
+
+Supported platforms:
+
+All Debian GNU/Linux platforms
+
+and
+
+x86          BeOS
+x86          GNU/Linux
+x86          MS Windows + Cygwin
+x86          OpenBSD (unmaintained)
+PPC          MacOS X
+SGI          Irix (unmaintained)
+Sun Sparc    Solaris
+
+In progress (in alphabetical order):
+m68k         FreeMiNT
+x86          FreeBSD
+x86          NetBSD
+
+
+2) Compilation
+--------------
+
+  2-1) Unix or Linux
+  ------------------
+If you got the source code from Git then type
+./autogen.sh && make
+
+If you have a source snapshot or proper ARAnyM source code release then type
+./configure && make
+
+./configure --help shows you all the compile time options.
+
+If everything went OK you got an executable file named "aranym".
+
+
+  2-2) Microsoft Windows
+  ----------------------
+Compilation is accomplished using the Cygwin linux-like environment
+(http://www.cygwin.com/).
+
+Details are available in tools/build-cygwin.txt.
+
+
+  2-3) Apple Mac OS X
+  -------------------
+Go to src/Unix/darwin folder first.
+
+If you got the source code from Git then just type
+make
+
+If you want to configure ARAnyM for your personal needs, type 
+../configure_ppc --help
+
+Add preferred options to the CONFIGURE_OPTIONS_ppc and CONFIGURE_OPTIONS_i386 
+variables at the top of Makefile inside the darwin folder. After that run make 
+again.
+
+If everything went OK, you got an executable named "ARAnyM.app" inside the
+src/Unix/darwin folder.
+
+This application expects its default configuration inside the current user's 
+~/Library/Preferences/org.aranym.amcfg file. Inside that config file a path 
+beginning with */ will be expanded to ~/Library/Application Support/ARAnyM.
+
+The ARAnyM.app also supports virtual machine bundles: Put all your disk image 
+files, host-fs destination folders, ROM image etc. and a properly configured
+org.aranym.amcfg file into a new folder. Give that folder the extension 
+".ARAnyM" or ".amvm". The Mac OS X Finder will then treat this new Folder as a 
+so called bundle. Just dubble click on it and ARAnyM should start and use it.
+
+To modify such a bundles content, in the Finder Control-click or right-click on 
+it and select "Show Package Contents".   
+
+There are also other methods of building ARAnyM for OS X. Refere also to the 
+documents inside src/Unix/MacOSX.
+
+  2-4) FreeBSD (i386)
+  -------------------
+If you got the source code from Git then type
+MAKE=gmake
+./autogen.sh && gmake
+
+If you have a source snapshot or proper ARAnyM source code release then type
+./configure && make
+
+./configure --help shows you all the compile time options.
+
+If everything went OK you got an executable file named "aranym".
+
+3) Installation
+---------------
+You may install ARAnyM on Unix/Linux by typing 'make install' (have root
+privileges as default configuration installs to /usr/local/),
+or you may run the binary directly by typing ./aranym.
+
+Next step is to obtain the operating system (TOS 4.04 or EmuTOS) and install
+a harddrive. More on this in the README file. Easiest is to download
+one of the 'afros' disk images (Aranym FRee OS) that contain everything
+preinstalled.
+
+
+4) Troubleshooting
+------------------
+
+If you compiled libSDL by yourself and installed to /usr/local/ you might
+experience the following problem when running autogen.sh:
+
+aclocal: configure.in: 835: macro `AM_PATH_SDL' not found in library
+
+The fix is relatively easy:
+
+export ACLOCAL_FLAGS="-I /usr/local/share/aclocal"
+
+This helps aclocal to find the .m4 file and everything is fine then.

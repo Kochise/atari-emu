@@ -1,0 +1,258 @@
+2.40
+* color writing using blitter is now working
+* accurate "writing data" sync to the electron beam (even with STE blitter)
+* Experimental frame interpolation option (should produce smooth scroller at 50Hz)
+* Experimental support of Light-Boost if your screen support 100Hz and more
+* Support med resolution change in middle of line ( DNT Screen 1 in Snork Demo )
+* minor bug fix in memshot preview 
+* Clean up option screen
+* ste linewidth saved in memoryshot
+
+2.30
+* NEW SC-1425 Atari CRT emulator! Enjoy OldSkool image feeling of your loved SC-1425 monitor! (infos here: http://leonard.oxg.free.fr/SC1425/SC1425.html )
+* Now SainT display is gamma correct
+
+2.21
+* upper left bad pixel fix (when the last pixel of screen is not same color as the first pixel)
+* many update when autorun mode is used (for gamebase, thanks to John Irvine for report)
+* compiler change to visual 2010
+
+2.20
+* DirectX code rewrite to support fullscreen/Option page swap better on Win7
+* Display option simplification (only hardware texture supported now)
+* Blitter BusError on some LogicalOp fixed ( Ecstasy demo by Inner Circuit Explorers )
+* STE DAC sound missed some write access ( HexTracker by Paulo Simoes )
+* STE pixel scroll 8264 word access bug fix ( Ecstasy demo by Inner Circuit Explorers )
+* 4MB STE really supported ( Appendix demo by DHS is now running )
+* Dir2Msa now can generate 11 sectors MSA images ( To create floppy version of Appendix demo by DHS )
+* Dir2Msa can directly proceed ZIP file (ZIP to MSA)
+* Force PC VBL-Sync is disabled by default (avoid music tempo problem for new user)
+* Fix writing palette bit 3 if STF mode ( Thanks to Paulo Simoes )
+* right-ALT key for "fast" mode (for Mac-BootCamp keyboard without right-CTRL!!)
+* SainT distrib is packed using 7-Zip ( http://www.7-zip.org/ )
+
+
+2.15
+* STE Tos compatibility improved (TOS 1.06 is working for STE demos)
+* FF8240 color change using blitter supported
+* Remove buggy GIF screenshot support (only BMP now)
+* Windows 7 large font problem fix (thanks to John Irvine)
+
+
+2.14
+* 0 byte line supported on both STF / STE
+* new 0 byte line supported ("No Buddies Land" game)
+* STE blitter pixel shift supported ( "Cernit Trandafir" demo by DHS is now working fine)
+* weird 68k prefetch fix ("Beyond" demo by Kruz is now working)
+
+
+2.13
++ Best support for STE pixel scroll
++ Support 224 bytes line (STE overscan)
++ 0 byte line support
++ STE microwire support
++ F9 key to toggle breakboint under debugger (-debug option)
+
+
+2.12
++ Added Video Sync support in windowed mode
+* Graphic glitch bug fix when writing to the screen with HW split screen (STE)
+* Fix VSYNC wait in windowed mode (new directx driver behavior)
+* Bug fix for STE video line width register (FF820F)
+* Bug fix for loading if you remove/replace a disk during loading
+* Bug fix in sound debug viewer (mono and stereo!)
+* Removed D3DENUM_WHQL_LEVEL flag to prevent DirectX to acceed Internet (firewall popup with some new NVidia drivers)
+
+
+2.11
+* Bug fix for raw floppy mode support on some machines
+* -floppy option now reset ST and starts emulator automatically (press F12 to go back to menu)
+
+2.10
+* RAW Floppy support! Boot your fave game or demo directly using your good old floppy! Use "-floppy" command line option
+* Small fix in movie file extension warning (always use .avi)
+* speeded the fast-forward mode (press right control key during emulation)
+* Dirext9 version
+* STE DAC sound volume boost
+* STE DAC Master Volume support added!
+* removing DirectX dynamic texture support flag (seems to be a bit faster)
+* fixed breakpoint red marker in debugger mode (use "-debug")
+* centered sound debug gfx
+* remove window resizing possibility
+* fix a crash when a directx screen saver activate while saint is running
+* More faster speedup mode (even in fullscreen) (keep the right CONTROL key pressed)
+
+
+2.00
+* Great speed up for video recording !
+* Video recording support both 25 and 50Hz rate
+* Screen is now 400*274, no more black lines at top and bottom in fullscreen (in GPU mode, enjoy fullscreen demos !)
+* More pixels detail in "sound output debug" graphical view
+* CPU rendering finally compatible with 16 and 32bits rendering, should run in windowed mode on more machines !
+* CPU rendering enanced, SainT should work on software DirectX machine (some laptop)
+* faster and cleaner low-pass filter routine
+* removed old code path for dynamic texture
+* removed all old-fashioned CPU rendering modes (blend, interlace)
+* fixed "msvcr71.dll" missing message.
+* Again a new 68000 prefetching routine
+* fixed nasty bug if any shifter write at the very end of the frame
+
+1.99g
+* 68000 core engine bug re-introduced fixed again (union demo, xenon2, etc.)
+* Final Visual.NET project convert
+
+1.99f
+* Large Pasti files supported
+* No more 100% CPU usage in menu screens
+* DIM floppy image support bug fixed
+
+
+1.99d
+* new digisound YM volume boost too high for PC sound hardware. Just reduce it a bit.
+* YM register read bug fix ( VU-Meter crash in FOF menus)
+
+
+1.99c
+* Sound quality even improved !! DigiSound replay table for Quartet and ST-Replay, measured on real hardware by Paulo Simoes
+* digisound volume boost
+* 6301 keyboard fixes by Vincent Joguin (Union demo intro and HifiDream space key now working)
+* Multi-instance of SainT allowed
+* Fullscreen screen refresh rate setting is no more lost when running windowed
+
+1.99b
+* Upper border line counting in NTSC fixed ( "Best Part Of The Creation" by Delta Force)
+* Medium resolution detection fixed for screenshot ( "Best Part Of The Creation" by Delta Force)
+* Screenshot file name is derived from the floppy disk name
+* BUS Error stack frame improved ( Many original protections are working such as PYM, SyntaxTerror, DarkSide)
+* Crash recover (sometimes when SainT crash, you can't run it again. Should be fixed now)
+* Another upper border "60hz" fixed ( multicolor music display by Level16 in Syntax Terror)
+
+1.99
+* Real 6301 low level keyboard CPU emulator written by Vincent Joguin ( Now Froggies' demo and Transbeauce2 are working !!)
+* -weird- MFP "0" data register behavior when strangly programmed emulated. ( Froggie's demo )
+* noisy YM sound sometimes when resetting fixed.
+* TimerB when shifter disabled bug fixed ( Oxygene screen in Transbeauce2 )
+* bug fix in video combo box frequency selector ( sort removed )
+
+
+1.85
+* Beta PASTI disk image support ! Run original Union-Demo ! ( Get the PASTI.DLL at http://pasti.fxatari.com/ )
+* Bug fix in directory files treeview (sometimes folders appaired dupplicated)
+* Beta prefetching code rewritten. Some demos/games are now working ( Union demo, original Xenon2), and some demos may crash with that version. ( ex FlashBack by TCB )
+
+
+1.80
+* New powerfull digit-sound volume register caching technic. No more noise in Digi-Sound !
+  SainT sounds better than ever ! ( Thanks to Paulo Simoes for nice talks and ideas )
+* Adding STEREO sound support ! ( for STE stereo sound )
+* Powerfull and "no click" 0 dc sound adjuster
+
+* Re-written disk controller stuff from Assembler to C++ for future extension ( Pasti )
+
+
+1.72
+* tricky timerb event mode setting in a fullscreen line ( ULM 8channels demo )
+* wrong top-border and timerb usage bug fixed ( screen number 6 in delirious demo 2 )
+* potential crash at startup if TOS rom file not found fixed
+
+
+1.71
+* Fullscreen + Spectrum512 extreme left border color fixed ("Overscan Demos" F6 screen) Thanks to Paulo Simoes for precious debugging help
+* Double odd adress fixed ( ELECTRA demo is now working again )
+* Add "Clear all breakpoint" button in debugging pannel
+
+
+1.70b
+* Stupid MFP writing wrong bus error fix. some demos could have crashed in previous version ( 1.70 )
+
+1.70
+* MFP emulation core totally re-written ! Now support cycle accurate reading ( Overscan Demos by Paulo Simoes )
+* "Line disabling" technic emulated ( Overscan demos by Paulo Simoes )
+* "StopLine" fixed ( B.I.G demo by TEX low border fixed )
+* Fixed STE DAC monos sound bug (quality improved !, try BrainDamage Demo sound!)
+* SainT does not take 99% of CPU when running in background in windowed mode.
+* Fixed cycle timing when reading in FC00 ( thanks to Paulo Simoes )
+* Low border adds now 45 graphics lines instead of 43
+
+
+1.61
+* In window mode, keeping right control key pressed runs emulator at full speed
+* "Pause" key used to take screenshot when demo or game is running
+* Added quick image disk launch command line option to be used by great demo database project ( http://www.gamebasest.com/ )
+* weird bug fixed when reading .L at $ffffe on 1Mb machine ( Illusion demo "glenz vector" part)
+* NULL shifter address when reset fixed (Just-Bugin and Anomaly demo reset fixed)
+* MFP IPL level interrupt bug fixed (Giga-TEX screen in "Life's a bitch" demo)
+* Strange YM write behavior fixed (X-Out music) Thanks to Ben/Ovr for info !
+
+1.60
+* Movie Recording added ! Make DivX with sound of your fave demos !
+* *high* MFP timer restart bug, now SID music works perfectly ! (try YM Rockerz demos !)
+* High border start fixed in 60Hz mode ( LEvel16 fullscreen/Union-Demo )
+* Screenshot improved: med res supported (800*600 pictures), BMP format added (TGA removed)
+* Add "Fullspeed" option (only in windowed mode)
+* IPL level fixed, Ziggy 3d interrupt fullscreen is now perfectly working !!
+* "Force VSync" option improved
+* Stupid MFP read bug introduced in v1.50 fixed ( mouse problem, no-copper demo, etc)
+* FC04 read emulation fixed (Arkanoid 1 is now working fine)
+ 
+
+1.50
+* 4bits synscroller emulated !! ( ST-Connexion screen in Punish your Machine demo)
+* MFP read bug fixed, many new freezed demos work ( Froggies over the fence menu, etc. )
+* Mouse absolute command bug removed ( new games working, arkanoid 2, etc..)
+* Bus error if Floating Point Unit write fixed ( Reservoir Gods games are working !)
+
+
+1.40b
+* IO .L writing bug re-fixed (source-safe problem :)) ( Illusion Demo by Dune )
+
+1.40
+* Screen is centered. ( 40 pixels + 320 pixels + 40 pixels)
+* 60Hz mode supported
+* 4cycles shift in rendering fixed
+* 4bytes DBcc prefetch emulated ( TransBeauce1 demo protection is working !)
+* 1pixel shift coloshock fixed ( spectrum images are now perfect )
+* vicious bug fixed (writing .L at end of graphics screen) ("Illusion Demo" by Dune)
+* Better STE/STF detection (ChaosEngine demo)
+* Breakpoints in debugger are saved within "record" image (usefull to debug atari code)
+
+
+
+1.32
+* Writing disk support for .ST and packed MSA files
+* user mode bus error fixed ("Posh" demo is working)
+* Keep sound playing option when loosing focus (windowed mode)
+
+
+1.30
+* Big speed boost of GPU rendering (using texture). Use SainT at full speed on cheap machine !!
+* STE more compatible (blitter improvement and cycle accurate)
+* Memory snapshot reading optimized and improved (STE blitter and DAC save support)
+* "Fullscreen force deskptop resolution" option for PC Laptop owner.
+* Write config on SainT.ini (so you can have multiple SainT configuration in several directory)
+* "Ask reset and run" option to launch a disk faster
+
+1.21
+* Optimizing again screen rendering
+* cmp/bcc other bug fixed ( ULM mainmenu in 512Kb version)
+* MFP $fa12 in WORD access bug fixed ( "HighFidelityDream" works perfectly )
+
+
+1.20
+* SID-Sound quality improvment (try the Flipo-Demo !)
+* TimerA event mode fixed ("do things" of cream)
+* More prefetch fixed (V8-Music system)
+* High border sync scroll fix (Genius Demo, ULM girl-screen)
+* Screen rendering optimized ! (All fullscreen demos at 50Hz on P2-233 ! (half-line mode))
+* 1024*768 fullscreen mode support for lucky owwer of PC laptop
+* Memory snapshot bug fixed when changing ROM.
+
+
+1.10:
+
+* Memory Snapshot (Record menu)
+* FDC 8bits track register bug (Mindbomb, red-sector screen)
+* cmpa/bcc combining cycles timing (Galtan6 intro)
+
+1.00b:
+- TimerA bug for Darkside mainmenu

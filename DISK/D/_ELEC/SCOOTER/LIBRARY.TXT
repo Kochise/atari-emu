@@ -1,0 +1,29 @@
+Auf der Demodiskette von Scooter-PCB finden Sie aus PlatzgrÅnden nur eine
+begrenzte Auswahl der mitgelieferten Bauteile der Vollversion.
+
+Folgende Verzeichnisse sind dort enthalten:
+
+    Name     |            Inhalt                | Anz. der GehÑusetypen
+-------------+----------------------------------+-------------------------
+ANALOG       | R, C, Dioden, ...                |           68
+DROSSELN     | Drosseln                         |            5
+IC           | IC-GehÑuse                       |           28
+KUEHL        | KÅhlkîrper                       |            3
+LEITERPL     | Europa-Leiterplatten             |            9
+OPTO         | OPTO-Bauelemente                 |            5
+POTI         | Potentiometer                    |            8
+RELAIS       | Relais                           |           14
+SCHALTER     | Schalter                         |           19
+SCHEMA       | Schaltplan-Symbole               |           88
+SMD          | SMD-Bauteile                     |           30
+SONSTIGE     | diverses                         |            8
+STECKER      | Stecker, Buchsen                 |          103
+TRAFO        | Transformatoren                  |            6
+TRANSISTOR   | Transistoren, BC-,BD-,2N-Reihen  |          119
+U_REGLER     | Spannungsregler                  |           20
+                                                        =======
+                                                         ~ 530
+                                                         
+- énderungen vorbehalten -
+
+HK-Datentechnik  Sept. 1992

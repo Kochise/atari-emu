@@ -1,0 +1,614 @@
+Documentation de Kronos 1.7a	Belfort le 5 F‚vrier 2004
+
+Avant toute chose:
+
+Kronos utilise certaines librairies dynamiques pour fonctionner!
+
+Ces librairies sont toutes bas‚es sur le systŠme LDG de Dominique
+B‚r‚ziat, Arnaud Bercegeay et Olivier Landemarre
+
+   - SCREEN.LDG pour tout le management d'image TC et les 
+   transformations (Guillaume Tello - Olivier Landemarre)
+   - IGIF.LDI Librairie dynamique LDG de chargement d'images GIF
+   (Pierre Gougelet - Olivier Landemarre)
+   - TINY_GL.LDG : Pseudo OpenGL l‚ger de Fabrice Bellard (port 
+   Atari : Olivier Landemarre)
+
+Kronos a ‚t‚ compil‚ … l'aide de GCC 2.8.1 compil‚ par Christian Felsh
+Mintlib 48, Mgemlib 40 (http://gemtos.free.fr) et libm (http://gemtos.free.fr)
+
+Motif OpenGL de la pomme tir‚ de Eureka de Francois Le Coat
+
+Les images de raytracing ont ‚t‚ r‚alis‚e par Fr‚d‚ric Boudet avec Inshape 3
+sous MagicMac (partie modelage) et calcul‚es sous MacOS en PPC avec le modeleur
+natif PPC d'Inshape 3.
+
+La version 0.80 alpha ‚tait bas‚e sur le ressource de zbench de Zorro
+certaines ressemblance continuent …  transparaitre malgr‚ un profond
+remanaiement, les icones proviennent de ce ressource, la comparaison 
+s'arrete l….
+
+Ce logiciel est r‚alis‚ en grande partie par un g‚n‚rateur de code
+pour g‚rer l'interface GEM.
+
+Merci a Francois Le Coat et Eric Reboux pour leurs tests
+
+
+Minimum requis … l'utilisation de Kronos:
+
+Ecran: 640*400 Noir et blanc (en fait 640*480 pour voir
+correctement toutes les boites, mais cela fonctionne
+quand meme en 640*400)
+M‚moire: autour de 4Mo de Ram
+SystŠme : Tous (TOS, Magic, Mint, ‚mulateurs)
+
+Configuration conseill‚e: Ecran true color!!!!!
+
+
+Qu'est ce que Kronos?
+
+Kronos tente de mesurer certaines performances
+de votre ordinateur ou de votre systŠme.
+
+A aucun moment les interruptions ne sont d‚sactiv‚es
+
+Version 1.70a
+Correction affichage des cartes acc‚lratrices CT30 CT60 qui ne s'affichaients
+pas et pour cause je me trompais de boite de dialogues -> peut etre risque de plantages
+Ajout dans le fichier du r‚sultat mothercard perf
+
+Version 1.04 … 1.70
+Correction de 2 bugs dans tests CPU pouvant entrainer des r‚sultats erron‚s
+Detection des cartes acc‚l‚ratrices CT30 et CT60
+Ajout de la valeur motehrcard perf -> donne une id‚e de la capacit‚ de la carte mŠre 
+(pas de vid‚o pris en compte, utilisation m‚moire, CPU et FPU)
+Autres corrections ?? ne me rappel plus.
+
+
+Version 1.03
+
+Elimination d'un bug de reproductibilit‚, lors d'un 2eme
+appel successif au test CPU, entrainant une erreur jusqu'… 3%
+lors du 2eme test.
+R‚‚criture du test muldiv, utilise maintenant mulu et divu comme
+calcul, les r‚sulats sont sensiblement plus rapides.
+
+
+Version 1.02
+
+Possibilit‚ de plantage al‚atoire … cause de IGIF.LDI (pb
+incompatibilit‚ fonction standard C de la Mintlib avec les LDG)
+Possibilit‚ de plantage (non v‚rifi‚) pour cause de scratch registers
+Plantage des fenetres des r‚sultats d‚taill‚s en TC 16 et 32 bits
+lors de l'excitation en mouvement de la fenetre (si redessin … la
+vol‚e), problŠme de r‚entrance, rien … voir avec NVDI 5, merci
+Zorro, maintenant en plus ca va un peu plus vite.
+
+Correction du plantage au d‚marage du test OpenGL (Hades 40 seulement!)
+
+Am‚lioration de la pr‚cision des mesures d'environ 0,2% (c'est pas 
+grand chose mais bon pourquoi s'en priver!)
+
+Correction de la formule du calcul de la fr‚quence pour le
+68020 et 68030, les autres proc‚sseurs ne sont pas concern‚s.
+
+Modification de la routine de calcul de fr‚quence elle d‚passait un peu les
+256 octets de cache disponible du 68030 produisant un r‚sultat en deca de
+celui pr‚vu. L'op‚ration se fait sur 120 instructions au lieu de 128.
+
+Modification de la routine memowrite() destin‚e … calculer la le taux de 
+transfert de CPU vers m‚moire, la valeur impos‚e 0, provoquait pour le GCC
+l'utilisation de l'instruction clr.l au lieu de move.l, plus lent sur les
+processeurs 68000 au 68030
+
+Modification de la routine Bitshift afin qu'elle puisse tenir dans le cache
+68030 le 68030 est donc moins p‚nalis‚e pour cette op‚ration l'‚valuation
+du shift est aussi plus correcte on n'a plus l'influence de l'accŠs m‚moire.
+La fonction s'‚value sur 120 op‚rations au lieu de 256
+
+Modification de la fonction overlap() afin qu'elle puisse tourner dans le cache
+du 68030 le  68030 est donc moins p‚nalis‚ pour cette op‚ration d'‚valuation
+cette op‚ration est plus correcte car on ‚limine l'influence de l'accŠs m‚moire.
+La fonction s'‚value sur 120 op‚rations au lieu de 128
+
+
+
+
+Version 1.0
+
+La version alpha 0.80 pr‚sentaient certains gros bugs
+comme plantage en 256 couleurs entrelac‚s, TOS<4.0 etc...
+Ces bugs sont normalement r‚solus
+Il reste MagicPC qui ne supporte pas le test disque et le test
+de vitesse de transfert vid‚o (cf Faq), les r‚sultats sous
+‚mulateurs sont … prendre avec pr‚caution surtout si des parties
+du systŠme sont directement impl‚ment‚es sous la machines
+hote (lecteurs locaux, VDI optimis‚e principalement). Si 
+l'‚mulateur est suffisament bon les tests CPU, FPU et opengl ne 
+devraient pas poser de problŠmes car bas‚ sur de l'‚mulation pure.
+
+Sous Hades 60 TOS 3 + cache = copyback + AES 3, bus error pouvant
+etre ratrap‚ pour faire test, avec remplacement de l'AES par AES 4
+le logiciel dans les memes circonstances fonctionne. Pour pouvoir
+faire fonctionner les caches sont momentan‚ment d‚sactiv‚s lors du 
+chargement des modules dynamiques, cela est fait uniquement dans cette
+configuration.
+
+
+Parties ‚valu‚es par Kronos
+
+Elles sont pricipalement de 5 sortes
+
+Le CPU pour la partie entiŠre du processeur, comprenant
+l'acces … la m‚moire principale, et des op‚ration se faisant
+entiŠrement dans le cache.
+
+Le FPU caract‚risation du coprocesseur arithm‚tique, ces op‚rations
+se faisant dans le cache du processeur si possible, pour les
+machines sans ce coprocesseur, ce sont des routines d'‚mulation
+qui sont utilis‚es.
+
+Divers tests de performance de transfert (STRam, vid‚o)
+
+Le VDI, pour caract‚riser la vitesse d'affichage de diverses 
+fonctions du VDI
+
+Acces disque, via les fonctions Fopen() Fread() Fwrite() du systeme
+
+OpenGL, qui est un bon example de puissance de calcul en cas r‚el
+du FPU et de la rapidit‚ m‚moire, car exigeant, c'est une utilisation
+plus proche de la r‚alit‚ d'utilisation conventionnelle d'un ordinateur
+
+En plus de cela et … part en application TOS est fourni le portage
+de "BYTEBench" le Bench de BYTE Magazine qui permet de comparer
+les performances relatives … un PC. Ce  Bench a ‚t‚ compil‚ … l'aide
+de GCC 2.8.1 et peut comme toute compilation de source C, avoir
+des r‚sultats divers selon le compilateur utilis‚ pour le compiler.
+Il a n‚anmoins de trŠs grandes qualit‚s de pr‚cision, meme si le test
+peut sur une machine Atari s'av‚rer parfois trŠs long (d‚velopp‚
+pour un Pentium 90 en base). Les diverses versions de BYTEBench
+ne font pas parti de Kronos par lui meme, je le livre l… comme
+compl‚ment int‚ressant … Kronos. L'option de lancement de ce logiciel
+… partir de Kronos a ‚t‚ d‚sactiv‚, il est pr‚f‚rable de le lancer
+… partir du bureau.
+
+
+Fichiers r‚f‚rences pour les comparaisons
+
+La r‚f‚rence pour la comparaison des r‚sultats est donn‚ par DEFAULT.ABH
+ce fichier peut etre remplac‚ … votre convenance par un fichier .ABH 
+de Kronos complet (tous tests effectu‚s sans problŠme (donc pas test 
+MagicPC)). Les " Result1 " et " Result2 " peuvent etre directement charg‚s
+en fournissant DEFAULT1.ABH et DEFAULT2.ABH dans le r‚pertoire de Kronos.
+
+
+Principe de fonctionnement de Kronos
+
+Kronos est bas‚ sur le principe, qu'il est n‚cessaire que le test
+prenne suffisament de temps pour qu'il soit suffisament pr‚cis.
+La base de temps pour la plupart des tests est de 1 seconde sauf
+pour les test OpenGL (20secondes) et disque (5 secondes). Tous
+ces tests font un  nombre de cycle croissant jusqu'a obtenir le
+temps voulu minimal sauf le test VDI pour des raisons
+esth‚tiques! ou c'est le temps qui est v‚rifi‚ … chaque it‚ration.
+Pour cette raison le test VDI est r‚alis‚ en mode superviseur.
+Le test OpenGL, pour des questions de temps de calcul ne fait intervenir
+le recalcul du nombre de cycle que pour le 1er test en mode plein avec 
+affichage sur une base de 20 secondes. Les autres tests OpenGL se feront sur
+ce nombre d'it‚rations.
+
+L'ensemble des tests sont regroup‚s sur divers librairies dynamiques
+ce qui permet le cas ‚ch‚ant d'utiliser une version optimis‚e pour
+le processeur hote (principalement utile pour le FPU et OpenGL). Les
+sources des divers tests sont fournis, ce qui pourra vous permettre
+de les recompiler … votre guise (sauf OpenGL et vitesse transfert video).
+
+La plupart des tests sont r‚alis‚s en C sauf cas particulier
+ou le C n'est pas a meme de faire le code d‚sir‚.
+
+Aucune int‚rruption n'est invalid‚e, ce qui donne une utilisation
+r‚aliste du bench. Malgr‚ tout les r‚sultats sont non significativement
+different des r‚sultats sans les int‚rruptions, il est recommand‚ tout 
+de meme de ne pas bouger la souris pendant les tests, car cette int‚rruption 
+est trŠs lourde en temps .
+
+De la meme maniŠre sur systŠme multitache il est recommand‚ de
+ne pas faire les tests si un logiciel en m‚moire est succeptible
+d'absorber de fa‡on non n‚gligeable du temps CPU.
+
+La machine est cens‚e etre utilis‚e dans les conditions optimales
+de vitesses (comme caches activ‚s etc...)
+
+
+Les tests sont corrig‚ pour ne tenir compte que de la partie
+efficace du test (on ne mesure pas les boucles!), grace … un code
+suffisament long entre chaque saut rendant le saut peu important
+au regard du test, mais aussi en estimant le temps utilis‚ par
+le test dans les op‚rations de boucle (cela permet de relever
+l‚gŠrement les r‚sultats, mais a pour inconv‚nient de doubler
+l'erreur de mesure du temps, donc l'erreur de mesure du test, cela
+reste malgr‚ tout assez faible). Les tests VDI d‚rogent l‚gŠrement
+… la rŠgle pour agr‚menter le test les couleurs peuvent changer
+en cours du test, ce changement de paramŠtre est n‚gligeable
+par rapport aux temps des tests, car ces changement interviennent
+trŠs peu souvent en regard du nombre d'appel … la fonction, de plus
+ces changements sont trŠs rapide par rapport aux fonctions test‚es.
+
+
+Principe technique des tests
+
+L'ensemble des tests … l'exception des tests VDI (voir plus bas)
+est bas‚ sur une boucle finie de nombre de test (g‚n‚ralement faible)
+le temps ‚coul‚ est mesur‚, le nombre de tests est corrig‚ puis le test
+refait et cela jusqu'a ce que le temps utilis‚ soit suffisament grand
+pour obtenir une pr‚cision suffisante. Chaque boucle est pr‚c‚d‚e
+d'une attente de synchronisation, par attente du timer 200Hz, cela
+afin d'assurer une meilleure reproductivit‚ des r‚sultats.
+
+
+TESTS CPU
+
+Le source du test CPU est donn‚ dans le fichier CPU.C
+Ces tests permettent d'‚valuer principalement les vitesses de transfert
+en memoire (TTRam pr‚f‚rentiellement), ainsi que la r‚alisation
+de certaines op‚rations succeptibles de s'‚ffectuer principalement dans le 
+cache si il y en a un.
+
+Du test "rawpower" est d‚duit la fr‚quence suivant les informations du
+cookie _CPU pour connaitre le processeur. A la base ce mode de calcul
+est valide pour un processeur piplinis‚, avec cache interne … vitesse
+du CPU mais sans mode superscalaire. C'est le cas typiquement du 68040
+du r‚sultat "rawpower" se d‚duit directement la fr‚quence puisque cela 
+revient a calculer le nombre d'instrutions par unit‚ de temps. Dans le cas
+d'un 68060 le processeur peut etre mis en mode superscalaire, sur ce type
+de test il est succeptible de faire passer 2 instructions par clock, la 
+fr‚quence est donc le nombre d'instructions r‚alis‚ par unit‚ de temps divis‚
+par 2, si le mode superscalaire est valid‚, ce qui est test‚ dans Kronos.
+Pour un processeur non piplinis‚, le nombre de cycle pour r‚aliser un 
+move.l d0,d1 est de 4 cycles pour un 68000, il faudra donc multiplier le r‚sultat par 4
+sur un 68020  ou 68030 il faut 2 cycle pour ‚x‚cuter l'instruction donc
+ce sera multipli‚ par 2.
+Cette fr‚quence est donn‚e … titre indicatif elle peut ne pas etre dans 
+certains cas repr‚sentatif du processeur utilis‚ (‚mulateurs par exemple
+mais aussi vu le mode de fonctionnement des proc‚sseurs, la fr‚quence
+n'est pas proportionnelle … la puissance du processeur!).
+
+TESTS FPU
+
+Le source du test FPU est donn‚ dans le fichier FPU.C
+Attention, les fonctions log, sqrt, sin et cos sont d‚pendantes de
+la librairie math‚matique employ‚e, celle utilis‚e est celle employ‚e
+par netbsd et est le port de cette librairie disponible sur le site
+http://gemtos.free.fr. Les double transmis aux diverses fonctions
+doivent etre au format IEEE 64bit (donc incompilable par PureC de maniŠre
+correcte)
+
+Cette librairie ‚value, la multiplication, l'addition, le calcul d'un log,
+d'un sinus et cosinus, de la racine car‚e et enfin la transformation
+d'un double vers un float et visversa.
+
+On notera que sin, cos et sqrt, font partie des routines du 68881 mais qu'elles
+ont disparues du 68040 et suivants.
+
+sin, cos et log ne sont g‚n‚ralement pas utilis‚es de maniŠre intensive par les
+logiciels, car les transformations se font par calcul matriciel ou ces valeurs
+trigonom‚triques sont une fois pour toutes calcul‚es pour etres mises dans
+la matrice de transformation, il est par contre n‚cessaire que la multiplication
+et l'addition soient trŠs rapides. sqrt peu aussi avoir une importance non 
+n‚gligeable, car cela peut servir … normaliser les vecteurs (trŠs utilis‚ en 
+raytracing).
+
+TESTS STRam - video
+
+Le source de ce test est partiellement donn‚. En effet, les mesures
+de transfert de STRam processeur sont les memes que pour le test CPU
+et reprend la librairie dynamique associ‚e. Le test avec la video
+fait intervenir la fonction VDI vro_cpyfm() de memoire video … m‚moire
+vid‚o, de la m‚moire centrale (TTRam souhait‚) vers la video et inversement
+cette partie n'a pas ‚t‚ int‚gr‚ dans une librairie dynamique par flemme!
+Il n'y a donc pas le source.
+
+
+TESTS VDI
+
+Le source du test VDI est donn‚ dans le fichier VDI.C
+Ce test est un peu particulier, car la boucle d'attente est donn‚e
+par rapport … une attente du timer 200 Hz cela afin de ne pas avoir
+d'effets parasites visuel d‚sagr‚able pour l'utilisateur. Les tests
+ont ‚t‚ concus de telle maniŠre qu'ils soient … la fois d‚monstratifs
+mais aussi peu agr‚ssifs que possible … observer, cela grace 
+particuliŠrement … un nombre de changement de couleurs peu ‚lev‚ par
+rapport … certains logiciels, ce qui tombe bien puisque ce n'est pas
+le changement de couleur qui nous int‚resse!
+
+On peut aussi que le test vgtext() ne correspond pas … l'appel de
+cette fonction mais celle de vgtext16()! Ce choix est motiv‚ par
+le fait que dans le VDI vgtext() n'existe pas, celle ci est un binding
+sp‚cifique … la fonction vgtext16(). En effet le VDI ne comprend
+que les caractŠres sur 16bits (unicodes), par facilit‚ nous utilisons
+un codage sur 8 bit, la fameuse table des codes ASCII. vgtext() transforme
+la chaine en caractŠres 8 bits en une chaine caractŠre 16 bits avant
+d'appeler vgtext16(), les logiciels les plus rapides utilisent directement
+vgtext16() pour ne pas avoir … passer par la conversion, l'ayant eux meme
+pr‚‚tabli.
+
+TESTS OPENGL
+
+Le source du test OpenGL est donn‚ dans le source APPLE.C
+Ce test n'est pas r‚alis‚ sous la forme d'une librairie dynamique
+comme les autres tests vous ne pouvez donc pas la remplacer! Cela
+par simple faineantise de ma part!
+Il fait strictement 2 fois le meme test, mais l'un avec l'affichage
+(et donc les transformations de 24bits (image cr‚‚ par le module
+OpenGL) et le format physique de votre carte vid‚o), l'autre sans
+cela permet d'estimer par la meme ce que coute les transformations
+vid‚o.
+Le test OpenGL est … mon sens le plus int‚ressant de l'ensemble des
+tests fait pour Kronos, en effet ce test est suffisament lourd et complexe
+pour avoir une bonne id‚e de la puissance de la machine tester. Il
+met … contribution fortement l'accŠs … la ram (TTRam pr‚f‚rentiellement)
+et le FPU.
+Autant par demonstration que par plaisir, le mode plein avec transformation
+vers ‚cran a ‚t‚ prolong‚ cela afin d'obtenir au minimum de 20 secondes sur
+ce test, le nombre de cycle des autres tests sont ensuite identique
+… ce premier test.
+
+TESTS DISQUE
+
+Le source du test Disk est donn‚ dans le source DISK.C
+
+Nous avons dans le cas des disques … mesurer un systŠme m‚canique par d‚finition
+lent … r‚agir. Le temps n‚cessaire … la r‚alisation d'un test s‚rieux est
+plus long, un temps minimal de r‚f‚rence de 5 secondes … ‚t‚ choisi.
+Ce test utilise pour une compatibilit‚ maximale les fonctions classiques
+GEMDOS utilis‚es par les programmes, elles sont donc inaptes … donner la
+v‚ritable vitesse d'un disque! Par contre ce sont ces memes fonctions
+utilis‚es par les logiciels, elles sont donc pertinantes … tester pour
+se faire une id‚e de la rapidit‚ du couple systŠme - disque.
+Vous pourrez observer une grande dispersion des r‚sultats entre diverses
+machines qui ne r‚vŠlent en rien leur classement, cela est normal!
+Ce test pr‚sente 2 familles de tests, les tests orient‚ transfert, ces test
+pr‚sentent g‚n‚ralement une plus grande constance que la seconde cat‚gorie
+orient‚ vitesse d'acces au systŠme de fichier, en effet dans ce cas d‚pend
+largement de votre systŠme, certains ne pr‚sentent aucun cache d'autre si
+les r‚sultats sont donc impossible … comparer, mais par contre permet de ce
+rendre compte de quel type de m‚thode est utilis‚e. Ainsi ne vous alarmez pas
+de voir que votre super Hades 60 … des r‚sultats on ne peu plus m‚diocre
+par rapport … un MagicMac, l'un ne gŠre aucun accŠs cache l'autre si! Les
+r‚sultats sont totalement incomparables.
+Tests orient‚ vitesse de transfert: Ces tests sont bas‚ sur les fonctions
+Fread() et Fwrite(), les blocs ecrits et lu sont de taille de 1Mo, dans un 
+fichier si possible de 16Mo et au minimum de 4Mo. Un fichier plus petit que 
+16Mo peut pr‚senter des r‚sultats de transfert plus faibles, cette taille
+a ‚t‚ choisie comme un compromis entre taille et stabilit‚ des r‚sultats.
+Ces r‚sultats peuvent etre fortement alt‚r‚s par le niveau de fractionnement
+de votre disque dur. Ces r‚sultats peuvent aussi etre fauss‚s si la taille
+du fichier est trop petite par cache du fichier en m‚moire (16Mo ne semble
+pas suffisament important pour assurer la non tenue dans le cache sous les
+gros PC avec Windows!)
+
+
+Utilisation du logiciel
+
+Kronos reste assez simple d'utilisation qui n'appelle pas de
+commentaires particuliers, sauf a mon avis deux points....
+
+L'affichage peut varier selon votre configuration m‚moire et video ainsi
+si vous avez suffisament de m‚moire vive, vous verrez apparaitre un bureau
+en fond d'‚cran, avec une jolie image raytrac‚e. De meme le fond des zone
+de r‚sulats d‚taill‚s sous une video 24 ou 32bits pr‚senteront le meme
+motif que le bureau mais assombri.
+
+La sauvegarde des r‚sultats est possible … tout moment et donc les r‚sultats
+inscrits peuvent etre partiels, ces r‚sultats ne pourront pas etre utilis‚s
+comme fiche de r‚f‚rence (fichier DEFAULT.ABH) sous peine d'une erreur processeur
+par division par z‚ro.
+
+FAQ
+
+Quelle est la diff‚rence entre Kronos et les autres logiciels
+de ce type?
+
+Certains logiciels de ce type sont (… ma connaissance) sur Atari bas‚s sur
+le sch‚ma, qui consiste … faire une boucle avec un nombre 
+d'it‚rations connu et fixe avec ce que l'on veut tester au milieu.
+Cela n'est pas idiot du tout mais cela suppose g‚n‚ralement que l'on
+va tester toujours des machines de puissance assez similaires. Bref
+difficile de tester des g‚n‚rations diff‚rentes d'ordinateur, car
+si la nouvelle g‚n‚ration va trop vite alors le test sera trŠs court
+en temps et la pr‚cision de la mesure deviendra faible. Si on refait
+un nouveau programme juste en augmentant le nombre d'it‚rations
+pour le test alors sur un ancien modŠle le test deviendra trŠs long.
+Bref difficile d'avoir par se principe un programme qui puisse comparer
+plusieurs g‚n‚rations d'ordinateurs.
+Kronos n'est pas bas‚ sur ce principe, il est bas‚ sur le principe
+de l'attente d'un temps ‚coul‚ et d‚termin‚, tant que ce temps n'est
+pas ‚coul‚ le test est r‚it‚r‚, le compteur incr‚ment‚ (ce qui est la cause
+de dysfonctionnement sous MagicPC par exemple).
+
+L'autre problŠme provient g‚n‚ralement de la pr‚sentation des r‚sultats
+ou les pourcentages affich‚s sont parfois calcul‚s d'une maniŠre
+impropre au test de performances, c'est par exemple le cas de gembench
+qui fait une moyenne arithm‚tique, sur les pourcentages des divers tests.
+Cela n'est pas correcte, cette m‚thode amplifiera les performances
+des tests les plus efficaces cela d'autant plus que les r‚sultats
+sont disperc‚s par rapport … la r‚f‚rence (cas g‚n‚ralement observ‚
+entre un "vrai" Atari et un ‚mulateur (dans certains cas trŠs rapide
+dans d'autres nettement moins)). Le temps utilis‚ pour faire l'ensemble
+du test est nettement plus repr‚sentatif, le pourcentage par rapport
+au temps de r‚f‚rence donne donc un r‚sultat plus correcte.
+
+Note technique: Sur un point de vu pur de prise de mesure de temps le mieux
+que l'on puisse esp‚rer de fa‡on fiable sur les diverses plateformes Atari
+est le timer 200hz, la pr‚cision de mesure sera donc de +-1/200 de seconde
+pour 1 seconde de test nous avons donc une pr‚cision de 1% ce qui est largement
+suffisant pour les tests qui ne n‚cessitent pas de mise en route m‚canique
+(tout ce qui est soft donc tous les tests sauf les disques), nous avons … 
+corriger les boucles r‚alis‚es pour faire le test, les erreurs s'accumulent,
+au pire nous avons donc 2% d'erreur si notre test dure au moins 1 seconde.
+Imaginons un test sous forme d'une boucle de taille fixe, qui serait de 1 seconde
+sur un Milan 40 sur le FPU, dans le cas d'un nouvel ordinateur bien plus
+puissant comme l'Atlantos (coldfire avec FPU 60), que va t'il se passer?
+Probablement la machine ira 10 fois plus vite, donc la boucle s'‚x‚cutera en
+0,1 seconde ce qui fera une erreur de 20%! Les tests de ce genre sont … terme
+de toute facon non fiable.
+
+
+
+Si je compare la repr‚sentation "time consuming" et "Arithmetic average"
+les r‚sultats sont parfois oppos‚s, est ce un bug?
+
+Non ce n'est pas un bug c'est juste l'illustration de la question pr‚c‚dente
+le r‚sultat "Arithmetic average" n'a pas de r‚alit‚ par rapport … la 
+performance. Si tous les sous tests d'un meme test, ont exactement
+le meme ratio par rapport … la r‚f‚rence alors, les deux modes de
+calculs seront exactement en accords (%aa = 1 / %tc = %speed). Si par exemple
+certains sous tests donnent quelques pourcents alors que d'autres donnent
+quelques centaines de pourcents (cas r‚aliste rencontr‚s en comparant
+certains ‚mulateurs avec de vraies machines (tests disque principalement))
+alors les r‚sultats pourront etres en total d‚saccords! Bien sur la
+moyenne arithm‚tic ne doit pas etre prise en compte, cette repr‚sentation
+n'est l… que pour pr‚senter les d‚fauts de la m‚thode utilis‚ par certains
+logiciels.
+
+
+Le test de performance du disque ne fonctionne pas sous MagicPC,que dois
+je faire?
+
+Rien, cela est malheureusement normal, vu les conditions du test. MagicPC
+est en cause (ou peut etre plutot Windows!).
+La cause de ce d‚faut est connu, Kronos se base sur l'int‚ruption timer
+… 200Hz, il est donc n‚cessaire que cette int‚rruption fonctionne … peu
+prŠs correctement lors des tests. Lorsque Kronos fait appel au disque
+(dans le cas du filesystem de Windows), Windows prend la main, les int‚ruptions
+sont perdues pour MagicPC (qui doit assurer ce service par un thread
+qui n'est plus assum‚ par Windows), Kronos boucle donc sans fin, un
+‚vŠnement qui n'arrive pas. Ce meme problŠme … ‚t‚ constat‚ sur les
+toutes premiŠres versions de Windows ARANYM et sur le filesystem de
+Windows (cela fonctionnait bien sur le disque virtuel), alors que
+la version Linux ne pr‚sentait pas ce d‚faut. Dans ce cas pr‚cis c'est
+le thread pour g‚rer l'int‚ruption timer qui n'‚tait plus appel‚ par
+Windows lors des appels disque (et dans une moindre mesure VDI). Cela
+a ‚t‚ corrig‚ en forcant l'appel au thread timer aprŠs les appels
+systŠmes WIndows pour permettre la r‚alisation des int‚ruptions du MFP
+virtuel.
+J'en suis d‚sol‚ mais je ne modifierais pas ma facon de faire mon test
+disque, pour rester dans la logique du logiciel. De plus si je venais
+a mettre une boucle de taille pr‚d‚finie et … prendre le timer 200hz
+comme mesure alors le r‚sultat serait de toute maniŠre ‚rron‚, l'autre
+solution serait de prendre l'horloge systŠme, mais cette horloge est
+trŠs impr‚cise, il faudrait alors faire un test excessivement long
+pour obtenir un r‚sultat avec une erreur acceptable. Dans le cas pr‚cis de
+MagicPC meme cette solution ne fonctionne pas a priori, MagicPC ne semble
+pas s'enquerir de l'heure du PC hote pour obtenir son horloge (ou alors
+pas systŠmatiquement lorsque l'on appel l'heure systŠme).
+Sur un ‚mulateur avant de pouvoir d‚terminer si le test est correcte, v‚rifiez
+au moins que l'horloge systŠme ne retarde pas! Cela peut apparaitre sur 
+des machines peu puissantes.
+
+Vous donnez un taux de transfert du disque en ‚criture et lecture
+est ce fiable?
+
+Non pas vraiement! Kronos pour etre au maximum compatible
+utilise bettement Fread() et Fwrite() du systŠme, de la maniŠre
+la plus correcte possible, mais le r‚sultat d‚pend largement du morcellement
+de votre disque dur. Un test en lecture est envisag‚ dans une version
+ult‚rieure (pas l'‚criture … cause des risque encourus!), qui accederait
+directement au hard. De meme actuellement sur filesystem Windows le
+cache disque est d'une telle ampleur que le test ne mesure que les
+performances de transfert vers le cache! donc extremement rapide!
+Rassurez vous sur un vrai TOS il n'y a aucun cache g‚n‚ralement,
+les accŠs multiples s'en ressentent beaucoup! Avis aux programmeurs
+dans certains cas cela peut ralentir ennorm‚ment vos softs!
+
+
+Que pensez vous du test du BogoMips?
+
+On m'a dit que ce n'est pas un test mais un moyen de calibrage, je ne
+comprend pas bien. En tant que bench je trouve cela stupide, c'est
+un boucle c'est tout, sans rien dedans, le r‚sultat d‚pend du compilateur
+(sauf si on le fait en assembleur). Si Je me refŠre au code officiel
+en C qui est un for(), alors je n'ai pas impl‚ment‚ le Bogomips. Si c'est
+impl‚menter une boucle sur elle meme de maniere la + efficace possible
+alors j'ai impl‚ment‚ le test, car j'ai int‚gr‚ le code assembleur
+du PureC pour un while() (sur GCC le for() et le while() donnent
+le meme resultat, qui est moins bon que le code while() du PureC). Je
+me suis rang‚ de l'avis de plusieurs personnes et ai surtout ‚t‚ influenc‚
+pour etre en correspondance avec le resultat du test de Mint. Z
+
+
+Kronos marchera t'il sur la CT60
+
+Pas test‚ mais il n'y a pas de raison … priori.
+
+Kronos marchera t'il sur la machine coldfire Atlantos?
+
+J'espŠre!, mais attention il n'y a pas de version optimis‚e
+pour le coldfire, il faudra peut etre recompiler les LDG
+de test pour optenir les meilleurs r‚sultats possible, mais
+j'en doute vu les tests employ‚s. La fr‚quence … de bonne chance
+d'etre erron‚e
+
+
+Zbench propose le coldfire mais pas Kronos, allez vous faire vous aussi
+une version coldfire?
+
+Non, pas tant que la machine ne sera pas sortie, je ne pense pas avoir
+… changer en fait grand chose, beaucoup de test CPU, VDI, DISQUE et 
+en partie FPU ne devraient pas avoir de problŠmes particulier le code
+‚mul‚ devrait etre null ou trŠs r‚duit (dans le FPU).
+Le code OpenGL lui ne sera pas des plus efficace pour la partie
+framebuffer qui est sur 24bits donc utilisant des acces par octets, la
+ca ralentira la chose de beaucoup, je ne peux changer le format du frame
+buffer sans avoir … recoder tout SCREEN.LDG. La partie calcul devrait
+moins souffrir si le FPU est bien compatible avec un 68060.
+
+
+La fr‚quence d‚tect‚e est trŠs ‚trange sur MagicMac et n'est pas r‚aliste, 
+pourquoi?
+
+La fr‚quence n'a pas pour but d'etre r‚aliste en terme de performance, elle
+doit donner des r‚sultats si possible en correspondance avec votre processeur
+mais pas sur un ‚mulateur, ca n'a pas vraiement de raison d'etre.
+Sous PowerMac les r‚sultats sont hallucinants j'en convient, ainsi une machine
+a 300Mhz donne un r‚sultat d'environ 1Ghz! Il y a 2 raisons a cela:
+ - l'‚mulateur Apple est trŠs particulier et optimis‚ avec une sorte de 
+ cache
+ - La comparaison se fait par rapport a un 68020, selon le type de processeur
+ le r‚sultat est corrig‚ suivant ses possibilit‚ physique. Ainsi le test de fr‚quence
+ est bas‚ sur des move.l entre deux registres. Sur un 68040 qui possŠde un pipline
+ on peut consid‚rer que les instructions comme si elles s'‚ffectuaient en 1 cycle.
+ Sur un 68020 ce n'est pas le cas et les op‚rations se feront en 4. Du coup
+ si la fr‚quence est directement d‚duisible pour le 68040 il faudra multiplier
+ par 4 pour un 68020, ce que Kronos fait donc sous MagicMac et PPC.
+ 
+Sous Aranym si je suis en TOS ou sous Magic la fr‚quence est 4 fois sup‚rieure
+… celle sous TOS, pourquoi?
+ La r‚ponse est donn‚e … la question pr‚c‚dente, sous TOS le cookie _CPU indique
+un 68040, alors que sous Magic (qui se trompe) ce cookie indique un 68020. De la
+meme maniŠre sous MagicPC le cookie indique un 68000, la fr‚quence sera donc
+systŠmatiquement multipli‚e par 4, par rapport … Aranym sous TOS (en supposant
+que Aranym soit de meme rapidit‚ que MagicPC ce qui n'est pas le cas actuellement
+pour le CPU)
+
+
+Conclusion:
+
+Un test de performance c'est bien et marrant, mais ca ne remplace pas
+l'utilisation r‚elle, qui a besoin d'un coprocesseur rapide pour
+faire du traitement de texte ou  de l'internet? Alors que le raytracer
+fou lui n'aura d'yeux que pour cela!
+
+Je vous souhaite un bon moment d'amusement avec Kronos
+
+Modifications 1.71 27 janvier 2005
+
+gl_flush() en fin de dessin frame opengl (pas d'infleunce temps avec Tinygl)
+Test de limite de temps des test CPU pour ne pas risquer de boucler … l'infini (cas possible
+du test rawpower (fr‚quence CPU) sous emulateur avec JIT (Aranym))
+Utilisation de ldg_open() en place de ldg_load()
+Affichage des barres retaill‚ en fonction du max de chaque type de test et pas
+en fonction du max de l'ensemble des tests
+
+
+Olivier LANDEMARRE (olivier.landemarre@utbm.fr)

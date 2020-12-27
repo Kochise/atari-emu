@@ -1,0 +1,130 @@
+
+ Instructions for GravCalc v1.1
+
+          by S. Osborn 1988
+
+     Written using Fast Basic by Computer Concepts.
+
+
+  GravCalc, (as the name suggests) determines the gravitational
+force between two bodies and then calculates their subsequent
+motion through 2-dimensional space (3D space, apart from being
+pointless for two bodies, is a little complicated to represent
+on a 2D screen).
+
+ It uses the basic 'A' level physics formula:
+
+               F = -GMm/r^2    (G, grav. constant = 6.67E-11)
+
+and Newton's laws of motion. 
+
+  GravCalc is intended for use by those who wish to experiment
+with and observe the laws of gravity. It is simple to use, but
+a short explanation of the input parameters follow. Engineering
+format (eg 1.234*10^6 or 1.234 E6) and SI units are used
+throughout.
+
+1. Scales
+
+  Distance across screen in metres.
+  Time step; this sets the intervals at which the computer
+recalculates the velocities of the bodies. A large number gives
+innacurate results but takes less time to show the path of the
+bodies. It is important to set a reasonable scale compared to the
+distances the bodies move (don't set a 1m scale when plotting the
+orbit of the moon).
+
+2. Body Mass and Radius
+
+  Mass of the body in kg.
+  Radius in m. Note that the raduis serves no real purpose except
+to conform to the scales.
+
+3. Coordinates
+
+  x and y coordinates are relative to the centre of the screen and
+are in metres (not pixels!), ie x=-1 y=+1 would mean left and up
+a bit from the centre.
+
+4. Velocity components
+
+  The 'x' velocity component is the speed with which the body
+moves West to East (a negative number means East to West).
+  The 'y' velocity component is the speed with which the body
+moves South to North (a negative number means North to South).
+
+5. Options
+
+  Execute; this starts the program. Press any key to stop.
+
+  With Reset Data to Input off the program continues from where
+it left off, regardless of alterations to the input.
+
+  With Display Data on information concerning the bodies is
+displayed during execution. This slows down the program.
+
+  With Trace Path on the bodies leave a trail no the screen
+showing their path. With this OFF the program slows down.
+
+  Load and Save will store your data on disk. There are also
+some examples to look at already on the disk.
+
+
+     Important Notes:
+
+  It is no good just giving any old number to the computer since
+you are unlikely to see anything and may even cause an error
+after which the program will be unable to continue. For instance
+never give more than a sign and two digits in an "E___".
+(9 E+99 is quite big enough!)
+
+  Look at the examples, they will make using GravCalc clearer.
+
+  An interesting point to note is that GravCalc does not detect
+collisions. You can tell when one has occured as the two bodies
+will fly apart. This is because of the way GravCalc calculates
+in small steps and assumes that all mass is concentrated at a
+point (regardless of radius).
+
+  Finally: remember the context in which Gravcalc works. We are
+assuming a perfect world (no external forces such as friction or
+other grav. forces). Also rembemer EVERYTHING is to a scale:
+GravCalc is not working in REAL time but it is, in scaled time.
+For instance in ATOMIC.DAT it takes the two tiny bodies 18 days
+to coincide, although everything happens on the screen in a few
+seconds.
+
+The example files:
+
+MOONORBI.DAT   (Default on loading) Represents the approx. orbit
+               of the Moon. However one orbit seems to take too
+               long! If you have any suggestions, please let me
+               know. (-the Sun & other planets perhaps?)
+ATOMIC.DAT     Very small scale (eg two H atoms)
+SMALL.DAT      Attraction of man sized objects
+COMET.DAT      A very elliptical and eccentric orbit.
+BISYSTEM.DAT   Two large (Earth sized) bodies spin about each other.
+SATELITE.DAT   A satelite orbits the Earth at 100 km.
+LOOPER.DAT     An interesing pattern repeated.
+BALEARTH.DAT   The path of a ball thrown on the surface of the Earth
+BALLMOON.DAT   The path of a ball thrown on the surface of the Moon.
+               These last two are intended for comparison. All
+factors are the same (except of course mass of Moon/Earth) but scales
+are different.
+
+
+PLEASE NOTE:
+
+     If you are satisfied with the program please pass it on to
+friends or colleagues. If you have any questions or would like a
+copy of the source program (Fast Basic) please send a disk (if 
+you want source program) and 1 pound (for my time and postage - 
+cheques etc made out to Steven Osborn) to:
+
+     Gravcalc info,
+     4 Arley Hill,
+     Cotham,
+     Bristol BS6 5PS,
+     England.
+
+

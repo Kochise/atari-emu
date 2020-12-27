@@ -1,0 +1,18 @@
+VHDL
+---------------------------------------------
+ CLA:VHDL Operator Definition File (3/11/93)
+  ½1993, DATA Uncertain Software
+---------------------------------------------
+
+$BEGIN BOOLEANS$
+AND,1
+NAND,7
+OR,2
+XOR,14
+NOR,13
+$END$
+
+$BEGIN ASSIGNMENTS$
+=
+<=
+$END$

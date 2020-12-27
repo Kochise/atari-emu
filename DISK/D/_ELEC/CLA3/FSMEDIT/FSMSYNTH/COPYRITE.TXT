@@ -1,0 +1,55 @@
+FSMsynth for CLA-FSMedit 
+========================= 
+½1995, Data Uncertain Software. 
+Written by Craig Graham.
+ 
+============================================================================== 
+                      THIS DOCUMENT REFERS TO THE 
+ 
+                                FSMsynth 
+ 
+           which comprises part of the CLA Digital Design System 
+============================================================================== 
+ 
+This document sets forth the terms and conditions under which you will be 
+must accept use of this release of FSMedit. 
+ 
+These are as follows :- 
+ 
+1) You acknowledge that copyright of the material you receive is owned 
+   exclusively by Craig Graham and provided to you solely for your individual 
+   use. 
+ 
+2) You acknowledge that the material contains proprietary intellectual 
+   property of Craig Graham, and other contributing authors. 
+ 
+3) You agree not to discuss, show, demonstrate or correspond in any 
+   matter the material or ideas from the material provided to you with 
+   any financially motivated third party without the express permission of 
+   Craig Graham. 
+   Any 3rd Party wishing such permission should contact Craig Graham 
+   in person (email, post, telephone). 
+   This includes PD Libraries & Magazines, but does NOT include BBS & 
+   FTP archive sites. PD Libraries wishing to carry this software should 
+   seek an agreement with the author to carry the COMPLETE (ie. Registered 
+   User's) version. 
+ 
+4) You agree to test the product to the best of your ability and provide 
+   immediate feedback to Craig Graham on any problems you encounter. 
+ 
+5) You agree to provide input on how you perceive the operation of the 
+   product and provide suggestions form a user's perspective on how to 
+   improve the product. 
+ 
+6) No guarantees are given with this release as to it's suitability for 
+   any given purpose, or to it's reliability and that of it's any results 
+   derived from it. 
+ 
+7) You acknowledge that there is an inherent risk in testing 
+   software and that you expressly release Craig Graham from any 
+   liability or consequential damages resulting from damage or loss of 
+   data/hardware caused by the use of this software. 
+ 
+ 
+Should you find these terms unacceptable, then feel free to erase the ENTIRE 
+distribution.

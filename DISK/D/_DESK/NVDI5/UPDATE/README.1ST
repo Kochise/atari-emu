@@ -1,0 +1,57 @@
+README for NVDI 5                                      August 1999
+=================
+
+ù Utility programs Fontname, Print monitor, Install printers
+  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+  These utility programs can be found in the "NVDITOOL.S" folder 
+  created on the boot partition by the NVDI install program.
+
+ù ShowMe
+  ÿÿÿÿÿÿ
+  The "NVDITOOL.S" folder also contains a very compact image viewer 
+  that lets you view and print (X)IMG and ESM images.
+
+ù Printer settings
+  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+  The NVDI installer will have installed your selection of printer 
+  drivers. Please remember to choose a print resolution and the type 
+  of paper feed before printing for the first time.
+
+ù Fax with TeleOffice
+  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+  Install TeleOffice as accessory to work with the NVDI fax driver. 
+  This is the only way to assure reliable communication between 
+  TeleOffice and FAXOUT.
+
+  To send a fax using the NVDI fax driver manual "ext. Fax 
+  Start/Stop" is NOT required. Just select the desired resolution 
+  (like with any other printer driver), start to print and the 
+  address selector will pop up automatically.
+
+ù COPS
+  ÿÿÿÿ
+  Instructions for the alternate Control Panels accessory COPS can be 
+  found as HTML and ST-GUIDE documents in the "NVDITOOL.S" folder.
+
+ù System extension WDIALOG
+  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+  NVDI utility programs use extended AES functions of MagiC to speed 
+  up loading time and reduce memory requirements. On computers with 
+  older operating systems WDIALOG also makes required MagiC 
+  compatible functions available.
+
+  The NVDI installer copies WDIALOG into the AUTO folder and if 
+  required WDIALOG will load on start up of the system.
+
+ù NOVA-VDI
+  ÿÿÿÿÿÿÿÿ
+  If you use NVDI together with the NOVA-VDI, then make sure that 
+  NVDI loads after MENU.PRG.
+
+
+ù Epilogue
+  ÿÿÿÿÿÿÿÿ
+  We would like to thank all our beta testers for their dedicated 
+  work and determination to make this product bug free.
+
+Sven & Wilfried Behne

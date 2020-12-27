@@ -1,0 +1,195 @@
+
+               ProCalc¿
+      Calculatrice Scientifique
+     
+       Documentation Fran‡aise
+
+          by John K. Brochu
+        for Advanced Software
+
+     Copyright ½ 1991 Atari Corp.
+
+             Version 1.28
+           November 6, 1991
+
+---------------------------------------
+
+A PROPOS DE PROCALC
+
+ProCalc est une calculatrice scientifique trŠs complŠte avec log, exponentielle, fonctions trigonom‚triques en degr‚s et radians...
+C'est aussi une puissante calculette informatique avec des calculs et affichages en diverses bases (2/8/10/16), une s‚lection du signe 
+et de la taille des nombres (octet, mot, long mot) et tous les op‚rateurs logiques avec affichage des codes "condition CPU".
+ProCalc offre ‚galement un affichage temporel et permet les calculs horaires, 10+1 m‚moires, une constante automatique et 50 niveaux de 
+parenthŠses.
+
+Mais ProCalc peut aussi ˆtre configur‚ en une simple calculette 4 fonctions. Pour passer du mode "Super Calculatrice" au mode 
+"Calculette" cliquez simplement sur le bouton "plein ‚cran" de la fenˆtre (en haut … droite).
+
+La configuration courante peut ˆtre sauvegard‚e en cliquant sur le bouton [PREF] (en bas … droite). Cela entraŒne la sauvegarde du mode 
+courrant (SCI/BIN/OCT/DEC/HEX/HMS) et du type de calculatrice. Lors de l'appel de ProCalc, la configuration par d‚faut est 
+automatiquement charg‚e. Celle ci est en effet sauv‚e dans un fichier sur le r‚pertoire principal du disque de boot sous le nom 
+"PROCALC.INF".
+
+Remarque: Quand ProCalc est en configuration de base il se commute automatiquement en mode SCI (SCIentifique).
+
+
+LES EQUIVALENTS CLAVIER
+ 
+Tous les boutons peuvent ˆtre activ‚s soit avec la souris soit au clavier. Pour connaŒtre la correspondance des touches il suffit de 
+cliquer sur le bouton [?] ou de presser la touche "?", ce qui entraŒne l'affichage momentan‚ des raccourcis clavier.
+Les touches accessibles par "Shift" sont pr‚c‚d‚es d'un "s", et celles accessibles par "Control" sont pr‚c‚d‚es d'un "^".
+Ainsi "^sF1" signifie [Control]+[Shift]+[F1].
+
+Le pav‚ num‚rique s'utilise comme il s'entend. Les touches [ENTER] et [RETURN] ont le mˆme r“le que la touche [=].
+
+Certains boutons ont une fonction secondaire accessible par SHIFT ou bien en pressant le bouton droit de la souris. Ces touches sont:
+    - le degr‚/radian [D/R],
+    - le pourcent [%],
+    - toutes les m‚moires,
+    - et le bouton de taille [SIZE] en mode informatique.
+Ces fonctions sont expliqu‚es plus loin...
+
+
+AFFICHAGE ET SAISIE NUMERIQUE
+
+L'affichage en mode scientifique utilise une mantisse … 10 chiffres avec 2 chiffres d'exposant. En mode informatique l'affichage est de 
+16 chiffres au maximum. En mode BINaire, si un nombre est plus large que les 16 chiffres, vous pouvez visualiser la moiti‚ du nombre 
+puis d‚caler l'affichage vers la gauche ou la droite … l'aide des flŠches juste sous l'affichage … gauche. Une petite flŠche en bas … 
+gauche ou droite indique un d‚passement d'affichage.
+
+Durant la saisie des nombres, vous pouvez effectuer une ‚dition simplement en utilisant la touche [BACKSPACE] ou le bouton sous la 
+droite de l'affichage. Ceci a pour effet d'effacer le dernier chiffre saisie.
+
+Le bouton [CEC] (Effacement) est utilis‚ pour effacer l'affichage courant si une entr‚e num‚rique est en cours, ou pour effacer un 
+calcul venant d'ˆtre effectu‚.
+
+A tout moment l'entr‚e affich‚e peut ˆtre copi‚e vers le clipboard en pressant le bouton [COPY] juste sous l'affichage.
+
+Dans tous les modes de calcul, ProCalc autorise 50 niveaux imbriqu‚s de parenthŠses.
+
+
+INDICATEUR D'ERREUR
+
+Plusieurs conditions d'erreurs sont possibles. Chacune des erreurs suivantes sont affich‚es en haut … droite lorsqu'elles surviennent.
+
+ DIV0   Tentative de division par z‚ro
+ NUM¯   Abs(r‚sultat) > 9.999999999E99
+ NUM®   Abs(r‚sultat) < 1E-99
+ OVFLW  Floating point overflow
+ UNFLW  Floating point underflow
+ INT¯   Resultat trop large pour tenir
+        dans l'affichage.
+
+La derniŠre erreur ne survient qu'en mode de calculs en entiers. Vous pouvez continuer vos calculs mais votre r‚sultat manquera de 
+pr‚cision. pour toutes les autres erreurs, vous devez appuyer sur la touche [CEC] pour effacer la condition d'erreur.
+ 
+
+MEMOIRE PHOTOGRAPHIQUE
+
+ProCalc dispose de 5 fonctions "m‚moire". Celles-ci sont:
+MC (Memory Clear)    : Remet la m‚moire … z‚ro.
+MX (Memory eXchange) : Echange l'affichage avec la m‚moire.
+MR (Memory Recall)   : Affiche le contenu de la m‚moire.
+MS (Memory Store)    : Stocke l'affichage dans le m‚moire.
+M+ (Memory Add)      : Ajoute l'affichage au contenu de la m‚moire.
+
+En plus de cette m‚moire photographique, ProCalc dispose de 10 m‚moires num‚riques. Elles sont accessibles en pressant la touche SHIFT 
+puis l'un des boutons "m‚moires" MS ou M+ (le bouton choisi restera alors en vid‚o inverse) et enfin une des 10 touches num‚riques [0] … 
+[9]. DŠs que le nombre est en m‚moire, le num‚ro de la m‚moire apparaŒt en haut … gauche. Pour rappeler le contenu d'une m‚moire, 
+effectuez la mˆme op‚ration (la m‚moire est alors vid‚e, comme en t‚moigne la disparition du num‚ro de la m‚moire
+sur l'affichage).
+Pour charger toutes les m‚moires avec une mˆme valeur appuy‚ sur SHIFT MS une premiŠre fois puis … nouveau sur SHIFT MS. 
+
+
+AUTOMATIC CONSTANT
+
+La constante automatique vous permet d'effectuer des calculs r‚p‚titifs utilisant un nombre et un op‚rateur communs. Cette constante est 
+mise … jour aprŠs chaque op‚ration termin‚e par un [=]. AprŠs [=] l'op‚rateur et le dernier nombre entr‚ sont automatiquement 
+enregistr‚s comme "constante automatique". Vous pouvez alors entrer un nouveau nombre et pressez le bouton [=] et la calculatrice
+effectuera automatiquement l'op‚ration avec l'op‚rateur et l'op‚rande pr‚c‚demment enregistr‚s.
+La constante automatique est effac‚e quand le bouton [CEC] est cliqu‚.
+
+
+MULTIPLES PERSONNALITES
+
+ProCalc peut op‚rer dans l'un des trois modes: scientifique, informatique, calculs temporels.
+La premiŠre rang‚e de boutons sert au changement de mode. Le changement de mode entraŒne une modification des touches de la calculatrice 
+afin de faire apparaŒtre les fonctions utiles dans le mode s‚lectionn‚.
+
+SCIENTIFIC MODE
+
+Les calculs scientifiques ne sont accessibles qu'en mode SCI.
+Ils sont les suivants:
+
+ ln      logarithme n‚p‚rien
+ eü      exponentielle (inverse de ln).
+ log     logarithme base 10
+ 10ü     inverse de log
+ ný      mise au carr‚
+ ûn      racine carr‚
+ Yü      mise en puissance
+ 1/n     inverse
+ %       pourcentage, delta percent
+
+Les fonctions "pourcentages" marchent avec les +,-,x et ö. ou par elles-mˆmes pour r‚aliser les fonctions suivantes:
+
+ X+Y%=   Mark-up  (X plus Y% de X)
+ X-Y%=   Discount (X moins Y% de X)
+ XxY%=   Percentage (Y% de X)
+ XöY%=   Ratio (X est tant de % de Y)
+ X%      Conversion d'un pourcent en decimal
+ X%Y=    Delta pourcent ((X/Y-1)x100%)
+
+Le Delta Pourcent est activ‚ en pressant simultan‚ment la touche SHIFT et le bouton [%].
+
+Les fonctions Hyperboliques et trigonom‚triques inverses (ARC) sont accessibles en pressant [HYP] ou [ARC] puis en choisissant une des 
+fonctions trigonom‚triques [SIN], [COS] ou [TAN].
+
+Vous pouvez entrer, afficher et convertir des angles en degr‚s et radians en utilisant le bouton [D/R] (un indicateur sur l'‚cran 
+rappelle le mode choisi). Pour changer le mode angle sans affecter le nombre affich‚ , appuyez sur SHIFT et [D/R].
+
+Les nombres peuvent ˆtre saisis en notation scientifique en entrant d'abord la mantisse, en pressant [EE] puis en saisissant l'exposant. 
+
+
+MODES INFORMATIQUES
+
+Dans chacun des modes informatiques, le type du nombre peut ˆtre modifi‚ en utilisant le bouton [SIGN] et sa taille r‚ajust‚e en 
+cliquant sur le bouton [SIZE]. La taille ‚volue de B(Byte=8bits)->W(Word=16bits)->L(Long=32bits) en cliquant sur [SIZE].
+En effectuant [SHIFT]+[Size], elle ‚volue en sens inverse: L->W->B.
+Lors des changements un nombre peut se trouver tronqu‚. Un message d'erreur apparaŒt alors, mais le calcul peut se poursuivre.
+
+Les fonctions suivantes sont accessibles en BIN/OCT/DEC/HEX:
+
+ ROL     Rotation Gauche
+ ROR     Rotation Droite
+ ASL/LSL Arithmetic/Logical D‚calage Gauche
+ ASR/LSR Arithmetic/Logical D‚calage … Droite
+ NOT     Compl‚ment … un
+ NEG     Compl‚ment … deux
+ AND     Bitwise AND
+ OR      Bitwise OR
+ XOR     Bitwise Exclusive OR
+ MOD     Modulo (reste d'une division)
+
+NB: Les op‚rations ASL/ALR ne sont disponibles qu'en arithm‚tique sign‚e et les LSL/LSR seulement en arithm‚tique non sign‚e.
+
+Toutes les op‚rations (except‚es les trois cit‚es plus loin) ex‚cutent l'instruction CPU correspondante directement et v‚rifient les 
+codes de condition de la CPU. Ces codes sont affich‚s sur l'‚cran. Pour la multiplication, la division et le modulo, l'op‚ration utilise 
+les algorithmes en virgule flottante de la partie scientifique puis le r‚sultat est stock‚ dans un registre de donn‚es puis test‚ et 
+affich‚.
+Les codes "condition CPU" sont les suivants.
+ C  Carry
+ V  oVerflow (resultat en overflow)
+ Z  Zero (resultat ‚gal … zero)
+ N  Negatif (high-order bit is set)
+
+
+L'HEURE DE LA PAUSE...
+
+Qui ne s'est jamais r‚alis‚ une cassette contenant ses morceaux musicaux pr‚f‚r‚s, une K7 des Best Of Personnels? Vous savez donc … quel 
+point il est astreignant d'‚valuer la dur‚e totale des morceaux pour savoir s'ils tiendront sur les faces? Aujourd'hui PROCALC vient … 
+votre secours. S‚lectionnez simplement le bouton [HMS] et entrez la dur‚e de chaque chanson en minutes et secondes. ProCalc vous calcule 
+automatiquement les temps dans le format voulu. Saisissez vos temps en s‚parant les heures, minutes et secondes par un ":" ou une ",".
+Par exemple "185:" est interpr‚t‚ comme 185 minutes, 0 seconde soit "3:05:00". Sur ProCalc, le temps est stock‚ en interne en secondes, 
+aussi si vous changez de mode d'affichage HMS vers le mode SCI l'affichage passera du mode horaire … l'affichage de la valeur en 
+secondes.

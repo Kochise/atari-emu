@@ -1,0 +1,317 @@
+  __                              _
+  | \        | |                 / | Makers of CLA Digital Developer
+  |_/ A T A  \/| N C E R T A I N  /   - ECAD for the Atari.
+--------------------------------- o ---------------------------------
+
+FSMsynth for CLA-FSMedit
+=========================
+½1995, Data Uncertain Software.
+Written by Craig Graham.
+
+Introduction
+-------------
+
+FSMsynth is a new, more advanced State Machine synthesis tool for CLA-FSMedit
+designs.
+
+FSMsynth converts .FSM state machine descriptions into PALASM,PASSM & VHDL
+format files, and allows targetting of many device types (and you can easily add
+your own). That is basicly what synthesis is - converting a high level
+description (in this case a graphical bubble diagram) into an actual hardware
+design.
+
+Who Should Use FSMsynth ?
+--------------------------
+
+Anyone who wishes to do Finite State Machine design & simulation on an Atari,
+and then wishes to do an actual hardware implementation of that state machine
+- FSMsynth produces actual PAL designs. If you don't want to do actual hardware,
+there is no advantage to using FSMsynth, so forget about it :)
+
+Improvements Over the FSMedit Synthesis Algorithm
+--------------------------------------------------
+
+Improvements over the synthesis tool in FSMedit are as follows:
+
+o FSMsynth uses a slightly different state machine model to the one use by
+   the original FSMedit. This allows larger designs to be fit into the same
+   area (on 22V10/16L8 style PAL architectures).
+
+   For example, the v9.fsm example file synthed with FSMedit will only just fit
+   into a 22V10, and it's pure luck that it works (FSMedit didn't check for term
+   availability when doing it's placement), whereas FSMsynth can produce
+   an FSM which performs exactly the same, but leaves 3 macrocell's unused and
+   is certain to work.
+
+o Optimal fitting. This may result in some odd pinouts, but means that your
+   design is more likely to actually work than a one output from FSMedit, which
+   didn't take into account the available terms on each macrocell - which can
+   vary from cell to cell (eg. a 22V10 has 8,10,12,14 & 16 term macrocells).
+
+o Product term splitting. If an output is required to be the product of more terms
+   than are available on a single OMC in the target chip, FSMsynth will split the
+   terms over two OMC's (one being configured as a combinational logic block).
+   NOTE: This will only work on xxVxx series chips, if you get split warnings
+   when targetting xxLxx series IC's then you should use a V series component instead.
+
+o Reliablility has been improved greatly, so designs compiled with FSMsynth will
+   definitely work if no errors have been reported (but don't take this as a
+   guarantee or warrenty).
+
+o Support has been added for other devices appart from the 22V10 via external
+   device defintion files. You can now create larger FSM's and target more
+   modern devices such as the 26V12 and even MACH PLD's (if you write a
+   definition file for them).
+
+o Powerup state definition is now implemented as part of the .FSM format.
+   (If ommitted, this will default to the first state in the state machine).
+
+Using FSMsynth
+---------------
+
+FSMsynth is currently a command line driven compiler (sorry). It is used as
+follows:
+
+   fsmsynth [-help] [-L<language>] [-D<device>] <source>.fsm
+
+
+-help
+   Print a short summary of the options.
+
+-L<language>
+   Select the output language you require (vhdl, palasm or passm).
+   For example, if you want to produce a PALASM version of the FSM foo.fsm:
+
+      fsmsynth -Lpalasm foo.fsm
+
+   If this option is ommited, then FSMsynth will default to vhdl output.
+
+-D<device>
+   Select the target device. The device is the name of a .OMC file, but
+   with the .OMC extension ommited - eg. if you wanted to use the device
+   defined in 16L8.OMC you would use the following:
+
+      fsmsynth -D16L8 foo.fsm
+
+   If this option is ommited, then FSMsynth will default to a 22V10 as it's
+   target device.
+
+   The device files should be in the same directory as the FSMsynth program.
+
+The OMC Device Definition File Format
+--------------------------------------
+
+FSMsynth uses external device files to tell it how to place the logic in an FSM.
+These files all have the extension ".OMC". A few examples are included (22V10 &
+20V8) to get you started, but if you need any other devices (eg. 16L8,etc) you
+will need to write you're own. The format is really simple, so don't worry.
+
+(BTW. OMC stands for Output MacroCell)
+
+Each OMC file looks like this:
+
+   FSMsynth Device Definition
+   DEVICE:22V10
+   PINS:24
+   OMC:10
+   0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,12,14,16,16,14,12,10,8,0
+
+
+1) A title line. I usually use "FSMsynth Device Definition" and I'd like
+   people to do the same, but you can put what you like here really.
+   It must be one line long though.
+
+2) A device type name. This consists of 'DEVICE:' followed by the name of the
+   device. (22V10 in the example)
+
+3) The number of pins the device has. (24 in the example)
+
+4) The number of Output MacroCells / Registered outputs available.
+   (10 in the example)
+
+5) An integer value for each pin of the device, seperated by commas or carriage
+   returns (or a mix of both). This value is the number of OR terms available on
+   this pin for registered output. If there are non (ie. the pin is an input)
+   put a zero for the pin. Remeber to include the GND/VCC pins & put zero's for
+   them as well. If you count there are 24 of these in the example. The left-most
+   is pin 1, the right-most is pin 24
+
+Two sample OMC files are included to get you started, a 22V10 & a 20V8.
+
+THE NEW ALGORITHM (a rather techie bit)
+----------------------------------------
+
+FSMedit used a strict Moore model of a state machine, that is to say, all
+outputs were functions of the state bits, and the state bits were held wholely
+seperate to the output variables:
+
+   x=input variables
+   y=output
+   s=current state bits
+   s'=next state bits (after clock)
+   F()=state function
+   H()=output function
+
+   y=H(s)      -- Current output defined in terms of current state
+   s'=F(x,s)   -- Next state defined in terms of current state & input variables
+
+This model is most optimal in terms of register usage only if you have a limited
+number of registers and loads of purely combinational functions.
+
+FSMsynth uses a slightly different model which is more optimised for use in
+xxVxx type PAL's (eg. the 22V10) where all available outputs are also registers.
+In this model, the current outputs are also used as state bits, with extra
+dedicated state bits only being used where several states have identical
+outputs.
+
+eg.
+   SPECIFIED OUTPUTS
+   -------+----------+
+          |  Outputs |
+   -------+----+-----+
+   State  | A  |  B  |
+   -------+----+-----+
+   start  | 0  |  0  |
+   runing | 1  |  0  !<-----\
+   stop   | 0  |  1  |       > These two states have identical outputs, so we
+   play   | 1  |  0  |<-----/    need a state bit to tell them apart.
+   -------+----+-----+
+
+   FULL STATE MACHINE
+   -------+----------+-------+
+          |  Outputs | State |
+   -------+----+-----+  Bit  |
+   State  | A  |  B  |       |
+   -------+----+-----+-------+
+   start  | 0  |  0  |   x   |
+   runing | 1  |  0  !   0   |<-----\
+   stop   | 0  |  1  |   x   |       > States are no longer identical, so each
+   play   | 1  |  0  |   1   +<-----/     state is unique.
+   -------+----+-----+-------+
+
+So, the equations then become:
+
+   x=input variables
+   y=output
+   s=current state bits
+   s'=next state bits (after clock)
+   F()=state function (this now incorporates the H() output function)
+
+   (y',s')=F(x,y,s)   -- Next state defined in terms of current outputs + state
+                      --   bits & input variables
+
+This method will actually use less OMC's as you will frequently be able to
+define an FSM wholely in terms of it's outputs (each set of outputs will be
+unique) or only require perhaps one or two state bits to account for identical
+states. Bearing in mind that you would have required an OMC to evaluate each
+output anyway (the H(s) function in the first model) you will find that this
+saves quite a few OMC's and allow larger designs to be placed into the same size
+PAL than you can with the first algorithm.
+
+eg.
+The v9.fsm example file required full usage of a 22V10 (all OMC's used) when
+synthesised with FSMedit's algorithm. As it has at most 2 states which are
+identical, it only requires 1 state bit to differentiate these, as opposed to
+using 4 bits to independantly define the states. This reduces the number of
+OMC's needed to 7 instead of 10, allowing the FSM to fit into a 16R8 instead of
+a 22V10 (using less board space and a cheaper component).
+
+FITTING ALGORITHM
+------------------
+
+One element of FSMsynth which was completely neglected by FSMedit is fitting.
+FSMsynth will place outputs such that each output will use the smallest (least
+available product terms) OMC that it will fit into. This means that it is more
+likely that there will still be large capacity OMC's free for any larger
+equations that really need them.
+
+Unfortunately though, there are always occasions (esp. when designing large complex
+FSM's) when an output will require more OMC's than are available in the target PAL.
+In this situation FSMsynth will split the state equation for that output into two,
+and place these seperately. One will be used as the actual output, whilst the other
+is made purely combinational and fed back into the PAL. It is then used as a single
+product term of the actual output, effectively giving a single registered OMC with
+more product terms available to it.
+If the split equations still don't fit, then the process is repeated, until the
+resulting set of cascaded equations will actually fit into the available OMC's.
+One drawback of this is that each level of cascaded logic will roughly double the
+propogation time of the combinational logic section, which has the effect of halving
+the maximum frequency which the FSM can safely be clocked at.
+
+PROBLEMS
+---------
+
+There are disadvantages in the new approach however....
+
+There is an additional powerup state added to the FSM.
+This is a drop through state with all outputs at zero. It is required because
+FSMsynth only uses registered outputs, and as PAL's always powerup & reset
+to all registers outputing zero, there is no way to specify this state. The FSM
+only ever enters this state at powerup or when the ASYNCHRONOUS RESET signal
+is applied. Actually, if you have made a mistake in your design and the FSM
+reaches a position where it cannot make any transistion at all, then it will
+jump into this state as well, which makes predictable recovery from errors rather
+easier than it could otherwise have been.
+   The FSM will actually fall straight through this state on the
+rising edge of the first clock pulse after powerup/after release of the reset
+signal. It will then enter your 'powerup' state. This was required as no
+seperate cobinational logic is used in the state machine to generate the output
+values. FSMedit held the state information seperate & used a seperate set of
+purely combinational functions to generate the outputs, allowing the reset
+state to have definable outputs, but wasting OMC's (for a typical 16 state
+FSM, you require an extra 4 OMC's to do it that way).
+
+In use it is unlikely that you will have a problem with this, as the FSM will
+drop into your PowerUp state as soon as the clock starts up.
+
+Also, although FSMsynth provides wider device support than FSMedit, the
+algorithm used in FSMedit was actually better suited to synthesis of certain
+PAL architectures.
+This is because, in FSMsynth, every output term is registered - not a
+problem in the 22V10 style architecture (for which FSMsynth is intended) where
+each output pin has a register anyway. But in advanced PAL's  where you may have
+many purely combinatorial blocks and a limited number of registers, the fact
+that FSMedit uses an absolute minimum number of registers may be important.
+This will be addressed at some point in a future release to allow more
+appropriate synthesis algorithms to be selected for various device architectures.
+
+Example File
+-------------
+
+The file B.FSM contains a sample state machine. You will be able to load it into
+FSMedit to examine it. Note that FSMedit does not recognise the power up state
+declaration at the end of the file:
+
+   POWERUP
+   2
+
+This say's set the powerup/reset state to be state 2 (the second state in the
+file) - in this case, state n2. This must be added using a text editor until the
+next release of FSMedit (which will included powerup definition).
+
+DISCLAIMER
+-----------
+
+FSMsynth was knocked up in two evenings especially for me to do my final year
+project at university with. So it's not guaranteed, do NOT use it for any
+work which could cause any harm at all (to people or property).
+
+No claims are made as to it's reliability at all (and none should be implied
+by any of the above documentation).
+
+And yes, this was a Basic Special, coded completely in HiSoft Basic 2, on
+a Falcon030 4/32Mhz. Quick, dirty, and unlikey to get upgraded at all in this
+form (although the algorithm will definitely be re-used). As with the original
+FSMedit, FSMsynth was written because I needed it - if anyone else needs it too,
+great, if they don't - who cares?
+
+A few extensions to the synthesis engine may be made to supprt Maxxon/Jedi
+format for GAL synthesis.
+
+Craig.
+  __                              _
+  | \        | |                 / | Makers of CLA Digital Developer
+  |_/ A T A  \/| N C E R T A I N  /   - ECAD for the Atari.
+--------------------------------- o ---------------------------------
+Craig Graham. EMAIL: craig.graham@newcastle.ac.uk
+              Webspace: http://www.ncl.ac.uk/~n08z7

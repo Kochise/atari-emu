@@ -1,0 +1,19 @@
+Fichier projet pour GCCSHELL
+COMPILATEUR=F:\gcc-281\bin\gcc.ttp;
+ENVIRONNEMENT=GCC_EXEC_PREFIX=F:/gcc-281/bin/ COMPILER_PATH=F:/gcc-281/bin/ GNUINC=F:/incl48/ C_INCLUDE_PATH=F:/incl48/ GXXINC=F:/gem++19/incall/ CPLUS_INCLUDE_PATH=F:/gem++19/incall/ GNULIB=F:/libolb48/ TMPDIR=I:/ UNIXMODE=.,/d;
+LINKEUR=F:\gcc-281\bin\gcc.ttp;
+ARGUMENTS_LINK=-ogccshell.app gccshell.o -lgnugenc -lldg -lmgem -v;
+ARGUMENTS_CC=-c -Wall -Wcast-qual -v -O2 -m68020 -m68881;
+RESSOURCE=E:\depac\orcs\orcs.prg;
+EDITEUR=L:\ez_edit\ez_edit.prg;
+MAKE=F:\gcc-281c\make\bin\make.ttp;
+PROJET=E:\kronos\kronos.inf;
+DOSTRIP=YES;  YES pour faire un strip sur l'ex‚cutable aprŠs link
+FASTLOAD=YES;  YES pour chargement rapide
+TTRAMLOAD=YES;
+TTRAMMALLOC=YES;
+MINTFLAG=A; si A: Code prot‚g‚, B: Code non prot‚g‚, C: Superviseur only, D: lecture seulement
+AUTOERROR=YES; /* envoi le fichier erreur log directement aprŠs compile vers ‚diteur */ 
+EZEDIT_LIST=NO;
+@ ne surtout pas enlever @
+@ ne surtout pas enlever @

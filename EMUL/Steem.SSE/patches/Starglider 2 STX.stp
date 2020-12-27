@@ -1,0 +1,12 @@
+[Text]
+
+Description=Pass protection, will not work every time
+ApplyWhen=After loading
+Version=STF, TOS 1.02, 1MB
+PatchAuthor=Seagal
+
+[Check]
+0153CC = $67F6
+
+[Patch]
+0153CC = $60F6

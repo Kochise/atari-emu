@@ -1,0 +1,33 @@
+GEM Bench v4.004
+3800
+5150
+8405
+5445
+4740
+1090
+1485
+2145
+905
+1170
+2405
+4505
+4590
+1195
+3955
+Bare SST
+ 7224
+Risto Manninen
+SST1
+ST  TOS 2.06
+
+
+MiNT not present
+Blitter not present
+NVDI not present
+Video Mode: 640*200*4 Colours
+FPU not present
+Run and Malloc from FastRAM
+SupClkRd + AutoMMU2 + CldBoot2 + RAM2133
+
+
+ 383789

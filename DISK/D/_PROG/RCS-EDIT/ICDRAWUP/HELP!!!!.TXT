@@ -1,0 +1,69 @@
+                                HELP:
+
+  Welcome to Dr. Bob's office. Please take a number and the doctor
+  will be with you as soon as possible.
+  
+  
+  
+  Number 1)    What?! You didn't read the docs for RSCXPAND and now
+               you can't even boot your machine?
+
+               Tell me you DID back up your deskicon.rsc file!
+               Tell me it's true!
+               
+               No matter. Your Falcon diskettes have a copy on
+               them. Boot from floppy and copy it back to drive C:
+               
+               Now... let me get a shot of penecillin for you...
+               (where did I put those extra large needles?)
+  
+  Number 2)    "I expanded my resource file to 199 icons and didn't
+                experience any dizziness until I later changed
+                resolution to true-color. Now my system just sits
+                there with a blank white screen and a busy-bee."
+                
+                 Not to worry. True-color mode is slow in a lot of
+                ways. TOS just needs more time to convert all those
+                icons from 16-colors to 32k color format.
+                 This isn't very noticable when you have the stock
+                deskicon.rsc file with only 32 icons but with an
+                expanded resource file it becomes obvious.
+                 It takes upward of 30 seconds to convert all 199
+                icons. Just wait a while longer. 
+                 If this is too long a delay for you then perhaps
+                you'd be more comfortable with say, 100 icons.
+                Re-run RSCXPAND on your original resource file and
+                select a lesser number of icons. (100,128 or even 80)
+                
+  Number 3)     "ICONPAGE will not run on my STe."
+  
+                 Unfortunately, this problem is yet unsolved.
+                 Original testing was done in the ST-LOW resolution
+                 'compatibility' mode of the Falcon030 and works
+                 fine there. It was assumed that it would also
+                 work in 'real' ST-LOW resolution... alas, that is
+                 not the case. It is being looked into as we speak.
+  
+  
+  Number 4)     "I can't get ICDRAW to run on my 520STF."
+  
+                 I'm terribly sorry. You want Dr. Seuss's office.
+                It's down the hall on the right (don't miss it, you
+                might), you'll see a grand sight.
+                 He fixes all sorts of widgets and wadgets, and
+                luny old gadgets, even ditties and dotties and
+                little tot potties.
+                 Why... he's even stayed late, as much as past eight,
+                to fix up a toofering snore.
+
+
+  Number 5)     "Doc! It hurts when I do this."
+  
+                 Ah! You've come to the right place!
+                  Nurse, prepare an enema for our patient...
+                  ...he's got a bad case of cliche-itis.
+
+
+---------------------------------------------------------------------------
+
+

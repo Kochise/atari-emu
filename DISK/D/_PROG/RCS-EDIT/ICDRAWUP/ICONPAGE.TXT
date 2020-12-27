@@ -1,0 +1,162 @@
+-----------------------------
+ICONPAGE.prg:  26 April 1994
+  W.D.Parks        v1.02
+-----------------------------
+
+                                 ICONPAGER
+                                   v1.02
+                            (c) 1994 W.D.Parks
+                       All rights reserved Dr. Bobware
+
+                            A Paged Icon viewer
+
+                        16 color modes Falcon or ST
+                            
+                               Makes a handy
+                            Companion for ICDRAW
+
+                         This ICONPAGE.PRG is free.
+                           (ICDRAW is shareware!)
+                      
+
+   Display a folders worth of Falcon desktop icons (ICDRAW's IBI & IB3 
+ formats). Works in 16 color modes (640x480,640x400 and even ST/320x200).
+
+ 
+   Will display as many icons (in groups of three) as will fit on the
+ screen, paging from that point onward if necessary to display the
+ complete folder.  In Falcon 640x480 mode this will show up to 54 icon
+ groups per screen page (ie arrayed as 6x9).
+
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ 
+ This version will appear the same on the screen, no changes there, but
+ the user interface is different than the original version. This is due
+ to reports of screen redraw messages not being detected (and leaving a
+ large 'hole' in the screen after using the file_selector), and there
+ being a need to explain an interface that, although is simple, is not
+ familiar to users.
+
+ 
+ The MENU BAR is active in ICON PAGER and controls all the functions.
+ There is no longer a need to click on the little upturned corner of
+ the page to advance to the next. In fact, the cutsie little corner
+ is for display purposes only now. Use the menu bar to advance to the
+ next page or previous page etal, or use the key assignments shown
+ next to the menu selections.
+ 
+ ICON PAGER now lets you show the single icon files (.IBI), the group
+ icon files (.IB3) or both (.IB*). 
+ 
+ The active keypresses are also different from v1.00. Since this is
+ such a simple functioning program it was felt that the space bar
+ was better off as a 'NEXT PAGE' key rather than a 'REDRAW' function.
+
+ Mouse button presses no longer perform any function as they did in
+ the original version.
+
+ A PAGE refers to a screen full of icons. If the folder you've selected
+ has fewer icons than will fill a screen then there are no further
+ pages and the PAGE DOWN,UP,END have no function.
+ 
+
+ Menu Items        Function
+ ------------------------------------------------------------------
+ NEW FOLDER:       Select a new folder to be viewed.
+ SORT:             Set filename sort ON or OFF (calls new folder).
+ *.IBI             Read only 'single icon' files.
+ *.IB3             Read only 'group icon' files  (3 icons in one).
+ *.IB*             Read both types of icon files.
+
+ PAGE DOWN:        Advance to next page (if there is any next page).
+ PAGE UP:          Step back to previous page (if there is any).
+ PAGE HOME:        Go to top of file list (ie 1st page).
+ PAGE END:         Advance to last page (if any).
+
+ REDRAW PAGE:      Will, if for whatever reason necessary, redraw
+                   the current page.
+                   
+
+ SET COPY PATH:    Set the destination path for the COPY function.
+                   (see ICON INFO)
+                   
+ QUIT:             Exits ICON PAGER (with an 'are you sure' alert box)
+
+
+ Keypresses        Short cut for menu item:
+ -------------------------------------------------------------------------
+ HELP:             Displays program title, version and main key help list.
+ UNDO:             QUIT.
+ ESC:              QUIT.
+ *:                REDRAW PAGE.
+ HOME:             PAGE HOME.
+ Space bar:        PAGE DOWN.
+ <cursor> Down:    PAGE DOWN.
+ <cursor> Up:      PAGE UP.
+ S:                SORT.
+ -------------------------------------------------------------------------
+
+ ICON INFO:        Clicking on any icon will display its details such as
+                   filename, time/date of creation or last modified, file
+                   size and the 'Creating Softwares' title.
+                   
+                   At this point, you are given three/four options:
+                   
+                   OK:      Quit the dialog and return to viewing.
+                   
+                   COPY:    Copy the icon file... using the the destination
+                            path. If no destination path has yet been set
+                            then you are asked for one.
+                            * The file is copied, using its same filename,
+                              to the path you'd selected.
+                            * The file time/date is retained (of course).
+                            * Existing files will not be overwritten
+                              automatically. You are altered and asked
+                              to confirm the over-write.
+
+                   DELETE:  Delete the icon file from the disk. You are
+                            Alerted and asked to confirm this operation.
+                            File deletes are permanent (as if you didn't
+                            know).
+
+                   SET:     Set the destination path... or set a new
+                  (path)    destination path for the COPY function.
+                                                       
+
+
+
+ -------------------------------------------------------------------------
+ Notes, Hints, Tips:
+ -------------------------------------------------------------------------
+ *  When selecting a path in the file selector, leave the filename blank
+    to read ALL icons in the folder (as per IBI/IB3/IB*).
+ *  ICONPAGE accepts a command line. You can drag and drop at the desktop
+    or you can install ICONPAGE as an application.
+    When doing this, only the one icon file will be displayed.
+ *  ICONPAGE will sit in the background when an accessory is launched until
+    either the accessory is closed or ICONPAGE's window is topped.
+    While in the background, keypresses are ignored by ICONPAGE. Menu items
+    are also ignored but the menu title will be set back to normal.
+ *  ICONPAGE always displays an icon in a set of three (ie a group). When
+    displaying single icon files (.IBI) the single icon is displayed in the
+    first position of the set and the other two are shown as shaded boxes
+    indicating that it is a single icon file.
+ *  Menu selections [*.IBI] [*.IB3] and [*.IB*] will change the extension
+    to your desired choice and then perform a new folder search. You are
+    given the file_selector again, showing the same path as you left it.
+    A simple <Return> or click on [Ok] will quickly pick the same path
+    again if you want to use that same path.
+ *  SORT, like the IBx menu items mentioned above, will perform a new
+    folder search (unless [Cancel] is selected).
+ -------------------------------------------------------------------------
+    
+    
+    
+
+
+
+----------------------------------------------------------------------------
+  ICONPAGER is freeware. It may be freely distributed as long as this text
+  file is included and neither are modified.
+----------------------------------------------------------------------------
+Bye: Dr. Bob     4/23/94

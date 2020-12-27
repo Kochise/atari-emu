@@ -1,0 +1,305 @@
+Interface. Der Resource-Editor.
+Aktuelle Informationen, neue Funktionen und Hinweise.
+Programm-Version: 2.33 vom 03.10.1994
+
+ACHTUNG: DIES IST EINE LIZENSIERTE VERSION, DIE AUSSCHLIESSLICH
+AUF DER HOMEPAGE VON
+
+Gerd Hˆller
+Lange Gasse 9
+97996 Niederstetten
+Tel: 07932/605093
+
+angeboten werden darf. INTERFACE IST KEINE FREEWARE und darf auf keinen
+Fall ohne Zustimmung des Programmierers oder Gerd Hˆller auf welche Art
+auch immer weitergegeben werden.
+
+Bei einer Zuwiderhandlung werden rechtliche Schritte eingeleitet!
+----------------------------------------------------------------------
+
+Der Inhalt der Interface Disketten:
+
+Diskette 1:
+
+INTRFACE: In  diesem Order befindet sich  Interface,  seine  Resource-
+          Datei  (mit  allen Definitionen) und eine  MyDial  Extobfix-
+          Datei.
+
+DEMO:     Dieser  Ordner  enthÑlt die Beispiel-Resource,  die  in  der 
+          Anleitung besprochen wird.
+
+
+Diskette 2:
+
+CPX:      Der  Ordner CPX enthÑlt ein CPX-Modul  zur  Farbeinstellung, 
+          das auch unter jeder Grafikkarte arbeitet.
+
+
+ARCHIV:   In  diesem Ordner befinden sich folgende  selbstauspackenden 
+          Dateien:
+
+          EXTOBFIX.TOS  enthÑlt alle Extobfix-Dateien.
+
+          FARBICON.TOS  enthÑlt einige Farbicons.
+
+          MYDIAL_C.TOS  enthÑlt die C MyDial-Library und die  aktuelle 
+                        MyDial-Anleitung.
+
+          MYD_GFA.TOS   enthÑlt  die GFA-Basic MyDial-Library und  die 
+                        Farbicon-Routinen.
+
+          MYD_OMIK.TOS  enthÑlt  die Omikron-Basic MyDial-Library  und 
+                        die Routinen zum Laden langer Resourcen.
+
+          NKCC.TOS      enthÑlt die NKCC-Library.
+
+          XRSRC.TOS     enthÑlt die Routinen zum Laden der   Farbicons 
+                        und langer Resourcen.
+
+          INTMONO.TOS   enthÑlt eine  Interface-Resource  ohne   Farb-
+                        icons,  die  man bei Speichermangel  verwenden 
+                        kann.
+
+
+Bitte  kopieren Sie sie *zuerst* auf eine leere Diskette oder in  eine 
+Ramdisk,  *bevor*  Sie eines der Programme starten.  *Nach dem  Start* 
+entpacken sich die Archive selber.
+
+----------------------------------------------------------------------
+
+énderungen  und ErgÑnzungen seit Interface 2.21:
+
+Interface 2.21:
+
+- Im  Iconeditor kann man die Farbe eines Pixels  herausfinden,  indem 
+  man  den Pixel mit Shift-Linksklick oder mit Rechts- und  Linksklick 
+  anwÑhlt. Die gefundene Farbe wird dann automatisch die neue Zeichen-
+  farbe.
+
+- Die  Bilddaten  lassen sich im Iconeditor in der Hîhe  oder  in  der 
+  Breite halbieren.  Dadurch kann man fÅr die niedrige Auflîsung  oder 
+  fÅr Gemini schnell kleine Icons erzeugen.  Die Routine lîscht  jeden 
+  zweiten Pixel.
+
+- Auch in der RSH-Ausgabe werden jetzt zu kurze te_pvalid-Felder einer 
+  TEDINFO-Struktur mit 0-Bytes aufgefÅllt.
+
+- Interface  verwendet  jetzt in einem Grafikmodus mit  mindestens  16 
+  Farben  3D-Dialoge.  Der 3D-Modus lÑût sich Åber  den  Einstellungs-
+  Dialog  jederzeit  ausschalten,  die  énderung  wird  beim  nÑchsten 
+  Neustart von Interface beachtet.
+  3D-MyDials  sind  noch nicht auf der Diskette,  da die  neuen  Funk-
+  tionen u.U. noch erweitert werden sollen.
+
+- "Backdrop" ist ab Winx 2.1 mîglich:  Einfach kurz auf den  Titelbal-
+  ken  des obersten Fensters klicken und das Fenster wird  sofort  zum 
+  untersten Fenster.
+
+- Interface  liegt  jetzt  die neue  NKCC-Version  2.90  bei.  Da  der 
+  nkc_init-Befehl um einen Parameter erweitert wurde,  sollte man sich 
+  vor der Umstellung auf die neue NKCC-Version erst das  mitgelieferte 
+  WHATSNEW.TXT durchlesen.
+
+
+Interface 2.30:
+
+- Die  MyDials  unterstÅtzen  fÅr alle  Objekte  eine  3D-Darstellung. 
+  Genaueres  dazu  steht  am  Ende  der  MyDial-Anleitung  auf  dieser 
+  Diskette (nicht im Handbuch!).
+
+- Windows-Icons mit 2, 16 und 256 Farben werden jetzt korrekt eingela-
+  den  und  die Maske wird Åbernommen.  Windows-Icons mit  256  Farben 
+  gibt es erst ab Windows 3.1.
+
+- Im  Alert-Dialog  gibt es den Button "Test".  Dadurch  muû  man  den 
+  Dialog nicht extra verlassen, um die Alertbox zu testen.
+
+- Drag&Drop wird unterstÅtzt.  Akzeptiert werden Resource-Dateien, die 
+  auf  ein beliebiges Interface-Fenster gezogen  werden,  und  IMG-Da-
+  teien und WINDOWS- bzw OS/2-Dateien,  die auf ein  Iconeditorfenster 
+  gezogen werden kînnen.
+
+- Mit  "Flags  setzen"  (F7) kann man auch die  erweiterten  Flags  in 
+  allen selektierten Objekten Ñndern.
+
+- Suchdialog: Unterscheidung Groû/Kleinschreibung ist einschaltbar.
+
+- "NÑchstes"-Button  in allen Objektdialogen ist nur  noch  anwÑhlbar, 
+  wenn es weitere Objekte gibt.
+
+- MyDials:  Die MyDials unterstÅtzen jetzt ClrHome und  Shift-ClrHome, 
+  um den Cursor zu positionieren.
+
+- MyDials:  Bei  einem Doppelklick auf den Mover eines  Dialoges  wird 
+  der Dialog zentriert.
+
+- MyDials:  Neue  Funktion "form_Button" eingebaut,  die  beim  Redraw 
+  eines Objektes ein Fensterhandle berÅcksichtigt.  Als netten  Neben-
+  effekt kann man jetzt DISABLED-Exitbuttons nicht mehr Åber  Tastatur 
+  auslîsen (ein Bug vom TOS-form_button).
+
+- MyDials:  "popup_select" kann man ein Fensterhandle Åbergeben, damit 
+  der  aufrufende  Popupbutton Åber das Handle  neu  gezeichnet  wird. 
+  Wenn das Handle NIL ist,  wird er komplett Åber objc_draw gezeichnet 
+  (wie frÅher).
+
+- MyDials:  Der erste Parameter von "dial_alert" ist jetzt ein  Zeiger 
+  auf  eine OBJECT-Struktur (frÅher BITBLK).  Dadurch kann  man  jedes 
+  beliebige  Objekt in der linken,  oberen Alertecke  darstellen.  Wer 
+  malt ein paar schicke Farbicons dafÅr?
+  Beispiel: dial_alert (&tree[STOP], ...)
+
+- In  der RSH-Ausgabe steht jetzt vor jeder Grafiktabelle ein  "WORD", 
+  da es sonst mit einigen C Compilern Probleme gab.
+  Vorher: static RS... = {...
+  Jetzt : static WORD RS... = {...
+
+- MyDials:  Auch  TEXT und BOXTEXT-Objekte kînnen jetzt Åber  Tastatur 
+  bedient  werden (Erweiterter Typ:  18).  Die Zeichenroutine  berÅck-
+  sichtigt zwar nicht alle BoxText-Attribute richtig (z.B.  OUTLINED), 
+  aber fÅr die meisten Anwendungen sollte es reichen.
+
+- MyDials:  Wenn  man tastaturbedienbare Strings in  Popups  einsetzt, 
+  muû  man  ihnen  jetzt  statt Typ 18  Typ  24  geben.  Dadurch  wird 
+  verhindert,  daû die Breite u.U.  verkleinert wird und auûerdem kann 
+  fÅr  Typ 24 auch das DRAW3D-Flag verwendet werden.  Sie werden  dann 
+  genauso wie Typ 23 (Popup-Strings) im 3D-Modus gezeichnet.
+  Nochmals:  Normale Strings und (Box)Texte in Popups bekommen Typ 23, 
+  tastaturbedienbare  Strings in Popups bekommen Typ  24,  tastaturbe-
+  dienbare Strings auûerhalb von Popups bekommen Typ 18.
+
+- MyDials:  Man  kann jetzt Alertboxen in Fenster  legen.  FÅr  diesen 
+  Zweck gibt es folgende neue Routinen:
+  - alert_data:  Diese  Funktion berechnet alle Daten  einer  Alertbox 
+    (u.a. Grîûe und Position aller Elemente).
+  - alert_draw:   Diese   Funktion  zeichnet  die  Alertbox   an   den 
+    angegebenen Koordinaten mit einem zu Åbergebenden Clipping.
+  - alert_close:  Wenn das Alert-Fenster wieder geschlossen wird,  muû 
+    diese Funktion aufgerufen werden,  damit alle Elemente des  Alert-
+    Baums initialisiert werden.
+
+- MyDials:  2 neue Funktionen fÅr Textobjekte.  Da die Objekte fÅr die 
+  3D-Darstellung  in Userdefs gewandelt werden mÅssen,  kommt man  nur 
+  noch   umstÑndlich   Åber  die  USERBLK-Struktur   oder   Åber   den 
+  get_obspec-Aufruf an den Text der Objekte.  Um das etwas zu erleich-
+  tern, gibt es jetzt folgende Funktionen:
+  - objc_setobspec:  Diese Funktion kopiert einen String in ein belie-
+    biges Objekt.
+  - objc_getobspec:  Diese Funktion kopiert den Text eines Objekts  in 
+    einen String.
+  Beide  Funktionen arbeiten mit normalen Objekten und auch mit  User-
+  defs.
+  UnterstÅtzte Objekttypen:
+  G_BUTTON,  G_STRING,  G_TITLE,  G_CICON,  G_ICON, G_BOXCHAR, G_TEXT, 
+  G_BOXTEXT G_FTEXT, G_FBOXTEXT (te_ptext bzw ib_ptext).
+
+- MyDials:  Man  kann jetzt das dial_do der MyDials um  eigene  Events 
+  erweitern  und/oder  auch das Event-verhalten der  Routine  komplett 
+  Ñndern.  Dazu  gibt  es eine neue Funktion,  mit der  man  2  eigene 
+  Routinen in dial_do einklinken kann:
+  - set_MyEvnt (init_func, evnt_func)
+  init_func wird gleich zu Anfang von dial_do aufgerufen.  Der Routine 
+  wird ein Zeiger auf eine Struktur Åbergeben,  in der alle  Parameter 
+  von evnt_multi eingetragen wurden (Definition siehe  mydial.h).  Die 
+  Struktur  wurde bereits mit den Standardwerten  der  dial_do-Routine 
+  initialisiert.  init_func  kînnte jetzt z.B.  im ersten Eintrag  der 
+  Struktur zusÑtzlich noch einen Timer-Event eintragen.
+  evnt_func  wird  von  den MyDials direkt  nach  dem  evnt_multi  der 
+  dial_do-Routine  aufgerufen.  Die erste Åbergebene Variable  enthÑlt 
+  einen Zeiger auf den RÅckgabewert von evnt_multi,  der die aufgetre-
+  tenen  Events  angibt  (die man auch  verÑndern  darf).  Die  zweite 
+  Variable  enthÑlt  einen Zeiger auf  alle  evnt_multi-Parameter.  In 
+  dieser Routine kînnte man jetzt die zusÑtzlich eingetragenen  Events 
+  auswerten  oder  auch die von evnt_multi  ermittelten  Werte  Ñndern 
+  oder lîschen.
+  Mit get_MyEvnt kann man die gesetzten Adressen wieder abfragen.
+
+- Das Desktopfenster wird bei CTRL-W nicht mehr mitge"cycled".
+
+- MyDials:  Bisher konnten die MyDials maximal 1000 Userdefs in  einem 
+  statischen  Array verwalten.  Jetzt muû man einen Zeiger auf so  ein 
+  Array  und die Anzahl der mîglichen Userdefs bei  dial_init  Åberge-
+  ben.  Dadurch  kann  die Anzahl der Userdefs  fast  beliebig  erhîht 
+  werden.
+  Also z.B.:
+  #define UBLOCKLEN 2000
+  OBBLK usrblck[UBLOCKLEN]
+  dial_init (..., usrblck, UBLOCKLEN);
+
+- Die  TextlÑnge eines Icontextes kann jetzt durch einen neuen  Button 
+  direkt geÑndert werden,  ohne daû man den Icon-Dialog dazu verlassen 
+  mÅûte.
+
+- Die Interface-Desktopfarbe kann selbst definiert werden,  indem  man 
+  in  der  Resource  die Farbmuster  im  Baum  "DESKCOL"  entsprechend 
+  Ñndert.
+
+- MyDials:  Scrollbare Editfelder wurden eingebaut.  Das Editfeld  muû 
+  dazu  Typ  26  (LONGINPUT) bekommen und darf nur  aus  einem  langen 
+  Eingabefeld  bestehen.  Solche Editfelder lassen sich natÅrlich  von 
+  der  Grîûe her beliebig verkleinern.
+
+- In  Interface kann man jetzt Eingabefelder mit einer LÑnge  von  bis 
+  zu 255 Zeichen editieren.  Die entsprechenden Editfelder im Boxtext-
+  Dialog scrollen bei lÑngeren Editfeldern.
+
+- Wenn  man  die Objektdatenanzeige eingeschaltet hat  und  die  CTRL-
+  Taste  gedrÅckt hÑlt,  werden die Objektdaten des Parents des  unter 
+  der Maus liegenden Objekts angezeigt.
+
+- Wenn  der  Interface-Desktop  in einem Fenster  liegt  und  man  das 
+  Fenster geschlossen hat,  kann man den Desktop wieder îffnen,  indem 
+  man sich durch alle 4 Copyright-Dialoge klickt.
+
+- MyDials:  Mit dial_setcpos kann man den Cursor auf eine neue Cursor-
+  position und ein neues Objekt setzen.
+  Mit  dial_getcpos kann man das aktuelle Editobjekt und die  aktuelle 
+  Cursorposition erfragen.
+
+
+----------------------------------------------------------------------
+
+    Probleme?
+
+Bei  Problemen  stehen  wir Ihnen  gerne  zur  VerfÅgung,  aber  bitte 
+erleichtern Sie uns die Hilfe durch Beachtung folgender Punkte:
+
+  A.  Geben Sie Ihre  R e g i s t r i e r n u m m e r  an,  die Sie in 
+      jedem  Fall  auf Ihrer  Originaldiskette  finden  (sechsstellige 
+      Nummer).
+  B.  Geben  Sie  Ihre   K  u  n  d e n n  u  m  m  e  r   an.  Unsere 
+      Kundenanschreiben  und  Rechnungen sind mit  Ihrer  Kundennummer 
+      versehen.
+  1.  Nennen Sie Ihre Hardwarekonfiguration und TOS-Version.
+  2.  Nennen Sie die installierten Accessories und Programme,  die aus 
+      dem Auto-Ordner gestartet wurden - und zwar a l l e!
+  3.  Stellen  Sie  uns - wenn mîglich und sinnvoll -  Dateien  dieser 
+      'Problem-Resourcen' zur VerfÅgung.
+
+Je mehr Informationen wir haben,  desto leichter lassen sich  Probleme 
+lîsen.  Da man (leider) nie ausschlieûen kann,  daû ein Programm  noch 
+Fehler  aufweist,  erhalten  Sie  - bei  Programmfehlern  -  natÅrlich 
+kostenlos eine neue Version.
+
+
+
+
+    UNSERE ADRESSE
+
+
+    no| software GmbH
+    Support, Interface
+    Ritzstraû 13
+    D-54595 PrÅm
+
+    Tel.: 06551 / 97 01-11
+    Fax.: 0461 / 97 01-15
+
+
+Wenn  Sie Åber ein Modem verfÅgen,  kînnen Sie mit  dem  Programmierer 
+auch direkt Kontakt aufnehmen. Seine 'Anschrift':
+ 
+Olaf_Meisiek@fl.maus.de
+
+(Im Klartext: Maus-Flensburg).
+

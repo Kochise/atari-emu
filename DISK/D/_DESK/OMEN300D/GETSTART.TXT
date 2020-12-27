@@ -1,0 +1,469 @@
+
+				  Getting Started With OMEn
+					   October, 1994
+	 (C) 1994 Esquimalt Digital Logic Inc. All rights reserved.
+
+
+						 Contents
+
+Print Me!
+Why OMEn is a Little Different
+Most Confusing Items
+Startup
+OMEn Mouse/Display Pointers
+Finding the Files
+Getting out of a folder
+The System Folder
+Directory Window Scroll Control
+The Demo Disk
+Opening (running) Software
+Opening Document Files
+Starting Micro Word Program to Read the Document Files
+Copying Files
+Copying Between Floppies; Changing Floppy disks
+Ordering
+
+
+						Print Me!
+
+Printing out this Getting Started file will provide the user with a
+ready reference to check in as required when running OMEn for the
+first time.
+	Once you're "into" the system, of course, you can read Getting
+Started on screen using Micro Word, but that's not much help if you
+don't know how to search directories (folders), or open programs or
+documents.
+
+
+					A Little Different
+
+OMEn's user interface is a little different from other systems such
+as GEM or Mac. This is necessary to accommodate the true multi-
+tasking nature of OMEn, the new type of file system, and to create
+the more flexible and intuitive "generic drag-&-drop" interface.
+These differences mean there are a few basic items to learn in order
+to work with OMEn, and these are outlined below.
+
+
+				  The Most Confusing Items
+
+The items which cause the most confusion for new users (especially
+GEM or Mac users) are:
+
+a) having to drag windows from the top left corner instead of
+top center area. (This allows each window to have its own
+menu bar or buttons at the top of the window.)
+
+b) single clicking instead of double clicking, and use of the
+right mouse button (or left button with shift key held
+down) for some functions.
+
+c) No disk drive icons. Click on "DIRs" to open a directory
+window. Click on "Disk Drives" in that window to access
+the available drives, viewed as directory folders.
+
+d) Opening documents. To open a document, simply drag it into
+the application's window from a directory window, the same
+way you would copy the file by dragging it to another
+directory window, or delete it by dragging it to the
+trash. (Directory windows copy files, the trash deletes
+them; applications open them.) There are no file selection
+boxes with most OMEn software.
+
+e) Files in Memory.
+		With most systems, when an application opens a file,
+the data from the file becomes the private property of the
+application until it is written back to disk.
+		With OMEn, all memory becomes a "virtual RAMDisk" as
+required. Data being edited is in the form of a file-in-
+memory. The file, and its data, in memory may be accessed
+from its usual directory, by any application.
+		Files can be copied from a disk into the Memory
+directory and vise-versa, by dragging between two
+directory windows. They can be opened to two or more
+applications at once for viewing or editing, by dragging
+them from their directory into the desired applications.
+
+
+						  Startup
+
+On the PC with Gemulator, it is necessary to start up the Gemulator
+68000 (Atari) emulator, then follow the same steps as with the Atari
+version.
+
+On the Atari, OMEn is started by quickly double clicking on the
+OMEN259D.PRG (on PC: OMGL259D.PRG) icon or name in a GEM directory
+window.
+
+					*	*	*	*	*
+
+At bootup, the system searches by name for Fonts and Settings folders
+in the following order:
+Drive C/OMEN/Fonts(Settings)
+Drive C/Fonts(Settings)
+Drive A/OMEN/Fonts(Settings)
+Drive A/Fonts(Settings)
+
+The boot drive should not have a label, because the label will
+replace the name "Drive C" or "Drive A" and the system won't be able
+to find the directories.
+
+Application software will look in "Fonts" to find scaleable text
+fonts and "Settings" to find system and program preferences.
+	Unlicenced demo versions of OMEn ignore the prefs & settings in
+the "Settings" folder, but licenced versions can install a desired
+printer manager, individual sound files (for beep, alert, red-alert,
+ta-dah, and wait) and background picture, and automatically start up
+your most-used software. Desired video mode and communications
+settings are reinstated immediately.
+	Because multiple programs can be started up quickly and don't
+tie up the system, automatically starting up software in OMEn is more
+useful than with other systems.
+
+
+				  OMEn Mouse/Display Pointers
+
+* "Click" means just one click: there is no double clicking with
+OMEn.
+
+* Atari and PC based OMEn use a virtual display which is twice as
+tall as the actual screen, except in Atari TT Hirez where the
+screen is already two full pages. In order to scroll down to
+see the bottom half of the display, simply move the mouse to
+the bottom of the screen and keep going - the display will
+scroll. To scroll back to the top, just move to the top and
+keep going in the same manner as going down.
+
+
+					 Finding the Files:
+
+	The file management system is not complicated, but it does need
+a bit of introduction.
+There are no disk drive icons. Instead, a directory window for
+viewing files is opened by clicking on "DIRs" at the top of the
+display.
+	Files are shown with their name followed either by a picture
+("icon") (for types of files the system knows) or a four character
+file extension. Here are the current uses of icons:
+
+   Folder Directory  "Folder" Icon
+   Binder Directory  Custom Icon inside binder, or "Binder" Icon
+				 (Icons can be created using "Paint Booth")
+   Text File     	 Piece of Paper
+   Program		 Running animal (you can "run" the program)
+   I/O Protocol	 Diamond
+   I/O Port		 Double Arrow
+   I/O Channel mgr.	 Diamond with double arrow inside
+   Sound			 Speaker
+   Font Bitmap		 Letter "A" icon
+
+The directory window first opens showing the "Memory" root directory.
+In the memory directory are two subdirectories: "Disk Drives" and
+"System" which give access to DOS/GEM disk drives and to system files
+loaded into memory at startup, respectively.
+
+So, to start:
+
+* Click on DIRs at the top of the main window. This opens
+a directory window. The window starts up looking at the
+Memory folder, which is the root directory for the whole
+system, including the disk drives.
+
+* Click (once) on Disk Drives. This folder contains all
+the GEM/DOS drives and disks in the system. The
+available drives are shown as folders in the directory
+window. Drives don't have icons on the desktop.
+
+* Click on the drive containing the OMEn software. It
+opens to show the files and folders on the drive.
+Programs that you can run are shown with a "running
+animal" icon.
+
+* Click on a program to start it up.
+
+
+					Getting out of a folder.
+
+	To exit a folder to its parent folder, simply click on the name
+of the current folder, which is just above the list of files (on the
+second line of the directory window). On a colour screen, this name
+is on a blue background.
+	To exit out from several levels of folders at once, click on the
+name at the very top of the directory window. If you are anywhere on
+a drive, this will exit to the Disk Drives folder showing the list of
+drives. If you are already in that folder, it will exit to the Memory
+folder.
+	Since the Memory folder is the root folder, there is no way to
+exit outwards from it and clicking on this name will have no effect.
+
+	The other folder shown in the Memory directory when you boot-up
+OMEn (besides Disk Drives) is System. It contains software which is
+always placed there when OMEn starts up. Below is a more detailed
+example of entering and exiting folders, with the System Folder.
+
+
+					  The System Folder
+
+To view the OMEn system files, first open a directory window (see 
+above). Click on "System". The display in the window will change to
+show the files inside the "System" directory, and the word "System"
+will replace "Memory" on the second line of the window.
+
+OMEn's Input/Output manager files (except additional printer drivers)
+are in "System", and there are also some application programs there.
+Files in "System" are already loaded when OMEn is started, so they
+will start without accessing the disk drive.
+
+Clicking on a program will start it running - see "Opening Software",
+below.
+
+To leave the "System" directory, click on the word "System" up near
+the top of the directory window. This will exit from the current
+directory (System) and go out to the previous directory (Memory).
+
+
+			    Directory Window Scroll Control
+
+When there are more files in a directory than will fit in the
+directory window, the Scroll Bar along the left side of the window
+becomes active.
+	To go up or down by a window-full of files at a time, click on
+the up or down arrow keys.
+	To go up or down by just one file, click on the up or down carat
+symbols.
+	To jump immediately to any area of the window, click on the
+desired position in the vertical scroll bar.
+	To do "live scrolling", hold the mouse button down in the scroll
+bar area and move the mouse slowly up and down the scroll bar.
+
+
+					   The Demo Disk
+
+The demo disk contains many files. Each type of file is placed in an
+appropriate folder on the disk.
+
+To view files on the demo disk click on Disk Drives (in the "Memory"
+directory). The display will change to show all the DOS or GEM drives
+on your system.
+	Click on Drive A (without moving the mouse). The list of the
+files in the main ("root") directory of the disk will be shown. At
+this point the name "Disk Drives" will be at the very top of the
+directory window, and "Drive A" will be underneath it.
+	Of course, a directory can be opened for any drive on the system
+(floppy disk B and hard drives) by clicking on that drive.
+
+To find the application programs on the disk, click on the "Software"
+directory. To find the documentation, click on "OMEn User Docs"
+(shortened to "OMEN USE" if DOS or GEM copied it) and so on. There
+are additional directories for Fonts, Pictures and Sounds. The
+"Settings" directory contains a text file describing settings.
+
+
+				  Opening (Running) Software
+
+To open (run) an application program, you must locate it (above) and
+then click (without moving the mouse) on its name in the directory.
+The program will load and its window will open without affecting the
+rest of the display.
+	Don't make the mistake of trying to run a program by clicking on
+its instructions in "E_Util Progs" ("or E_UTILPR") documentation
+directory instead of the program itself, which is in the "Software"
+directory.
+
+
+				   Opening Document Files
+
+Once an application program is running, it can open (view and edit)
+documents of its proper type.
+	It is necessary to exit the "Software" or "System" directory
+where the program was found, and go the directory where the document
+file is to be found (See Viewing Demo Disk Files, above). Or, the
+"Software" directory can be left open and the document directory
+viewed in a second directory window, opened by clicking again on
+DIRs.
+	When the document to be opened is located, press down the mouse
+button on the file and, with the button still pressed down, move the
+mouse into the window of the program that is to open the file. Then
+let go of the mouse button, and the file will be opened by the
+program. (With Micro Word and text files, it is easiest to drag the
+file to Micro Word's "File" button.)
+
+"Opening" a file can mean different things to different programs.
+Sound Player will play digitized sound files, while Font Demo will
+make a bitmapped font for display or printout from an outline font
+definition file.
+
+Here is a list of document file types for the demo programs. The
+programs not shown do not open document files of any type.
+
+   PROGRAM      OPENS              FILE EXTENSION   ICON
+
+   Micro Word   OMEn Text files    TEXT             Piece of paper
+   Paint Booth  Bitmapped pictures BM,BMAP,BM01,... None
+   Sound Player Digitized Sounds   SOUN             Speaker
+   Font Demo    Outline Fonts      PS3F,OM3F,PS     None
+   File Info    Any file
+   Binary Ed    Any file (This utility is for programmers)
+   Cheap OMEN TO ASCII
+   - Same as Micro Word (changes it to "TXT" for GEM)
+   Stereo Sound Rate Reducer
+         Stereo Digitized Sounds   SOUN             Speaker
+
+By opening Micro Word, you can view (and print, and edit) the
+instructions for all the individual progams supplied.
+
+
+	   Starting Micro Word Program to Read the Document Files
+
+* Locate Micro Word in the Software folder on the disk.
+* Click on it to start it running.
+* Locate the document to be opened in its own folder.
+* Drag the document from the directory window to the File
+button in the Micro Word window. Micro Word will read
+it off the disk and open it.
+
+	Note: The Micro Word you see in the Software folder is a binder
+called "Micro Word". It contains the Micro Word program, the Micro 
+Word users' manual (plus any pictures used in that manual), and three
+different sizes of Micro Word custom icons for different screen
+resolutions.
+	A binder is a disk directory, similar to a folder except that it
+doesn't open from the GUI to show the files. Instead, it works as if
+the entire binder with all its files was one file:
+	a) If it is clicked on, the Micro Word program starts up.
+	b) If the binder is dragged into a running copy of the
+Micro Word program (or other word processor), the Micro Word users'
+manual is opened.
+	c) Directory windows look inside the binder for the appropriate
+icon and (if available) uses that instead of displaying a built-in
+system icon.
+	d) Any resource files required by the application or the
+document in the binder are hidden from the user and safe from
+accidental deletion, but available to software.
+	e) Of course, if the binder is copied, it is copied with all its
+"resources" (files) complete and intact.
+
+To open up a binder, rename it so that its name is different than the
+name of the program inside (by dragging it to "Rename" at the top of
+the display or to a running copy of the "File Info" program). Or
+change its FileType (extension) from ".BIND" to ".FOLD". Then it can
+be opened as a normal folder to access the files inside, by clicking
+on it.
+
+
+					    Copying Files
+
+	Files in the Memory folder are not saved on a disk; they will
+disappear when you exit from OMEn or turn off the computer. This
+applies as well to any new files copied into the System folder, which
+is also in memory.
+
+  To copy a file:
+
+* Two directory windows are required. If only one is
+open, click again on DIRs to open a second one.
+* Get to the folder where you want to copy the file to in
+the second directory window. (You have to be viewing
+inside that folder, seeing its files.)
+* Drag the file from the first directory window to the
+second one. It will be copied.
+
+
+	Copying Between Floppies; Changing Floppy disks
+
+  To copy files between disks with just one floppy drive:
+
+* Drag the file(s) into the Memory folder from the first
+disk, creating a copy of the files in memory.
+* Swap disks. After you swap floppies, exit from Drive A
+in the directory window back to Disk Drives.
+(proceedure described above) and then re-enter Drive A
+to open (read-in) the new disk.
+* Drag the files from Memory into the new disk directory
+to copy them to it.
+* Delete the files from Memory (if desired).
+
+	To select several files, click on each one with the RIGHT mouse
+button. To select all the files, click "select all" from the "Dir
+Misc" menu near the top right of the directory window.
+	If a disk has a "volume label" (a name), this name will be shown
+instead of "Drive A" once the disk has been opened.
+
+	OMEn handles any MS-DOS or Atari disk format properly, including
+5-1/4" disks. However, many PC BIOSes will not read disks except for
+360K, 720K and 1440K sizes. Atari disks formatted for extra space to
+800K, 900K, 1600K and so on will not work on these PCs (nor on
+Macintoshes).
+	If you are using a 5-1/4" external drive on an Atari, you should
+run Atari Disk Drives I/O port in the System folder (click on it like
+a program) and set the "Floppy Seek Speed" to 6 or 12 milli-seconds
+instead of 3 milliseconds, which is too fast for most 5-1/4" drives.
+
+
+					Copying the Demo Disk
+
+If the demo disk is copied from DOS or GEM, the file names are
+shortened to eight upper case characters and the file extensions are
+shortened to three characters.
+	The best way to copy the entire demo from GEM is to format
+another 720K disk and do a complete disk copy by dragging the drive A
+icon onto the drive B icon. From DOS, the "Backup" command is
+available. Many disk copy programs such as "Copy II" can also be used
+to copy all the sectors of the disk.
+
+From OMEn, without a hard drive, one floppy, and more than one
+megabyte of memory, drag the "Drive A" directory file into the
+"Memory" folder.
+	Place the copy disk in the drive. Enter the original Drive A
+folder in "Disk Drives" to access the new disk. Open the copy "Drive 
+A" in "Memory", then click on "Select All" from the "Dir Misc" menu.
+	Drag the selected files to the directory of the new disk.
+
+Unfortunately, the current version of OMEn is quite slow with floppy
+disks due to an interaction between the ST BIOS and the multi-
+tasking. Friendly boxes showing the number of files and folders
+remaining haven't been put in yet, either.
+
+With one megabyte or less of memory and a single floppy disk, the
+entire disk can't be copied at once as there isn't enough memory.
+	The files must be copied into "Memory" in groups, transferred to
+the new disk, and then erased from memory to free up space. Drive A
+must be closed and re-opened each time the disk is swapped. (It's
+easier to do the "Disk Copy" from GEM.)
+
+With two floppy drives, coping the demo to a disk in Drive B is
+easier. Enter the Drive A folder, viewing the original disk. Open a
+second directory window and enter the Drive B folder, viewing the
+blank disk. In Drive A, choose "Select All" from the "File Misc"
+menu, then drag the selected files to "Drive B".
+
+To copy the demo to a hard drive under OMEn is easiest. Open a second
+directory window, and go into "Drive C". Drag the "Drive A" folder
+into it from the first directory window. Rename the copy of "Drive A"
+(which is now actually on Drive C) to "OMEN" to complete the
+installation.
+
+						Ordering
+
+	We are pleased to have users run the demo, experiment with it,
+create and print text and colour pictures, and play sounds.
+	However, Esquimalt Digital Logic Inc does not authorize
+productive use of the OMEn demos. If you find you are using OMEn
+productively, you are expected and required to support the product by
+ordering the licenced version: unauthorized use of software
+constitutes software piracy. OMEn can only become a major system with
+user supported funding to speed up further development and improve
+system quality.
+	And your productivity can be enhanced even more with the
+configurability built into the licenced product. 
+	The licenced version will be further upgraded in the coming
+months as additional features are added, and upgrade disks will be
+automatically shipped free to licenced users.
+
+	Currently, OMEn is ordered directly from Esquimalt Digital
+(phone 1-604-384-0499, fax 1-604-384-0575 VISA-Mastercard). More
+details are shown under "Licencing OMEn" under the "Help" menu while
+OMEn is running. An order form is included in the demo package which
+may be printed out if your (dot matrix) printer is compatible with
+the included printer driver.
+ 

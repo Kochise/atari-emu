@@ -1,0 +1,2249 @@
+% COPYRIGHT 1988
+% Soft-Logik Publishing Corp
+%  11131 F South Towne Sq.
+%  St. Louis  MO  63123
+%  (314) 894-8608
+% No Reproduction, In Whole Or Part, Without Permission.
+
+FontDirectory /MegaStarSans known not
+	{ }
+	{ 
+		  {currentfile (     ) readstring
+			   {(%%%%%) eq { exit } 
+        if} 
+			   { pop } 
+			 ifelse
+		 } 
+	 loop
+	} 
+ifelse
+
+/BuildCharDict 20 dict def
+/KazFont 14 dict def
+KazFont begin
+/WidthFactor 1.0 def
+/FontType 3 def
+/FontMatrix [.001 0 0 .001 0 0] def
+/FontBBox [-75 -200 1238 800] def
+/Mx 256 array def
+0 1 255 {Mx exch 0 put} for
+Mx 32 325 put
+Mx 33 213 put
+Mx 34 394 put
+Mx 36 481 put
+Mx 37 465 put
+Mx 38 723 put
+Mx 39 213 put
+Mx 40 351 put
+Mx 41 360 put
+Mx 43 464 put
+Mx 44 221 put
+Mx 45 481 put
+Mx 46 213 put
+Mx 47 464 put
+Mx 48 542 put
+Mx 49 291 put
+Mx 50 516 put
+Mx 51 542 put
+Mx 52 585 put
+Mx 53 524 put
+Mx 54 524 put
+Mx 55 472 put
+Mx 56 542 put
+Mx 57 516 put
+Mx 58 213 put
+Mx 59 230 put
+Mx 60 221 put
+Mx 61 559 put
+Mx 62 213 put
+Mx 63 550 put
+Mx 65 555 put
+Mx 66 553 put
+Mx 67 540 put
+Mx 68 527 put
+Mx 69 510 put
+Mx 70 440 put
+Mx 71 530 put
+Mx 72 540 put
+Mx 73 215 put
+Mx 74 540 put
+Mx 75 536 put
+Mx 76 448 put
+Mx 77 725 put
+Mx 78 565 put
+Mx 79 548 put
+Mx 80 528 put
+Mx 81 527 put
+Mx 82 551 put
+Mx 83 475 put
+Mx 84 523 put
+Mx 85 549 put
+Mx 86 596 put
+Mx 87 861 put
+Mx 88 557 put
+Mx 89 562 put
+Mx 90 488 put
+Mx 91 334 put
+Mx 92 516 put
+Mx 93 343 put
+Mx 94 472 put
+Mx 95 611 put
+Mx 96 213 put
+Mx 97 481 put
+Mx 98 481 put
+Mx 99 472 put
+Mx 100 481 put
+Mx 101 481 put
+Mx 102 403 put
+Mx 103 490 put
+Mx 104 481 put
+Mx 105 213 put
+Mx 106 490 put
+Mx 107 516 put
+Mx 108 221 put
+Mx 109 767 put
+Mx 110 481 put
+Mx 111 481 put
+Mx 112 490 put
+Mx 113 490 put
+Mx 114 464 put
+Mx 115 481 put
+Mx 116 403 put
+Mx 117 481 put
+Mx 118 481 put
+Mx 119 758 put
+Mx 120 559 put
+Mx 121 490 put
+Mx 122 533 put
+Mx 123 403 put
+Mx 124 221 put
+Mx 125 412 put
+Mx 126 550 put
+/Encoding 256 array def
+0 1 255 {Encoding exch /.notdef put} for
+Encoding 0 /0 put
+Encoding 1 /1 put
+Encoding 2 /2 put
+Encoding 3 /3 put
+Encoding 4 /4 put
+Encoding 5 /5 put
+Encoding 6 /6 put
+Encoding 7 /7 put
+Encoding 8 /8 put
+Encoding 9 /9 put
+Encoding 10 /10 put
+Encoding 11 /11 put
+Encoding 12 /12 put
+Encoding 13 /13 put
+Encoding 14 /14 put
+Encoding 15 /15 put
+Encoding 16 /16 put
+Encoding 17 /17 put
+Encoding 18 /18 put
+Encoding 19 /19 put
+Encoding 20 /20 put
+Encoding 21 /21 put
+Encoding 22 /22 put
+Encoding 23 /23 put
+Encoding 24 /24 put
+Encoding 25 /25 put
+Encoding 26 /26 put
+Encoding 27 /27 put
+Encoding 28 /28 put
+Encoding 29 /29 put
+Encoding 30 /30 put
+Encoding 31 /31 put
+Encoding 32 /32 put
+Encoding 33 /33 put
+Encoding 34 /34 put
+Encoding 36 /36 put
+Encoding 38 /38 put
+Encoding 39 /39 put
+Encoding 40 /40 put
+Encoding 41 /41 put
+Encoding 43 /43 put
+Encoding 44 /44 put
+Encoding 45 /45 put
+Encoding 46 /46 put
+Encoding 47 /47 put
+Encoding 48 /48 put
+Encoding 49 /49 put
+Encoding 50 /50 put
+Encoding 51 /51 put
+Encoding 52 /52 put
+Encoding 53 /53 put
+Encoding 54 /54 put
+Encoding 55 /55 put
+Encoding 56 /56 put
+Encoding 57 /57 put
+Encoding 58 /58 put
+Encoding 59 /59 put
+Encoding 60 /60 put
+Encoding 61 /61 put
+Encoding 62 /62 put
+Encoding 63 /63 put
+Encoding 65 /65 put
+Encoding 66 /66 put
+Encoding 67 /67 put
+Encoding 68 /68 put
+Encoding 69 /69 put
+Encoding 70 /70 put
+Encoding 71 /71 put
+Encoding 72 /72 put
+Encoding 73 /73 put
+Encoding 74 /74 put
+Encoding 75 /75 put
+Encoding 76 /76 put
+Encoding 77 /77 put
+Encoding 78 /78 put
+Encoding 79 /79 put
+Encoding 80 /80 put
+Encoding 81 /81 put
+Encoding 82 /82 put
+Encoding 83 /83 put
+Encoding 84 /84 put
+Encoding 85 /85 put
+Encoding 86 /86 put
+Encoding 87 /87 put
+Encoding 88 /88 put
+Encoding 89 /89 put
+Encoding 90 /90 put
+Encoding 91 /91 put
+Encoding 92 /92 put
+Encoding 93 /93 put
+Encoding 94 /94 put
+Encoding 95 /95 put
+Encoding 96 /96 put
+Encoding 97 /97 put
+Encoding 98 /98 put
+Encoding 99 /99 put
+Encoding 100 /100 put
+Encoding 101 /101 put
+Encoding 102 /102 put
+Encoding 103 /103 put
+Encoding 104 /104 put
+Encoding 105 /105 put
+Encoding 106 /106 put
+Encoding 107 /107 put
+Encoding 108 /108 put
+Encoding 109 /109 put
+Encoding 110 /110 put
+Encoding 111 /111 put
+Encoding 112 /112 put
+Encoding 113 /113 put
+Encoding 114 /114 put
+Encoding 115 /115 put
+Encoding 116 /116 put
+Encoding 117 /117 put
+Encoding 118 /118 put
+Encoding 119 /119 put
+Encoding 120 /120 put
+Encoding 121 /121 put
+Encoding 122 /122 put
+Encoding 123 /123 put
+Encoding 124 /124 put
+Encoding 125 /125 put
+Encoding 126 /126 put
+Encoding 127 /127 put
+/CharacterDefs 257 dict def
+CharacterDefs /.notdef {} put
+CharacterDefs /0 
+{ n
+s
+ } put
+
+CharacterDefs /1 
+{ n
+s
+ } put
+
+CharacterDefs /2 
+{ n
+s
+ } put
+
+CharacterDefs /3 
+{ n
+s
+ } put
+
+CharacterDefs /4 
+{ n
+s
+ } put
+
+CharacterDefs /5 
+{ n
+s
+ } put
+
+CharacterDefs /6 
+{ n
+s
+ } put
+
+CharacterDefs /7 
+{ n
+s
+ } put
+
+CharacterDefs /8 
+{ n
+s
+ } put
+
+CharacterDefs /9 
+{ n
+s
+ } put
+
+CharacterDefs /10 
+{ n
+s
+ } put
+
+CharacterDefs /11 
+{ n
+s
+ } put
+
+CharacterDefs /12 
+{ n
+s
+ } put
+
+CharacterDefs /13 
+{ n
+s
+ } put
+
+CharacterDefs /14 
+{ n
+s
+ } put
+
+CharacterDefs /15 
+{ n
+s
+ } put
+
+CharacterDefs /16 
+{ n
+s
+ } put
+
+CharacterDefs /17 
+{ n
+s
+ } put
+
+CharacterDefs /18 
+{ n
+s
+ } put
+
+CharacterDefs /19 
+{ n
+s
+ } put
+
+CharacterDefs /20 
+{ n
+s
+ } put
+
+CharacterDefs /21 
+{ n
+s
+ } put
+
+CharacterDefs /22 
+{ n
+s
+ } put
+
+CharacterDefs /23 
+{ n
+s
+ } put
+
+CharacterDefs /24 
+{ n
+s
+ } put
+
+CharacterDefs /25 
+{ n
+s
+ } put
+
+CharacterDefs /26 
+{ n
+s
+ } put
+
+CharacterDefs /27 
+{ n
+s
+ } put
+
+CharacterDefs /28 
+{ n
+s
+ } put
+
+CharacterDefs /29 
+{ n
+s
+ } put
+
+CharacterDefs /30 
+{ n
+s
+ } put
+
+CharacterDefs /31 
+{ n
+s
+ } put
+
+CharacterDefs /32 
+{ n
+s
+ } put
+
+CharacterDefs /33 
+{ n
+25 706 m
+150 706 l
+125 238 l
+50 238 l
+25 706 l
+e
+150 125 m
+25 125 l
+25 0 l
+150 0 l
+150 125 l
+e
+f
+ } put
+
+CharacterDefs /34 
+{ n
+200 706 m
+325 706 l
+325 577 l
+275 450 l
+200 450 l
+200 706 l
+e
+25 706 m
+150 706 l
+150 577 l
+100 450 l
+25 450 l
+25 706 l
+e
+f
+ } put
+
+CharacterDefs /36 
+{ n
+150 200 m
+150 125 l
+295 125 l
+295 288 l
+125 288 l
+28 388 l
+28 600 l
+125 703 l
+315 703 l
+420 600 l
+420 500 l
+295 500 l
+295 575 l
+150 575 l
+150 412 l
+320 412 l
+420 312 l
+420 100 l
+320 0 l
+125 0 l
+28 100 l
+28 200 l
+150 200 l
+e
+215 775 m
+235 775 l
+235 703 l
+215 703 l
+e
+215 575 m
+235 575 l
+235 412 l
+215 412 l
+e
+215 288 m
+235 288 l
+235 125 l
+215 125 l
+e
+215 0 m
+235 0 l
+235 -75 l
+215 -75 l
+e
+f
+ } put
+
+CharacterDefs /38 
+{ n
+651 0 m
+530 118 l
+590 165 l
+512 243 l
+452 200 l
+328 323 l
+500 450 l
+500 600 l
+400 703 l
+150 703 l
+48 600 l
+48 440 l
+145 343 l
+25 250 l
+25 100 l
+125 0 l
+387 0 l
+450 49 l
+491 -3 l
+e
+175 575 m
+375 575 l
+375 499 l
+240 403 l
+175 475 l
+e
+363 125 m
+150 125 l
+150 200 l
+222 256 l
+e
+f
+ } put
+
+CharacterDefs /39 
+{ n
+100 450 m
+25 450 l
+25 706 l
+150 706 l
+150 587 l
+e
+f
+ } put
+
+CharacterDefs /40 
+{ n
+25 675 m
+125 775 l
+275 775 l
+275 650 l
+150 650 l
+150 50 l
+275 50 l
+275 -75 l
+125 -75 l
+25 25 l
+25 675 l
+e
+275 650 m
+275 650 l
+e
+f
+ } put
+
+CharacterDefs /41 
+{ n
+275 675 m
+175 775 l
+25 775 l
+25 650 l
+150 650 l
+150 50 l
+25 50 l
+25 -75 l
+175 -75 l
+275 25 l
+275 675 l
+e
+25 650 m
+25 650 l
+e
+f
+ } put
+
+CharacterDefs /43 
+{ n
+150 250 m
+25 250 l
+25 375 l
+150 375 l
+150 500 l
+275 500 l
+275 375 l
+400 375 l
+400 250 l
+275 250 l
+275 125 l
+150 125 l
+150 250 l
+e
+f
+ } put
+
+CharacterDefs /44 
+{ n
+25 175 m
+150 175 l
+150 50 l
+100 -75 l
+25 -75 l
+25 175 l
+e
+f
+ } put
+
+CharacterDefs /45 
+{ n
+25 250 m
+25 375 l
+420 375 l
+420 250 l
+25 250 l
+e
+f
+ } put
+
+CharacterDefs /46 
+{ n
+25 125 m
+150 125 l
+150 0 l
+25 0 l
+25 125 l
+e
+f
+ } put
+
+CharacterDefs /47 
+{ n
+150 0 m
+25 0 l
+275 775 l
+400 775 l
+150 0 l
+e
+f
+ } put
+
+CharacterDefs /48 
+{ n
+350 125 m
+350 575 l
+150 575 l
+150 125 l
+350 125 l
+e
+125 703 m
+375 703 l
+475 600 l
+475 100 l
+375 0 l
+125 0 l
+25 100 l
+25 600 l
+125 703 l
+e
+f
+ } put
+
+CharacterDefs /49 
+{ n
+25 575 m
+25 575 l
+25 703 l
+225 703 l
+225 0 l
+100 0 l
+100 575 l
+25 575 l
+e
+f
+ } put
+
+CharacterDefs /50 
+{ n
+325 400 m
+325 575 l
+150 575 l
+150 425 l
+25 425 l
+25 600 l
+125 703 l
+350 703 l
+450 600 l
+450 350 l
+200 125 l
+450 125 l
+450 0 l
+25 0 l
+25 125 l
+325 400 l
+e
+f
+ } put
+
+CharacterDefs /51 
+{ n
+25 200 m
+25 100 l
+125 0 l
+383 0 l
+475 103 l
+475 280 l
+405 350 l
+475 420 l
+475 600 l
+375 703 l
+125 703 l
+25 600 l
+25 500 l
+150 500 l
+150 575 l
+350 575 l
+350 412 l
+200 412 l
+200 288 l
+350 288 l
+350 125 l
+150 125 l
+150 200 l
+e
+f
+ } put
+
+CharacterDefs /52 
+{ n
+325 150 m
+25 150 l
+25 300 l
+250 703 l
+450 703 l
+450 275 l
+525 275 l
+525 150 l
+450 150 l
+450 0 l
+325 0 l
+325 150 l
+e
+325 275 m
+325 575 l
+150 275 l
+325 275 l
+e
+f
+ } put
+
+CharacterDefs /53 
+{ n
+425 100 m
+325 0 l
+125 0 l
+25 100 l
+25 225 l
+150 225 l
+150 125 l
+300 125 l
+300 350 l
+25 350 l
+25 703 l
+425 703 l
+425 575 l
+150 575 l
+150 475 l
+325 475 l
+425 375 l
+425 100 l
+e
+f
+ } put
+
+CharacterDefs /54 
+{ n
+125 703 m
+350 703 l
+450 600 l
+450 500 l
+325 500 l
+325 575 l
+150 575 l
+150 400 l
+350 400 l
+450 300 l
+450 100 l
+350 0 l
+125 0 l
+25 100 l
+25 600 l
+125 703 l
+e
+150 125 m
+332 125 l
+332 275 l
+150 275 l
+150 125 l
+e
+f
+ } put
+
+CharacterDefs /55 
+{ n
+200 0 m
+75 0 l
+275 575 l
+25 575 l
+25 703 l
+400 703 l
+400 575 l
+200 0 l
+e
+f
+ } put
+
+CharacterDefs /56 
+{ n
+450 100 m
+350 0 l
+125 0 l
+25 100 l
+25 280 l
+95 350 l
+25 420 l
+25 600 l
+125 703 l
+350 703 l
+450 600 l
+450 420 l
+380 350 l
+450 280 l
+450 100 l
+e
+150 412 m
+325 412 l
+325 575 l
+150 575 l
+150 412 l
+e
+325 288 m
+150 288 l
+150 125 l
+325 125 l
+325 288 l
+e
+f
+ } put
+
+CharacterDefs /57 
+{ n
+150 125 m
+259 125 l
+325 125 l
+325 300 l
+125 300 l
+25 400 l
+25 600 l
+125 703 l
+350 703 l
+450 600 l
+450 100 l
+350 0 l
+125 0 l
+25 98 l
+25 200 l
+150 200 l
+150 125 l
+e
+150 425 m
+325 425 l
+325 575 l
+150 575 l
+150 425 l
+e
+f
+ } put
+
+CharacterDefs /58 
+{ n
+25 125 m
+150 125 l
+150 0 l
+25 0 l
+25 125 l
+e
+150 375 m
+25 375 l
+25 500 l
+150 500 l
+150 375 l
+e
+f
+ } put
+
+CharacterDefs /59 
+{ n
+25 175 m
+150 175 l
+150 50 l
+100 -75 l
+25 -75 l
+e
+149 375 m
+24 375 l
+24 500 l
+149 500 l
+149 375 l
+e
+f
+ } put
+
+CharacterDefs /60 
+{ n
+100 550 m
+150 550 l
+150 425 l
+100 350 l
+150 275 l
+150 150 l
+100 150 l
+25 275 l
+25 425 l
+100 550 l
+e
+f
+ } put
+
+CharacterDefs /61 
+{ n
+25 375 m
+25 500 l
+494 500 l
+494 375 l
+25 375 l
+e
+25 125 m
+25 250 l
+494 250 l
+494 125 l
+25 125 l
+e
+f
+ } put
+
+CharacterDefs /62 
+{ n
+75 546 m
+25 546 l
+25 425 l
+75 350 l
+25 275 l
+25 152 l
+75 152 l
+150 275 l
+150 425 l
+75 546 l
+e
+f
+ } put
+
+CharacterDefs /63 
+{ n
+150 475 m
+25 475 l
+25 600 l
+125 700 l
+375 700 l
+475 600 l
+475 421 l
+300 247 l
+300 225 l
+175 225 l
+175 300 l
+350 475 l
+350 575 l
+150 575 l
+150 475 l
+e
+175 125 m
+300 125 l
+300 0 l
+175 0 l
+175 125 l
+e
+f
+ } put
+
+CharacterDefs /65 
+{ n
+24 1 m
+25 1 l
+150 703 l
+350 703 l
+496 1 l
+371 1 l
+341 150 l
+179 150 l
+153 1 l
+25 1 l
+e
+202 275 m
+315 275 l
+254 556 l
+254 556 l
+e
+f
+ } put
+
+CharacterDefs /66 
+{ n
+25 0 m
+25 703 l
+375 703 l
+475 600 l
+475 420 l
+410 350 l
+475 280 l
+475 100 l
+375 0 l
+25 0 l
+e
+150 282 m
+150 125 l
+350 125 l
+350 282 l
+150 282 l
+e
+150 405 m
+350 405 l
+350 575 l
+150 575 l
+150 405 l
+e
+f
+ } put
+
+CharacterDefs /67 
+{ n
+150 125 m
+150 125 l
+150 125 l
+325 125 l
+325 275 l
+450 275 l
+450 100 l
+350 0 l
+125 0 l
+25 100 l
+25 600 l
+125 703 l
+350 703 l
+450 600 l
+450 425 l
+325 425 l
+325 575 l
+150 575 l
+150 125 l
+e
+f
+ } put
+
+CharacterDefs /68 
+{ n
+25 703 m
+350 703 l
+450 600 l
+450 100 l
+350 0 l
+25 0 l
+25 703 l
+e
+150 575 m
+150 125 l
+325 125 l
+325 575 l
+150 575 l
+e
+f
+ } put
+
+CharacterDefs /69 
+{ n
+25 703 m
+450 703 l
+450 575 l
+150 575 l
+150 412 l
+450 412 l
+450 288 l
+150 288 l
+150 125 l
+450 125 l
+450 0 l
+25 0 l
+25 703 l
+e
+f
+ } put
+
+CharacterDefs /70 
+{ n
+28 701 m
+375 701 l
+375 575 l
+150 575 l
+150 405 l
+375 405 l
+375 280 l
+150 280 l
+150 -1 l
+28 0 l
+28 701 l
+e
+f
+ } put
+
+CharacterDefs /71 
+{ n
+25 600 m
+125 703 l
+375 703 l
+475 600 l
+475 500 l
+350 500 l
+350 575 l
+150 575 l
+150 125 l
+350 125 l
+350 255 l
+257 255 l
+257 382 l
+475 382 l
+475 100 l
+375 0 l
+125 0 l
+25 100 l
+25 600 l
+e
+f
+ } put
+
+CharacterDefs /72 
+{ n
+25 703 m
+150 703 l
+150 405 l
+350 405 l
+350 703 l
+475 703 l
+475 0 l
+350 0 l
+350 280 l
+150 280 l
+150 0 l
+25 0 l
+25 703 l
+e
+f
+ } put
+
+CharacterDefs /73 
+{ n
+28 703 m
+150 703 l
+150 1 l
+28 1 l
+28 703 l
+e
+f
+ } put
+
+CharacterDefs /74 
+{ n
+25 300 m
+150 300 l
+150 125 l
+325 125 l
+325 701 l
+450 701 l
+450 100 l
+350 -1 l
+125 -1 l
+25 100 l
+25 300 l
+e
+f
+ } put
+
+CharacterDefs /75 
+{ n
+25 0 m
+25 703 l
+150 703 l
+150 407 l
+325 703 l
+450 703 l
+250 348 l
+450 0 l
+325 0 l
+150 280 l
+150 0 l
+25 0 l
+e
+f
+ } put
+
+CharacterDefs /76 
+{ n
+25 701 m
+150 701 l
+150 125 l
+375 125 l
+375 0 l
+25 0 l
+25 701 l
+e
+f
+ } put
+
+CharacterDefs /77 
+{ n
+150 450 m
+150 0 l
+25 0 l
+25 703 l
+200 703 l
+325 275 l
+450 703 l
+625 703 l
+625 0 l
+500 0 l
+500 450 l
+370 0 l
+280 0 l
+147 450 l
+e
+f
+ } put
+
+CharacterDefs /78 
+{ n
+25 703 m
+175 703 l
+350 250 l
+350 703 l
+475 703 l
+475 0 l
+325 0 l
+150 450 l
+150 0 l
+25 0 l
+25 703 l
+e
+f
+ } put
+
+CharacterDefs /79 
+{ n
+350 125 m
+350 575 l
+150 575 l
+150 125 l
+350 125 l
+e
+125 703 m
+375 703 l
+475 600 l
+475 100 l
+375 0 l
+125 0 l
+25 100 l
+25 600 l
+125 703 l
+e
+f
+ } put
+
+CharacterDefs /80 
+{ n
+25 0 m
+25 703 l
+350 703 l
+450 600 l
+450 300 l
+350 200 l
+150 200 l
+150 0 l
+25 0 l
+e
+150 325 m
+325 325 l
+325 575 l
+150 575 l
+150 325 l
+e
+f
+ } put
+
+CharacterDefs /81 
+{ n
+375 703 m
+475 600 l
+475 100 l
+375 0 l
+350 0 l
+350 -50 l
+150 -50 l
+150 0 l
+125 0 l
+25 100 l
+25 600 l
+125 703 l
+375 703 l
+e
+150 575 m
+150 125 l
+350 125 l
+350 575 l
+150 575 l
+e
+f
+ } put
+
+CharacterDefs /82 
+{ n
+25 703 m
+375 703 l
+475 600 l
+475 395 l
+405 325 l
+475 255 l
+475 0 l
+350 0 l
+350 260 l
+150 260 l
+150 0 l
+25 0 l
+25 703 l
+e
+150 390 m
+350 390 l
+350 575 l
+150 575 l
+150 390 l
+e
+f
+ } put
+
+CharacterDefs /83 
+{ n
+150 200 m
+150 125 l
+295 125 l
+295 288 l
+125 288 l
+28 388 l
+28 600 l
+125 703 l
+315 703 l
+420 600 l
+420 500 l
+295 500 l
+295 575 l
+150 575 l
+150 412 l
+320 412 l
+420 312 l
+420 100 l
+320 0 l
+125 0 l
+28 100 l
+28 200 l
+150 200 l
+e
+f
+ } put
+
+CharacterDefs /84 
+{ n
+25 575 m
+25 708 l
+450 708 l
+450 575 l
+300 575 l
+300 0 l
+173 0 l
+173 575 l
+25 575 l
+e
+f
+ } put
+
+CharacterDefs /85 
+{ n
+25 706 m
+150 706 l
+150 125 l
+350 125 l
+350 706 l
+475 706 l
+475 100 l
+375 0 l
+125 0 l
+25 100 l
+25 706 l
+e
+f
+ } put
+
+CharacterDefs /86 
+{ n
+25 703 m
+150 703 l
+263 150 l
+400 703 l
+525 703 l
+362 0 l
+162 0 l
+25 703 l
+e
+f
+ } put
+
+CharacterDefs /87 
+{ n
+300 1 m
+150 1 l
+25 703 l
+150 703 l
+238 225 l
+352 703 l
+475 703 l
+587 225 l
+675 703 l
+800 703 l
+675 1 l
+525 1 l
+412 425 l
+300 1 l
+e
+f
+ } put
+
+CharacterDefs /88 
+{ n
+25 703 m
+25 703 l
+150 703 l
+262 450 l
+375 703 l
+500 703 l
+350 350 l
+500 0 l
+375 0 l
+262 250 l
+150 0 l
+25 0 l
+175 350 l
+25 703 l
+e
+f
+ } put
+
+CharacterDefs /89 
+{ n
+25 703 m
+150 703 l
+262 425 l
+375 703 l
+500 703 l
+325 300 l
+325 0 l
+195 0 l
+195 300 l
+25 703 l
+e
+f
+ } put
+
+CharacterDefs /90 
+{ n
+150 125 m
+400 125 l
+400 0 l
+25 0 l
+25 125 l
+275 575 l
+25 575 l
+25 703 l
+400 703 l
+400 575 l
+150 125 l
+e
+f
+ } put
+
+CharacterDefs /91 
+{ n
+25 775 m
+275 775 l
+275 650 l
+150 650 l
+150 50 l
+275 50 l
+275 -75 l
+25 -75 l
+25 775 l
+e
+f
+ } put
+
+CharacterDefs /92 
+{ n
+25 775 m
+150 775 l
+450 0 l
+325 0 l
+e
+f
+ } put
+
+CharacterDefs /93 
+{ n
+275 775 m
+25 775 l
+25 650 l
+150 650 l
+150 50 l
+25 50 l
+25 -75 l
+275 -75 l
+275 775 l
+e
+f
+ } put
+
+CharacterDefs /94 
+{ n
+25 575 m
+25 575 l
+25 625 l
+150 706 l
+275 706 l
+400 625 l
+400 575 l
+275 575 l
+212 625 l
+212 625 l
+150 575 l
+25 575 l
+e
+f
+ } put
+
+CharacterDefs /95 
+{ n
+26 -75 m
+26 -75 l
+26 -200 l
+554 -200 l
+554 -75 l
+26 -75 l
+e
+f
+ } put
+
+CharacterDefs /96 
+{ n
+75 450 m
+25 575 l
+25 706 l
+150 706 l
+150 450 l
+e
+f
+ } put
+
+CharacterDefs /97 
+{ n
+300 400 m
+150 400 l
+150 350 l
+25 350 l
+25 425 l
+125 525 l
+325 525 l
+425 425 l
+425 0 l
+125 0 l
+25 100 l
+25 200 l
+125 300 l
+300 300 l
+300 400 l
+e
+300 175 m
+150 175 l
+150 125 l
+300 125 l
+300 175 l
+e
+f
+ } put
+
+CharacterDefs /98 
+{ n
+150 703 m
+150 525 l
+325 525 l
+425 425 l
+425 100 l
+325 0 l
+25 0 l
+25 703 l
+150 703 l
+e
+150 400 m
+150 125 l
+300 125 l
+300 400 l
+150 400 l
+e
+f
+ } put
+
+CharacterDefs /99 
+{ n
+150 400 m
+300 400 l
+300 350 l
+425 350 l
+425 425 l
+325 525 l
+125 525 l
+25 425 l
+25 100 l
+125 0 l
+325 0 l
+425 100 l
+425 175 l
+300 175 l
+300 125 l
+150 125 l
+150 400 l
+e
+f
+ } put
+
+CharacterDefs /100 
+{ n
+150 400 m
+150 125 l
+300 125 l
+300 400 l
+150 400 l
+e
+125 0 m
+25 100 l
+25 425 l
+125 525 l
+300 525 l
+300 703 l
+425 703 l
+425 0 l
+125 0 l
+e
+f
+ } put
+
+CharacterDefs /101 
+{ n
+25 425 m
+125 525 l
+325 525 l
+425 425 l
+425 225 l
+150 225 l
+150 125 l
+300 125 l
+300 175 l
+425 175 l
+425 100 l
+325 0 l
+99 0 l
+25 74 l
+25 425 l
+e
+150 400 m
+150 350 l
+300 350 l
+300 400 l
+150 400 l
+e
+f
+ } put
+
+CharacterDefs /102 
+{ n
+225 0 m
+100 0 l
+100 275 l
+25 275 l
+25 400 l
+100 400 l
+100 600 l
+200 703 l
+350 703 l
+350 575 l
+225 575 l
+225 400 l
+300 400 l
+300 275 l
+225 275 l
+225 0 l
+e
+f
+ } put
+
+CharacterDefs /103 
+{ n
+425 -125 m
+325 -225 l
+125 -225 l
+25 -125 l
+25 -50 l
+150 -50 l
+150 -100 l
+300 -100 l
+300 0 l
+125 0 l
+25 100 l
+25 425 l
+125 525 l
+425 525 l
+425 -125 l
+e
+300 125 m
+300 400 l
+150 400 l
+150 125 l
+300 125 l
+e
+f
+ } put
+
+CharacterDefs /104 
+{ n
+25 703 m
+150 703 l
+150 525 l
+325 525 l
+425 425 l
+425 0 l
+300 0 l
+300 400 l
+150 400 l
+150 0 l
+25 0 l
+25 703 l
+e
+f
+ } put
+
+CharacterDefs /105 
+{ n
+25 703 m
+150 703 l
+150 575 l
+25 575 l
+25 703 l
+e
+25 500 m
+150 500 l
+150 0 l
+25 0 l
+25 500 l
+e
+f
+ } put
+
+CharacterDefs /106 
+{ n
+300 700 m
+425 700 l
+425 575 l
+300 575 l
+300 700 l
+e
+300 500 m
+425 500 l
+425 -125 l
+325 -225 l
+125 -225 l
+25 -125 l
+25 -50 l
+150 -50 l
+150 -100 l
+300 -100 l
+300 500 l
+e
+f
+ } put
+
+CharacterDefs /107 
+{ n
+25 703 m
+150 703 l
+150 375 l
+325 525 l
+450 525 l
+450 525 l
+200 288 l
+450 0 l
+450 0 l
+325 0 l
+150 200 l
+150 0 l
+25 0 l
+25 703 l
+e
+f
+ } put
+
+CharacterDefs /108 
+{ n
+26 703 m
+26 703 l
+150 703 l
+150 0 l
+25 0 l
+26 703 l
+e
+f
+ } put
+
+CharacterDefs /109 
+{ n
+125 525 m
+125 525 l
+300 525 l
+362 465 l
+425 525 l
+600 525 l
+700 425 l
+700 0 l
+575 0 l
+575 400 l
+425 400 l
+425 0 l
+300 0 l
+300 400 l
+150 400 l
+150 0 l
+27 0 l
+25 425 l
+e
+f
+ } put
+
+CharacterDefs /110 
+{ n
+125 525 m
+325 525 l
+425 425 l
+425 0 l
+300 0 l
+300 400 l
+150 400 l
+150 0 l
+25 0 l
+25 425 l
+e
+f
+ } put
+
+CharacterDefs /111 
+{ n
+25 425 m
+125 525 l
+325 525 l
+425 425 l
+425 100 l
+325 0 l
+125 0 l
+25 100 l
+25 425 l
+e
+150 400 m
+150 125 l
+300 125 l
+300 400 l
+150 400 l
+e
+f
+ } put
+
+CharacterDefs /112 
+{ n
+25 525 m
+325 525 l
+425 425 l
+425 100 l
+325 0 l
+150 0 l
+150 -225 l
+25 -225 l
+25 525 l
+e
+150 400 m
+150 125 l
+300 125 l
+300 400 l
+150 400 l
+e
+f
+ } put
+
+CharacterDefs /113 
+{ n
+125 525 m
+25 425 l
+25 100 l
+125 0 l
+300 0 l
+300 -225 l
+425 -225 l
+425 525 l
+125 525 l
+e
+150 400 m
+300 400 l
+300 125 l
+150 125 l
+150 400 l
+e
+f
+ } put
+
+CharacterDefs /114 
+{ n
+25 525 m
+150 525 l
+150 450 l
+275 525 l
+400 525 l
+400 400 l
+275 400 l
+150 325 l
+150 0 l
+25 0 l
+25 525 l
+e
+f
+ } put
+
+CharacterDefs /115 
+{ n
+325 525 m
+425 425 l
+425 350 l
+300 350 l
+300 400 l
+150 400 l
+150 325 l
+329 325 l
+425 225 l
+425 100 l
+325 0 l
+125 0 l
+25 100 l
+25 175 l
+150 175 l
+150 125 l
+300 125 l
+300 200 l
+125 200 l
+25 288 l
+25 425 l
+125 525 l
+325 525 l
+e
+f
+ } put
+
+CharacterDefs /116 
+{ n
+100 400 m
+25 400 l
+25 525 l
+100 525 l
+100 703 l
+225 703 l
+225 525 l
+300 525 l
+300 400 l
+225 400 l
+225 125 l
+350 125 l
+350 0 l
+200 0 l
+100 100 l
+99 400 l
+e
+f
+ } put
+
+CharacterDefs /117 
+{ n
+25 525 m
+150 525 l
+150 125 l
+300 125 l
+300 525 l
+425 525 l
+425 100 l
+325 0 l
+125 0 l
+25 100 l
+25 525 l
+e
+f
+ } put
+
+CharacterDefs /118 
+{ n
+25 525 m
+150 525 l
+230 125 l
+230 125 l
+300 525 l
+425 525 l
+325 0 l
+125 0 l
+e
+f
+ } put
+
+CharacterDefs /119 
+{ n
+25 525 m
+150 525 l
+150 125 l
+300 125 l
+300 525 l
+425 525 l
+425 125 l
+575 125 l
+575 525 l
+700 525 l
+700 100 l
+600 0 l
+425 0 l
+362 77 l
+300 0 l
+125 0 l
+25 100 l
+25 525 l
+e
+f
+ } put
+
+CharacterDefs /120 
+{ n
+25 525 m
+150 525 l
+262 350 l
+375 525 l
+500 525 l
+331 262 l
+500 0 l
+375 0 l
+262 175 l
+150 0 l
+25 0 l
+193 262 l
+25 525 l
+e
+f
+ } put
+
+CharacterDefs /121 
+{ n
+25 525 m
+150 525 l
+150 125 l
+300 125 l
+300 525 l
+425 525 l
+425 -125 l
+325 -225 l
+99 -225 l
+25 -125 l
+25 -50 l
+150 -50 l
+150 -100 l
+300 -100 l
+300 0 l
+125 0 l
+25 100 l
+25 525 l
+e
+f
+ } put
+
+CharacterDefs /122 
+{ n
+25 400 m
+25 525 l
+475 525 l
+475 400 l
+175 125 l
+175 125 l
+475 125 l
+475 0 l
+25 0 l
+25 125 l
+325 400 l
+325 400 l
+25 400 l
+e
+f
+ } put
+
+CharacterDefs /123 
+{ n
+100 675 m
+200 775 l
+350 775 l
+350 650 l
+225 650 l
+225 412 l
+162 350 l
+225 288 l
+225 50 l
+350 50 l
+350 -75 l
+200 -75 l
+100 25 l
+100 250 l
+25 325 l
+25 375 l
+100 450 l
+100 675 l
+e
+f
+ } put
+
+CharacterDefs /124 
+{ n
+25 706 m
+150 706 l
+150 0 l
+25 0 l
+25 706 l
+e
+f
+ } put
+
+CharacterDefs /125 
+{ n
+275 675 m
+175 775 l
+25 775 l
+25 650 l
+150 650 l
+150 412 l
+211 350 l
+150 288 l
+150 50 l
+25 50 l
+25 -75 l
+175 -75 l
+275 25 l
+275 250 l
+350 325 l
+350 375 l
+275 450 l
+275 675 l
+e
+f
+ } put
+
+CharacterDefs /126 
+{ n
+25 238 m
+25 312 l
+99 385 l
+272 385 l
+340 318 l
+407 385 l
+494 385 l
+494 312 l
+420 238 l
+259 238 l
+179 318 l
+99 238 l
+25 238 l
+e
+f
+ } put
+
+CharacterDefs /127 
+{ n
+s
+ } put
+
+/BuildChar
+{BuildCharDict begin
+/char exch def
+/fontdict exch def
+/width fontdict /Mx get char get def
+/charname fontdict /Encoding get char get def
+/charproc fontdict /CharacterDefs get charname get def
+
+width 0 0 -200 1333 800 setcachedevice
+
+gsave
+/f {eofill} def
+/s {stroke} def
+/n {newpath} def
+/e {closepath} def
+/m {transform round exch round exch itransform moveto} def
+/l {transform round exch round exch itransform lineto} def
+/c {transform round exch round exch itransform 6 2 roll
+transform round exch round exch itransform 6 2 roll
+transform round exch round exch itransform 6 2 roll
+curveto} def
+/a {arc} def
+/an {arcn} def
+0 setlinecap 0 setlinejoin 48 setlinewidth .5 setflat charproc
+grestore
+end
+} def
+end
+
+/MegaStarSans KazFont definefont pop
+
+%%%%%%%%%
+                                                     

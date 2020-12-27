@@ -1,0 +1,3 @@
+STE_FIX.PRG    ; name of executable pgm is topmost window
+=              ; list of modules follows...
+ste_fix.s

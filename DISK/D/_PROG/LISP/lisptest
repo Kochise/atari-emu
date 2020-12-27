@@ -1,0 +1,71 @@
+(setq a 'x)
+(setq b '(y z))
+(setq c (cons a b))
+c
+
+a
+b
+c
+(car c)
+(cdr c)
+(car (cdr c))
+
+
+(defun pow (n1 n2)
+       (cond ((zerop n2) 1)
+	     (t (times n1 (pow n1 (sub1 n2))))
+       ) )
+
+(pow 2 3)
+(pow 5 7)
+(pow 234 0)
+
+(defun rember (a lat)
+       (cond ((null lat) ())
+	     ((eq (car lat) a) (cdr lat))
+	     (t (cons (car lat) (rember a (cdr lat))))
+       ) )
+
+(rember 'eggs '(bacon lettuce eggs benedict ham))
+(rember 'x c)
+
+(defun multiins (old new lat)
+       (cond ((null lat) ())
+	     ((eq (car lat) old) (cons (car lat)
+				    (cons new (multiins old new (cdr lat)))))
+	     (t (cons (car lat) (multiins old new (cdr lat))))
+       ) )
+
+(multiins 'adler 'marc '(adler shoes adler pants adler shirts))
+(multiins 'x 'w c)
+
+
+(defun pow2 (n1 n2)
+       (prog (a b prod)
+	     (setq a n1)
+	     (setq b n2)
+	     (setq prod 1)
+	loop (cond ((zerop b) (return prod)))
+	     (setq prod (times prod a))
+	     (setq b (sub1 b))
+	     (go loop)
+	) )
+
+(pow2 2 3)
+(pow2 5 7)
+(pow2 234 0)
+(pow2 11.34 3)
+
+(defun double (n) (times n 2))
+(defun square (n) (times n n))
+(defun testfun (n)
+       (funcall (cond ((greaterp n 100) 'double)
+		      (t 'square) )
+	n)  )
+
+(testfun 13)
+(testfun 99)
+(testfun 130)
+(testfun 6547)
+
+

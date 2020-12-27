@@ -1,0 +1,70 @@
+                    ResourceMaster V2.07
+
+	Hallo User,
+
+	Der ResourceMaster ist ein Resource Editor.
+	Als Vorgeschmack ein Auszug der M”glichkeiten:
+
+		* Resource-Dateien bis 64K (nur durch GEM begrenzt)
+		* Resource-Dateien gr”er als 64K (AES 4.xx)
+		* Resource-Dateien gr”er als 64K (Version-3 Format)
+		* S„mtliche Flags & States von Objekten ver„nderbar
+		* Testen von Alertboxen
+		* Ausgabedateien fr C, Pascal, Basic usw. durch spezelle Module
+		* Namen bis 32 Zeichen
+		* Syntax der Namen konfigurierbar
+		* Bemerkungen zu B„umen und Objekten
+		* Erkennung von DEF, DFN, RSD und HRD DefinitionsDateien, durch Module
+		* integrierter Icon-Editor (noch nicht fertig)
+		* lauff„hig auf allen TOS-Maschinen
+		* fast alles ber Tastatur bedienbar
+		* beliebig viele Dateien gleichzeit ladbar (solange der Speicher reicht)
+
+	    ... und einiges mehr
+
+
+	Der ResourceMaster ist Shareware, d.h. er darf zu nicht-kommerziellen
+	Zwecken frei kopiert und getestet werden. Wird der ResourceMaster jedoch
+	regelm„ssig benutzt, so ist eine Sharewaregebhr von DM 35,- an den Autor
+	zu	entrichten. Public Domain Versande, Zeitschriften, Verlage,
+	Softwarefirmen und Mailboxen, bei denen man fr Downloads extra zahlen
+	mu, sowie alle berhaupt denkbaren kommerzielle Vertreiber von Software
+	drfen den ResourceMaster nur mit meiner ausdrcklichen Genehmigung
+	vertreiben. Ausdrcklich erlaubt ist das Uploaden des ResourceMasters in
+	fr jeden zug„ngliche Mailboxen oder Netze, bei denen auer den Kosten
+	zum Betrieb des Netzes (oder der Mailbox) keine weiteren Gebhren
+	verlangt werden (z.B. Maus- o. Quark-Boxen). Der ResourceMaster ist kein
+	Public Domain. Das heit insbesondere, da die Dateien nur unver„ndert
+	und zusammen weitergegeben werden drfen.
+
+
+	Es steckt eine Menge Arbeit in so einem Programm. Der ResourceMaster
+	kostet nur 35,- DM. Dieser Betrag ist an den	Autor zu berweisen.
+
+	Bank:					Kreis-Sparkasse K”then
+	Konto:				420 718 02
+	Bankleitzahl:		800 536 22
+	Verwendungszweck:
+	1.Zeile :			RSM v2.xx  Vorname Nachname
+	2.Zeile :			Post-Adresse oder e-Mail-Adresse
+
+	Wenn eine e-Mail-Adresse angegeben wurde, kommt der Registrierungs-
+	Code auch per e-Mail zurck. Bei einer normale Post-Adresse, kommt
+	auch der Code auf	diesem Weg zurck. Wer 5,-DM mehr berweist, bekommt
+	eine Diskette mit der aktuellen Version.
+
+
+	Fr Kritik oder Anregungen wrde ich mich sehr freuen.
+
+	also schreibt mir!
+				Armin Diedering
+				Pl”tzkauer Ring 17
+
+				06366 K”then
+
+			oder
+
+				Maus-Netz: Armin Diedering @ L2
+
+
+                  Viel Erfolg damit!!!

@@ -1,0 +1,116 @@
+Reading specs from F:/libolb48/specs
+gcc version 2.8.1
+ F:/gcc-281/bin/cpp.ttp -lang-c -v -iprefix F:/gcc-281/bin/m68k-atari-mint/2.8.1/ -undef -D__GNUC__=2 -D__GNUC_MINOR__=8 -Dmc68000 -Datarist -Dgem -D__mc68000__ -D__atarist__ -D__gem__ -D__mc68000 -D__atarist -D__gem -Asystem(tos) -Asystem(gem) -Acpu(m68k) -Amachine(m68k) -D__OPTIMIZE__ -Wall -Wcast-qual E:/kronos/kronos.c I:/cc190000.i
+GNU CPP version 2.8.1 (68k, MIT syntax)
+#include "..." search starts here:
+#include <...> search starts here:
+ F:/incl48
+End of search list.
+ F:/gcc-281/bin/cc1.ttp I:/cc190000.i -quiet -dumpbase kronos.c -O2 -Wall -Wcast-qual -version -o I:/cc190000.s
+GNU C version 2.95.3 20010315 (release) (m68k-atari-mint) compiled by GNU C version 2.95.3 20010315 (release).
+In file included from E:/kronos/kronos.c:3:
+E:/kronos/structur.h:725: warning: parameter names (without types) in function declaration
+In file included from E:/kronos/_vglob.c:14,
+                 from E:/kronos/kronos.c:89:
+E:/kronos/defs.h:18: warning: useless keyword or type name in empty declaration
+E:/kronos/defs.h:18: warning: empty declaration
+In file included from E:/kronos/kronos.c:89:
+E:/kronos/_vglob.c: In function `debug_ldg_open':
+E:/kronos/_vglob.c:141: warning: implicit declaration of function `ldg_load'
+E:/kronos/_vglob.c:141: warning: assignment makes pointer from integer without a cast
+E:/kronos/_vglob.c:142: warning: assignment makes pointer from integer without a cast
+E:/kronos/_vglob.c: In function `debug_ldg_find':
+E:/kronos/_vglob.c:149: warning: unused variable `cook'
+E:/kronos/_vglob.c: In function `gif_image':
+E:/kronos/_vglob.c:434: warning: passing arg 3 of pointer to function makes pointer from integer without a cast
+E:/kronos/_vglob.c: In function `do_image_gif':
+E:/kronos/_vglob.c:513: warning: comparison between pointer and integer
+E:/kronos/_vglob.c:515: warning: implicit declaration of function `get_memo'
+E:/kronos/_vglob.c: In function `Start_Bench':
+E:/kronos/_vglob.c:4173: warning: passing arg 1 of `evalue_fpu' from incompatible pointer type
+E:/kronos/_vglob.c:4173: warning: passing arg 2 of `evalue_fpu' from incompatible pointer type
+E:/kronos/_vglob.c:4177: warning: passing arg 1 of `evalue_fpufloat' from incompatible pointer type
+E:/kronos/_vglob.c:4177: warning: passing arg 2 of `evalue_fpufloat' from incompatible pointer type
+E:/kronos/_vglob.c:4361: warning: passing arg 1 of `evalue_vdi' from incompatible pointer type
+E:/kronos/_vglob.c:4363: warning: passing arg 1 of `evalue_vdi' from incompatible pointer type
+E:/kronos/_vglob.c:4368: warning: passing arg 1 of `evalue_vdi' from incompatible pointer type
+E:/kronos/_vglob.c:4371: warning: passing arg 1 of `evalue_vdi' from incompatible pointer type
+E:/kronos/_vglob.c:4373: warning: passing arg 1 of `evalue_vdi' from incompatible pointer type
+E:/kronos/_vglob.c:4378: warning: passing arg 1 of `evalue_vdi' from incompatible pointer type
+E:/kronos/_vglob.c:4380: warning: passing arg 1 of `evalue_vdi' from incompatible pointer type
+E:/kronos/_vglob.c:4385: warning: passing arg 1 of `evalue_vdi' from incompatible pointer type
+E:/kronos/_vglob.c:4387: warning: passing arg 1 of `evalue_vdi' from incompatible pointer type
+E:/kronos/_vglob.c:4392: warning: passing arg 1 of `evalue_vdi' from incompatible pointer type
+E:/kronos/_vglob.c:4394: warning: passing arg 1 of `evalue_vdi' from incompatible pointer type
+E:/kronos/_vglob.c:4398: warning: passing arg 1 of `evalue_vdi' from incompatible pointer type
+E:/kronos/_vglob.c:4422: warning: passing arg 1 of `evalue_vdi' from incompatible pointer type
+E:/kronos/_vglob.c: At top level:
+E:/kronos/_vglob.c:4455: warning: type mismatch with previous implicit declaration
+E:/kronos/_vglob.c:3811: warning: previous implicit declaration of `get_memo'
+E:/kronos/_vglob.c:4455: warning: `get_memo' was previously implicitly declared to return `int'
+E:/kronos/_vglob.c:4534: warning: type defaults to `int' in declaration of `un_bureau'
+E:/kronos/_vglob.c: In function `proc_demarrage':
+E:/kronos/_vglob.c:4548: warning: implicit declaration of function `retnb_plans'
+E:/kronos/_vglob.c:4549: warning: multi-character character constant
+E:/kronos/_vglob.c:4555: warning: multi-character character constant
+E:/kronos/_vglob.c:4561: warning: multi-character character constant
+E:/kronos/_vglob.c:4621: warning: multi-character character constant
+E:/kronos/_vglob.c:4628: warning: implicit declaration of function `get_TOS_version'
+E:/kronos/_vglob.c:4650: warning: implicit declaration of function `dial_place_iconification'
+E:/kronos/_vglob.c:4672: warning: assignment from incompatible pointer type
+E:/kronos/_vglob.c:4673: warning: assignment from incompatible pointer type
+E:/kronos/_vglob.c:4701: warning: assignment from incompatible pointer type
+E:/kronos/_vglob.c:4702: warning: assignment from incompatible pointer type
+E:/kronos/_vglob.c:4727: warning: assignment from incompatible pointer type
+E:/kronos/_vglob.c:4728: warning: assignment from incompatible pointer type
+E:/kronos/_vglob.c:4754: warning: assignment from incompatible pointer type
+E:/kronos/_vglob.c:4755: warning: assignment from incompatible pointer type
+E:/kronos/_vglob.c:4783: warning: assignment from incompatible pointer type
+E:/kronos/_vglob.c:4784: warning: assignment from incompatible pointer type
+E:/kronos/_vglob.c:4812: warning: assignment from incompatible pointer type
+E:/kronos/_vglob.c:4813: warning: assignment from incompatible pointer type
+E:/kronos/_vglob.c:4936: warning: assignment makes pointer from integer without a cast
+E:/kronos/_vglob.c:5227: warning: passing arg 2 of `evalue_simple' makes pointer from integer without a cast
+E:/kronos/_vglob.c:5228: warning: passing arg 2 of `evalue_simple' makes pointer from integer without a cast
+E:/kronos/_vglob.c:5234: warning: suggest parentheses around && within ||
+E:/kronos/_vglob.c:5237: warning: passing arg 2 of `evalue_simple' makes pointer from integer without a cast
+E:/kronos/_vglob.c:5238: warning: passing arg 2 of `evalue_simple' makes pointer from integer without a cast
+E:/kronos/_vglob.c:5210: warning: unused variable `bloc'
+E:/kronos/_vglob.c:5260: warning: multi-character character constant
+E:/kronos/_vglob.c:5262: warning: multi-character character constant
+E:/kronos/_vglob.c:5270: warning: multi-character character constant
+E:/kronos/_vglob.c:5277: warning: multi-character character constant
+E:/kronos/_vglob.c:5283: warning: multi-character character constant
+E:/kronos/_vglob.c:5291: warning: multi-character character constant
+E:/kronos/_vglob.c:5298: warning: multi-character character constant
+E:/kronos/_vglob.c:5326: warning: multi-character character constant
+E:/kronos/_vglob.c:5331: warning: multi-character character constant
+E:/kronos/_vglob.c:5336: warning: multi-character character constant
+E:/kronos/_vglob.c:5338: warning: multi-character character constant
+E:/kronos/_vglob.c:5348: warning: multi-character character constant
+E:/kronos/_vglob.c:5356: warning: multi-character character constant
+E:/kronos/_vglob.c:5368: warning: multi-character character constant
+E:/kronos/_vglob.c:5371: warning: multi-character character constant
+E:/kronos/_vglob.c:5379: warning: multi-character character constant
+E:/kronos/_vglob.c:5392: warning: multi-character character constant
+E:/kronos/_vglob.c:5399: warning: multi-character character constant
+E:/kronos/_vglob.c:5406: warning: multi-character character constant
+E:/kronos/_vglob.c:5439: warning: multi-character character constant
+E:/kronos/_vglob.c:5444: warning: multi-character character constant
+E:/kronos/_vglob.c:5449: warning: multi-character character constant
+E:/kronos/_vglob.c:5449: warning: multi-character character constant
+E:/kronos/_vglob.c:5454: warning: multi-character character constant
+E:/kronos/_vglob.c:5489: warning: multi-character character constant
+E:/kronos/_vglob.c: In function `divers_tests':
+E:/kronos/_vglob.c:5795: warning: assignment makes pointer from integer without a cast
+E:/kronos/_vglob.c:5835: warning: assignment makes pointer from integer without a cast
+E:/kronos/_vglob.c: In function `byte_bench':
+E:/kronos/_vglob.c:5885: warning: assignment makes pointer from integer without a cast
+E:/kronos/_vglob.c:5925: warning: assignment makes pointer from integer without a cast
+E:/kronos/_vglob.c: In function `documente':
+E:/kronos/_vglob.c:6022: warning: assignment makes pointer from integer without a cast
+E:/kronos/_vglob.c:6023: warning: assignment makes pointer from integer without a cast
+E:/kronos/kronos.c: At top level:
+E:/kronos/_vglob.c:68: warning: `buff_R8V8B8' defined but not used
+ F:/gcc-281/bin/as.ttp -v -mc68000 -o kronos.o I:/cc190000.s
+GNU assembler version 2.9.1 (m68k-atari-mint)

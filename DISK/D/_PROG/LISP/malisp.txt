@@ -1,0 +1,42 @@
+LISP INTERPRETER
+written by Marc Adler
+	   138 - 23 Hoover Ave.
+	   Jamaica, NY  11435
+
+  The LISP interpreter was something that I had written in Pascal in 1980,
+and was translated (quickly) into C this year. There are many features that
+have been left out, the most important being garbage collection, but the
+interpreter supports a decent subset of LISP. All of the basic LISP features
+are in it, including funargs, progs, and boolean operators. A test program
+is included in this package, so you can see that the interpreter actually
+works. To invoke it, just type "lisp < lisptest".
+
+  There is a file called "lisplib" which contains some library functions.
+When the interpreter starts up, it loads the library in. The library just
+consists of LISP functions, so you may feel free to add to or subtract from
+it.
+
+  The source code is included, so you can modify the code to work better, add
+new features, fix bugs, etc. I only request that if you perform any changes
+to the code, that you inform me of them so I can fix my code as well. If you
+need to ask any questions, or know why I did something in the code, you can
+write to me at the above address. I haven't looked at the code in a while,
+but I'll be glad to help in any way I can.
+
+  There is no documentation included, as I am assuming that anyone who uses
+this is familiar with LISP. There are many good books for those who want to
+learn. To find out what functions and operators the interpreter supports,
+I direct you to the code.
+
+  My thanks to the Railroad BBS of Long Island, my initiator into the rites
+of the world of BBS's.
+				     Marc Adler   8/85
+
+------------------
+
+Atari ST port by Matthias Jaap
+
+I've no clue how to use this one but it seems to work ! :-)
+
+http://www.mypenguin.de/prg/
+mjaap@atariuptodate.de

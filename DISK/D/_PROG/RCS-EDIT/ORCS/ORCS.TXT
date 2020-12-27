@@ -1,0 +1,33 @@
+
+ORCS ist ein Resource Editor, der (fast) keine Wnsche mehr offen l„sst.
+Als Vorgeschmack ein Auszug der M”glichkeiten:
+
+    - Resource-Dateien bis 64K (nur durch GEM begrenzt)
+    - S„mtliche flags & states von Objekten ver„nderbar
+    - Objekte k”nnen auf Desktop zwecks kopieren abgelegt werden
+    - B„ume bzw. Objekte st„ndig 'griffbereit' im Fenster oder
+      auf Tastendruck
+    - Testen von Dialogen, Mens und Alertboxen
+    - verschiebbare Dialog- und Alertboxen (FlyDials)
+    - Ausgabedateien fr C, Pascal, Modula, Basic, Fortran, Assembler
+    - Generierung von C und Assembler Quelldateien zum direkten
+      Einbinden in eigene Programme
+    - Namen bis 32 Zeichen
+    - Syntax der Namen konfigurierbar
+    - Erkennung von DEF, DFN, RSD und HRD Definitions-Dateien
+    - Bemerkungen zu B„umen und Objekten
+    - Fensterdarstellung als Icons oder als Text
+    - Icon-Editor mit vielen Funktionen
+    - Ausschneiden von Icons aus Bildern
+    - Speichern/laden von Icon-Dateien
+    - lauff„hig auf ST/STM/STE/TT
+    - natrlich alles auch ber Tastatur zu bedienen
+    - s„mtliche Programmeldungen in deutsch oder englisch
+    - beliebig viele Dateien gleichzeit ladbar (solange der Speicher reicht)
+    
+    ... und vieles vieles mehr
+    
+
+Wem das Wasser jetzt noch nicht im Munde zusammenl„uft, ist selber schuld.
+Die anderen sollten sich schnellstens das Archiv saugen!
+

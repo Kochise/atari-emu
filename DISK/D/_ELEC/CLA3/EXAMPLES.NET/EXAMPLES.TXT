@@ -1,0 +1,20 @@
+Here's a short description of the example schematics:
+
+3IPAND.NET      - Simple 3 input AND gate.
+BLOCKTEST.NET   - Demonstration of block structuring.
+CCTD.NET        - The simple circuit shown in the manual.
+DFLIP.NET       - The same complex implementation of a DFLIP-FLOP.
+DF_TEST.NET     - The DFLIP element actually wired up.
+FULLADDR.NET    - Two bit binary adder with carry.
+MUL_TEST.NET    - The 3bit parallel multiplier connected up ready for
+                  testing.
+MULLER-C.NET    - Complex implementation of the Muller-C element
+                  used in high speed CMOS design to create self
+                  timed circuits.
+PRIM_DF.NET     - Example using the D-Register primitive instead of
+                  the complex implementation.
+SIGANAL.NET     - Signature analysis register as used for built in
+                  self-test applications.
+SIM_RES.NET     - Demonstration of how simulation resolution can affect
+                  results.
+

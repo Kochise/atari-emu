@@ -1,0 +1,337 @@
+|Aide g‚n‚rale
+
+#                ANALYSE RSC
+#    Analyse des fichiers ressource du GEM
+#         Version 1.02 Juin 1994
+#         Auteur : Claude ATTARD
+
+Analyse RSC permet une analyse trŠs complŠte et dans des conditions trŠs 
+confortables des fichiers ressources du GEM. Tous les renseignements 
+concernant l'ensemble du fichier, chaque arborescence et chaque objet sont 
+fournis.
+
+~Lancement
+Analyse RSC peut se lancer normalement, ou en transmettant au programme le 
+nom du fichier RSC avec lequel on d‚sire travailler. Dans ce cas, le 
+fichier est automatiquement charg‚. Si le programme est lanc‚ normalement, 
+il affiche imm‚diatement un s‚lecteur d'objets permettant de choisir le 
+fichier de travail. Si une configuration a ‚t‚ pr‚alablement sauvegard‚e, 
+les paramŠtres correspondants sont activ‚s. Sinon, des r‚glages par d‚faut 
+sont mis en place.
+
+Le programme possŠde trois fenˆtres particuliŠrement importantes qui 
+servent … pr‚senter les informations … l'utilisateur.
+
+La premiŠre est appel‚e "fenˆtre Fichier". Elle affiche toutes les 
+arborescences, alertes, chaŒnes libres et images libres du fichier qui a 
+‚t‚ charg‚.
+
+La "fenˆtre Formulaire" affiche le formulaire courant, ainsi que des 
+informations sur le nombre d'objets qu'il contient.
+
+Enfin, la "fenˆtre Analyse" donne toutes les informations sp‚cifiques … 
+l'objet GEM actif.
+
+AprŠs chargement du fichier, Le programme ouvre le premier arbre du 
+fichier, et considŠre l'objet-racine de cet arbre comme objet courant. Les 
+donn‚es relatives … cet objet sont pr‚sent‚es dans la fenˆtre Analyse.
+
+!**********************************
+|Les menus
+
+La barre de menus d'Analyse RSC comporte cinq titres :
+
+~Le menu "AnalyseRSC"
+L'option "A propos..." indique le num‚ro de version du programme et autres 
+informations.
+
+Les autres options,(S'il y en a) sont les accessoires de bureau install‚s 
+sur votre systŠme.
+
+~Le menu "Fichiers"
+L'option "Charger RSC" permet ‚videmment de charger un fichier ressource, 
+qui prendra la place de celui qui est d‚j… en m‚moire.
+
+L'option "Sauver pr‚f‚rences" sauve la configuration actuelle dans le 
+programme "ANALYRSC.PRG" lui-mˆme. Elle sera ainsi r‚activ‚e lors de la 
+prochaŒne utilisation du programme.
+Les informations sauv‚es sont :
+  - La taille du texte dans la fenˆtre d'aide.
+  - Le chapitre d'aide courant.
+  - L'‚tat du mode texte (On ou Off) des fenˆtres Fichier et Formulaire.
+  - L'‚tat du mode BIG (On ou Off) de la fenˆtre Formulaire.
+Nous reviendrons plus loin sur ce que tout cela signifie.
+
+L'option "Quitter" est bien entendu l… pour quitter le programme !
+
+~Le menu "Arbres"
+Les trois options de ce menu permettent de visualiser l'arbre pr‚c‚dent, 
+suivant, ou un arbre quelconque, d‚sign‚ par son num‚ro. Cette derniŠre 
+ouvre une boŒte de dialogue vous demandant le num‚ro de l'arbre … ouvrir. 
+Si le num‚ro indiqu‚ est trop ‚lev‚, le programme vous le signale.
+
+~Le menu "Objets"
+Les trois premiŠres options de ce menu sont les mˆmes que celles du menu 
+Arbres, adapt‚es aux objets. Le nouvel objet est affich‚ un instant en 
+inversion si la fenˆtre Formulaire est au premier plan.
+La derniŠre option fait clignoter trois fois l'objet courant (si on n'est 
+pas en mode Texte et si la fenˆtre est au premier plan). Pratique quand on 
+ne sait plus duquel il s'agit ou qu'il est enfoui sous d'autres objets...
+
+~Le menu "Fenˆtres"
+Ce menu permet d'acc‚der … la fenˆtre d'affichage de la pr‚sente aide en 
+ligne, et d'ouvrir (ou de faire passer en premier plan) la fenˆtre Fichier 
+si elle avait ‚t‚ ferm‚e.
+
+Les options de menu sont aggr‚ment‚es de raccourcis clavier. Le caractŠre 
+'^' repr‚sente la touche Control, le signe "losange dans un carr‚" 
+repr‚sente la touche Alternate.
+
+!**********************************
+|Les fenˆtres
+
+La manipulation des fenˆtres est ‚galement aggr‚ment‚e d'‚quivalents 
+clavier.
+
+Touches Control + Tab : Fenˆtre suivante au premier plan.
+
+ÝFenˆtres Fichier, Formulaire et Aide
+Une pression sur une des touches fl‚ch‚es du clavier a le mˆme effet qu'un 
+clic sur la flŠche correspondante de la fenˆtre.
+Un Shift + flŠche au clavier a le mˆme effet qu'un clic sur l'ascenseur 
+correspondant de la fenˆtre.
+Touche Esc : Pleine ouverture ou retour taille pr‚c‚dente (Fenˆtres Fichier 
+et Aide seulement).
+Touches Shift + Esc : Fermeture de la fenˆtre (Fenˆtres Fichier et Aide 
+seulement).
+
+ÝFormulaires d‚pla‡ables
+Les boŒtes de dialogue qui ne sont pas en fenˆtre et les boŒtes d'alerte 
+peuvent ˆtre d‚plac‚s. Ils possŠdent dans leur angle sup‚rieur droit un 
+petit carr‚ barr‚. En cliquant dans ce symb“le et en gardant le bouton 
+enfonc‚, il est possible d'amener le formulaire … un autre emplacement de 
+l'‚cran.
+
+!**********************************
+|Fenˆtre Fichier
+
+Cette fenˆtre affiche le contenu du fichier charg‚. Il y a deux modes de 
+visualisation : Ic“ne et Texte. La bascule entre les deux modes se fait au 
+moyen du bouton "Texte" de la barre en haut de la fenˆtre. Dans les deux 
+cas, les arbres constituant le fichier seront toujours pr‚sent‚s de fa‡on 
+optimale, c'est-…-dire r‚arrang‚s dans la fenˆtre de maniŠre qu'aucun ne 
+sorte par la droite ou la gauche. D'ailleur, la fenˆtre ne possŠde pas 
+d'ascenseur horizontal.
+
+Un double-clic sur un des arbres le s‚lectionne. S'il s'agit effectivement 
+d'une structure arborescente (menu ou formulaire), il devient l'arbre 
+courant et apparaŒt dans la fenˆtre Formulaire.
+
+Si c'est une alerte, elle est pr‚sent‚e comme alerte d‚pla‡able.
+
+Si c'est une chaŒne libre, son contenu est affich‚ dans une boŒte. Elle 
+peut comporter jusqu'… 240 caractŠres, qui seront pr‚sent‚s si n‚cessaire 
+en plusieurs lignes de 60 caractŠres chacune.
+
+Enfin, une image libre est pr‚sent‚e elle aussi dans une boŒte. Il peut 
+arriver qu'elle d‚borde, si l'image est trŠs grande.
+
+En haut de la fenˆtre sont affich‚es les informations suivantes sur le 
+fichier :
+  Nom du fichier
+  Nombre d'arborescences (formulaires et menus)
+  Nombre de chaŒne d'alertes
+  Nombre de chaŒnes libres
+  Nombre d'images libres
+
+!**********************************
+|Fenˆtre Formulaire
+
+Cette fenˆtre montre le formulaire (ou menu) courant. Cet affichage peut se 
+faire de plusieurs maniŠres. Tout d'abord, en mode formulaire ou en mode 
+texte. Dans le premier cas, L'affichage est normal, le formulaire est 
+pr‚sent‚ … l'‚cran comme il le serait dans un logiciel l'utilisant. En mode 
+texte, chaque objet est pr‚sent‚ sur une ligne, les identations mettant en 
+‚vidence la structure arborescente et les diff‚rents niveaux d'imbrication. 
+La bascule entre les deux modes se fait au moyen du bouton "Texte" de la 
+barre en haut de la fenˆtre.
+
+Ensuite, le formulaire peut ˆtre dessin‚ en mode BIG ou non. En mode BIG, 
+cela permet de visualiser le formulaire tel qu'il sera dessin‚ par les 
+routines de la librairie de d‚veloppement "BIG", laquelle comporte des 
+objets d'un aspect inconnu du GEM. La bascule entre les deux modes se fait 
+au moyen du bouton "Mode BIG" de la barre en haut de la fenˆtre. Cela n'a 
+aucun effet sur l'affichage en mode Texte.
+
+Ce mode peut entraŒner un mauvais fonctionnement et un mauvais affichage si 
+le ressource n'est pas destin‚ … ˆtre utilis‚ dans un programme sous BIG. 
+En effet, certains objets peuvent avoir un type ‚tendu identique … l'un de 
+ceux appartenant … BIG, mais avec une signification complŠtement 
+diff‚rente. Non seulement il existe plusieurs librairies de d‚veloppement, 
+avec des conventions diff‚rentes, mais aussi de nombreux programmeurs ont 
+mis au point leur propre systŠme de travail sous GEM. Les routines devant 
+ˆtre utilis‚es pour le dessin d'un tel type d'objet font partie du 
+programme qui les utilise et ne peuvent ‚videmment pas ˆtre connues 
+d'Analyse RSC. Donc, le mode BIG doit donc ˆtre r‚serv‚ aux fichiers 
+ressources destin‚s … ˆtre utilis‚s dans le contexte BIG.
+
+Le haut de la fenˆtre comporte d'autres informations :
+  Num‚ro du formulaire dans le fichier
+  Nombre total d'objets dans l'arbre
+
+Si l'arbre est un menu, il n'est pas affich‚ comme tel, mais comme 
+n'importe quel formulaire. Cette vision inhabituelle permet de mieux 
+d‚couvrir la structure d'une telle arborescence.
+
+Un clic sur un objet le rend "courant" et fait afficher dans la fenˆtre 
+Analyse toutes les informations qui le concernent. Un "Control + clic" fait 
+de mˆme avec le pŠre de l'objet cliqu‚.
+
+Lorsqu'un objet est actif, on peut re-cliquer dessus (‚ventuellement avec 
+la touche Control). Tant que le bouton de la souris est maintenu enfonc‚, 
+la zone correspondant aux coordonn‚es de cet objet est invers‚e, ce qui 
+permet de visualiser la surface qu'il occupe effectivement.
+
+Si ce "re-clic" est fait avec le bouton droit de la souris, l'‚tat 
+s‚lectionn‚ ou non de cet objet est invers‚, afin de montrer son aspect 
+dans cette situation. Cela peut n'avoir aucun effet sur certains types 
+d'objets, surtout les objets BIG.
+
+Si un des objets de l'arbre est un USERDEF, il est sens‚ ˆtre dessin‚ par 
+une routine du programme qui utilisera ce formulaire. Comme cette routine 
+n'est ‚videmment pas pr‚sente dans Analyse RSC, il est dessin‚ par une 
+routine g‚n‚rique, qui trace un rectangle de trame diff‚rente s'il est 
+s‚lectionn‚ ou non.
+
+Si le formulaire est trop haut ou trop large, l'ascenseur correspondant 
+apparaŒt sur la fenˆtre afin de pouvoir le d‚placer. En contre-partie, la 
+fenˆtre a une largeur minimum. Si le formulaire affich‚ est plus ‚troit, le 
+reste de la fenˆtre est rempli par une trame.
+
+A noter que tous les objets du formulaire sont affich‚s, mˆme ceux qui sont 
+HIDETREE dans le fichier ressource. Toutefois, l'analyse fournie pour cet 
+objet indiquera l'‚tat r‚el de l'objet.
+
+!**********************************
+|Fenˆtre Analyse
+
+Cette fenˆtre est le c´ur du programme. Elle pr‚sente toutes les 
+informations GEM concernant l'objet courant. Son contenu est divis‚ en six 
+parties :
+
+~Infos g‚n‚rales
+Dans ce cadre sont pr‚sent‚s le num‚ro de l'objet dans l'arborescence, 
+Ainsi que son type GEM (G_BUTTON, G_FTEXT, etc) et son type ‚tendu. Il 
+s'agit de la valeur de l'octet haut de l'ob_type. Si cette valeur 
+correspond … un type d'objet BIG, son nom dans cette librairie est affich‚ 
+(B_POPUP, B_UNDER, etc).
+
+~Coordonn‚es
+Il s'agit des coordonn‚es de positionnement et de dimension de l'objet. La 
+position est indiqu‚e par rapport … l'objet-pŠre (ob_x et ob_y). Si l'objet 
+est la racine de l'arbre, cette position ne repr‚sente que la position … 
+l'‚cran au moment de l'analyse. Les dimensions sont donn‚es en pixels 
+(ob_width et ob_height).
+
+~Texte
+Ce cadre est utilis‚ pour tous les objets comportant un texte. Plusieurs 
+informations sont fournies :
+  Justif. Si l'objet est de type G_(F)(BOX)TEXT, il est indiqu‚ s'il est 
+          cal‚ … gauche, … droite ou centr‚.
+  Mode. Dans le mˆme cas, Opaque ou Transparent.
+  Longueur. La taille en caractŠres d'un objet G_xTEXT ou G_STRING.
+  Couleur. Si c'est un G_xTEXT, la couleur du texte. La couleur elle-mˆme 
+           est montr‚e dans une petite boŒte, et la valeur de son index
+           est indiqu‚e.
+
+~Cadre
+Les caract‚ristiques de tous les objets comportant un cadre sont pr‚sent‚es 
+ici, mˆme s'il n'est pas visible (G_TEXT par exemple), car les informations 
+existent tout de mˆme dans la structure TEDINFO.
+  Epaisseur. Le nombre de pixels et la direction (Vers l'ext‚rieur ou 
+             l'int‚rieur du cadre).
+  Cadre. Sa couleur et l'index correspondant.
+  Fond. Sa couleur et l'index correspondant.
+  Trame. La densit‚ de trame est montr‚e, ainsi que l'index GEM 
+         correspondant.
+
+~ob_flags
+Pr‚sent‚e bit … bit et par leur nom officiel, la configuration de 
+l'ob_flags de l'objet. Si l'information est s‚lectionn‚e, cela signifie que 
+le bit correspondant est mis. Sinon, il ne l'est pas. Les bits n'ayant pas 
+de nom sont pr‚sent‚s par leur num‚ro (Flag n). La valeur totale du mot 
+"ob_flags" est affich‚e en bas du cadre.
+
+~ob_state
+Pr‚sent‚e bit … bit et par leur nom officiel, la configuration de 
+l'ob_state de l'objet. Si l'information est s‚lectionn‚e, cela signifie que 
+le bit correspondant est mis. Sinon, il ne l'est pas. Les bits n'ayant pas 
+de nom sont pr‚sent‚s par leur num‚ro (State n). Comme plusieurs librairies 
+de fonctions utilisent s‚par‚ment l'octet haut et l'octet bas de 
+l'ob_state, les informations de ces deux octets sont s‚par‚es. Les noms 
+donn‚s pour l'octet haut sont ceux couramment utilis‚s par BIG. Comme cette 
+librairie fait un usage fr‚quent de la valeur de chaque bit, elle est 
+rappel‚e. La valeur de l'octet haut (pris isolement) est affich‚e, ainsi 
+que la valeur totale du mot "ob_state".
+
+A propos des couleurs : Les indexs de couleur allant de 0 … 15, la couleur 
+ne sera correctement affich‚e dans la petite boŒte que si votre machine 
+dispose d'au moins 16 couleurs. C'est pour cela que chaque information de 
+couleur est donn‚e "visuellement", mais aussi par la valeur de l'index.
+
+!**********************************
+|Le fichier d'aide
+
+Ce fichier porte le nom "ANALYRSC.AID". Ce nom ne doit jamais ˆtre modifi‚, 
+car le programme serait alors incapable de retrouver le fichier d'aide. 
+D'autre part, il doit se trouver dans le mˆme r‚pertoire que le programme 
+ANALYRSC.PRG.
+
+Ce fichier est un simple texte en Ascii. Les lignes ne doivent pas d‚passer 
+78 caractŠres de longueur.
+
+Il est possible d'afficher une ligne entiŠre (mais pas une partie) avec un 
+attribut particulier. Pour cela, le premier caractŠre de la ligne doit ˆtre
+  '&',  'Ý',  '`',  '#',  '|',  '~', ou '@'
+&"&" Ligne en Gras
+Ý"Ý" Ligne en Italique
+`"`" Ligne en Soulign‚
+#"#" Ligne en Gras Italique
+|"|" Ligne en Gras Soulign‚
+~"~" Ligne en Italique Soulign‚
+@"@" Ligne en Gras Italique Soulign‚
+Ce premier caractŠre sp‚cial n'est pas affich‚.
+
+Le texte du fichier se d‚compose en 7 "chapitres" qui sont dans l'ordre :
+  Aide g‚n‚rale
+  Les menus
+  Les fenˆtres
+  Fenˆtre fichier
+  Fenˆtre formulaire
+  Fenˆtre analyse
+  Le fichier d'aide
+
+Chaque chapitre est s‚par‚ du suivant par une ligne commen‡ant par le 
+caractŠre '!' (point d'interrogation). Le reste de la ligne est ignor‚ et 
+ne sera pas affich‚.
+
+Conseil : entre chaque chapitre, laissez une ligne vide (avant la ligne 
+commen‡ant par '!').
+
+Etudiez comment le pr‚sent fichier d'aide est constitu‚, cela vous 
+‚clairera sans doute si ces explications ne vous semblent pas claires.
+
+Si vous respectez ces quelques rŠgles, vous pourrez modifier le fichier 
+d'aide … votre convenance afin d'y ajouter les informations que vous jugez 
+utiles.
+
+La fenˆtre d'aide offre la possibilit‚ d'aggr‚menter l'affichage par le 
+choix de la taille du texte. Le menu pop-up permet de changer de chapitre. 
+Ces informations sont sauvegard‚es avec les pr‚f‚rences utilisateur.
+
+&                               Bon travail
+
+Ý  Claude ATTARD
+Ý  36, rue Raspail
+Ý  94200 Ivry sur Seine
+

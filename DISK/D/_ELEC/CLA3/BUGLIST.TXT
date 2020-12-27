@@ -1,0 +1,41 @@
+CLAv3 : KNOWN BUGS
+===================
+
+Here's a list of bugs I know of in CLAv3
+
+1) The Simulator
+Whilst simulations are running you can still edit designs. Unfortunately,
+this means that at the moment you can delete gates (or even load in a
+new design) - which will confuse the simulator mightily and probably
+crash the program. Non-destructive editting is OK (moving gates about,
+adding new wire links and new gates) - the problem only occurs if you
+delete a gate that the simulator is using.
+
+2) The Editor
+There is a bug in the editor that causes CLA to crash occasionally. I don't
+know what it is, and it only shows up occasionally, so I'm having problems
+finding it.
+
+3) Hierachical IO Connectors
+If you rotate an external H.IO connector, it's internal representation
+will rotate as well.
+
+4) The auto-router.
+Quite a few problems with it, mostly to do with failing to route correctly
+unless you use the finest resolution (which takes ages to work out the
+routes). This is unavoidable, so I suggest that you use manual routing
+unless you have a fast machine. The auto router is great if you are using
+CLA on a Mac Quadra with MagicMac....but a bugger on a standard ST.
+
+5) Geneva.
+For some reason, the colour icons don't work with Geneva. I'm almost certain
+this is a problem with Geneva itself, as they work fine with a falcon,
+AES4.1, or even MagicMac....they only fail with Geneva. If you really feel
+that you must run CLA with Geneva, do it in mono - that works fine.
+(I don't like Geneva myself, it seems very unstable compared to AES4.1
+or MagicMac).
+
+6) General
+Lot's of the dialogs don't appear to do things - this isn't a bug, it's
+just that I haven't finished all the features I've designed for yet.
+

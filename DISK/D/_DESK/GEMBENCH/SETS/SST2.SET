@@ -1,0 +1,33 @@
+GEM Bench v4.004
+810
+275
+555
+650
+1505
+455
+1485
+2145
+905
+905
+980
+1485
+1160
+410
+1125
+Risto's SST
+ 7224
+Risto Manninen
+SST2
+ST  TOS 2.06
+
+
+MiNT not present
+Blitter not present
+NVDI 2.50 present
+Video Mode: 640*200*4 Colours
+FPU not present
+Run and Malloc from FastRAM
+SupClkRd+AutoMMU2+RAM2133+RSP_INST
+ROMRAM+WinX+WinXCook+ArrowFi1+ShBuf
+CldBoot2+SWEDU
+ 453804

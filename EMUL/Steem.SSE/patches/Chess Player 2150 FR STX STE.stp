@@ -1,0 +1,11 @@
+[Text]
+Description=Pass protection, no guarantee
+ApplyWhen=Protection screen
+Version=STE, TOS 1.62, 1MB
+PatchAuthor=STeven
+
+[Check]
+01BCF4 = $671A
+
+[Patch]
+01BCF4 = $601A

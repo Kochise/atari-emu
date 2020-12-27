@@ -1,0 +1,53 @@
+
+                     OOOO     RRRRR     CCCC    SSSS
+                    O    O    R    R   C    C  S    S
+                    O    O    R    R   C       S
+                    O    O    RRRRR    C        SSSS
+                    O    O    R   R    C            S
+                    O    O    R    R   C    C  S    S
+                     OOOO     R    R    CCCC    SSSS
+
+
+                    Otto's Resource Construction Set           
+                      Version 1.00 du 10.10.1991
+
+
+                        Copyright (c) Th. Otto
+
+
+
+    ORCS est un Shareware, c'est … dire libre d'ˆtre copi‚ et donn‚.
+    Si vous souhaitez le conserver pour l'utiliser,soyez aimable de penser 
+ … son auteur en lui envoyant la somme de 50 Deustch Marks (Adresse et 
+ compte ci-dessous).
+    Inclus dans cette contribution, vous recevrez la notice du programme 
+ ORCS et des exemples de programmes en C, GFA-Basic, Pascal et Assembleur, 
+ ainsi que les extensions et routines 'form_do' avec raccourcis-clavier, 
+ 'Fly-Dials', des menus Popup etc. De plus une fois que vous serez enre-
+ gistr‚, vous serez tenu inform‚ pour les mises … jour.
+
+     L'ensemble de ORCS doit comprendre :
+
+         ORCS.PRG (le programme)
+         ORCS.RSC (son fichier ressource)
+         README   (ce texte (en allemand))
+
+     et doit ˆtre donn‚ et copi‚ int‚gralement.
+
+     La version francaise doit comprendre :
+
+         ORCS.PRG  (le programme)
+         ORCS.RSC  (son fichier ressource)
+         LISEZMOI  (ce texte que vous lisez)
+
+    Bien entendu, l'auteur ne peut ˆtre tenu pour responsable des dommages
+ - directs  ou  indirects -  mat‚riels,  logiciels  ou  financiers  li‚s … 
+ l'utilisation d'ORCS.
+
+    Critiques, commentaires, souhaits, et comptes-rendus trŠs d‚taill‚s 
+ des problŠmes ou bugs … :
+                                   Compte bancaire :
+      Thorsten Otto                Stadtsparkasse Essen
+      Katharinenstr. 14            BLZ 360 501 05
+      4300 Essen 1                 Kto. 8366734
+

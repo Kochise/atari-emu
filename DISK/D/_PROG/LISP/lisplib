@@ -1,0 +1,88 @@
+
+(defun append (x y)
+   (cond ((null x) y)
+         (t (cons (car x) (append (cdr x) y)))
+   ) )
+
+(defun member (a lat)
+   (cond ((null lat) nil)
+         ((eq (car lat) a) t)
+         (t (member a (cdr lat)))
+   ) )
+
+
+(defun eqn (n1 n2)
+   (cond ((zerop n2) (zerop n1))
+         ((zerop n1) nil)
+         (t (eqn (sub1 n1) (sub1 n2)))
+   ) )
+
+(defun eqan (a1 a2)
+   (cond ((and (numberp a1) (numberp a2)) (eqn a1 a2))
+         ((or (numberp a1) (numberp a2)) nil)
+         (t (eq a1 a2))
+   ) )
+
+(defun equal (s1 s2)
+   (cond ((atom x) (eq x y))
+         ((atom y) nil)
+         ((equal (car x) (car y)) (equal (cdr x) (cdr y)))
+         (t nil)
+   ) )
+
+(defun equal2 (s1 s2)
+   (cond ((and (not (atom s1)) (not (atom s2)))
+              (and (equal2 (car s1) (car s2)) (equal2 (cdr s1) (cdr s2))))
+          ((and (atom s1) (atom s2)) (eqan s1 s2))
+          (t nil)
+   ) )
+
+
+(defun subst (old new lat)
+   (cond ((null lat) ())
+         ((eq (car lat) old) (cons new (cdr lat)))
+         (t (cons (car lat) (subst old new (cdr lat))))
+   )  )
+
+(defun length (lat)
+   (cond ((null lat) 0)
+         (t (add1 (length (cdr lat))))
+   ) )
+
+(defun intersect (set1 set2)
+   (cond ((null set1) ())
+     ((member (car set1) set2) (cons (car set1) (intersect (cdr set1) set2)))
+     (t (intersect (cdr set1) set2))
+   ) )
+
+(defun mapcar (fn x)
+   (cond ((null x) nil)
+         (t (cons (funcall fn (car x)) (mapcar fn (cdr x))))
+   ) )
+
+(defun maplist (fn x)
+   (cond ((null x) nil)
+         (t (cons (funcall fn x) (maplist fn (cdr x))))
+   ) )
+
+(defun mapc (fn x)
+ (prog ()
+a  (cond ((atom x) (return x)))
+   (funcall fn (car x))
+   (setq x (cdr x))
+   (go a)
+ )
+)
+
+(defun map (fn x)
+ (prog ()
+   loop (cond ((atom x) (return x))
+              ((null x) (return nil))
+        )
+        (funcall fn x)
+        (setq x (cdr x))
+        (go loop)
+ )
+)
+
+ADMIN>

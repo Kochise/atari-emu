@@ -1,0 +1,589 @@
+*******************************************************************************
+AFDRUKKEN S.V.P.  *  AFDRUKKEN S.V.P.  *  AFDRUKKEN S.V.P.  *  AFDRUKKEN S.V.P.
+*******************************************************************************
+
+S C O O T E R - P C B
+
+Demoversie 2.04
+
+
+De demodiskette bevat een volledig functioneel programma. Alleen het opslaan 
+van printontwerpen is niet mogelijk. U kunt dus naar hartelust alles proberen, 
+inclusief afdrukken, plotten en de autorouter. Om Scooter-PCB zonder 
+handleiding wat sneller te leren kennen, worden in de volgende tekst de 
+menufuncties en de gehanteerde begrippen kort verduidelijkt. Ook is een 
+practische oefening beschreven voor het ontwerpen van een kleine print met de 
+demoversie. Het is aan te bevelen deze tekst af te drukken, want u kunt 
+onmogelijk alles onthouden.
+
+Benodigde apparatuur:
+=====================
+
+De demoversie van Scooter-PCB loopt op alle Atari-ST, -STE en -TT modellen met 
+minstens 1 Megabyte RAM en een monochrome schermweergave van willekeurige 
+grootte. TOS-versies 1.4 of hoger worden aanbevolen, maar zijn niet vereist.
+
+
+De diskettes:
+=============
+
+Als u tot hier gevorderd bent, heeft u ofwel twee diskettes voor u, een 
+programma- en een data-diskette, ofwel u heeft een map op de harddisk met de 
+naam SCOOTER.PCB.
+
+De volgende programma's zijn aanwezig:
+
+SCOOTER.PRG      - het hoofdprogramma Scooter-PCB
+PRINTER.PRG      - het afdrukprogramma
+PLOTTER.PRG      - het plotprogramma
+TRANSFER.PRG     - een hulpprogramma voor het vertalen van verbindingenlijsten
+PLATINE.PRG      - een omzetprogramma voor bestanden van PLATINE-ST
+
+Daarnaast zijn er nog twee mappen aanwezig, "MAKROS" en "PLATINEN". In de map 
+"MAKROS" vindt u een selectie van de meer dan 500 meegeleverde componenten. In 
+de map "PLATINEN" zitten enkele voorbeeld-prints en prints waarop een aantal 
+van de meegeleverde componenten geplaatst is.
+
+
+De menufuncties:
+================
+
+Als u Scooter-PCB start, krijgt u de volledig menugestuurde gebruikers-
+interface op het scherm te zien. Vaak gebruikte functies hebben een plaats aan 
+de linkerkant van het scherm, zodat ze snel bereikbaar zijn met de muis. De 
+minder vaak benodigde functies zijn via de menubalk boven in het venster 
+bereikbaar.
+
+Nu volgt een korte beschrijving van alle functies uit de menubalk:
+
+Desk:                    informatie over Scooter-PCB
+=====
+
+Datei:
+======
+neue Platine:            werkgeheugen leeg maken
+Platine laden:           een printontwerp laden
+Platine sichern:         een printontwerp opslaan (niet in de demoversie)
+sichern als...:          onder een andere naam opslaan (niet in de demoversie)
+
+Verbindungsliste laden:  een verbindingenlijst laden in Multiwire-formaat
+Datei lîschen:           bestand wissen
+=> Druckprogramm:        omschakelen naar het afdrukprogramma PRINTER.PRG
+=> Plotprogramm:         omschakelen naar het plotprogramma PLOTTER.PRG
+Ende:                    programma-uitvoering stoppen
+
+Makro:
+======
+... laden:               een macro laden; linker muisknop: plaatsen; rechter 
+                         muisknop: draaien
+... laden zum éndern:    een macro laden, die dan bewerkt kan worden
+... sichern:             opslaan in macro-formaat
+Makro lîschen:           een macro op de print verwijderen
+Name Ñndern:             een macro een naam geven (bijv. IC1)
+Wert Ñndern:             een macro een waarde geven (bijv. 100nF)
+SMD-Layerwechsel:        overbrengen van een macro naar de andere kant van de 
+                         print (bijv. een SMD-component van de soldeer- naar de
+                         componentenzijde)
+
+Raster:
+=======
+sichtbar:                achtergrondraster (grid, stramien) zichtbaar of 
+                         onzichtbaar
+Einheit:                 eenheid kiezen voor de coîrdinatenweergave. Dit heeft 
+                         niets te maken met de rastereenheid, alleen maar met 
+                         de coîrdinaten die rechts in de menubalk zichtbaar 
+                         zijn.
+Raster: 0.050:           instellen van het grid. Als u op deze vermelding 
+                         klikt, verschijnt een paneel waarmee u de gewenste 
+                         gridwaarde kunt instellen. Hier kunt u ook waarden in 
+                         millimeters opgeven, bijv. in de vorm "2.75mm".
+ 0.001"
+   :                     voorselectie van grids om snel te kiezen
+ 0.500"
+
+Pins:
+=====
+Namen sichtbar:          namen van pins/SMD-pads zijn zichtbaar/onzichtbaar
+Auûendurchmesser:        instellen van de diameter van de eilandjes
+Bohrdurchmesser:         instellen van het boorgat van de eilandjes
+Pinform:                 kiezen van de vorm van een eilandje
+Auûendurchmesser:        instellen van de diameter van de via's 
+                         (doormetalliseringen)
+Bohrdurchmesser:         instellen van het boorgat van de via's
+Viaform:                 kiezen van de vorm van een via
+SMD:                     instellen van de grootte van de SMD-pads
+
+Breite:                  breedte van de sporen instellen
+=======
+
+Extras:
+=======
+Textgrîûe:               grootte van de tekst instellen
+Text Ñndern:             bestaande tekst wijzigen
+Textgrîûe Ñndern:        grootte van bestaande teksten wijzigen
+Leiterbahnbreite:        breedte veranderen van bestaande wire-segmenten
+Lîtaugen Ñndern:         naderhand veranderen van pins/via's
+SMD-Pads Ñndern:         naderhand veranderen van SMD-pads
+
+Layer wechseln:          element naar andere laag overbrengen met automatisch 
+                         verwijderen van overbodige via's
+Spule erzeugen:          maken van een koperbaan-spoel
+Puffergrîûe:             instellen van de grootte van de interne buffer
+Nullpunkt setzen:        oorsprong van het coîrdinatenstelsel bepalen
+Dichte-Verteilung:       dichtheid van de verbindingslijnen op de print tonen
+Statistik:               statistische gegevens van de print
+Layer umbenennen:        de momenteel actieve laag een andere naam geven
+FÅllmuster Ñndern:       veranderen van het afbeeldingsraster van een laag
+Tabellen Ñndern:         hiermee kunnen de selecties in de pop-up menu's 
+                         veranderd worden om vaak benodigde waarden bij de hand 
+                         te hebben
+Voreinstellung:          de standaardinstellingen van Scooter-PCB veranderen en 
+                         opslaan. Zoekpaden voor bestanden wijzigen.
+
+Layer:                   laag selecteren om op te werken
+======
+Aanwijzing: u kunt altijd met de functietoetsen een andere laag selecteren, ook 
+tijdens de uitvoering van een functie (bijv. "Wire"). Met F1 t/m F10 worden de 
+lagen 1 t/m 10 gekozen, samen met de Shift-toets kiest u de lagen F11 t/m F20.
+
+Autorouter:
+===========
+Ratsnest:                verbindingslijnen zo kort mogelijk maken door 
+                         alternatieve verbindingen te berekenen (reconnect)
+Einseitig:               de autorouter moet op een eenzijdige print werken
+Doppelseitig:            de autorouter moet op een dubbelzijdige print werken
+Router-Strategie:        instellen van de hoeken (90 graden of 45-90 graden), 
+                         voorkeursrichting en gewichtsfactor voor de 
+                         voorkeursrichting
+Leiterbahn:              breedte van het autorouter-spoor
+Abstand:                 de afstand die de autorouter in acht moet nemen tot 
+                         andere elementen
+Raster:                  instellen van het raster voor de autorouter; 0.050" is 
+                         standaard
+Route Platine:           hele print routen; afbreken met de Escape-toets
+Route Bereich:           alleen verbindingslijnen routen binnen het gemarkeerde 
+                         gebied
+Route Signal:            een volledig signaal routen. Rechter muisknop: rip-up.
+Route Luftlinie:         een verbindingslijn routen. Rechter muisknop: rip-up.
+
+
+
+De functies in het zijmenu
+==========================
+
+M-Load:                  zie "Makro/...laden"
+Reload:                  de meest recent geladen component opnieuw laden
+Window:                  zichtbaar gebied bepalen. Deze functie kunt u ook 
+                         oproepen tijdens de uitvoering van een andere functie.
+Zoom:                    zichtbaar gebied vergroten
+Visible:                 laag zichtbaar/onzichtbaar maken
+Show:                    knipperende aanduiding van een signaal in zijn geheel
+Move:                    een element verplaatsen. Draaien met de rechter 
+                         muisknop.
+M-Move:                  een macro verplaatsen. Draaien met de rechter 
+                         muisknop.
+B-Move:                  een blok markeren en verplaatsen. Draaien met de 
+                         rechter muisknop.
+Copy:                    elementen of macro's kopiâren
+Delete:                  een element verwijderen. Alleen mogelijk bij elementen 
+                         die zichtbaar zijn. Met de rechter muisknop wordt een 
+                         "verwijdering op proef" uitgevoerd.
+Rip-Up:                  een spoor verwijderen
+Split:                   splitsen van een wire-element
+Kreis:                   een cirkel maken. Rechter muisknop: met of zonder 
+                         vulling.
+Rechteck:                gevulde rechthoek plaatsen (bijv. voor versperringen)
+Text:                    tekst plaatsen. Rechter muisknop: draaien, spiegelen.
+Pin:                     pin plaatsen. Rechter muisknop: vorm veranderen.
+Via:                     via plaatsen. Rechter muisknop: vorm veranderen.
+SMD-Pad:                 SMD-pad plaatsen. Rechter muisknop: draaien.
+Wire:                    wire plaatsen. Rechter muisknop: hoek instellen. 
+                         Spatiebalk: hoek spiegelen. Bij het wisselen van laag 
+                         met de functietoetsen worden automatisch via's 
+                         geplaatst.
+Route:                   handmatig routen van een verbinding, zoals bij "Wire"
+Signal:                  handmatig aangeven van de verbindingen met de muis
+Name:                    pin, SMD, signaal of macro een naam of een waarde 
+                         geven
+Info:                    gegevens van een element tonen
+Fill:                    functie voor vlakvulling
+Mirror:                  tekst achteraf spiegelen
+
+
+Toetscommando's:
+================
+
+In principe kan elke menufunctie via het toetsenbord ingeschakeld en naar eigen 
+wensen geconfigureerd worden. Hoe dat gaat staat in het volgende gedeelte. De 
+hier vermelde toetscommando's zijn permanent:
+
+Escape:                  functie afbreken
+F1 t/m F10:              lagen 1 t/m 10 kiezen
+Shift + F1 t/m F10:      lagen 11 t/m 20 kiezen
+1 t/m 5:                 zijmenu in kolom 1 t/m 5 kiezen
+Cursortoetsen:           scrollen
+Shift + cursortoetsen:   een vensterinhoud verder
+ClrHome:                 scherm opnieuw tekenen
+Shift + ClrHome:         venster in zijn geheel opnieuw tekenen
+Spatiebalk:              wire-hoek omklappen
+Return:                  wire-hoek kiezen
+
+
+Menu-samenstelling:
+===================
+
+Als de menu's er bij u wat anders uitzien, is dat een illustratie van de 
+gemakkelijke veranderbaarheid van de menu's. Als u op een menuvermelding klikt 
+met ingedrukt gehouden Shift-toets, krijgt u een paneel te zien, waarop de 
+menutitel en een aanwijzing die door Scooter-PCB opgevolgd moet worden, staan.
+Probeert u het volgende maar eens:
+- Zoek een vrije plaats in zijmenu 2.
+- Houd een Shift-toets ingedrukt en klik op die vrije plaats.
+- Vul bij "MenÅtitel:" de tekst "Wire 2mm" in.
+- Vul bij "Befehl:" de tekst "Wire 2.0MM" in.
+- Klik op het veld "Taste:" en druk op de toets "L".
+- Klik tenslotte op "OK".
+
+In het zijmenu staat nu de vermelding "Wire 2mm". Als u er met de muis op 
+klikt, kunt u koperbanen van 2 mm breed leggen. Als u op de Escape-toets drukt, 
+wordt de functie gestopt. U kunt de functie ook inschakelen met de toets "L".
+
+
+Voorbeeld: ontwerp van een print
+================================
+
+Laten we ervan uitgaan, dat u een schema klaar heeft en daarvoor een print wilt 
+ontwerpen. Hoe kunt u dan het beste te werk gaan?
+
+1.  Onderzoek eerst, of alle componentenbehuizingen die u wilt gebruiken, al in 
+    de bibliotheek aanwezig zijn. Als dat niet het geval is, moet u die eerst 
+    definiâren.
+
+2.  De grootte van de print wordt vastgelegd, de componenten worden geplaatst 
+    en u geeft ze namen en waarden (bijv. IC1, 7400).
+
+3a. U laat een verbindingenlijst lezen, die door een schematekenpakket is 
+    gegenereerd, of
+3b. u laat een verbindingenlijst lezen, die met een tekstverwerker is opgesteld 
+    en daarna door het programma TRANSFER.PRG is vertaald, of
+3c. u ziet af van een verbindingenlijst en legt de verbindingen vast met de 
+    functie SIGNAL van pin naar pin, of
+3d. u tekent direct de sporen, zonder tussenkomst van verbindingen.
+
+4.  Routen van de verbindingen, hetzij handmatig, met de functie "Route", 
+    hetzij met de autorouter.
+
+5.  Afdrukken of plotten van het printontwerp.
+
+Deze werkwijze is alleen maar een grove schets om tot een goed resultaat te 
+komen. Vanzelfsprekend is het mogelijk van de hier vermelde volgorde af te 
+wijken. U kunt de componenten achteraf altijd nog verplaatsen, u kunt sporen 
+verwijderen, aanvullende verbindingen leggen of welke andere actie dan ook 
+uitvoeren.
+
+
+Oefening: routen van een print
+==============================
+
+Op de datadiskette vindt u enkele voorbeelden van printontwerpen, die de 
+verschillende stadia weergeven in het ontwerp van een print voor een 8031-
+microcontroller.
+
+8031_1.PLT:      print met componenten en omtreklijnen
+8031_2.PLT:      print met verbindingen
+8031_3.PLT:      print met sporen
+8031_4.PLT:      print met massavlak
+
+Een dergelijke print gaan we nu zelf ontwerpen. In het volgende gedeelte staan 
+alle nodige aanwijzingen. Als u ergens moeilijkheden ondervindt, kunt u met de 
+kant-en-klare ontwerpen verdergaan.
+
+1. Bepalen van de grootte van de print:
+---------------------------------------
+- Start SCOOTER.PRG nog een keer opnieuw om van een vaste uitgangspositie uit 
+  te gaan. Gebruik verder de data-diskette als u een disk nodig heeft.
+
+- Kies de laag "Platinengrîûe" in het menu "Layer".
+
+- Klik op de vermelding "Wire" in het zijmenu.
+
+- Klik met de rechter(!) muisknop en stel de hoek voor de wire-segmenten in op 
+  90 graden (2de symbool boven links).
+
+- Plaats de muiscursor ongeveer op het kruis dat de oorsprong aangeeft, en klik 
+  met de linker muisknop om het startpunt vast te leggen.
+
+We hebben een print nodig van ongeveer 10 cm lang en 8 cm breed. Als u de 
+muiscursor in het venster verplaatst, wordt een rechthoekige lijn meegetrokken. 
+De muiscoîrdinaten worden rechtsboven in het venster in inches aangewezen. Klik 
+met de muis op de menuvermelding "Raster/-Anzeige-Einheit-/mm". Nu staan de 
+coîrdinaten in millimeters vermeld, het tekenstramien is echter ongewijzigd 
+gebleven.
+
+- Plaats de muiscursor ongeveer op het punt X=100, Y=80. Dit punt ligt buiten 
+  het zichtbare bereik van het venster. Verschuif de vensterinhoud met de 
+  cursortoetsen, totdat u het gewenste punt kunt bereiken.
+
+- Als u alles goed heeft gedaan, hangt de baan nog steeds aan de muis.
+
+- Klik nu op het hoekpunt met de linker muisknop om de lijn vast te leggen.
+
+- Plaats de muiscursor terug op de oorsprong en geef daarop een dubbelklik. Het 
+  is weer nodig de vensterinhoud te verplaatsen.
+
+Als u alles tot zover met succes heeft voltooid, heeft u nu vier lijnen 
+getekend die een rechthoek vormen. Deze lijnen staan op de laag "Platinengrîûe" 
+en vormen daardoor de omtrek van de print. De lagen zijn te vergelijken met 
+transparante folies die op elkaar liggen. Elke laag heeft zijn eigen naam en 
+zijn eigen functie. Bij de afdruk kunt u aangeven welke lagen afgedrukt moeten 
+worden.
+
+- Klik op de vermelding "Window - Totale" of druk op de toetscombinatie Shift + 
+  ClrHome. De print wordt in zijn geheel zichtbaar.
+
+
+2. Componenten laden:
+---------------------
+Vervolgens moeten de benodigde componenten (behuizingen) geladen worden. De 
+volgende onderdelen zijn nodig:
+
+           Naam          Waarde          |       Behuizing
+      -----------------------------------------------------------------
+           IC1           8031            |       IC\DIL40.MAC
+           IC2           74LS373         |       IC\DIL20.MAC
+           IC3           27128           |       IC\DIL28.MAC
+           Q1            12MHz           |       ANALOG\QUARZ_S.MAC
+           C1            30pF            |       ANALOG\C25.MAC
+           C2            30pF            |       ANALOG\C25.MAC
+           C3            10uF            |       ANALOG\ELKO25_S.MAC
+           R1            8k2             |       ANALOG\R100.MAC
+           CON1                          |       STECKER\LST_1_16.MAC
+           CON2                          |       STECKER\LST_1_O2.MAC
+
+
+- Klik op "M-Load" in het zijmenu. De itemselector verschijnt, waarmee u de 
+  eerste behuizing kunt laden. Kies de map "IC" en zoek daarin de behuizing 
+  DIL40.MAC. Laad deze met een dubbelklik.
+
+- U kunt de component nu met de muis verplaatsen en met de rechter muisknop 
+  draaien. Plaats het IC op een willekeurige plek met de linker muisknop.
+
+- Voer deze stappen uit voor alle benodigde componenten.
+
+- Nu moet u de componenten de juiste namen en waarden geven.
+
+- Kies in het zijmenu "Name" en in het pop-up-menu dat verschijnt, "Makro-
+  Name".
+
+- Zet de muiscursor op het midden van een component en klik. In plaats van de 
+  vermelde naam (bijv. #1) vult u nu de juiste naam in (bijv. IC1).
+
+- Klik ook op de andere componenten en geef ook deze de juiste namen.
+
+- Voor het geven van waarden aan de componenten herhaalt u deze procedure, maar 
+  nu met de menufunctie "Name" - "Makro-Wert".
+
+- In normale gevallen zou u nu het ontwerp opslaan, om een uitgangspunt te 
+  hebben voor de volgende bewerkingen. Jammer genoeg gaat dat hier niet.
+
+
+3. Verbindingenlijst laden:
+---------------------------
+Nadat u de componenten heeft geladen, en ze namen en waarden heeft gegeven, 
+kunt u de vooraf opgestelde verbindingenlijst laden. Het voert hier te ver om 
+uit te leggen hoe u dergelijke lijsten kunt maken. Als u het niet heeft 
+klaargespeeld om een printontwerp met de juiste componenten te fabriceren, kunt 
+u simpelweg het reeds klare ontwerp "8031_1.PLT" laden.
+
+- Kies de functie "Datei / Verbindungsliste laden" en laad het bestand 
+  "8031.MLT" uit de map "PLATINEN".
+
+Als alle componenten de correcte namen gekregen hebben, wordt de 
+verbindingenlijst gelezen en worden de verbindingen tussen de componenten 
+aangegeven. De componenten kunnen nu met de functie "M-Move" nog verplaatst en 
+gedraaid worden, om een optimale plaatsing te bereiken. Met de toets ClrHome 
+forceert u een opnieuw tekenen van het schermbeeld.
+
+- Met de functie "Autorouter - Ratsnest" kunnen de lengtes van de verbindingen 
+  zo klein mogelijk gemaakt worden.
+
+In dit stadium zou u het ontwerp normaal weer opslaan, maar dat gaat nu eenmaal 
+niet.
+
+
+4. Print routen:
+----------------
+Ook als u nog niet tot hier gevorderd bent, kunt u het routen van de print 
+proberen. Laad in dat geval het bestand "8031_2.PLT".
+
+- Vergroot een deel van de print met "Zoom".
+
+- Maak met de toets F1 de laag "Lîtseite" de laag-in-bewerking.
+
+- Stel de gewenste spoorbreedte in (bijv. 0.016") in het menu "Breite".
+
+- Kies in het zijmenu "Route".
+
+- Klik met de muis op een willekeurige verbindingslijn. Vanaf het 
+  dichtstbijzijnde punt is nu een baan aangehecht aan de muiscursor. U kunt het 
+  andere eind van de baan met de muis plaatsen.
+
+- Leg nu de baan met de muis. Met de rechter muisknop kunt u de hoek instellen. 
+  Als u het einde van de verbindingslijn heeft bereikt, is de verbinding 
+  gevormd.
+
+- Kies een andere verbindingslijn en herhaal het proces. Als u tijdens het 
+  leggen van banen van laag wisselt, plaatst Scooter-PCB automatisch een via.
+
+Als u een wat grotere vergroting nodig heeft, kunt u op elk gewenst moment, ook 
+tijdens het routen, de vergroting instellen met "Window - Vor". Dit is 
+weliswaar ook mogelijk met "Zoom", maar hierdoor wordt de route-functie 
+afgebroken. Met de cursortoetsen kunt u heel gemakkelijk het zichtbare gebied 
+verschuiven. Als u hinder heeft van de nog steeds zichtbare lijnen van de 
+componenten, kunt u de laag "Bauteile Bauteils." met "Visible" onzichtbaar 
+maken.
+
+Vanzelfsprekend kan ook op ieder gewenst moment de breedte van het spoor 
+veranderd worden met de menufunctie "Breite".
+
+Als u sporen wilt verwijderen, kunt u gebruik maken van de functie "Delete". 
+Bij de eerste opdracht tot verwijderen wordt in plaats van de baan weer een 
+verbindingslijn getekend. Als die ook moet vervallen, verschijnt er eerst een 
+waarschuwing, om u er op attent te maken dat een signaal onderbroken wordt. 
+Zulke waarschuwingen voorkomen bij "Route" en "Wire" ook dat onbedoelde 
+verbindingen met andere signalen tot stand komen.
+
+Een andere, comfortabelere mogelijkheid om sporen te verwijderen, wordt geboden 
+door de "Rip-Up"-functie. Hiermee wordt een compleet spoor tussen twee 
+soldeereilandjes in een verbindingslijn omgezet.
+
+Voor het verplaatsen van objecten, zoals sporen, kunt u gebruik maken van de 
+functie "Move".
+
+Om de autorouter te proberen klikt u eenvoudig op de menuvermelding "Autorouter 
+- Route Platine". Als er nog verbindingslijnen aanwezig zijn, zal de autorouter 
+ze zo mogelijk in sporen omzetten. Als u wat meer wilt oefenen met de 
+autorouter, kunt u het bestand "8031_2.PLT" laden en daarmee aan het werk gaan.
+
+Ook de massavlak-functie kunt u gebruiken. Laad daarvoor het printontwerp 
+"8031_3.PLT" en activeer de functie "Fill" in het zijmenu. Kies met het paneel 
+"FlÑche anlegen" en teken eerst de omtrek van het te vullen vlak, bijv. ter 
+grootte van de hele print. Als u een dubbelklik geeft op het eindpunt van de 
+veelhoek, wordt het tekenen beâindigd. Kies dan nogmaals de functie "Fill", 
+stel de gewenste parameters in (of laat de waarden zoals ze zijn) en start met 
+"OK". Na enige tijd rekenen ziet u het resultaat dan op het scherm.
+
+
+5. Afdrukken/plotten van het printontwerp:
+------------------------------------------
+Om een printontwerp af te drukken of te plotten moet u het programma 
+PRINTER.PRG, resp. PLOTTER.PRG starten. Helaas kunt u de zojuist ontworpen 
+print niet afdrukken, want het opslaan is in de demoversie niet mogelijk.
+
+U kunt echter wel een van de voorbeeldontwerpen laden en de gebruikte printer 
+of plotter instellen. Met het middelste veld kunt u bepalen, welke laag 
+afgedrukt moet worden. Als er ook nog andere lagen mee moeten worden afgedrukt, 
+kunt u die aangeven in het veld rechts. Witte letters in een zwart veld geven 
+aan dat die laag wordt afgedrukt. U schakelt om tussen afdrukken en niet 
+afdrukken door een klik op de betreffende naam te geven. Als u dan in de 
+onderste regel de juiste uitgangspoort aangewezen hebt, zou alles met een klik 
+op "Drucken" of "Plotten" moeten functioneren.
+
+
+Tenslotte:
+==========
+
+Helaas is hier maar gelegenheid om een fractie van de mogelijkheden van 
+Scooter-PCB te beschrijven. U krijgt natuurlijk veel meer informatie aangeboden 
+in de handleiding van het volledige programma, die uit ongeveer 150 pagina's 
+bestaat. Als u nog vragen heeft bij het werken met Scooter-PCB, kunt u ons 
+bereiken onder:
+
+                 HK-Datentechnik
+                 Hubert Kahlert
+                 Heerstraûe 44
+
+                 D-41542 Dormagen
+                 Germany
+
+                 Tel.: +49 02133 - 91244
+                 Fax:  +49 02133 - 93319
+
+Wij wensen u veel plezier bij het werk met Scooter-PCB!
+
+- Hubert Kahlert -
+
+
+
+De volledige versie van Scooter-PCB kunt u voor DM 279,- excl. porto en 
+verpakking bij ons bestellen.
+
+Definitie van enkele begrippen:
+===============================
+
+Mil:        1 Mil = 1/1000 inch = 0,0254 mm is het basisstramien van Scooter-
+            PCB
+
+Pin:        Pins zijn soldeereilandjes voor componenten. De diameter ervan en 
+            de diameter van het boorgat zijn instelbaar tot 255 Mil. Er kan 
+            gekozen worden uit de vormen vierkant, cirkel, achthoek en 
+            langwerpig. Een pin kan een naam krijgen van maximaal 8 tekens.
+
+Via:        Met een via wordt een verbinding bedoeld tussen twee koperlagen. 
+            Verder lijkt deze op een pin, maar hij kan geen naam krijgen.
+
+SMD:        Een SMD-pad is een rechthoekig vlakje voor een surface mounted 
+            component. De maximale grootte is 255 Mil bij 255 Mil. Er kan een 
+            naam aan gegeven worden.
+
+Wire:       Een wire is een lijn, die gebruikt kan worden voor printsporen, 
+            omtrekken van behuizingen, de omtrek van de print, enz. De functie 
+            van een wire is afhankelijk van de laag waarop deze is geplaatst. 
+            De breedte kan ingesteld worden tot 255 Mil.
+
+Layer:      Scooter-PCB onderscheidt 20 logische lagen. Daaronder vallen:
+            Lîtseite:                  - onderkant van de print (koperzijde)
+            Bauteilseite:              - bovenkant van de print 
+                                         (componentenzijde)
+            Lîtauge:                   - hierop komen de pins
+            Durchkontaktierung:        - hierop komen de via's
+            Luftlinie:                 - verbindingslijnen die een signaal 
+                                         aangeven
+            Bauteil Bauteilseite:      - afbeelding van componenten op de 
+                                         componentenzijde
+            Bauteil Lîtseite:          - afbeelding van componenten op de 
+                                         koperzijde (bijv. SMD's)
+            Platinengrîûe:             - omtrek van de print
+            SperrflÑche Lîtseite:      - versperringen voor de autorouter op de 
+                                         koperzijde
+            SperrflÑche Bauteilseite:  - versperringen voor de autorouter op de 
+                                         componentenzijde
+            SperrflÑche Durchkontakt.: - versperringen voor de autorouter voor 
+                                         het plaatsen van via's
+
+Element:    Ter beschikking staan de grafische elementen pin, via, wire, 
+            rechthoek, cirkel, tekst en SMD-pad. Uit deze elementen worden 
+            printontwerpen en macro's samengesteld. Een element komt altijd op 
+            een bepaalde laag te staan.
+
+Raster:     De zichtbare stramienpunten dienen als "ophangpunten" voor 
+            elementen.
+
+Makro:      Een macro is een groep bij elkaar horende elementen. Met macro's 
+            kunnen componenten gedefinieerd worden, die dan naar wens in 
+            printontwerpen kunnen worden opgenomen.
+
+Signal:     Een signaal is een samenhangende groep elementen, die dezelfde 
+            electrische potentiaal hebben. Daaronder vallen pins, via's, sporen 
+            en verbindingslijnen. Aan een signaal kunt u een naam geven, bijv. 
+            "GND".
+
+DRC:        Door het Design-Rule-Check-mechanisme (DRC) worden kortsluitingen 
+            tussen twee signalen herkend. Het onderbreken van een signaal heeft 
+            eveneens een waarschuwing tot gevolg.
+
+Deze demodiskette is public domain en mag alleen zonder kosten te berekenen 
+verspreid worden. De op de diskette aanwezige bestanden zijn auteursrechtelijk 
+beschermd en mogen niet worden veranderd. Scooter-PCB is ontwikkeld met GFA-
+Basic V3.6 en de Turbo-Ass-assembler.
+

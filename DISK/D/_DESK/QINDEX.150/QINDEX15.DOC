@@ -1,0 +1,72 @@
+
+
+Quick Index 1.5 - the ST System Performance Evaluation Program
+--------------------------------------------------------------
+by Darek Mihocka and Ignac Kolenko
+
+Waterloo, Ontario, Canada    June 9, 1989
+
+
+Quick Index 1.5 is an update to Quick Index 1.4, and has a couple of
+new features. Two new categories have been added to benchamark the
+efficiency of outputting text strings, and to benchmark screen scrolling
+speed.
+
+The other new feature is the ability to change the reference system.
+In earlier versions of Quick Index, the reference used was a 520ST running
+in low resolution. This didn't help a user with a monochrome monitor much
+because it didn't tell him how his system compared to another monochrome
+ST system.
+
+Quick Index 1.5 has 6 built-in references: TOS 1.0 in a 3 resolutions,
+and TOS 1.4 in all 3 resolutions. For example, to see how your ST compares
+in speed to say, a monochrome 1040ST (which has TOS 1.0), click on the
+button marked 1.0 and on the button marked Mono. Then click on the Do All
+button.
+
+A slight change from Quick Index 1.4 is the way in which a single benchmark
+can be performed. In version 1.4 you had to deselect the other categories.
+In this version, simply click on the category name to run the test.
+
+The categories are divided into two groups. The first group (in the
+top half of the screen) contains benchmarks which are relatively independent
+of TOS version or screen resolution. The second group is very dependednt,
+since these are the screen output tests, and so choose the reference 
+system carefully.
+
+Some of the categories have been recalibrated, and so the numbers may
+vary slightly from before. For example, the dialog box used in the
+GEM test has been changed to include a wider variery of objects. The
+BIOS text test has been changed to use all 80 columns if possible.
+
+The categories test three major areas of the ST: disk I/O, screen
+output, and CPU speed. The CPU results should always return 100% if your
+ST is not equipped with some sort of 16MHz accelerator board or cache.
+
+With about half a dozen companies now claiming to have 16 MHz accelerator
+boards for the ST, we would like to see some more results. We challenge the
+makers of these boards to run Quick Index on their hardware and show us
+some pleasing numbers before we shell out $300 to $500 for such boards.
+We'd like to see numbers in the 150%-200% range, and not less!
+
+The screen output benchmarks can be used to see how effective programs like
+Quick ST, Turbo ST, and GDOS are, and can also be used to test the blitter
+chip performance.
+
+The disk benchamarks test how fast the selected disk drive can be read,
+how fast it can create files, and how fast the disk drive spins. The
+results will partly be affected by how the disk is formatted (i.e.
+single sided, double sided, twisted, etc).
+
+We hope that you will find Quick Index useful. Remember to support
+shareware by sending us a contribution of $30. You then become a registered
+user of all of the Quick programs (Quick View, Quick Index, Quick Find,
+Quick Inf, Quick Print, etc...) and will be able to receive updates that
+will not released to the public. Click on the HELP button in Quick Index
+for more information.
+
+This release of Quick Index may be copied, and this documentation file may
+be reprinted, on the condition that the program and documentation are not
+modified and are distributed at no cost. The ARCed file may be posted on
+any free BBS or online service.
+

@@ -1,0 +1,39 @@
+General (all platforms) known bugs:
+-----------------------------------
+
+Bug: PureC cannot open project file on host filesystem.
+Reason: A MetaDOS related bug in PureC.
+Solution: Patch your PureC with supplied patch.
+--
+Bug: Programs started from MetaDOS HOSTFS sometime crash.
+Reason: A MetaDOS bug in its Pexec implementation.
+Solution: Forget MetaDOS and use BetaDOS 3.12+ instead.
+--
+Bug: Videlity Configure Tool does not work (hangs during launching)
+Reason:
+  Dirty delay loop - while(clock() == certain_value). This may not work
+  even under multitasking system and does not work in current ARAnyM where
+  TimerC interrupts come in pairs (100 Hz host interrupt) unless RTC
+  source clock is used.
+Solution:
+  General solution is to get a more precise host timer interrupt (at least
+  200 Hz, with the Linux RTC). Specific (and suggested) solution is to stop
+  using Videlity and replace it with BlowUP030 or something similar.
+
+
+Platform dependent known bugs and limitations:
+----------------------------------------------
+
+MacOS X does not like floating videoram. Compile with --enable-fixedvideoram.
+Calling SDLGUI in fullscreen mode does crash the program anyway.
+
+Windows 95/98/99/00 do not support direct disk access (Windows NT/2K/XP do).
+This is a limitation of Cygwin, or rather a limitation of the windows itself.
+
+Only Linux-ia32 (x86), MS-Windows and Solaris (x86) currently support JIT
+compiler for the CPU emulator. This is not a design limitation or a bug
+in other operating systems, it's just lack of manpower willing to work
+on JIT support for the other systems.
+
+User ids, group ids and device types reported by HOSTFS are those used on
+the host and are not converted to the corresponding MiNT values. 

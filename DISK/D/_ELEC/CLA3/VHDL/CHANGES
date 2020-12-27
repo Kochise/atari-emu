@@ -1,0 +1,35 @@
+CHANGES
+
+v1 -> v1.1
+
+[27/4/94]
+o Support for event driven / registered logic added via the PROCESS construct.
+
+o Improved error reporting & detection undefined signals are now alert reported
+  as well as VHDL.OUT file listed.
+
+o Formatting of VHDL.OUT is improved a bit.
+
+v1.1 -> v1.2
+[17/5/94]
+o Fixed a bug in the parsing of statements containing brackets.
+o Extended Compiler to work with VHDL from the FSMedit package.
+
+[18/7/94]
+o I've obviously been paying to much attention to PC land - added colour syntax
+  highlighting to the text view in the compiler........
+
+v1.2 -> v1.3
+[31/3/95]
+o Fixed a small bug to allow CLAvhdl to load files with REALLY long lines (such as those
+  produced by FSMsynth for 15 state FSM's with lots of transistions.
+o Extended the error reporting to give names of external output ports used internally
+  (which you shouldn't be allowed to do in VHDL).
+
+[30/5/95]
+o Fixed a bug that stopped equations of the form a<=NOT(equation) from
+  working correctly.
+
+NOTE: This is still not the full compiler system, there is a Block Image & Interface
+creator which I have stripped out due to bugs (this may be put back if I can fix
+it).

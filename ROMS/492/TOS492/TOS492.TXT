@@ -1,0 +1,76 @@
+TOS 4.92 *** BETA *** BOOT-Diskette
+
+NUR FöR ENTWICKLERZWECKE !! WEITERGABE VERBOTEN !!
+
+
+WICHTIGE INFORMATION ! AUFMERKSAM LESEN !
+
+Dies ist eine nachladbare Version von TOS 4.92. Dieses lÑuft NUR und
+AUSSCHLIESSLICH auf Atari Falcon030 Rechnern. Das TOS installiert
+sich resident im Rechner, d.h. es bleibt bis zum nÑchsten Kaltstart
+erhalten. Ein normaler Reset - also die BetÑtigung des Resetknopfes oder
+der Tastenkombination ALT-CTRL-DEL entfernt TOS 4.92 NICHT aus dem
+Rechner. Erst ALT-CTRL-RSHIFT-DEL oder Ausschalten (Ausschalten zu diesem
+Zweck sollten Sie mîglichst vermeiden) fÅhrt einen Kaltstart aus (das war
+seit TOS 1.04 (Rainbow TOS) schon immer so)
+
+
+Es handelt sich um eine BOOT-Diskette, d.h. sie hat einen ausfÅhrbaren
+BOOTsektor im ersten Sektor der Diskette.
+
+Wenn dieser entfernt wird oder beim Duplizieren nicht mitkopiert wird,
+dann kann man auf der Kopie nicht booten. VirenwÑchter oder Ñhliche
+Hilfsprogramme kennen diesen Sektor mîglicherweise noch nicht und kînnten
+Warnmeldungen ausgeben. Wenn diese Diskette zum Nachladen von TOS 4.02
+fÅhrt, so ist Sie auch in Ordnung.
+
+               ENTFERNEN SIE DIESEN BOOTSEKTOR NICHT.
+
+
+
+
+
+WICHTIGE HINWEISE zum DUPLIZIEREN dieser Diskette
+
+Deshalb:
+Formatieren Sie eine Diskette auf 720k und fertigen Sie sich umgehend eine
+Sicherheitskopie der TOS 4.92 BOOT-Diskette an, indem Sie sie mit dem
+DESKTOP kopieren (dazu einfach das Icon Disk A: auf Icon Disk B:
+ziehen). Das Desktop kopiert alle Sektoren, auch den BOOTsektor.
+Viele Kopierprogramme tun dies nicht. Der Bootsektor wird auch dann nicht
+mitkopiert, wenn Sie die Dateien DATEIWEISE kopieren, d.h. auch dabei
+verlieren Sie die BootfÑhigkeit der Diskette.
+
+
+DESKICON.RSC
+
+Die DESKICON.RSC Datei von der TOS 4.92 BOOT Diskette fÅhrt mit TOS 4.00
+zum Absturz. Benutzen Sie sie nur mit TOS 4.92.
+Umgekehrt fÅhrt die Benutzung der zu TOS 4.00 gehîrenden DESKICON.RSC
+Datei dazu, daû TOS 4.92 keine Icons anlegt (der Desktop ist leer).
+Daû das TOS fehlerfrei geladen wurde kînnen Sie aber in diesem Fall daran
+erkennen, daû Sie auf den Tastendruck CTRL-C ein Fenster von Laufwerk C:
+geîffnet bekommen. Benennen Sie in diesem Fall die auf C: vorhandene
+DESKICON.RSC z.B. in DESKICON.ALT um und kopieren Sie die neue Datei nach
+C:\
+
+
+CAUTO.PRG
+
+Das Programm CAUTO dient dazu, das Nachladen der AUTO-Ordner Programme
+von C: auszufÅhren anstatt von A:
+
+
+HDX und AHDI
+
+Die auf dieser Diskette vorhandenen Atari Harddisk Utilities sind jetzt
+offiziell freigegeben. Es sollte nun auch mîglich sein, am Falcon030
+angeschlossene externe SCSI Peripherie zu formatieren und zu
+partitionieren. Um Speicherplatz zu sparen haben wir diese als selbst-
+extrahierendes Archiv abgelegt. Zu extrahieren mÅssen Sie die Datei
+HDX504.TOS auf ein Laufwerk mit mindestens 300 kByte freiem Speicherplatz
+kopieren und das Archiv dort durch Doppelklick zum auspacken aufrufen.
+
+
+Mit freundlichen GrÅûen, ATARI Computer GmbH
+12.07.1993 nbk

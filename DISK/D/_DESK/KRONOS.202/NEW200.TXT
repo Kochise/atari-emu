@@ -1,0 +1,9 @@
+New in Kronos 2.00
+
+- Support for coldfire V4E CPU (tests: VDI, Opengl, FPU natives, other native lib: screen.ldg)
+- Separation of libs for OpenGL tests and "Mother board speed" evaluation, 
+now opengl result are only evaluate on tests with display, tests without display
+is reserved to "Mother board speed", it's now impossible to change dynamic lib
+for this second test while it is alway's possible for the first test.
+- More cookies detected
+- Fix version for tiny_gl.ldg 68881 version

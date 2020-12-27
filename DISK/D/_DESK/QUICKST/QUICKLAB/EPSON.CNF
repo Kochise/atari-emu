@@ -1,0 +1,37 @@
+27,69;          A       Emphasized print on           /* see bottom of file */
+27,70;          B       Emphasized print off
+15;             C       Compressed
+27,71;          D       Double strike on
+27,72;          E       Double strike off
+27,110;         F       NLQ on
+27,80;          G       NLQ off
+27,71;          H       Elite pitch
+27,52;          I       Italics on
+27,53;          J       Italics off
+27,80;          K       Pica pitch
+27,97,0;        L       Left Justify (once margins set up)
+18;             M       Normal (actually unimplemented)
+18;             N       Normal
+18;             O       Normal (actually unimplemented)
+27,97,3;        P       Fully justified text (once margins set up)
+27,97,1;        Q       Centered text (once margins set up)
+27,97,2;        R       Right Justify (once margins set up)
+27,83,0;        S       Superscript on
+27,84;          T       Superscript off
+27,45,1;        U       Underline on
+27,45,0;        V       Underline off
+27,87,1;        W       Double Width Print on
+27,87,0;        X       Double Width Print off
+27,83,1;        Y       Subscripts on
+27,84;          Z       Subscripts off
+
+/****************************************************************************/
+/*                                                                          */
+/*                 Printer Configuration File : EPSON.CNF                   */
+/*                                                                          */
+/*         contains all printer codes for complete text attributes          */
+/*           and formatting - allows production of "fancy" labels           */
+/*                                                                          */
+/****************************************************************************/
+
+

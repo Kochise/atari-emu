@@ -1,0 +1,7 @@
+Developer Release
+08/08/88
+Warning. This OS release is NOT supported.
+
+The disk called TOS104FR.ST is a developers-only pre-release of the forthcoming TOS 1.4 dated 8th August '88, french version. This is an official disk-based TOS, similar to TOS 1.0 original disks, called TOS.IMG, which is loaded by using the same TOS.IMG loader boot-sector.
+
+Please note that even if it is already TOS 1.4, the Atari Logo is not rainbow-colored yet, and is dated only 1988...

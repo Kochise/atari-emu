@@ -1,0 +1,332 @@
+                                 RSC-XPAND
+                             from Dr. Bobware
+                            (c) 1994 W.D.Parks
+                            All rights reserved
+
+*************************************************************************
+                                 RSCXPAND
+                             Resource Expander
+                                  v 1.01
+
+ ICDRAW will edit the existing icons in your DESKICON.RSC file but what
+ if you want MORE icons... you want to keep all the ones you have and
+ still need another one?
+
+ RSCXPAND will let you increase the number of icons in that file; from
+ the original 33 to 50... or to 64... or all the way up to 199 which
+ gets to be quite a hefty RSC file (up there at 386k). Such a huge file
+ will take a bit of time during the boot process... a tad more than the
+ original 64k resource file that came with your Falcon. It's not an
+ extremely lengthy period but it also takes up more of your Falcon's
+ memory (note: I do not recommend using such a huge file if your machine
+ has only 1 meg of ram).
+ 
+ RSCXPAND is simple.
+  Its dialog also shows all the information in your resource file header
+ as reference. (I like information.) You can ignore it if you want or read
+ it if you like. It does not affect the operation of RSCXPAND- there are no
+ buttons in it or any that will alter the info.
+ 
+
+ Three main buttons exist. LOAD will, of course, load the desired RSC file.
+ CANCEL will, of course, exit the program. EXPAND will do the work.
+ 
+ There is also an array of radio buttons on the right from which you can
+ select the number of icons you want room for in your DESKICON.RSC file
+ (sorry, the number is not user editable). 
+ Selections are 50, 64, 80, 100, 128, 150 and 199 icons.
+ 
+ To keep RSCXPAND simple in operation, it will only EXPAND your resource
+ file. It does not offer to SHRINK it. If your RSC file already has, say,
+ 64 icons in it then the [50] and [64] buttons will be disabled.
+ After all, its name is rscXPAND, isn't it? 
+ 
+ (there isn't enough room in the filename to fit RSCXPANDORSHRINK.prg :-)
+
+
+
+      **************************************************************
+      As always, KEEP A BACKUP of your important files. In this case
+      we're talking about DESKICON.RSC.  And for convenience sake, 
+      backup the NEWDESK.INF along with it.
+      **************************************************************  
+
+
+ 
+ **************************************************************************
+                               OPERATION
+ **************************************************************************
+
+ 1) MAKE A BACKUP of your original DESKICON.RSC file. Save it to
+    floppy for your assurance. BACKUP ALSO your NEWDESK.INF file.
+    
+ 2) Run RSCXPAND.prg
+ 
+ 3) Click on the [LOAD] button and select the DESKICON.RSC file you
+    want to expand. It will be read and its header info displayed
+    for your viewing pleasure.
+    ALSO, you'll be told how many icons it already contains in the
+    grey box (with the yellow text, it's easy to see).
+ 
+ 4) Here's the tough part....
+ 
+    Decide how many icons you want your file to hold and click on
+    the proper button.
+
+     (the clicking part is easy. the decision part is what's hard...
+      "Do I want 100 icons or maybe only 80? Gosh."
+      "Maybe I'll try the full 199."  "Oh. I dunno. I'm no good at
+       this decision making stuff."
+      "Let's see. I was born on a Thursday so I'll pick 112. What?
+       Why can't I have 112?" )
+    
+    Let me help.
+    Select 50. This will give you 17 additional icons in your
+    resource file. That's enough to get started. Trust me, I'm a doctor.
+
+ 5) Click on [EXPAND] and then select the same filename as the one
+    you loaded (you _did_ back it up, right?). The fileselector will
+    still have the same name ready for you so all you need to do is
+    click on its [Ok] and away we go. 
+    
+ 6) Click on [Cancel] and you're back at the desktop (or launcher).
+ 
+
+ 
+    What RSCXPAND does for you:
+    
+    It increases the size of your DESKICON.RSC file so it can hold
+    more than its original 33 icons. It does this legitimately; there's
+    no tricks or shortcuts.
+
+    (it completely dissassembles the file and reconstructs it anew with
+    the extra space for additional icons. this is not as simple as it
+    may sound- it's more than simply appending icons to the end of
+    the file. icons have to be added all over the place and pointers
+    and definition blocks and, oh my... in the end, though, it does it!
+    let's not get too techie here. this is supposed to be a simple
+    explanation and I've spent more time explaining this than it does
+    to reconstruct the file)
+    
+
+    It retains the existing icons in the file. (Well I should hope so!)
+    
+
+    In the additional spaces (the new icon locations) RSCXPAND places
+    a simple shaded box into each of the 4 icon locations (main, seld,
+    and mono). They are color and mono icons and masks and are put there
+    for cosmetic purposes only. If they weren't put there then all the
+    new icons would be white rectangles with a blank mask. It just looks
+    better this way.
+    
+    In the new icons, text color is set to black, background to white,
+    and the position of the character (for any drive id) is centered.
+    
+    That's it.
+    
+    Now you're ready to use ICDRAW and import new icons into those
+    slots, or draw your own, and have fun.
+    
+    Note: RSCXPAND is NOT required to run ICDRAW. It simply expands
+    the number of available icon slots in your resource file so that
+    both you and ICDRAW can have more room to play with.
+ 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+   Due to some internal buffer dimensions in TOS, it is highly recommended
+ to power-up your system with FOLDRXXX.PRG in your auto-folder. This will
+ increase the "Internal System Memory" and alleviate many problems.
+   Without FOLDRXXX, you'll find that many applications will give you an
+ error message... "Out of Internal Memory. System Halted. Use FolderXXX
+ and reboot." 
+   Unfortunately, there is no other solution. TOS in ROM has a fixed buffer
+ size set aside for internal use and will be overpowered by all the extra
+ icons. 
+ 
+   FOLDRXXX.PRG should be renamed to FOLDR100.PRG (if you've expanded your
+  deskicon.rsc file to have 200 icons then use a higher number such as
+  FOLDR200.PRG).
+
+
+
+
+  
+                                 RSC-XPAND
+                             from Dr. Bobware
+                            (c) 1994 W.D.Parks
+                            All rights reserved
+
+---------------------------------------------------------------------------
+                             RSCXPAND Addendum
+---------------------------------------------------------------------------
+                                 05/06/94
+---------------------------------------------------------------------------
+
+  RSC-XPAND, will icrease the icon capacity of your Falcon030 desktop's
+ DESKICON.RSC file. In short, you can have more than the stock 33 icons
+ available to you and your applications.
+ 
+  With the release of ICDRAW, custom color icons have become available
+ for your Falcon desktop. You can have zippers for ZIP files, packing
+ boxes for archivers, desk calendars for appointment apps, logo icons
+ for your favorite software... the possibilities abound.
+ 
+  Suddenly, you have gobs and gobs of icons... but you can only assign
+ from the 33 in your deskicon.rsc file. What a shame! ICDRAW offers all
+ those spiffy looking widgets, gadgets and thingamajigs but your resource
+ file can only fit 33... AND you don't want to give up that nice looking
+ blue diskette icon, and the folder icons are fine and the toolbox icon
+ is your favorite...
+ 
+  Enter RSC-XPAND!  Now you can increase the number of icons that your
+ deskicon.rsc file can hold... all the way up to 199 if you want.
+ (200 is the maximum theoretical number of icons in an RSC).
+
+ 
+  "Well, gosh! Why hasn't this been released sooner?", you ask.
+  
+ 
+  RSC-XPAND was completed over a month ago and has been giving me pleasure
+ ever since. But there was a problem and it ocurred with two of my favorite
+ applications at that.
+ 
+  TOS4 has a fixed limit on its internal memory buffer. I often wonder if
+ anyone anywhere knows what all that buffer is used for anymore. Its size
+ _IS_ important though and when you increase your deskicon.rsc file that
+ buffer soon becomes too small. Applications will fail to run and that most
+ dreaded alert, "Out of internal memory. System halted.", rears its ugly
+ head and we all grit our teeth and shudder.
+ 
+  "Oh. That's why RSC-XPAND hasn't been released yet.", you say.
+  
+  "Yep.", says I.
+  
+  This is not a problem with any of the applications nor is it a bug in
+ RSC_XPAND.  It is due to the fixed buffer limit in TOS. So, it is not
+ really a bug in TOS either... just a hard-coded buffer size limit.
+  You'll run into this same 'limitation' with the stock deskicon.rsc
+ file too if your newdesk.inf file goes over 4k. (please, no critizism
+ on why one would have a 4k INF file :)
+  I'm told that this limitation was lifted in some version of MultiTos.
+ Perhaps all versions, perhaps not. I don't know from MultiTos. :-)
+ 
+  
+   Finally I found that old utility, FOLDRXXX.PRG. You know which one
+  that is: the one named in the Falcon030 owner's manual... that isn't
+  on any of the Falcon diskettes and nowhere on the harddrive.  The same
+  one that's mentioned in THE error message, "Folder100"... see page B12
+  in your owner's manual.
+  
+   Well, the 'folders' that FOLDRXXX creates are part of that 'internal
+  memory'. Either they free up some of a catch-all buffer or the 'folders'
+  are used by other functions of TOS as well.  Whatever the technical
+  aspect of it is, your internal memory is increased and you're ready to
+  rock-and-roll... or ready to classic ...or punk ...or rapp ...whatever.
+
+              FOLDRXXX cures this problem. It's gone! Poof!
+
+   Pure and simple, if you increase the number of icons then use FOLDRXXX
+  in your AUTO folder. Renaming it to FOLDR200.PRG will do you just fine.
+  Less than that and, well... I haven't tested the minimum to any extent
+  yet but FOLDR200 will do it... and besides, what's 26k among friends? :)
+  
+  
+   I can say that without FOLDRXXX, do NOT increase your resource file
+  beyond 100 icons... the DESKTOP will not be able to boot.
+
+
+  *********************************************************************  
+  And... as always, KEEP A BACKUP of your important files. In this case
+  we're talking about DESKICON.RSC and for convenience sake, backup the
+  NEWDESK.INF along with it.
+  *********************************************************************  
+  
+
+
+  
+
+ Expanding your resource is easy with RSCXPAND. There are two main things
+ to consider when doing so:
+ 
+ 1) How much longer will the boot process take with a large deskicon.rsc?
+ 
+    ans: Practically imperceptable. Certainly not enough to be even close
+         to an 'annoying' comment. In fact, I was surprised. I had expected
+         a visible delay with a 190k deskicon.rsc file but it wasn't there.
+
+ 2) How much additional memory will be used by this enlarged deskicon.rsc?
+ 
+    ans: An icon (group of 3) in the file uses approximately 1940 bytes.
+         Exactly how much of the RSC file is retained by the DESKTOP is
+         not documented anywhere but you can presume that it's retained
+         in its entirety. So expect a 100k rsc file to use up 100k +/-.
+         If this amount worries you then don't expand your deskicon.rsc
+         file. The normal rsc file is 64k already. I feel quite confortable
+         increasing it by another 40k or, heck, even doubling it in size.
+
+
+
+
+---------------------------------------------------------------------------
+                        An addendum to the addendum:
+---------------------------------------------------------------------------
+                                 05/07/94
+                               BOOTUP Notes
+---------------------------------------------------------------------------
+
+
+  The stock DESKICON.RSC file contains only mono and 16-color icons.
+ ICDRAW and RSC-XPAND, also, create only these two types (ICDRAW creates
+ all three of a group while RSC-XPAND creates icons only as place-holders
+ but 'creates' them nonetheless).
+ 
+  During the boot process, TOS4 determines which icons will most closely
+ match the default resolution and will use either the mono icons (for mono
+ and 4-color modes) or the 16-color icons for modes with 16 or more colors.
+ 
+  In 16-color modes, the conversion time is essentially nill. In 256-color
+ modes the conversion process takes a little longer (3-4 sec.), still
+ within an acceptable range.  But when booting in 32k-color modes the time
+ icreases quite a bit!
+ 
+  With 200 icons (which I'm using for testing at this time... I, myself,
+ will probably go back to 100 or 128 for my own use) the conversion time
+ at bootup becomes annoyingly lengthy... to the point where one starts
+ to wonder if something's gone wrong or not. Expect up to 30 seconds delay
+ while TOS converts all the 16-color icons to true-color format.
+  While this is not terribly deficient, it's nothing I'd want to admit to
+ MS\Windows users... they scoff at me enough as it is :)
+ 
+
+---------------------------------------------------------------------------
+End Addendum     07 May 1994   W.D.Parks
+---------------------------------------------------------------------------
+
+     This is a message that always bears repeating. For any utility.
+     
+     **************************************************************
+     As always, KEEP A BACKUP of your important files. In this case
+     we're talking about DESKICON.RSC.  And for convenience sake, 
+     backup the NEWDESK.INF along with it.
+     **************************************************************  
+
+---------------------------------------------------------------------------
+The Real End.
+ (Honest.  No, really. This is it. That's all she wrote. There is no more
+to read. "End of file".  Terminated.  Listen... don't you hear her singing?
+It's over now that it's over.  Zip.  Nada.  Case closed.  End of the road.
+Running on empty.  Finished.  The End.  Leads nowhere.  Fini.  "I feel so
+breakup I want to go home".  All done.  All gone.  No more.  And then there
+were none.  Poof!  Sofit.  Press any key when done.  Stop.  Don't call us,
+we'll call you.  Thank you very much.  We'll get back to you.  If a man
+answers, hang up.  No reply.  Disconnected.  "Please hang up and try your
+call again"  Goodbye.  Take it easy.  Take care.  Seeya later alligator.
+After while, crocodile.  Hit the road.  Seeyas.  Don't forget to write.
+So long.  Bon voyage.  Later.  Exit.  Off.  No outlet.  No loitering.
+Cast off.  Take off.  Out of gas.  Closed door.  Nothing left.  Nothing
+right.  Completed.  Dissipated.  The final curtain.  Halted.  K.O.  Brought
+to an end.  Expiration date: Now.  Ceased and desisted.  Period.  Tail end.
+...and in conclusion,
+Bye: Dr. Bob :)
+

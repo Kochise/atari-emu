@@ -1,0 +1,92 @@
+Elite worm hole calculator V1.00 written in LC V5.5 ½ Hisoft
+ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+By Karl Foley @ 2:2501/101 | 51:502/5 | 90:102/105 | 100:105/4
+ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+Exchangeware Notice ;-)
+ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+This program is free, please enjoy!  If you do like it then please consider
+registering the author for one of your Atari ST programs.  If you haven't
+written any, hurry up and support the ST!
+
+No profit making organisation may store or transmit this file in any way
+without the express permission of myself.
+
+This includes magazines, public domain libraries and commercial BBS systems.
+ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+
+Elite II / Frontier (¿, ½ and probably ¾ GameTek / Konami) contains a few
+bugs as we all know, but it does contain one very useful one.  If you
+attempt to hyperspace over approximately 655.73 light years (approx. 81.92
+galactic co-ordinates) Frontier wraps the distance back down to zero,
+re-enabling your hyperspace drive.  If you get a planet very near to this
+point you can usually jump 655.73 light years very quickly and with the
+minimum of fuel.
+
+If you extend this idea you soon see that you can take a short cut when
+hyperspacing from one point to another.  Consider the following diagram :
+
+                               C
+                              / \
+                             /   \
+                            /     \
+                           /       \
+                          /         \
+                         /           \
+                        AÿÿÿÿÿÿÿÿÿÿÿÿÿB
+
+Normally, the quickest way to hyperspace from point A to point B would be a
+straight line.  If you use a suitable system at point C you can jump far
+quicker than you could directly using minimum fuel.  This is true even if
+points A and B are relatively close.
+
+ELITEBUG, lets you calculate the co-ordinates of point C with ease.  I'm
+just starting to program in C and this seemed like an easy project to start
+with.
+
+Suppose you wish to travel from Facece [0,-4] to Sol [0,0] 34.8 light years.
+Run ELITEBUG.TOS and input the co-ordinates, for accuracy let's input the
+co-ordinates as Facece [0.4,-4.1] and Sol [0,0.2].  ELITEBUG calculates the
+intermediate jump point to be [81.7,5.6].
+
+Now load up Frontier, leave dock at Facece and view the Galactic map.  Move
+to sector [81,5] and start looking for a system.  You'll notice that the
+hyperdrive fuel required still shows 'Out of range' as it's not quite over
+655.73 light years.  With a bit of fiddling a suitable planet can be found
+in sector [82,5], Famiwa.  I'm piloting a Boa Freighter (1300 Tons) with
+a class 8 hyperdrive and the display informs me that I need 9 tons of
+hydrogen fuel to travel this far.  Hit the hyperspace icon and I arrive
+after 18 hours.
+
+All that's left to do is hyperdrive back to Sol at [0,0] and this takes
+another 9 tons of fuel / 18 hours.  A quick bit of docking and we're
+at Mars High space station some 55 hours later. A round trip of some 1312
+light years taking just 91 hours including docking.
+
+I suppose this little prog could really ruin your Frontier 2 game, you've
+been warned.
+
+I've tried to write ELITEBUG in strict ANSI C for portability and
+both the C source and Atari ST binaries are available for download from my
+BBS (+44-(0)394-271550 10pm-8am UK time only please).
+Source filename = EBUG_SRC.ZIP
+Atari ST binary filename = EBUG_BIN.ZIP
+
+The binaries have been compiled with Lattice C V5.52 with the processor
+type set to 'Any' - Hopefully this program will work on any 680x0 Atari!
+
+Any bug reports or constructive criticism to :
+
+Karl Foley - SysOp STandard QBBS +44-(0)394-271550
+             10pm-8am BBS           8am-10pm Voice
+
+             Network addresses
+             2:2501/101@FidoNet.Org
+             51:502/5@AtariNet.Ftn
+             90:102/105@NeST
+             100:105/4@TurboNet
+                  & RSN <g>
+             standard.embassy.com
+
+Coming soon : An Atari ST class 1 Fax program, email for details!
+
+Acknowledgements go to : Mark Betts at 2:253/500 for the original idea.

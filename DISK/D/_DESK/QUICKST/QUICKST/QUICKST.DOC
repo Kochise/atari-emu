@@ -1,0 +1,139 @@
+
+Quick ST 1.2 - the screen accelerator for all Atari ST computers
+----------------------------------------------------------------
+release date: June 9, 1989
+
+(C) 1989 by Darek Mihocka and Ignac Kolenko
+
+
+Another Friday, and another Quick ST realease. This week has been a very
+busy week, with dozens of bug reports coming in from Compuserve and GEnie.
+This release fixes most of the compatiblity problems, and also speeds up
+the screen even more.
+
+To use Quick ST, it must be installed either as a desk accessory, or run
+as a program _after_ the desktop has come up. Rename the file to either
+QUICKST.ACC or QUICKST.PRG depending on which way you want to run it.
+
+When used as a desk accessory, Quick ST can be configured and turned off.
+When run as a program, it stays memory resident but can't be configured
+or turned off, but it also doesn't use up an accessory slot.
+
+When installed, Quick ST speeds up screen output, by replacing the
+relatively slow routines in the ST's ROM written in C with faster routines
+written in 68000 assembly language. The speed increase can be as little as
+perhaps 10% for most GEM based programs, to as much as 900% for some
+text based programs. The program QUICK INDEX can be used to benchmark
+the speed of yor ST system with and without Quick ST. Quick Index is
+available on Compuserve, Delphi, and GEnie, or from us when you send a
+shareware contribution.
+
+Quick ST is most effective on monochrome monitors. It is reasonably
+effective on color monitors in medium resolution, and has little effect
+in low resolution. The reasoning is that most people do not use low
+resoution for serious work, but rather, for games. Most games bypass the
+screen output routines in the operating system, so Quick ST would be
+ineffective anyway. To save memory, low resolution is therefore not
+fully supported.
+
+Quick ST uses 28K of memory. The size of the QUICKST.ACC file indicates
+approximately the number of bytes used. Note that previous versions of
+Quick ST we much smaller, although they still required about 20K of memory.
+This is because they allocated some memory at run-time. This version
+allocates all of its memory ahead of time by increasing the file size.
+
+The desk accessory has three configurable options:
+    - Fast BIOS Text
+    - Terminal Mode
+    - Fast GEM
+
+The first option, Fast BIOS Text, activates the fast Bconout and Cconws
+code. If you are a non-programmer, what this means is that text programs
+(those ending in .TOS or .TTP, and some .PRG files too) will speed up.
+This most is compatible with most text based programs, but may have some
+problems with terminal programs like Interlink. In this case, simply turn
+this option off.
+
+The second option is Terminal Mode. It is only effective if Fast BIOS
+Text is turned on. What this option allows you to do is disable the
+ST's VT52 emulation and turn it into straight ASCII emulation. The Raw
+mode ignores even ASCII control codes, and outputs all characters as is.
+
+The third option is Fast GEM. This option is what speeds up GEM windows,
+dialog boxes, and other graphics objects. If you are running a GEM based
+program and it seems to misbehave, you may have to turn this option off.
+
+Two options that were included in Quick ST 1.1 are now taken out. The
+solid lines options is on always in color, and partly in monochrome. The
+no lines option was not terribly useful anyway, and was not needed.
+
+To make sure that Quick ST is compatible with other desk accessories, we
+setup the following system:
+
+    AUTO folder:
+        - Hotwire
+        - START Selector
+        - Tempelmon
+
+    Desk Accessories:
+        - Quick ST
+        - Quick Print
+        - G+PLUS
+        - DosAcc 1.5
+        - Mystic
+        - Multidesk
+
+    Desk Accessories in Multidesk:
+        - Control Panel
+        - Free RAM Size
+        - Neodesk Control Panel with 
+        - Neodesk Printer Queue
+        - Showmem
+        - VT52 emulator
+
+On top of this, we ran Neodesk 2.0. Everything still ran fine. We are
+fairly certain that any problems caused by other desk accessories are
+due to incorrect programming in those other accessories, because at least
+8 of the above programs (including Quick ST) patch operating system
+vectors and still manage to co-exist. Two accessories that are known to
+cause problems to many programs are the Diablo Emulator and Deskcart. We
+do not feel that Quick ST should have to be modified to support someone
+else's mistakes.
+
+If anyone comes across any incompatiblity problems with Quick ST, please
+let us know by email or voice. There is always an answering machine set
+up at the voice number where you can leave bug reports.
+
+You can reach us by email on the following networks:
+
+Darek Mihocka:
+    Compuserve: 73657,2714
+    BIX, Delphi, GEnie: DAREKM
+    voice number: (519)-747-0386
+
+Ignac Kolenko:
+    Usenet: watmath!watcgl!electro!ignac
+
+both:
+    Usenet: watmath!watcgl!watshine!oaee455s
+
+On GEnie, there is a message topic set up for Quick ST. Go to Category 2,
+Topic 13. Be sure to read all the messages first.
+
+We also heard from a number of people who wanted to become registered
+users of Quick ST (which everyone should do!) but were not interested
+in the other Quick programs, such as Quick View or Quick Find, and so
+did not want to contribute the full $30 that we ask. We understand,
+since there are public domain programs which duplicate the functionality
+of Quick View and the others. For those people who wish to only contribute
+for Quick ST, we ask $20. This is very reasonable, since Quick ST has
+required the most work of all the Quick programs, and the only other
+alternatives, Turbo ST or the blitter chip, cost many times more.
+
+Look for another Quick ST update in a few weeks. There probably won't be
+one next Friday unless a _really_ serious bug is discovered. Hopefully not!
+
+Also, don't forget that ST Xformer 2.5 (the 130XE emulator) has been 
+available for several weeks, and is only available to registered users of
+ST Xformer II. It comes with a new manual, and registration is only $20.
+

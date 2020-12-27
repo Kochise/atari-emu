@@ -1,0 +1,13 @@
+[Text]
+Description=Pass protection, no guarantee
+ApplyWhen=Password screen
+Version=STX, STF, TOS 1.02, 1MB
+PatchAuthor=STeven
+
+[Check]
+01b424 = $6606
+
+[Patch]
+01b424 = $4e71
+
+

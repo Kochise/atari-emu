@@ -1,0 +1,342 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang6153\deflangfe6153{\fonttbl{\f0\fnil\fcharset0 Arial Black;}{\f1\fswiss\fprq2\fcharset0 Calibri;}{\f2\fswiss\fprq2\fcharset0 Calibri Light;}}
+{\colortbl ;\red47\green84\blue150;}
+{\stylesheet{ Normal;}{\s1 heading 1;}{\s2 heading 2;}}
+{\*\generator Riched20 10.0.18362}{\*\mmathPr\mdispDef1\mwrapIndent1440 }\viewkind4\uc1 
+\pard\keep\keepn\widctlpar\s1\sb240\sl252\slmult1\qc\cf1\b\f0\fs32\lang9 Steem SSE Hints\par
+
+\pard\nowidctlpar\sa200\sl276\slmult1\cf0\b0\f1\fs22 v4.0.2\par
+
+\pard\keep\keepn\widctlpar\s1\sb240\sl252\slmult1\cf1\f2\fs32 General Hints\par
+
+\pard\nowidctlpar\sa200\sl276\slmult1\cf0\f1\fs22 - Read the manual (available inline in Steem).\par
+- Make regular backups of your steem.ini.\par
+In some cases, it can get corrupted, and setting everything up again is a pain. Normally it shouldn't happen anymore in v4, but you never know.\par
+- Also back up your shortcuts. Check that you don't define the same shortcut twice.\par
+- If Steem SSE crashes on load, it could be due to a corrupted "auto.sts" file, which you are then advised to delete. There is an option to disable resuming the last state on startup.\par
+- Try realistic combinations of ST model/TOS (not STE + TOS 1.02, it won't even boot).\par
+- Most programs target the colour monitor.\par
+- If a program doesn't work, the first things to check are drive speed and ST model. After that, you may change memory size (especially 4MB is trouble with some programs), TOS.\par
+- Option 'Low-level 6301 emulation (C1)' is highly recommended for more accurate emulation but it does change the mouse feel (for the better or worse, it depends on personal preference.)\par
+- If you're running demos, better check the ST Video option 'Software Overscan'. \par
+- If you see dots on some high-colour pictures, adjust the ST Video option 'Shifter Wakeup'. \par
+Reminder: this is a problem on real hardware, not an emulation bug. Most demos seem to be compatible with 0, this is the Spectrum 512 standard.\par
+- Some patches allow you to pass protection screens of some original games, I only do the easy ones.\par
+- For better performance, you may want to close dialog boxes (Options etc.) you don't need.\par
+
+\pard\keep\keepn\widctlpar\s1\sb240\sl252\slmult1\cf1\f2\fs32 Emulation Hints\par
+
+\pard\nowidctlpar\sa200\sl276\slmult1\cf0\f1\fs22 If a program doesn't work in Steem SSE, please check the lists below, maybe the solution is there. \par
+
+\pard\keep\keepn\widctlpar\s2\sb40\sl252\slmult1\cf1\f2\fs26 Explanation of symbols\par
+
+\pard\nowidctlpar\sa200\sl276\slmult1\cf0\f1\fs22 #: Misc. option 'Hacks'\par
+C1: Low-level 6301 emulation on Keyboard/Mouse option page\par
+C2 (High-level software overscan emulation) isn't listed for demos because there are too many cases. It is listed for games, but pirated games with an overscan intro aren't listed.\par
+When you use C2, some border is generally recommended too.\par
+DI: there are bad disk images around \par
+The Steem SSE website used to offer good versions but it has disappeared thanks to the ST scene.\par
+HI: monochrome monitor\par
+STF or STE: select in Machine option 'ST model'\par
+T1XX where X are digits: TOS version\par
+STF and a digit: STF model + ST Video option 'GLU Wakeup' (1-4)\par
+US: ST Video option Unstable Shifter\par
+WP: write-protect the disk\par
+There are 2 different ways in Steem, depending on whether the disk is in a ZIP or RAR archive or not.\par
+If it is the case, uncheck Read/Write Archives in the disk manager options.\par
+If not, right click and check Read Only.\par
+ADAT: Disk Manager option 'Accurate Disk Access times'\par
+No B: disconnect drive B in Disk Manager\par
+60Hz: the game apparently can operate at 60Hz, which can be interesting if you want to use VSync with a common monitor. Note there are certainly many more, it's not a complete list at all.\par
+\par
+
+\pard\keep\keepn\widctlpar\s2\sb40\sl252\slmult1\cf1\f2\fs26 Apps\par
+
+\pard\nowidctlpar\sa200\sl276\slmult1\cf0\f1\fs22 - Aladin: no WP, HI\par
+- Audio Sculpture: C1, DI\par
+- Aura: SCP\par
+- Copy and Utility Disk Volume 1: STF\par
+- LaceScan: T104\par
+- Megamax C: on C root; for ReDMCSB project: T104\par
+- Mono Emulator: T100\par
+- Notator and other MIDI programs: C1\par
+- Spectrum 512: use correct TOS for 50/60Hz\par
+- Synergy Chipmon II: STF\par
+\par
+
+\pard\keep\keepn\widctlpar\s2\sb40\sl252\slmult1\cf1\f2\fs26 Games\par
+
+\pard\nowidctlpar\sa200\sl276\slmult1\cf0\f1\fs22 - 4 Wheel Drive/Combo Racer STX: pasti 02j\par
+- 10th Frame dongle: C1\par
+- Airball: press space on control screen to start\par
+- Albedo STX: DI, pasti 02j\par
+- Alta\'efr: to use the missile, press any SHIFT key\par
+- Amberstar STX: WP\par
+- Antago STX, SCP: WP\par
+- Arctic Fox: not T106\par
+- Billiards Simulator: <4MB\par
+- Bubble Dizzy original: No B\par
+- Captain Blood: Version (French version has no hyperspace glitch), C1, not 'Clock always correct', <4MB\par
+\lang2057 - Captain Dynamo: No B\lang9\par
+- Cricket Captain dongle: C1\par
+- Crash Garret: STF\par
+- Crazy Cars 2: F7 for joystick control\par
+- Darius auto166: DI\par
+- Debut: No B\par
+- Dragonflight: STW\par
+- Dynabusters+: STE; F1: music F2: volume\par
+- Enchanted Land: C2\par
+- Eye of Horus -MCA: T100\par
+- F-29: <4MB\par
+- The Final Conflict: C1\par
+- Flying Shark STX: STF\par
+- Foundation's Waste, some versions: No B\par
+- Future Wars: No B\par
+- Gauntlet II: I/O Ports Parallel port: None\par
+- Giga Pirates -DLT: No B\par
+- Golden Path: T100\par
+- Goldrunner: 60Hz\par
+- Gunship: No B\par
+- Hades Nebula: if stuck at start, reboot\par
+- HATE: wait or FF\par
+- Hunchy 2010: not C1\par
+- Hyperdrome: 60Hz\par
+- Hyper Force: STF, press fire then space to start\par
+- International Tennis: not C1 (game is bugged)\par
+- Ikari Warriors: 60Hz\par
+- Jupiter Masterdrive STX: DI\par
+- Karate King: not T102\par
+- Leader Board dongle: C1\par
+\lang1036 - Les Aventures De Moktar: no ghost disk\par
+\lang9 - Lethal Xcess: C2\par
+- Leviathan STX: STF\par
+- Light Cycles: STF\par
+- Live & Let Die: STF\par
+- Manchester United: C1\par
+\lang1036 - Menace: 60Hz\par
+- Mercs STX: not T102\par
+\lang9 - MGT: 60Hz\par
+- Microprose Golf ST: ADAT\par
+- Moonfall: not T100\par
+- Multi Player Soccer Manager dongle: C1\par
+- The New Zealand Story: ADAT, STF (1st version)\par
+- Nightdawn: STF\par
+- No Buddies Land: C2\par
+- Obsession: STE, C2\par
+- Orion's Run: STF\par
+- Overscan Invaders: C2\par
+- Pacmania STE: C2\par
+- Pang: C2, ADAT\par
+- Passengers on the Wind 2 IPF: T100\par
+- Pinball Magic: use shortcuts, ST keyboard is different from PC\par
+- Platoon STX: STF T100US (DI)\par
+- Prince: ADAT\par
+- Prime Time STF T100\par
+- Realm of the Trolls: create STW disk\par
+- Risky Woods: <4MB\par
+- Rogue: T100\par
+- Roller Coaster Rumbler: STF\par
+- R-Type: STF, 60Hz\par
+- Rugby Coach dongle: C1\par
+- Scrabble: no WP\par
+- The Sentinel (aka The Sentry): C1; Automation 001: STF\par
+- Spidertronic: French TOS\par
+- Starglider: STF\par
+- StarRay: 60Hz\par
+- Star Trek STX: not T102\par
+- Substation: C2\par
+- Super Hang-On: avoid BLR, RPL versions (DI?)\par
+- Sundog IPF: Ghost disk\par
+- Super Cycle: 60Hz\par
+- Test Drive: RAM <4MB\par
+\lang1036 - Titan -MB: not T102\par
+- Triton III: 60Hz\par
+\lang9 - TNT-LSD: STF\par
+- Trauma STX (DI): French TOS\par
+- Ultimate Arena: STE\par
+- Ultimate Ride: No B\par
+- Vroom -RPL: ADAT\par
+- War Heli-MB: ADAT\par
+- War Heli STX: DI\par
+- War Zone by Core Design: not T102\par
+- Warp STX: C1, DI\par
+- Wings of Death: DI, control for 60Hz\par
+- Wrath of The Demon -VMX: DI?\par
+- Xenon: 60Hz\par
+- X-Out: C1\par
+\par
+\cf1\f2\fs26 Dongle games\cf0\f1\fs22\par
+Choose the appropriate adapter in the 'Ports' option page + C1.\par
+Don't forget to remove it when you don't need it anymore!\par
+\par
+
+\pard\keep\keepn\widctlpar\s2\sb40\sl252\slmult1\cf1\f2\fs26 Light gun\par
+
+\pard\nowidctlpar\sa200\sl276\slmult1\cf0\f1\fs22 Light gun games: not supported\par
+\par
+
+\pard\keep\keepn\widctlpar\s2\sb40\sl252\slmult1\cf1\f2\fs26 Demos\par
+
+\pard\nowidctlpar\sa200\sl276\slmult1\cf0\f1\fs22 Some 'mega' demos have a reset screen (left click on reset icon).\par
+\par
+- 0913: STE French TOS\par
+- 20 Years: STE, T206 (thx amilo3438)\par
+- 36.15 Gen4 by Cakeman: STF\par
+- 36.15 HMD: STF, C1\par
+- 36.15 Naos (POV 37-5): STF\par
+- 36.15 OVR: STF, CPU speed\par
+- Antiques: STE\par
+- Awakening of the Gods: not T102; not STF2,4; press space twice for menu\par
+- Beat Demo: Microwire\par
+- Beeshift: US\par
+- Beyond Parallax: not STF2\par
+- Big Wobble: STE; use arrow keys\par
+- The Black Demo by The Black Cats: <4MB; Spritedemo and Circle: not T162\par
+- Cernit Trandafir: STE, 4MB\par
+- Choice of Gods/Attack of the Indigestion: STF1,3\par
+- Circus backSTage: 4MB, WS-1\par
+- Closure: ADAT\par
+- Colorz: STE\par
+- Corporation Megademo: STE, C1\par
+- Cuddly Demos: DI\par
+- Dangerous Fantaisy: STE\par
+- Death of the Clock Cycles: 1MB\par
+- Delirious 3: STE, numpad\par
+- Delirious 4: STE, ADAT\par
+- Deep Lair on Fuzion 80: STE\par
+- Dragonnels: C1\par
+- Dreamzone: DI\par
+- Drone: STE, 4MB\par
+- E605: STE\par
+- Electra: reset\par
+- The Enchanted Demo: STE\par
+- European Demos: No B or insert both disks before starting\par
+- Extra Volume 7: STF for some demos\par
+- Extreme Rage: STE\par
+- Fantasia: STE T106 or DI\par
+- Froggies Over the Fence: C1\par
+- Garcimore 1, 2 (FR): <4MB\par
+- Hackabonds Demo: STF\par
+- Hier sind noch zwei Pl\'e4tze frei/plasma: C1\par
+- Imagination: not STFM\par
+- It makes me shake: STE\par
+- Japtro: DI, STF (depends on Steem version)\par
+- Knocking at Krystals Doors: press return\par
+\lang1036 - Kryos: STE\par
+- Lame Trop: <4MB, #\par
+\lang9 - Loste screens: ADAT\par
+- Lovespy: DI\par
+- Megablast demo by Fashion: <4MB\par
+- More or less Zero: STE, 2MB\par
+- Musical Wonder 1990: STF1,3 or STE\par
+- New Stream Writer.prg: STW, HD, no acc\par
+- No Cooper: not STFM\par
+- Noughts and Mad Crosses: STE, ADAT\par
+- NPG Megademo: ADAT\par
+- Oh No More Froggies: <4MB\par
+- Omega Demo: reset, Full Overscan Screen: STF2\par
+- Overdrive: C1\par
+- Overdrive/Dragon: STF, US\par
+- Pacemaker: STE; Space: credits at once\par
+- Panic v1: STF\par
+- Phalanx: STF T102\par
+- Phaleon "normal loader": DI\par
+- Place to Be Again: STE\par
+- Q-Lize: STE T162\par
+- Red Fox sound demo by Exocet: <4MB\par
+- Relapse: STE, 'Help'\par
+- RGBeast: STE\par
+- Riverside: STE\par
+- Ronnie 2 demo by OUCH: <4MB\par
+- Sadeness: STE or STF1,3\par
+- Sea of Colour: STE 4MB GEMDOS HD or ACSI (not AHDI drivers)\par
+- The Sierpinski Overdose: STE, medium res\par
+- Sinfull Sinuses: STE T162 Swedish\par
+- Snork: DI\par
+- Sound Demo 3 by Pure Energy: STF\par
+- SoWatt: STF\par
+- Spectrum Analyzer: STE\par
+- Sphere by Sunny: STE\par
+- ST-NICCC 2000 Final by Oxygene: ADAT\par
+- Summer Delights: STE, 4MB\par
+- Sunny: STE\par
+- Super Neo Demo Show: ADAT\par
+- Suretrip II - Dopecode by Checkpoint: ADAT\par
+- Swedish New Year Demo 1989: STF\par
+- SNYD2/Sync fullscreen: STF\par
+- Symic: ADAT\par
+- Time Slices: STE, HI\par
+- Tragedy For U: STE, No B\par
+- Transbeauce 2: C1; Naos: STE or STF1,3\par
+- Tyranny: STE\par
+- Ultimate 3D Dots: STE, ADAT, No B\par
+- Ultimate Demo by dynamic duo: <4MB\par
+- Ultimate GFA Demo boot screen: STF\par
+- Union Demo: STF 1MB, ADAT\par
+- The World is my Oyster screen #2: STF\par
+- Ventura: mouse to rotate menu\par
+- Ventura/Board and Spheres+Ultimate Dist: STF, US\par
+- World of Music STE: US\par
+- Xmas 2004: Microwire\par
+- Yanartas: STE\par
+\par
+
+\pard\keep\keepn\widctlpar\s2\sb40\sl252\slmult1\cf1\f2\fs26 Menu disks\par
+
+\pard\nowidctlpar\sa200\sl276\slmult1\cf0\f1\fs22 General hint for menu disks: always try different sources/versions if available, there are many corrupt disk images.\par
+Some menus weren't compatible with the STE (flickering or hanging), it isn't a Steem bug.\par
+Compacting games is not always trivial, sometimes the game is bugged on a particular menu, it's not a Steem bug (see Bugs).\par
+There's often a 50/60Hz option. The menu music speed can be affected. Games are not necessarily compatible with 60Hz. Speed can also be altered.\par
+\par
+- A-Ha/Mig 29: press space & wait\par
+- Automation 000/IK+: STF\par
+- Automation 001/The Sentinel: STF, C1, ADAT\par
+- Automation 008/Ninja Mission: Press key\par
+- Automation 022/Frostbyte: DI\par
+- Automation 046/Menace: STF\par
+- Automation 054/LED Storm: T100\par
+- Automation 081/Star Wars: STF\par
+- Automation 082, 109: keyboard click\par
+- Automation 095/Cosmic Pirates: No B\par
+- Automation 104/Butcher Hill: STF\par
+- Automation 120: <4MB\par
+- Automation 124: MIDI\par
+- Automation 137/Blue War 3: STF\par
+\lang1036 - Automation 168: STF2,4\par
+- Automation 208/Tonic Tile: T100\par
+- Automation 222: STF2,4\par
+- Automation 231/Rainbow Island: STF\par
+- Automation 239: DI, C1\par
+- Automation 250/Necron: DI\par
+- Automation 273/Score Four: T100\par
+\lang9 - Automation 311/Mr Dig: STF\par
+Many Automation CDs were redone for the STE, they're not mentioned here.\par
+- Awesome 04 STF: #\par
+- Awesome 17: DI\par
+- Deadly FX 02/Line of Fire: STE, ADAT\par
+- Dodgysoft 94: STF2,4\par
+- Fuzion 030/Speedball II: STE\par
+- Fuzion 042: STF\par
+- Fuzion 045: DI\par
+- Fuzion 048/Spellfire the Sorcerer: STF\par
+- Fuzion 077: Not STFM\par
+- Fuzion 078: DI, not STFM\par
+- Fuzion 150: No B\par
+- Fuzion 155: DI\par
+- Lemmings 40: STF\par
+- Medway 001, ...: <4MB because of the stupid antivirus by you guess who!\par
+This antivirus ('Protector') can be found on other disks. \par
+- POV127 omega STE: wait\par
+- POV148, 150: STE 4MB\par
+- PP43: <4MB\par
+- Pulsion 172: <4MB, not STF2\par
+- Pyromaniacs 08: STF2,4\par
+- Ripped Off 14, 56, 60, etc.: <4MB because of the stupid antivirus (maybe there are other versions)\par
+- Speedy Pack #02 -HMD: enable Sound/Keyboard click\par
+- Superior 060 (Wings of Death): STE\par
+- Superior 065/Blood Money: T102 (no guarantee, bloody packing work)\par
+- Superior 101: STF\par
+- Supremacy 002: not T100\par
+\par
+\par
+}
+ 

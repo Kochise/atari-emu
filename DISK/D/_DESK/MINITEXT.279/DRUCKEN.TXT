@@ -1,0 +1,24 @@
+€Druckertest
+
+’BreitÒ
+«Verdichtetë
+FettÁ
+†SchattenÆ
+ˆUnterstrichenÈ
+„KursivÄ
+SuperscriptĞ
+ Subscriptà
+Doppelte Gr”eR
+
+€8/1989 Heinrich M”ller, Hildesheim
+
+fettˆunter„kursivÈunterausÄkursiv ausÁfettaus€ëÁnormal
+fettÁÁÁnormal
+†schatten ein fett ein Æschatten aus ÁFettaus
+fett ein †schatten und fett ÁSchatten €normal
+
+Zeichensatz:
+
+1234567890'#qwertzuiop+asdfghjkl”„<yxcvbnm,.-~
+!"İ$%&/()=?`^QWERTZUIOPš*ASDFGHJKL™>YXCVBNM;:_|
+„”™š ][@}{\

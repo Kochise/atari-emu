@@ -1,0 +1,41 @@
+
+Quick ST 1.31
+-------------
+
+by Darek Mihocka and Ignac Kolenko
+June 25, 1989
+Hello from World Of Atari!
+
+Quick ST now supports the Diablo emulator, G+Plus, and the Hyperscreen
+monitor. Quick ST can run as a desk accessory (QUICKST.ACC) or as a
+program once the desktop comes up (QUICKST.PRG). It uses about 32K of
+memory, and speeds up text output and GEM operations.
+
+The speedups are more efficient in monochrome, but we are working on updates
+which will speed up color as well.
+
+This version of Quick ST also displays the amount of free memory available,
+as well as the TOS version of your computer. In case you discover any bugs,
+report them to us and be sure to include the TOS version of your computer!
+
+Quick ST is now also compatible with Font Tricks, and other font loaders.
+
+This version of Quick ST is just slightly faster than before. The main
+advantages are that is it now compatible with just about any desk accessory
+or TSR. 
+
+Quick ST and this text may be copied and distributed freely by modem or
+disk. No fee other than the download charges or cost of the disk may be
+charged. That means _you_ BRE!
+
+A shareware contribution of $20 would be appreciated if you use this program.
+If you don't use it, tell us why. If it's a bug, let us know about it. The
+next Quick ST update is planned for sometime in July.
+
+Bugs and suggestions may be phoned in to: (519)-747-0386
+Usenet: email can be sent to watmath!watcgl!electro!ignac
+Compuserve: 73657,2714
+GEnie: DAREKM, and also in the Atari ST bulletin board: Cat 2 Topic 13
+Delphi and BIX: DAREKM
+
+

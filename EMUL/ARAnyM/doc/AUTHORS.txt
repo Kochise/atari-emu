@@ -1,0 +1,247 @@
+The ARAnyM core, glue and additional features were written or adapted from
+the projects mentioned below by the following main ARAnyM developers:
+
+Milan Jurik <M.Jurik xylab.cz>
+- main framework from Basilisk and building system (autoconf stuff)
+- continuous updates and syncing with UAE CPU core
+- memory management
+- portability
+- ndebug (New Debug)
+- MMU040 (memory protection unit)
+- JIT (just-in-time compiler for CPU and FPU)
+- TUN/TAP networking driver skeleton
+
+Stanislav Opichal <opichals@seznam.cz>
+- Host filesystem access driver (hostfs) for FreeMiNT and MetaDOS
+- Networking driver work
+- Network Bridging
+- VIDEL bitplanes to chunky conversion code
+- fVDI driver
+- general hostscreen and SDL work
+
+Petr Stehlik <pstehlik@sophics.cz>
+- some hardware emulation (Falcon-specific HW)
+- interrupt system (inspired by STonX and STonC)
+- 68040 friendly TOS (based on old information from Douglas Little of BSS)
+- host input/output (keyboard and mouse, parallel port)
+- XHDI interface
+- SDL GUI (based on Hatari)
+- Networking adjustments and debugging
+- NatFeats
+- CPU/FPU/MMU debugging
+- ARAnyM Release Manager and Webmaster
+
+Johan Klockars <rand@cd.chalmers.se>
+- fVDI author, helps with ARAnyM fVDI driver
+- fVDI driver polyline implementation and bitblt speedup
+- PAGE_MASK addressing speedup
+
+Didier MEQUIGNON <didier.mequignon@wanadoo.fr>
+- audio support in ARAnyM
+- Atari XBIOS sound driver (atari/sound/*)
+
+Patrice Mandin <patmandin@gmail.com>
+- Natfeat host CD-ROM driver
+- Minimal NCR5380 scsi emulation
+- Linux kernel loader
+- DSP M56001 emulation
+- IKBD/ACIA rewrite, joystick support
+- the SDL-MiNT port of ARAnyM
+- Videl autozoom
+- EPS limiter
+- NatFeat based PCI bridge (atari software can access host PCI)
+- NatFeat based JPEG decoder, following Brainstorm's JPEG DSP decoder API
+- Natfeat OpenGL rendering, using host's OSMesa
+- close examination of our code and finding obvious and not-so-obvious
+  bugs (IDE, parameters handling, TOS patches)
+- MIDI output
+- DMA Sound
+- joysticks and joypads
+
+Xavier Joubert
+- for Windows/cygwin improvements
+- HostFS fixes
+- CPU Double Bus Fault handling
+- SDL GUI improvements
+- enabled JIT CPU compiler in MS Windows by writing Win sigsegv handler
+- CPU/MMU fix for data on page boundary
+
+Andreas Schwab
+- damn important fix of MOVES instruction (for Linux-m68k boot)
+- fix of PTESTR/PTESTW and more MMU fixes
+- LILO fixes, no longer needs /usr/src/linux/include for compiling
+- complete PMMU revision and fixing, got Linux/m68k working
+- important IEEE/UAE FPU fixes
+- various configure & build fixes
+- new MPFR FPU core using libmpfr
+- more CPU fixes (CAS, CAS2)
+
+Stefan Kuhr
+- Mac OS X port - many improvements (too many to list them here)
+- nfvdi OpenGL fixes
+- HostFS fix for MAGXDESK
+- an icon for Darwin
+
+Philipp Donze
+- Mac OS X fixes, new project, universal (ppc+intel) binaries
+- various small fixes in many places
+
+Jens Heitmann
+- JIT for Mac OS X on Intel
+- ethernet for Mac OS X
+- delayed screen updates
+- 64bit fixes
+- JIT for 64-bit Linux and Mac OS X
+- JIT for ARM
+
+François Revol
+- resource file and icon for Haiku and BeOS
+- VIDEL refresh palette fix when switching to bitplane mode
+- BeOS NF clipboard support
+
+Thorsten Otto
+- HostFS fixes and improvements (symlinks, ioctl, timestamp and more)
+- NF CDROM implementations for SDL and Win32
+- sigsegv cleanup
+- NFOSMesa upgrade
+- JIT memory management fixes
+- SDL2 support
+- disassembler
+
+Uwe Seimet
+- SCSI Driver for Linux
+
+---
+
+ARAnyM source code consists of several parts. Some were taken from other
+projects (in alphabetical order):
+
+AmigaOS XL
+  http://amigaosxl.haage-partner.de/
+  Parts of CPU
+
+BasiliskII 
+  http://www.uni-mainz.de/~bauec002/B2Main.html
+  Core
+
+Bochs
+  http://bochs.sf.net/
+  IDE
+
+JIT Basilisk II
+  http://gwenole.beauchesne.online.fr/basilisk2/
+  Parts of CPU
+
+Hatari
+  http://hatari.sf.net/
+  Parts of CPU, complete SDL GUI
+
+STonX
+  http://stonx.sf.net/
+  Blitter, FDC, .xfs
+
+STonC
+  http://lvogel.free.fr/stonc.htm
+  MFP
+
+SDL_gfxPrimitves (LGPL)
+  http://www.ferzkopp.net/Software/SDL_gfx-2.0/index.html
+  Base for the fVDI driver drawing functions
+
+The Autoconf Macro Archive
+  http://ac-archive.sf.net/
+
+UAE
+  http://www.freiburg.linux.de/~uae/
+  Parts of CPU
+
+UAE-JIT
+  http://byron.csse.monash.edu.au/uaejit.html
+  Parts of CPU
+
+We thank to them and to their authors for releasing the code under GPL. Special
+thanks go to:
+
+Bernd Schmidt (UAE CPU)
+Christian Bauer (BasiliskII core)
+Marinos "Nino" Yannikos and Martin D. Griffiths (STonX)
+Gwenole Beauchesne (BasiliskII[-JIT])
+Bernie Meyer (UAE JIT)
+
+This is the list of people who have contributed to project
+
+Thanks go to :-
+
+Ctirad Fertr <phanatic@volny.cz>
+- the main idea of new Atari machine
+- deep user testing
+- VIDEL color fixes
+
+Francois LE COAT
+- for the Solaris port
+- for work on MacOSX port
+- sinh/tanh debugged and fixed
+
+Olivier Landemarre
+- for the Windows/cygwin binaries
+- corrections related to timer
+
+Rodolphe Pineau
+- for the SGI/Irix port
+- corrections in configure script and memory allocation
+- better portability of aranymfs
+
+Antonin Kral
+- Debian maintainer
+
+Frank Naumann
+- termio -> termios conversion
+- NatFeat support in FreeMiNT 1.16
+
+Thomas Huth
+- SDL GUI (from hatari project)
+- suggestion to remove 680[023]0 CPU core generation
+- original README skeleton (from hatari)
+- cfgopts fixes
+
+Heiko Achilles
+- mouse packets compression in ACIA
+
+Wim De Meester
+- for Mac OS X port
+
+Carsten Gaschler
+- for the Alpha/Linux port
+
+Matti Levänen
+- for BeOS port
+
+Carlo Baiocco
+- new Mac OS X port (src/MacOSX/*)
+- various bugfixes (floppy, parameters, memory management)
+
+Laurent Vogel
+- crucial MFP/IKBD GPIP fix
+
+Konrad Kokoszkiewicz
+- many hints and small fixes
+
+Bill Allombert
+- first real buildd (ARAnyM as Debian build machine)
+- FPU fixes
+- many bug reports about Debian problems on aranym
+
+Roman Zippel
+- MMU optimized (MMU translations cached for nice speed up)
+
+David Bolt <davjam@davjam.org>
+- aranym.spec improvements
+
+Anders Eriksson
+- ARAnyM icons and logo
+
+David Gálvez
+- USB NatFeat support
+
+Miro Kropacek <miro.kropacek@gmail.com>
+- host file execution NatFeat support

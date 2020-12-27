@@ -1,0 +1,748 @@
+----------------------------------------------
+ICDRAW  :  Icon Editor for the Falcon030
+Ver.    :  1.41
+Date    :  15 May 1994
+Author  :  W.D.Parks/Dr. Bobware
+----------------------------------------------
+v1.42 05/18/94  Now works in 800x600 mode.
+v1.41 05/15/94  CharXY and ICO export CURED!
+
+v1.40 05/08/94  Release version.
+v1.34 05/06/94  added all kinds of stuff!
+
+v1.3  04/30/94  added menu bar and 'things'
+
+v1.2  04/23/94  (added MS\Windows ICO i/o)
+                
+v1.1+ 04/13/94  (window & more functions added)
+                
+v1.1  04/12/94  (no bugs, just more functions)  
+v1.0  04/08/94 
+----------------------------------------------
+
+
+                              ICDRAW  v1.42
+                        
+                         SHAREWARE from Dr. Bob
+
+                             FALCON030  ONLY
+
+
+       "Wowee- what a spiffy-keeno little computer this Falcon is.
+     Sure wish I could have some different icons for the desktop."
+     
+       I said that over a year ago, in February 1993 when I first
+     powered up the Falcon. Time has past and still no sign of any-
+     thing that fits the bill.
+
+       After a common fit of complaining about this and about that 
+     (we US devs do that a lot;-), I decided I'd sit down and write an
+     icon editor myself. But... Other projects took up my time. I still
+     kept an eye open for news of an icon editor or something akin to one. 
+      More months have come and gone and I'm still locked into using the
+     same icons as a year ago.
+     
+       Like several of my programming projects, this was designed out
+     of frustration. That old adage, "If you want something done right,
+     do it yourself" kept humming in my mind as I delved into what 
+     scant documentation was available for version 4 resource file
+     extensions and hammered out a Resource Viewer. With that I was
+     able to pinpoint exactly what and where the color icons were and
+     what format they were in and what that pseudo-C sample code was
+     trying to say. 
+
+       From that comes ICDRAW.
+       
+       But before we get too involved in ICDRAW's biography, let's
+     take a moment to review a remedial step in this wide wonderful
+     world of computing:
+
+      **************************************************************  
+                   KEEP A BACKUP of your important files.
+      **************************************************************
+         In this case we're talking about DESKICON.RSC. And, for
+         your convenience, backup the NEWDESK.INF along with it.
+      **************************************************************  
+
+
+       Ok, let's get back to our main story. When we last saw Dr. Bob
+     he was being held captive by the evil princess and her amazons
+     in the jungles of ... whoops! Sorry, wrong story.
+
+       
+       There are some things you should know about how TOS4 works
+     before you start editing away:
+     
+       TOS 4 reads a file called DESKICON.RSC when it powers up. In
+     this file, among other things, are all the color and mono icons
+     that can be displayed on the desktop. TOS only reads this file
+     when it starts up (at power-on or after a reset). Any changes
+     made to the DESKICON.RSC file will not take effect until the
+     Falcon is reset.
+       TOS 4 determines which type of icons to use by checking the
+     video resolution.  Mono icons are used for all mono modes and
+     for 4-color modes.  The 16-color icons are used for all modes
+     with 16 or more colors  (ie 16-color mode, 256-color mode and
+     32k-color modes).
+
+     
+     Unlike the normal mono icons, color icons are twin icons. The
+     first icon is what you normally see on your desktop. The second
+     is the 'selected' mode of the icon- it's displayed when the
+     icon is selected (officially called 'animation' [I just love it])
+     But you already know this- you've seen it on your Falcon.
+     
+      Desktop icons are 32x32 pixels... today. Tomorrow they may be
+     larger but I have no need for larger icons today and there is
+     no documentation that says, one way or another, whether todays
+     desktop _can_ or _cannot_ handle larger icons.
+     
+      The DESKICON.RSC file is theoretically capable of storing 4,
+     8, and 16 plane icons (even more... theoretically). As it comes,
+     with the Falcon, DESKICON.RSC contains only mono and 4-plane
+     icons. TOS converts these 4-plane icons for use in 8-plane modes
+     and for true-color modes. They work quite well too!
+      Some may claim that 256-color icons would be a big feather in
+     anyone's cap but on a 16MHz machine, I'll skip the feathers-
+     thank you very much ;-)
+     
+      DESKICON.RSC can also hold gobs of icons. As it comes with the
+     Falcon, there are 33 from which you can choose (notice the lack
+     of a dangling preposition;).
+
+     
+      ICDRAW fits into those parameters. It can read a version 4 RSC
+     file and can edit any of the color icons found within. It does
+     NOT offer to ADD icons to the file nor to delete icons from it
+     (use RSC-XPAND for that).
+     It edits only icons that are the normal 32x32 pixels (both mono
+     and 4-plane [16-color] icons).
+     
+       To avoid any other compatibility issues, ICDRAW uses only the
+     VDI routines for drawing/editing. You'll notice the redraw time
+     is lengthy... well... lengthier than my normal custom editing
+     routines... thank the VDI for that, not me ;-)
+
+      
+       update:  to speed up the fat-bit display, direct video writes
+                have supplanted the older vdi vr_recfl routines in
+                ICDRAW and have dramatically reduced the time needed
+                to redraw the displays. So much so that I can't go
+                back to the old way.
+     
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+                  End preamble and long-winded oratory
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+                   Start documentation and operation
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+     *****************************************************************
+      The standard caution: SAVE A COPY OF YOUR ORIGINAL DESKICON.RSC
+      file before you modify it.  If you later decide that the old
+      original icons better suit your needs then... you'll have them.
+     *****************************************************************
+
+
+
+      With ICDRAW v1.3, a menubar is used. Many buttons have disappeared
+      from the edit dialog and now reside only in the menus.
+      
+             
+      ICDRAW starts up in edit mode.
+      
+      EDIT mode:
+      
+      Two large cells are displayed that will hold the icon and its
+      mask in a "fat-bit" or "zoomed" form.
+       
+      A 16-color palette is available from which to select pen colors.
+      
+      Three buffers are readily available for editing, two for color
+      and the last for mono. They are imaginitively labelled  MAIN, 
+      SELD and MONO. 
+      
+      A fourth buffer is used for copy/paste functions (it holds both
+      the icon and its mask).
+      
+      Since, when you first run ICDRAW, there are no icons in any of 
+      the buffers, you'll see none on the screen (wow! this is smart.)
+      
+      The lower left corner holds various common icon editing functions
+      such as clear mask/icon, fill mask/icon and cover mask. There are
+      also the standard flip, flop and rotate functions.
+      (as of v1.3, their location has moved but their functions remain)
+      The arrow buttons scroll... left, right, up or down by one pixel.
+
+      (is this getting boring?)
+
+      
+      Ok, let's move onto the big red buttons:
+                      ... and the blue buttons
+                      ... and the green buttons
+                      ... and the little teeny tiny grey buttons
+                      ... and the slightly red but still grey buttons
+                      ... (enter own Pythonish phrase here)
+
+      Ohoh! The 'big buttons' are now gone. All file i/o is done via
+      the menus, including import/export, load/save, loadrsc,saversc,
+      grab/put and the new load_paste.
+      
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                            *****************
+                            ICON EDIT DIALOG:
+                            *****************
+
+      RESOURCE FILE  Icon Extract/Replace
+      -----------------------------------
+      
+     (All file in/out routines are from the menu selections)
+     
+      GRAB <- RSC:    Will extract a set of icons from the desired RSC
+                      file (if none is selected then the file selector
+                      is provided). All three icons of the group are
+                      placed into the edit buffers (Main,Seld,Mono).
+                      Once a RSC file is loaded, it is retained in memory.
+      
+      STORE->RSC:     Will allow you to put the icon(s) back into the
+                      RSC file. The labels 'MAIN SELD and MONO' are
+                      active and indicate which icons will be stored.
+                      Usually, you'll want to store all three but if
+                      you want to only store one then you can de-select
+                      these buttons, writing only the desired icons
+                      back to the RSC file in memory.
+                      Point and click to the set of icons to be
+                      replaced with your newly edited ones.
+                      Once the icon is stored, you'll be placed back
+                      in GRAB mode, ready to select another icon to edit.
+                      If you want to continue editing the same icon,
+                      simply select cancel (ie [EDIT]).
+                      (Alt-Click on [STORE->RSC] will return to edit mode
+                       once the icon is stored without the need to click
+                       on cancel in the resource dialog.)
+                       
+      LOAD DESKICON:  Provides direct LOAD and SAVE of the DESKICON.RSC
+      SAVE DESKICON:  file. After loading a deskicon.rsc file, you'll
+                      remain in the resource dialog... ready to pick one
+                      of its icons for editing.
+                      If no resource file was loaded, you will not be able
+                      to SAVE DESKICON (of course)... even though the menu
+                      item still shows as if it is active.
+
+
+
+      ICON(s)  Save/Load/Export/Import
+      --------------------------------
+
+       SAVE ICON:     Save the currently selected icon (MAIN,SELD or
+                      MONO) to a diskfile for later use.
+       SAVE GROUP:    Save all three icons (Main,Seld and Mono) to a
+                      disk file for later use.
+
+       LOAD ICON:     Load a single saved icon (from disk) into the
+                      currently selected buffer (MAIN,SELD,MONO). 
+       LOAD GROUP:    Load a group of three icons (as saved above).
+       
+       LOAD PASTE:    Will load an IBI (ie single icon) file into the
+                      paste buffer... this can save effort instead of
+                      loading an icon, copying it to the paste buffer
+                      and then loading another icon or group for
+                      editing.
+
+       EXPORT:        Allows you to save single icons (and its mask)
+                      to a disk file. Options let you export the icon
+                      to either an assembly source file (both icon and
+                      mask data and both with their own MFDBs) or to a
+                      binary version in either the standard format or the
+                      device specific format of MFDBs.
+           (v1.2)      A binary CICON structure can also be exported.
+                      This format is identical to that used in the
+                      extended section of the DESKICON.RSC file.
+           (v1.2)      Exports current icon/mask to a Microsoft Windows
+                      ICO icon file. The Falcon's colors may not be an
+                      exact match for Windows colors (particularly the
+                      'darker' colors but they will be close to the Win
+                      defaults).
+                       Version 1.41 fixes a bug in the constructed ICO
+                      file. The height specified in the DIB heading is
+                      now doubled to 64 (instead of the expected 32).
+                       
+                      Note:
+                       'Device specific' indicates a video style format.
+                       'standard' indicates separate contiguous planes.
+                       If these terms confuse you then export an icon
+                       to both assembly source formats and view them.
+                       You'll see the difference in the way the image
+                       is stored. One is directly blit-able to a 4-plane
+                       video screen. The other has each plane stored
+                       separately.
+                      Note:
+                       In each export form, the mask is stored in its
+                       single plane or mono format (the MFDBs are set
+                       this way too... of course).
+
+       IMPORT:        Only one import format is implemented in v1.2,
+                      the ICO Windows icon file format.
+                      This is preliminary and will only import the
+                      standard 766 byte ICO files with the correct
+                      header information (ie 1 icon, 32x32 pixels,
+                      and 16 colors... all presumed 'important colors').
+                      The RGBQUADS of the ICO icon are ignored (this
+                      _is_ a preliminary;-) and the default Window
+                      colors are used. 
+                      note: You may witness a slight difference in the
+                            'darker' colors when importing ICOs.
+
+
+
+
+      EDIT Tools
+      ----------
+
+       COPY:          Copy the current icon (and mask) to the copy/paste
+                      buffer. Below the 'COPY' button, you'll see the
+                      icon that is now ready for pasting.
+       PASTE:         Take the icon (and mask) from the copy/paste buffer
+                      and paste it into the current icon (and mask).
+                      * see notes on pasting a color icon to a mono icon.
+      
+       FLIP H:        Flip the icon and mask Left-to-Right.
+       FLIP V:        Flip the icon and mask Top-to-Bottom.
+       ROTATE:        Rotate the icon and mask (on its center) by
+                      90 degrees, CCW.
+
+       (arrows):      Scroll the icon and its mask 1 pixel, up, down,
+                      left or right.
+       
+       COVER:         Use the pixels in the icon to build a mask.
+                      Any non-white pixel found in the icon has its
+                      cooresponding pixel in the mask set to black.
+                      Likewise, all white pixels in the icon set the
+                      mask pixels to white.
+       OVERLAY:       Similar to COVER but only sets colors. White does
+                      not erase a bit in the mask.
+       .AND.          Use MASK as a mask <grin> to block-in the icon image.
+                      Any pixel in the icon image that is not covered by
+                      the mask will be erased.  
+       (mask)
+       CLEAR MASK:    Set all bits in the mask to white (ie no mask).
+       FILL MASK:     Fill all bits in mask with black (ie solid mask).
+
+       (these have been relegated to the menu bar only)
+       FILL ICON:     Fill all bits in icon with black (ie black square).
+       CLEAR ICON:    Set all bits in the icon to white (ie no icon).
+       CLEAR BOTH:    Erase both icon and mask (ie neither).
+
+
+
+       v1.1           Version 1.1 introduced the following items:
+       
+       ECHO:          Echo icon pixels in the mask. Gives a representation
+                      of the icon's pixels in the mask display, letting you
+                      easily see which mask pixels 'should' be set to black.
+
+       GRID:          Displays a grid of points in both the icon cell and
+                      the mask cell, showing the exact pixel boundaries.
+
+       CHG:           Allows you to change one color in an icon to another.
+                      A new dialog pops up over the icon cell and offers
+                      two color palettes. One for the color to be changed
+                      and one for the color it should be changed to.
+                      (drat- another dangling preposition)
+                      note:
+                      Attempting to change a color to itself confuses _me_
+                      but ICDRAW catches it and cancels the function ;-)
+
+       BLK:  (v1.2)   Active only during MONO icon edit. Similar to above,
+                      will change all color pixels to black. 
+
+       SWAP: (v1.2)   Swap MAIN and SELD icons (and masks). 
+
+       CHXY: (v1.2)   Set CHAR x,y position in Icon. Draws a marquee
+                      Box that is movable with the mouse. Left click
+                      to set new position or right-click to cancel.
+                      
+                      Use the Alt-key and CHXY to bring up the manual
+                      edit mode for the parameters of the CICON header.
+                      You can edit the CHAR xy, the CHAR foreground and
+                      background colors, the ICON xy and the text label
+                      xy.
+                       At least in TOS 4.1, you must set the background
+                      to 0 (white). Other combinations are not condusive
+                      to a mello experience.
+                      The [RESET] button will fill all the parameters 
+                      with the default settings in case things get out
+                      of hand.
+                      The [MOUSE] button will let you use a drag box
+                      to place the CHAR xy (as without the Alt-key).
+                      (this info also stored in the saved icon files)
+                      
+                       The char xy, need NOT be set in most icons as
+                      TOS only uses it for icons assigned to a disk
+                      unit (A:,B:,C:,D:,E: etc). New icons default the
+                      char xy to 16,16 (icon center).  
+                       Even so, the original icons found in DESKICON.RSC
+                      already have their char xy set... no need to bother
+                      unless you want it moved.
+                       * v1.4, with its larger fat-bit display improperly
+                         calculated the X,Y. This is fixed in v1.41
+
+  GREY/WHT/BLK/PATT:  Defines the background style for the icon group
+                      display (the set of 3 icons; lower right of form).
+                      Allows you to view all the icons on different types
+                      of backgrounds.
+                      GREY is the light grey (as in the form), WHT shows
+                      a white background, BLK shows a black background
+                      and PATT shows a 50:50 pattern (in color black to
+                      simulate mono mode but also shows an adequate pattern
+                      for color patterned desktops).
+                      
+                       Note: Some icons will look good (even fantastic) on
+                       the grey background but you'll find that many users
+                       use a pattern desktop even in color modes. Try to
+                       make your icon look good on the pattern background
+                       or make two sets of icons. One for desktops with
+                       a solid desktop background and one for a patterned
+                       background.
+
+       TOOLS: (v1.34)  Provides for more tools, less frequently used than
+                       those in the main edit dialog (T is the keypress
+                       equivalent).
+                       
+                       
+            INVERT:    M RVS will invert the mask (black to white and
+                       white to black).
+                       I RVS will invert the icon.
+                       DK <--> LT will effectively exchange the dark
+                       and light colors in the icon (ie Bright red
+                       becomes Dark red and Dark red becomes bright
+                       red... the same for all hues)
+           
+            COMBINE:   FRONT will copy the icon that resides in the
+                       paste buffer over top of the current icon.
+                       White is not copied, only colors 1-15.
+                       BACK will copy the icon that resides in the
+                       paste buffer 'behind' the current icon.
+                       White is not copied, only colors 1-15.
+                       Only those pixels that are blank in the 'current'
+                       icon receive the pixels from the paste buffer's
+                       icon... in other words, as I said, it copies
+                       BEHIND the current icon ;-)
+                       
+            INS/DEL:   INSERT or DELETE a row or column from BOTH the
+                       icon and the mask. When inserting rows, the
+                       bottom row will be scrolled into oblivion. 
+                       Likewise when inserting columns, the rightmost
+                       column will be transported to Neverneverland.
+                       When deleting, the bottom row or rightmost 
+                       column will be blank white.
+
+            LINE:      Will provide a rubber-banding tool to draw a
+                       line into the icon using the currently selected
+                       color. The right mouse button (or esc or UNDO)
+                       will cancel the operation.
+                       
+            FRAME:     Will provide a rubber-banding tool to draw a
+                       frame (ie open box) into the icon using the 
+                       currently selected color. The right mouse button
+                        (or esc or UNDO) will cancel the operation.
+
+            BOX:       Will provide a rubber-banding tool to draw a
+                       a filled box into the icon using the currently
+                       selected color. The right mouse button will
+                       cancel the operation (as will UNDO or ESC).
+
+            CIRCLE:    Will provide a rubber-banding tool to draw a
+                       circle (transparent) into the icon using the 
+                       currently selected color. The right mouse button
+                       will cancel the operation (as will UNDO or ESC).
+
+            DISC:      Will provide a rubber-banding tool to draw a
+                       filled circle (ie disc) into the icon using the 
+                       currently selected color. The right mouse button
+                       will cancel the operation (as will UNDO or ESC).
+
+                       Keypress equivalents are set for these tools so
+                       you can call them without hassle if you want.
+                                      F1:  LINE
+                                      F2:  FRAME
+                                      F3:  BOX
+                                      F4:  ______ (to be announced)
+                                      F5:  CIRCLE
+                                      F6:  DISC
+
+
+           When editing an icon, the number keys 0 through 9 and the
+         alpha keys "A" through "F" (or "a" through "f") will select
+         the colors 0 through 15.
+
+
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                           ***********************
+                           RESOURCE SELECTOR mode:
+                           ***********************
+                         (GRAB <- RSC  in Edit Menu)
+  
+       Five groups of icons are displayed at one time. The arrows will
+       scroll through the resource file (I know. I'm getting boring
+       again, aren't I?).
+       
+       Selecting any icon will copy the group (Main, Seld and Mono) to
+       the buffers of the icon editor and voila! You're ready to edit.
+       
+       The ascii text displayed with each icon is not editable. This
+       text is stored within the resoure file but is, of course, not
+       used in the desktop icon (the application name is, remember?).
+       The text is displayed only for reference.
+
+
+  RESOURCE PUT mode:     (from: PUT-> RSC in Edit Menu)
+  - - - - - - - - -
+
+       Similar to the selection mode, 5 groups of icons are displayed.
+       
+       At the top of the form, you'll see your new icons displayed
+       next to the large message box.
+       
+       PAY ATTENTION TO THAT LARGE MESSAGE BOX! It changes, depending
+       on the function to be performed (grab/put).
+       
+       Below each of the new icons is a little down-pointing arrow. By
+       default, all three are highlighted. This means that all three 
+       icons will be written to the RSC file in memory.  You can opt to
+       write any or all to the RSC file by turning the little arrows
+       on or off (off=white arrow, black text. on=dark arrow, white 
+       text... you know, the normal on/off of all type of buttons;).
+       
+       Selecting any one of a group in the display box will replace that
+       group with your newly edited icons.
+       
+
+notes:
+
+     *  The third buffer is dedicated for the Mono icon of the group.
+        Transparent to the user, this buffer is the same size as that
+        needed for a color icon.
+
+        If pasting a COLOR icon to the MONO buffer, the color data is
+        NOT converted to mono. It will still display as color. It will
+        NOT be saved as color either!
+        The colors are kept and displayed for reference only. Over-
+        draw the color pixels with black to ensure a good mono icon.
+        (when writing it back to the resource, ICDRAW copies only the
+        first plane. Some colors may or may not set pixels in the
+        first plane. BLACK sets pixels in all planes).
+        You can avoid the pixel-by-pixel coloring by using CHG to change
+        one color to another (in this case, to black). See CHG above.
+        As of v1.2, you can use BLK to set all colors (save for white)
+        to black.
+
+     *  ICDRAW uses common-sense when calling the file selector:
+        o  File extensions are automatically added! 
+        o  File extensions are automatically added! (intentional duplicate)
+           A resource file always gets '.RSC' added.
+           A saved file always gets the proper extension: '.IBI' or 'IB3'
+           An export file always gets the proper file extension: '.S' '.BIN'
+           'CIC' or 'ICO'.
+           It is good practice to always type the correct file extension
+           but with ICDRAW it isn't necessary. (ICDRAW makes it easy)
+           
+        o  Three path buffers are kept. One for the resource file directory
+           one for the load/save directory and one for the export/import
+           directory. This way, exported icons don't end up in the same 
+           folder as your DESKICON.RSC file (and visca-versca, as Popeye
+           would say).
+
+           DESKICON.RSC is the default filename on powerup. No drive
+           indicator is set; the current drive and path are used.
+
+     *  The keypress equivalents for load and save of icons are NOT
+        single key strokes. ALT-L or ALT-S will load or save a GROUP
+        and SHIFT-L or SHIFT-S will load or save a single icon file.
+        The single keypresses of "L" and "S" (or "l" and "s") will prompt
+        you with an alert box as to which type of icon(s) you wish to
+        Load or Save (single, group or cancel).
+        The last selected type (in each alert) is remembered and is used
+        as the default the next time the alert is called.
+        
+
+     *  ICDRAW is 100% assembly.
+        (with a tip-o-the-hat to the folks at Hisoft)
+        And now with the custom fat-bit display routines to replace
+        the VDI calls, it REALLY Flies!
+
+
+     *  Included with ICDRAW is RSC-XPAND, the deskicon.rsc file
+        expander. It will let you increase the number of icons in
+        your resource file from 33 to 50...199.
+        Also included are a small collection of icons. Some new and
+        some old-but-modified:
+        Cityscape, Christmas, SF Com Badge, Envelope, Cash, Bullion,
+        File Presser, Zipper, Ohio, Sopwith's evil twin, Button, Fuji,
+        Picnic, Speed55, Yield, Ohio, Eyes, Bandaids, Meatgrinder,
+        Unpacker, FileType icons, Quarter, Cherries, Address book,
+        Notepad, a variety of tidied icons from the originals, a few
+        extra colored disks, a few icons for specific applications and
+        more (the complete list of icons in beyond the scope of this
+        documentation).
+
+
+      **************************************************************
+      As always, KEEP A BACKUP of your important files. In this case
+      we're talking about DESKICON.RSC.  And for convenience sake, 
+      backup the NEWDESK.INF along with it.
+      **************************************************************  
+
+ 
+         
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+Revision history: ICDRAW.prg
+
+v1.42 05/18/94   Added:   Support for 800x600 16-color video mode.
+
+v1.41 05/15/94   Fixed:   ICO export format now doubles height spec
+                          in the DIB header (Windows presumes the icon
+                          height to be 1/2 the value specified. the
+                          other half is presumed for the mask).
+                 Fixed:   CHAR_XY. New, larger fat-bit display of v1.4
+                          was not accounted for in calculating the
+                          true char x,y.
+                                           
+v1.4  05/08/94   Added:   Draw circle/filled circle, keypress equivs
+                          for GRAB/PUT, and a general cleanup then
+                          ate some Ho-Hos and was feeling great!
+
+v1.34 05/06/94   Added:   Tidied-up new buttons and location. Removed
+                          GRID/ECHO buttons (left in menubar). Custom
+                          fat-bit video display (MUCH faster!). Keys
+                          0-1 and a-f select colors. Fixed invert ICON
+                          function in TOOLS.
+                 Added:   TOOLS: COMBINE 1,2,3. INSERT/DELETE ROW/COLUMN.
+                                 Invert function 3, exchange dark/light
+                                 colors in icon.
+                                 DRAW LINE. DRAW FRAME.
+                           LOAD PASTE buffer from IBI.
+                           UNDO, button/menu/key.
+v1.3  04/05/94   fixed:   RSC-XPAND. Placed dialog in window to
+                          alleviate wm_redraw headaches.                                 
+v1.3  04/30/94   Added:   Menubar functions. Removed file i/o from
+(beta)                    edit dialog. Removed CLR/FILL data from
+                          same and left to reside in menu bar.
+v1.2  04/25/94   Added:   Extra functions (.AND.,Overlay,Inverts)
+v1.2  04/22/94   Added:   ICO Export
+v1.2  04/21/94   Added:   ICO Import
+v1.2  04/16/94   Added:   Window, SWAP(main/seld), goto BLACK,
+                          Export CICON format, and CHARX/Y/Parms edit.
+                 Changed: "HUE" button to "CHG" (change) and
+                          resize when editing mono icon to allow
+                          for 'goto black' function.
+                 Removed: ADD-to-RSC function.
+                          Created, instead, RSCXPAND to expand the
+                          RSC file external from ICDRAW.
+                 Fixed:   2nd load of RSC file would appear garbled,
+                          now zeroes count before loading 2nd RSC.
+                
+v1.1a 04/12/94   Added:   ADD Icon to RSC... (experiment failed. TOS
+                          requires a totally reconstructed RSC file
+                          when an icon is ADDED)
+
+v1.1  04/12/94   Added:   backdrop styles, echo, grid toggle, 
+                          arrows in STORE, and color change.
+                       
+v1.0  04/09/94   Original release
+
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+      **************************************************************
+      As always, KEEP A BACKUP of your important files. In this case
+      we're talking about DESKICON.RSC.  And for convenience sake, 
+      backup the NEWDESK.INF along with it.
+      **************************************************************  
+
+
+*************************************************************************
+{insert RSCXPAND docs here}
+{nevermind, just read the RSCXPAND.TXT file. It's easier that way.}
+  
+*************************************************************************
+ 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+*************************************************************************
+
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+
+                         ICDRAW is shareware.
+ 
+                     RSCXPAND is a part of ICDRAW
+                   (and is therefor also shareware)
+
+  ICDRAW may be freely distributed as long as this documentation is
+  included as as long as neither are modified (that includes all my
+  spelling errors). It must not be represented as anything other
+  than Shareware.
+
+
+  ICDRAW\RSCXPAND is shareware. Try it out. If you don't care for it
+  then don't waste your disk space- erase it, upload it, whatever.
+
+  If you do like it then a small donation will keep me in groceries
+  and living indoors (two serious addictions that I just can't seem
+  to break).
+  It will also tell me that perhaps a new version with more features
+  might be appreciated.
+
+  I can already think of new features. The ability to ADD to a RSC
+  file, import icons from other formats, capture icons from the 
+  screen, export to other formats... there's a lot that can be done.
+
+
+ Note: I will refuse to accept more than $15.00 US as a donation.
+       This is a small utility. $10.00 is suggested and $15.00
+       is a good pat-on-the-back. $20.00 is right-out, I'll have
+       to send you change and I can't break a twenty right now ;-)
+
+
+{retrospect: "hmmmmm should I up the price?  It seems kinda low
+              for all the work I've put into this... should I ask
+              concientious users to make up for those more akin
+              to pirates or for those who just rationalize their
+              use of shareware? Should I, shouldn't I? Awww what
+              the heck... let's leave it the way it is and see how
+              it flies. If it falls into oblivion then it'll tell
+              me just what kind of market this really is. Or that
+              perhaps they're still waiting for Atari to produce 
+              an icon editor.  Yeah. Right. Uh-huh. Sure. :) " 
+}
+
+
+
+
+Send donations and/or comments to:
+
+ W. David Parks
+ 180 N. Hazeltine Avenue
+ Campbell, OH 44405-1024
+
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+
+other methods of contact:
+
+ voice phone: 216 743-4712
+
+ GEnie:       W.PARKS3
+
+
+
+ -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
+ (this last anecdote not included due to its possible inflamatory nature
+  and its ability to offend persons whom are easily offended by anecdotes
+  or small furry critters especially when they wee-wee on the floor...
+  not the persons, the small furry critters. whoops- that's an anecdote,
+  oh no. guess I'll just have to contend with it. send mail to W.PARKS3)
+ -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
+
+
+ 
+Bye: Dr. Bob   18 May 1994
+-------------------------------------------------------------------------
+End ICDRAW.TXT

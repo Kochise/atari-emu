@@ -1,0 +1,130 @@
+
+Quick ST 1.4 Documentation
+==========================
+
+by Darek Mihocka  07/07/89
+
+
+This release of Quick ST is available in 3 flavors: the standard version
+which runs on both color and monochrome, a monochrome-only version, and a
+color-only version. The purpose of having resolution dependant versions
+is to allow users with only one monitor to save memory. The standard version
+must support both color and monochrome, so at any one time it is really
+using only about half of its code. What we hope to have soon is a version
+that will automatically load the correct code, and eliminate the need of
+having three versions.
+
+Quick ST replaces some parts of the ST's operating system (known as TOS)
+which deal with screen operations with more efficient code. Part of the
+problem is that a large portion of TOS is written in C language, and not
+machine language, whereas Quick ST's code is all machine langauge. The
+result is that screen operations such as printing text, scrolling the
+screen, popping up windows and dialog boxes are faster. Quick ST has been
+optimized heavily for monochrome monitors, but it will also speed up color
+monitors to a lesser extent. Future versions will have more optimized
+color code.
+
+Quick ST can be used in one of two ways: either as a desk accessory or as
+a terminate and stay resident (TSR) program. Both methods accomplish the
+same task, although when run as a TSR it may be slightly faster. To run it
+as an accessory, take the QUICKST.ACC file and copy it to your boot disk,
+usually drive A: if you boot from a floppy or drive C: if you boot from a
+hard disk. To run it as a TSR, rename the file to QUICKST.PRG and double-
+click on it after the desktop has come up. It can be run from the desktop
+at any time, and saves you the trouble of rebooting the machine.
+
+The separate color and monochrome versions are called QUICKSTC.ACC and
+QUICKSTM.ACC. They work in exactly the same way except they will only run
+on one monitor. If you have a two monitor system, you should use the
+standard version.
+
+Quick ST is compatible with most other desk accessories and TSRs. It can
+be used with Codehead Software's G+PLUS desk accessory to speed up screen
+operations even more. Also from Codehead is a program called Font Tricks,
+which allows you to load DEGAS fonts to replace the system font. Quick ST
+is fully compatible with this.
+
+Quick ST is compatible with the Hyperscreen modification for monochrome
+monitors. Instructions for this small hardware upgrade have been posted
+on the online services, which increases the resolution of the monochrome
+monitor to 800x500 pixels.
+
+When used as a desk accessory, the fast GEM and fast text options can be
+disabled in situations where the speed increase is not desirable, or with
+programs that cause problems with Quick ST. One such program is called
+FSELV55.PRG (a replacement file selector) and it was found to be
+incompatible with most other accessories too. If you experience problems
+when running terminal software, simply turn off the fast text but leave
+fast GEM on.
+
+Quick ST is shareware. We would like each and every ST user to use it,
+because it is a useful utility. If your ST still has TOS 1.0, once you try
+Quick ST you'll realize how slow your computer was all this time. But we
+do expect you to send in the shareware contribution if you use Quick ST.
+A new update disk of Quick ST and the Quick utilities is going to be mailed
+out to registered users in about a week, and will not be uploaded to the
+services.
+
+Currently we have 3 shareware packages available:
+    Quick ST [$20]
+    Quick Utilities (Quick ST and 6 other utilities) [$30]
+    ST Xformer 2.5 (130XE emulator) [$20]
+
+For printed information about any of the above packages, write to me and
+I'll mail you the appropriate information.
+
+Shareware versions of ST Xformer and the Quick Utilities can be download
+from online services like Compuserve, Delphi, and GEnie. If you have them
+please distribute them to other ST users and bulletin boards. When you
+send in a shareware contribution, you become a registered user and will
+receive the update disks along with printed documentation. The mailing
+address is:
+    Darek Mihocka
+    Box 2624, Station B
+    Kitchener, Ontario N2H 6N2
+    Canada
+
+Make all cheques or money orders payable to Darek Mihocka, and please
+print clearly so we can mail you the disk to the correct address.
+
+Two phone numbers are available in case you have any further questions.
+I can be reached at (519)-747-0386 for matters relating to ST Xformer or
+Quick ST, and Ignac can be reached at (519)-747-9452 for questions about
+all the Quick Utilities.
+
+The Quick Utilities released as shareware so far are:
+    Quick ST - speeds up screen operations (.PRG and .ACC)
+    Quick View - very fast text file viewer (.PRG)
+    Quick Find - perform file searches and file operations (.PRG)
+    Quick Index - benchmark the performance of your ST (.PRG and .ACC)
+    Quick Inf - load, save and edit DESKTOP.INF files (.PRG)
+    Quick Label - label editor and printer (.PRG)
+    Quick Print - creates fast text screen dumps (.ACC)
+
+We think you'll agree that these 7 programs are certainly worth the $30.
+There are a few more in the works, including one that converts .PRG files
+to desk accessories. For example, you can run ARC Shell as a desk accessory,
+and if you have the memory, even ST Xformer 2.5 runs as an accessory. The new
+programs will be released on future update disks for registered users only.
+
+If you have any questions of problems, call or write to us. If you want to
+leave email, I can be reached on the following:
+    Compuserve: 73657,2714
+    GEnie: DAREKM
+    Delphi: DAREKM
+    BIX: darekm
+
+and Ignac can be reached on Usenet at watmath!watcgl!electro!ignac or at
+ignac@electro.com (whatever that all means!).
+
+Finally, I enjoy demoing this software to user groups and at computer shows,
+having done just about every user group within a hundred miles of Toronto.
+I will be staying in Seattle for a few months soon, and would be interested
+in attending user group meetings in the area (Vancouver or Portland too). So
+give me a call and let me know where and when you meet.
+
+Enjoy Quick ST! Additional information about ST Xformer can be found in
+back issues of ST LOG, Current Notes, and Computer Shopper magazines. Look
+for articles about the Quick Utilites in the near future.
+
+

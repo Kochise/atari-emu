@@ -1,0 +1,65 @@
+Druckertreiber fÅr MINITEXT 10/89 Altmann
+
+#01 n:Panasonic KX-P1124  'Druckername
+#02 e:1b401b74011b36      'Reset, Grafikzeichensatz 2
+#03 e:0c                  'FF
+
+#10 n:NLQ      e:1b7801
+#11 n:Draft    e:1b7800   'Schrifttypen
+#12
+#13
+#14
+#15
+
+#16 n:PICA     e:1b50     'Schriftarten
+#17 n:ELITE    e:1b4d
+#18 n:MIKRON   e:1b67
+#19
+#20
+#21
+
+#22 n:Normal   e:1b5700   'Schriftgrîûen
+#23 n:Breit    e:1b5701
+#24 n:Komprim. e:0f
+#25 n:Breit+K. e:0f1b5701
+#26
+#27
+
+#30 n:Proportional   e:1b7001 a:1b7000  '30 bis 39=frei belegbar
+#31 n:Fett           e:1b45   a:1b46
+#32 n:Schatten       e:1b45   a:1b46
+#33 n:Superscript    e:1b5300 a:1b54
+#34 n:2-fache Grîûe  e:1b6801 a:1b6800
+#35 n:4-fache Grîûe  e:1b6802
+#36 n:Zeichensatz D  e:1b5202 a:1b5200
+#37 n:Zentr. Ausdruck e:1b6101 a:1b6100
+
+#40 e:1b6c(08)   'linker Rand  8 (dez) Zeichen
+#41 e:1b51(80)   'rechter Rand 80 (dez) Zeichen
+#42 e:1b72(00)   'oben 0 (dez) Zeilen Åberspr.
+#43 e:1b4e(06)   'unten 6 (dez) Zeilen Åberspr.
+#44 e:1b43(72)   'SeitenlÑnge 72 * 1/6 Zeilen
+
+#46 (60)         'Druckzeilen PRG
+
+#50 e:1b32    'Zeilenabstand 1/6 Zoll
+#51 e:1b30          '1/8 Zoll
+#52 e:1b4115        '1/4
+#53 n:7/72  e:1b31        '53 und 54 kînnen frei belegt werden
+#54 n:8/72  e:1b41081b32
+
+Zeichen fÅr das SchriftmenÅ
+#60 e:1b5701 a:1b5700   'breit
+#61 e:0f     a:12       'verdichtet
+#62 e:1b45   a:1b46     'fett
+#63 e:1b45   a:1b46     'schatten
+#64 e:1b2d01 a:1b2d00   'unterstr.
+#65                     'kursiv
+#66 e:1b5300 a:1b54     'superscript
+#67 e:1b5301 a:1b54     'subscript
+#68 e:1b6801 a:1b6800   'doppelte Grîûe
+#69                     'Download-Font
+
+Zeichensatzanpassung Atari - Drucker (#70 bis #99)
+#70 e:9e     a:e1       'û   e=atari  a=drucker
+#71 e:dd     a:15       '›

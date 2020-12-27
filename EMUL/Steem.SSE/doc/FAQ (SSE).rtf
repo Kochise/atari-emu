@@ -1,0 +1,221 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang6153\deflangfe6153{\fonttbl{\f0\fnil\fcharset0 Arial Black;}{\f1\fswiss\fprq2\fcharset0 Calibri;}}
+{\colortbl ;\red47\green84\blue150;}
+{\stylesheet{ Normal;}{\s1 heading 1;}}
+{\*\generator Riched20 10.0.18362}{\*\mmathPr\mdispDef1\mwrapIndent1440 }\viewkind4\uc1 
+\pard\keep\keepn\widctlpar\s1\sb240\sl252\slmult1\qc\cf1\b\f0\fs32\lang2057 Steem SSE FAQ\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\b0\f1\fs22 v4.0.2\par
+\par
+Q:\par
+What is the Atari ST?\par
+A:\par
+The Atari ST was, all considered, the best 16bit computer of the Eighties. With it you could do more or less serious work and play more or less good games, or even watch demos with many doors.\par
+\par
+Q:\par
+What is Steem SSE?\par
+A:\par
+Steem SSE stands for \i ST Enhanced EMulator Sensei Software Edition\i0 . Steem SSE is an update of Steem, a legendary Atari STE emulator for the PC developed by Anthony and Russel Hayward. For version 4.x.x, as there's no other version being developed, Steem SSE is also called Steem 4, SSE being the 'company'.\par
+\par
+Q:\par
+Why should I use the SSE version and not the older version?\par
+A:\par
+Depends on your needs and wants, Steem SSE can do more and features improved emulation, but Steem 3.2 was already very good.\par
+\par
+Q:\par
+Isn't emulator X or Y far more accurate?\par
+A:\par
+Nope. Not only does Steem have nice features, it's also hard to beat regarding accuracy. We don't claim it is cycle accurate though, or bug-free. But no software emulator is.\par
+\par
+Q:\par
+How much does it cost?\par
+A:\par
+Steem is free software. \par
+\par
+Q:\par
+How does it work?\par
+A:\par
+To use Steem, you need a copy of the Atari ROM, called "TOS", and some image disk files. When you first launch Steem, you may indicate where they are, which you can change later. Disk images are easy to find. Legally this is still copyrighted material, and if they really wanted, companies that own it could call a halt on emulation, but they don't.\par
+\par
+Q:\par
+What do STE and STF stand for?\par
+A:\par
+ST=Sixteen Thirty-two, a reference to the 16/32bit architecture. \par
+STF=ST Floppy, because the floppy drive is integrated in the console.\par
+STE=ST Enhanced, because it has more features, like hardware scrolling, stereo sound, etc.\par
+The STF came before the STE. The STE is better but most programs targeted the STF for commercial reasons. By convenience, we call ST both the STF and the STE.\par
+\par
+Q:\par
+Which ST model should I select?\par
+A:\par
+It depends on the program you need to run. Some programs are STF-only, others are STE-only. If you don't know, a good bet is to start with STE since this computer had more features. Please check the Hints where some exclusive STF or STE programs are listed.\par
+\par
+Q:\par
+With a large display size, the left border seems to be larger than the right border.\par
+A:\par
+I think it is correct emulation. Believe me, it's been a pain to implement.\par
+\par
+Q:\par
+Weren't programs better on the Amiga anyway?\par
+A:\par
+Undoubtedly, the Amiga games had better graphics and, especially, animation. For sound, there's a discussion because the ST's modest YM2149 ain't that great, but 8bit samples neither, yet brilliant tunes have been produced on both machines. For utilities, the Amiga shined (flickered actually) in colour graphics and video, the ST in MIDI and most of the rest thanks to its high resolution screen and no-nonsense OS.\par
+\par
+Q:\par
+Which TOS should I use?\par
+A:\par
+Generally, TOS 1.02 is the most compatible for STF mode (TOS 1.04 for hard drive emulation), and TOS 1.62 for STE mode. Some rare programs prefer another version, like TOS 1.00 for very old games, or even depend on a country specific TOS.\par
+\par
+Q:\par
+Hey my old Steem shortcut for F12 doesn't work anymore!\par
+A:\par
+This is by design. F12 will start/stop emulation in Steem like in some other emulators. I ignore requests to the contrary or to make it optional. And F11 instead of Break now toggles mouse capture. F11 and F12 may still command shorcuts if they're combined with other keys.\par
+\par
+Q:\par
+Options are too complex!\par
+A:\par
+There is one option on the Misc. page, 'Advanced settings', which, when unchecked, makes other options far simpler.\par
+\par
+Q:\par
+Help! Something went wrong and now even quitting and restarting Steem doesn't help.\par
+A:\par
+Try deleting the file 'auto.sts' in Steem's directory. It can get corrupted. In rare cases of very bad corruption you may even need to delete or edit steem.ini. That's why you should back it up from time to time.\par
+\par
+Q:\par
+Help! I reset the ST, stop and start Steem, delete auto.sts and I just get a blank screen.\par
+A:\par
+Check options ST model and TOS, they absolutely must be compatible now (no more STE with TOS 1.02, it won't work, just like real hardware). \par
+\par
+Q:\par
+Steem can't handle zip or rar or 7z files.\par
+A:\par
+Check that necessary DLL files are in your Steem /plugins folder (or your system folder). \par
+Steem can use unrar.dll, unzipd32.dll and ArchiveAccess.dll, the latter being able to handle rar and zip images.\par
+XSteem can also handle rar and 7z files using command-line tools.\par
+\par
+Q:\par
+I find scrollers and games jerky compared with a real ST.\par
+A:\par
+Emulation is precise enough but smooth scrolling depends on your own hardware. You need a video card and a monitor capable of displaying at the exact emulated frequency, 50Hz most of the time, or a multiple. If your hardware is set to 60Hz or 75Hz, for example, it's impossible to have really smooth 50Hz scrollers. Check the difference with early Automation menus, they can scroll at 50Hz or 60Hz.\par
+\par
+Q:\par
+I have problems with sound!\par
+A:\par
+Me too! It isn't easy to fix. There have always been sound issues on the PC. Steem authors provided some options to help, just in case. The options that should make the most sense are:\par
+- Default sound driver\par
+- Delay 20ms if your computer can handle it\par
+- Frequency: depends on your hardware (44.1k is generally fine) and the program (50066 may sound better for some STE programs).\par
+- Format: 16bit stereo is advised.\par
+\par
+Q:\par
+There's no sound at all.\par
+A:\par
+You should check the volume mixer in your task bar, it regularly happens that the Steem slider be set to zero without apparent reason. Could even be a Windows issue.\par
+\par
+Q:\par
+Sometimes I lose keyboard control.\par
+A:\par
+Me too. Don't know the cause. It's not an emulation issue if quitting and restarting Steem gives you control back. In some cases it can be correct emulation (if the bug is in the ST program).\par
+\par
+Q:\par
+I can't use the following keys: W, S, A, Z, L-Shift, R-Shift\par
+A:\par
+Check the joystick options it's most likely joystick setup 3 interfering\par
+\par
+Q:\par
+Joysticks don't seem to be read correctly.\par
+A:\par
+Check that option 'Ports/Special adapters' doesn't interfere.\par
+Check that you don't have some autofire on.\par
+\par
+Q:\par
+What's the difference between ACSI and GEMDOS hard drives?\par
+A:\par
+ACSI emulation is lower level, it operates on image files of hard disks, and should work (or not) more as on a real Atari. It requires drivers. GEMDOS emulation directly uses folders and files on your PC hard drive and intercepts TOS commands (it's nearly 100% the work of Steem authors, not me). It is more convenient but less compatible by nature (it's a big hack). \par
+\par
+Q:\par
+Are state snapshots (.STS) compatible between versions?\par
+A:\par
+While there's no 100% guarantee, we try to maintain some compatibility.\par
+\par
+Q:\par
+What is the "wakeup state"?\par
+A:\par
+It is the state in which your ST booted, due to synchronisation between various chips. It has an influence on shifter trick timings. You may generally ignore this option, it is useful only to check the display of some edgy games or demos. Those are mentioned in 'Hints'.\par
+\par
+Q:\par
+I don't want to mess with wakeup states but I want all edgy demos to display perfectly!\par
+A:\par
+Some (rare) programs don't work well with some GLUE wakeups, so there's no choice. Unless you only run STE programs, on this machine there's no GLUE wakeup variation.\par
+The default for Shifter wakeup, 0, is correct for Spectrum 512 pictures. If you change it, you can get dots such as may happen on a real ST. It shows you that going beyond specs may have a price.\par
+\par
+Q:\par
+Hey, you claim you fixed file associations, but it doesn't work on my computer.\par
+A:\par
+For it to work you first need to manually remove the associations in the HKEY_CLASSES_ROOT part of the registry, that were put by previous versions of Steem.\par
+\par
+Q:\par
+There's a strange bug, the keyboard doesn't click like on a real ST.\par
+A:\par
+Check the keyboard options.\par
+\par
+Q:\par
+Steem stutters when loading a SCP game.\par
+A:\par
+If it is in 7Z format, delay is the price of high compression. Steem extracts the full disk image before doing anything with it.\par
+\par
+Q:\par
+Inserting normal (ST/MSA) disk images takes more time than before.\par
+A:\par
+Could be the Disk Manager option \i MFM emulation\i0 . Images are converted on the fly.\par
+\par
+Q:\par
+Is support for the Mega STE planned?\par
+A:\par
+Yes, it's for Steem 4.1. \par
+\par
+Q:\par
+Is support for the Falcon planned?\par
+A:\par
+No. To me those machines, like the TT, have no interest. Steem SSE is strictly ST.\par
+\par
+Q:\par
+What's the use of the STW disk image format?\par
+A:\par
+A STW disk image is a simple MFM encoding format of Atari ST floppy disks. It allows correct emulation of the WD1772 \i Format\i0  command, indeed new disk images need to be formatted before use. \par
+\par
+Q:\par
+PRG support doesn't work!\par
+A:\par
+You really need to choose a path pointing to a PRG folder in the Gemdos hard drive manager and assign the Z letter to it. You also need to enable the option in the Disk Manager. You don't need to enable Gemdos hard drives. It won't work if other files are needed beside the PRG/TOS one.\par
+\par
+Q:\par
+Why does the Linux build (XSteem) have fewer features than the Windows build?\par
+A:\par
+Simple question of time and motivation. Fortunately, work has resumed on that build, mainly thanks to VMware and codelite.\par
+\par
+Q:\par
+What's up with the bad jokes in scrollers that appear at random?\par
+A:\par
+An option disables the scrollers, not the bad jokes (it's subjective).\par
+\par
+Q:\par
+I don't like the way Steem handles Windows scaling.\par
+A:\par
+For the moment, Steem ignores scaling. You can actually change it yourself, right click on the Steem icon, compatibility, high DPI.\par
+\par
+Q:\par
+Why did the SM124 monochrome screen have large borders?\par
+A:\par
+Probably because the STF display shift between wakeups is more visible in monochrome, up to 16 pixels! Bigger borders make that shift less visible. Wakeup was a hardware bug corrected on the STE. You don't see this shift in Steem because it only  displays the useful part of the scanline.\par
+\par
+Q:\par
+In the Debugger, the fact that there is both a log (steem.log) and a trace (trace.txt) is confusing.\par
+A:\par
+It is indeed, it's a double system that appeared because of different habits (namely the old MFC's TRACE). \par
+\par
+Q:\par
+Should I use the 32bit build or the 64bit build?\par
+A:\par
+The 32bit build is recommended because it is more efficient (for instance, draw rountines are in C on the 64bit build, in assembly on the 32bit build) and because there's no 64bit pasti.dll. Also, most development is tested on the 32bit build, the 64bit build is far less tested (by me, but I got a lot of bug reports on it).\par
+\par
+}
+ 

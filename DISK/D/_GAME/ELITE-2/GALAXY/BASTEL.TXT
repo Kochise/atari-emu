@@ -1,0 +1,114 @@
+                  +--------------------------------+
+                  |  Wir basteln uns eine Galaxis  |
+                  +--------------------------------+
+
+Grafiker brauchen folgenden Text nicht zu lesen, sie besitzen von Geburt 
+an die Geduld Milliarden Pixel mit Hand zu setzen...
+
+Wenn ich mich recht erinnere, heit es in der Werbung zu "Elite II", da 
+die Daten von ber 1.000.000.000 Sterne gespeichert w„ren. H„tte man nur 
+ein Byte pro Stern zu speichern, so sind das schon 1 GIGABYTE!!! Aber man 
+kann "Elite II" auch mit 512k und Diskettenlaufwerk spielen. Tja...
+
+Wer sich mit modernen Packalgorithmen fr Bild und Ton besch„ftigt, wird 
+jetzt vielleicht JPEG, MPEG oder "Fraktale Methoden" sagen und damit hat 
+er ein bichen recht. Der "Elite"-Programmierer hat sich eine Funktion 
+ausgedacht, die fr jede Koordinate entscheidet, ob dort ein Stern ist 
+oder nicht ( der Mathematiker nennt's Indikatorfunktion ). Im folgenden 
+m”chte ich einmal erl„utern, wie man zu einer solchen Funktion kommen 
+kann. Das Ergebnis wird zwar nicht das selbe sein wie in "Elite" und auch 
+noch nicht fr ein schnelles Spiel geeignet sein, aber es ergibt hbsche 
+Bilder und ist sicher interessant.
+
+Achtung! Die folgenden Abschnitte werden recht mathematisch klingen, es 
+sollte aber mit der normalen Schulbildung zu verstehen sein. Da ich wei, 
+da Bilder mehr sagen als tausend Worte, sind auf den Disketten noch ein 
+paar Beispielbilder, Skizzen und Listings.
+
+So, wo fangen wir nun am besten an? Ich denke, zun„chst brauchen wir mal 
+einen šberblick, wo den berhaupt Sterne sein k”nnen, ehe wir die 
+konkreten Positionen ermitteln. Also zeichnen wir erstmal die Galaxis als 
+solches ( und weiter will ich hier auch gar nicht gehen ). Wie wir aus der 
+Schule wissen, ist die Galaxis eine flache Scheibe, bestehend aus mehreren 
+Spiralarmen. Auerhalb dieser Scheibe sind keine Sterne. Zur Mitte der 
+Scheibe und jedes Armes hin wird die Sterndichte h”her. In Skizze 1 heit 
+das, da unsere Funktion an den mit A markierten Linien hohe Werte annimmt 
+und an den B-Linien ist sie null. Auch auerhalb der Kreislinie K ist sie 
+null und w„chst zum Mittelpunkt M.
+
+Wie kriegen wir die Spirale in den Computer???. Es hat n„mlich kein 
+Computer spiralf”rmigen Videospeicher... Wir mssen die Koordinaten auf 
+der Spirale also umrechnen in Bildschirmkoordinaten. Am leichtesten kann 
+man aus den "Spiralkoordinaten" noch Polarkoordinaten machen:
+
+   Ws = Wp + a * Rp  |  Ws ... Winkel eines Punktes der Spirale
+   Rs = Rp           |  Rs ... Entfernung des Punktes vom Nullpunkt
+                     |  Wp,Rp ... Polarkoordinaten des Punktes
+                     |  a ... Spiralfaktor
+
+Wir k”nnten dann das Galaxis-Programm etwa so formulieren:
+
+   for rp=0 to rmax
+      for wp=0 to 2*PI
+         ws, rs setzen wie oben
+         dichte = dichte( wp, rp )
+         plot( ws, rs, dichte )
+      next wp
+   next rp
+
+Aufgrund der begrenzten Aufl”sung der Bildschirme k”nnen jetzt bei der 
+Umrechung der Polarkoordinaten in kartesische Koordinaten zwei Punkte die 
+selbe Bildschirmkoordinate erhalten ( bei kleinen rp ) oder gar nicht 
+belegt sein ( bei groen rp ). Besser ist es also, die Berechnung wie folg 
+vorzunehmen: ( x, y ) -> ( ws, rs ) -> ( wp, rp ) -> Dichte( wp, rp )
+
+Also:
+      for x=-rmax to rmax
+         for y=-rmax to rmax
+            r=r(x,y); w=w(x,y)   /* (x,y)   -> (ws,rs) */
+            w=w(w,r)             /* (ws,rs) -> (wp,rp) */
+            dichte=dichte(w,r)
+            plot(x,y,dichte)
+          next y
+       next x
+
+Und das wars prinzipiell schon...
+
+Was zum Teufel ist aber nun "dichte(w,r)"? Nun es sind zwei Funktionen, 
+"dichte1(w)" und "dichte2(r)", die Werte zwischen 0 und 1 erzeugen und 
+dann multipliziert werden. "Dichte(r)" ist einfach "dichte=1-r/rmax" 
+bzw. "dichte=1-)r/rmax)^2", aber die optischen Unterschiede sind nicht 
+so gravierend.
+Anders ist es mit "dichte(w)". Ich hatte mir zuerst eine Summation von 
+Normalverteilungen gedacht, um die natrlichen Zusammenh„nge besser zu 
+simulieren. Aber nach ersten Berechnungen, sah das ganze zu sehr nach 
+Sinus aus als das sich sich die komplizierte Normalverteilung gelohnt 
+h„tte. Jedoch empfiehlt es sich, den Sinus an den "Spitzen" etwas 
+abzuflachen. Deshalb die seltsame Gleichung ( Skizze 3 ):
+
+   dichte=0.9*sin(f*w)+0.1*sin(3*f*w)
+
+wobei f der "Spiralfaktor" ist. Nun brauchen wir uns nur noch die Dichte 
+als Wahrscheinlichkeit denken und dementprechend einen Stern setzen oder 
+nicht.
+
+M”chte man jetzt zum Beispiel "Elite" programmieren, so mu man mit obiger 
+Methode die Sternendichte in einem Sektor ausrechnen, dann mit einer 
+anderen "zuf„lligen" Funktion die konkreten Positionen im Sektor 
+ausrechnen ( auch den Abstand von der Nullebene der Galaxis ) und noch 
+zuf„llig wirkende Namen, Daten und Planetensysteme erzeugen. Bei "Elite" 
+merkt man das daran, da immer wieder „hnlich klingende Namen auftauchen, 
+da sie nur aus vorgefertigten Silben bestehen. Einzig das Sonnensystem und 
+seine engere Umgebung ist bei "Elite" abgespeichert, wenn gleich 
+bestimme Sterne fr das Spiel natrlich viel n„her an die Sonne gerckt 
+wurden...
+
+M”gliche Erweiterungen best„nden noch darin, die Spiralarme zu zerhacken. 
+Soll heien, die Arme der Milchstrae sind ja im Laufe der Jahrmilliarden 
+etwas angegammelt und h„ngen nicht mehr so sch”n zusammen wie in meinen 
+Mustergalaxien. Dies k”nnte man vielleicht damit erreichen, da man 
+zuf„llige Sttzwerte ber die Scheibe verteilt, mit S<dichte(r) oder auch 
+S<dichte(w,r) und diese dann mittels Splineinterpolation zu einer Funktion 
+S(r) bzw. S(w,r) verbindet.
+
+                                                         Apache of tnb

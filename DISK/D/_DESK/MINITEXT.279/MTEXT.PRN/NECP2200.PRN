@@ -1,0 +1,65 @@
+Druckertreiber fr MINITEXT - NEC P2200 - 04/90 L. Becker
+
+#01 n:NEC P2200       'Druckername
+#02 e:1c40            'Reset
+#03 e:0c              'FF
+
+#10 n:10 CPIù e:1b50   'Schriftbreiten
+#11 n:12 CPI ù e:1b4d
+#12 n:15 CPI ù e:1b67
+#13 n:17 CPIù e:1b2104
+#14 n:20 CPI ù e:1b2105
+#15 
+
+#16 n:Courier e:1b78011b6b00   'Schriftarten
+#17 n:Su.Foc. e:1b78011b6b06   
+#18 n:ITC Sou e:1b78011b6b0f                     
+#19 n: OCR-B  e:1b78011b6b0c
+#20 n:LQ  ù   e:1b7801
+#21 n:Draft    e:1b7800
+
+#22 n:Normal   e:1c4500   'Schriftbreiten
+#23 n:2-fach  e:1c4501
+#24 n:3-fach  e:1c4502
+#25 n:schmal   e:0f
+#26
+#27
+
+#30 n:Proportional  e:1b7001 a:1b7000  '30 bis 39=frei belegbar
+#31 n:Fett           e:1b47   a:1b48
+#32 n:Schatten       e:1b45   a:1b46
+#33 n:Superscript    e:1b5301 a:1b54
+#34 n:Subscript      e:1b5300 a:1b54
+#35 n:2-fache Gr”e  e:1c5601 a:1c5600
+#36 n:Zeichensatz D  e:1b5202 a:1b5200
+#37 n:IBM/Steuerc.   e:1b37   a:1b36
+#38 n:Kursiv         e:1b34   a:1b35
+
+#40 e:1b6c(08)   'linker Rand  8 (dez) Zeichen
+#41 e:1b51(80)   'rechter Rand 80 (dez) Zeichen
+#42 e:1b72(00)   'oben 0 (dez) Zeilen berspr.
+#43 e:1b4e(06)   'unten 6 (dez) Zeilen berspr.
+#44 e:1b43(72)   'Seitenl„nge 72 * 1/6 Zeilen
+
+#46 (60)         'Druckzeilen PRG
+
+#50 e:1b32          'Zeilenabstand 1/6 Zoll
+#51 e:1b30          '1/8 Zoll
+#52 e:1b410f        '1/4
+#53 n:1/5     e:1b410c
+#54 n:cas     e:1b331c
+
+Zeichen fr das Schriftmen
+#60 e:1b5701 a:1b5700   'breit
+#61 e:0f     a:12       'verdichtet
+#62 e:1b47   a:1b48     'fett
+#63 e:1b45   a:1b46     'schatten
+#64 e:1b2d01 a:1b2d00   'unterstr.
+#65 e:1b34   a:1b35     'kursiv
+#66 e:1b5300 a:1b54     'superscript
+#67 e:1b5301 a:1b54     'subscript
+#68 e:1c5601 a:1c5600   'doppelte Gr”e
+
+Zeichensatzanpassung Atari - Drucker (#70 bis #99)
+#70 e:9e     a:7e       '   e=atari  a=drucker
+#71 e:DD     a:15       'İ

@@ -1,0 +1,31 @@
+COLOR.CPX 1.00
+--------------
+
+Das COLOR.CPX benîtigt das XCONTROL.ACC von ATARI.
+
+Beim   Aufruf des CPX-Moduls sehen Sie in der Mitte ein quadratisches Feld,
+in   dem  alle  verfÅgbaren  Farben  angezeigt  werden. Rechts davon liegen
+die Schiebregler, mit denen Sie die RGB-IntensitÑt einstellen kînnen.
+Unterhalb  des  Feldes finden Sie die Farbnummer und die RGB-Werte bzw. die
+Abstufungen  des  ausgewÑhlten  Farbfeldes -  links des Farbfeldes wird die
+aktuelle Farbe nocheinmal in einem grîûeren Feld dargestellt.
+
+Auûerdem finden Sie links des Farbfeldes drei Popups:
+
+'Verlauf': Hier  kînnen  Sie, in denen Sie Anfang und Ende eines Verlaufs
+           festlegen.
+
+'Farbe'/'Grau': Hiermit kînnen Sie zwischen Farb- und Graumodus umschalten.
+
+'Option':  Hinter diesem Popup verbergen sich verschiedene Extrafunktionen.
+
+           Mit   'Stufen'/'Promille'   kînnen   Sie   die   festlegen,  ob
+           IntensitÑten  der  aktuellen  Farbe  in  den (durch die Hardware
+           vorgegebenen) Abstufungen oder in Promille ausgegeben wird.
+
+           Mit  'Laden'/'Sichern'  kînnen  Sie  eine  Farbpalette aus einer
+           externen Datei laden/sichern.
+
+Mit   dem  'Sichern'-Knopf  wird   die  aktuelle  Einstellung  und  Palette
+gespeichert.  Die  gespeicherte  Einstellung wird beim Booten oder erneutem
+Laden des CPX-Moduls als aktuelle Konfiguration Åbernommen.

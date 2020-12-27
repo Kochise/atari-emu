@@ -1,0 +1,26 @@
+ACHTUNG:
+
+Alle  Dateien in diesem Ordner sind selbst entpackende  Archive. Bitte
+kopieren Sie  diese Dateien vorher auf eine leere  Diskette, bevor Sie
+sie starten.
+
+EXTOBFIX.TOS  enthÑlt alle Extobfix-Dateien
+
+FARBICON.TOS  enthÑlt einige Farbicons
+
+MYDIAL_C.TOS  enthÑlt die C MyDial-Library
+
+MYD_GFA.TOS   enthÑlt  die GFA-Basic MyDial-Library und die GFA  Farb-
+              icon-Routinen (XRSRC)
+
+MYD_OMIK.TOS  enthÑlt die Omikron-Basic MyDial-Library und die Routin-
+              en zum Laden langer Resourcen
+
+NKCC.TOS      enthÑlt die NKCC-Tastaturroutinen
+
+XRSRC.TOS     enthÑlt  die  Routinen zum Laden  langer  Resourcen  mit 
+              Farbicon-UnterstÅtzung
+
+INTMONO.TOS   enthÑlt eine Interface-Resource ohne Farbicons,  die man 
+              anstelle  der normalen Resource bei Speichermangel  ver-
+              wenden kann.

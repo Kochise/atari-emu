@@ -1,0 +1,21 @@
+From idec!stc!ukc!mcvax!uunet!cs.utexas.edu!tut.cis.ohio-state.edu!ucbvax!agate!saturn!koreth@ssyx.ucsc.edu Sat Jul  1 15:15:57 BST 1989
+Article 26 of comp.binaries.atari.st:
+Path: prlhp1!idec!stc!ukc!mcvax!uunet!cs.utexas.edu!tut.cis.ohio-state.edu!ucbvax!agate!saturn!koreth@ssyx.ucsc.edu
+>From: koreth@ssyx.ucsc.edu (Steven Grimm)
+Newsgroups: comp.binaries.atari.st
+Subject: v05i044: quickst.12 -- Speed up screen output
+Keywords: arc, uuencode
+Message-ID: <7949@saturn.ucsc.edu>
+Date: 14 Jun 89 07:16:29 GMT
+Sender: usenet@saturn.ucsc.edu
+Lines: 338
+Approved: koreth@ssyx.ucsc.edu
+
+Submitted-by: watcgl.waterloo.edu!electro!ignac (Ignac Kolenko)
+Posting-number: Volume 5, Issue 44
+Archive-name: quickst.12
+
+the following is Quick ST version 1.2. This version contains bug fixes and 
+further enhancements to speed up GEM.
+
+

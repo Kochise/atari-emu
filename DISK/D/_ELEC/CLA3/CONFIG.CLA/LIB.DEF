@@ -1,0 +1,39 @@
+LIBRARY DEFINITIONS FOR CLAv2
+LIBRARY\
+0003
+74xx                
+0003
+7400.NET
+7400 Quad NAND
+7402.NET
+7402
+7404.NET
+7404
+userlib             
+0006
+DFLIP.NET
+D flip-flop
+PAR_MULT.NET
+3bit Multiplier
+FULLADDR.NET
+2 bit full adder
+HALFADDR.NET
+2bit half adder
+0_DETECT.NET
+8 bit zero detect
+LATCH8.NET
+8 bit d-type latch
+TWTV                
+0006
+0_DETECT.NET
+8bit $0 detect
+LATCH8.NET
+8bit register
+8MUX-2.NET
+8IP 2chan MUX
+LD_REG.NET
+MUXED IP DREG
+L2.NET
+P.LD / CNT4
+L-CNT16.NET
+P.LD / CNT 16bit

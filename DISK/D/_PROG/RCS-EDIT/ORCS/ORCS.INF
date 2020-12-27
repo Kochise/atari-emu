@@ -1,0 +1,75 @@
+snapx -1
+snapy -1
+autosize -1
+editobjs 0
+extended 0
+safety 1
+sort 3 -1
+growbox -1
+hollow -1
+parts -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+menus -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+asicons -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+flags 524288
+deskcol 7 13
+windcol 0 0
+backup 0 0
+tempfiles -1
+namerule 1 "" "" -1 0 -1 0
+namerule 2 "" "" 0 -1 -1 0
+namelen 8 -1
+dialmode 2 2
+dclick 3
+idisplay 3
+extension 1 H
+extension 2 C
+extension 3 LST
+extension 4 S
+extension 5 I
+extension 6 MOD
+extension 7 DEF
+extension 8 INC
+extension 9 FOR
+extension 10 DUP
+extension 11 RSB
+extension 12 RSC
+extension 13 RSO
+extension 14 RSD
+extension 15 DEF
+extension 16 DFN
+extension 17 TMP
+extension 18 ICN
+extension 19 BH
+extension 20
+extension 21
+extension 22
+extension 23
+extension 24
+window 0 -1 0 1091 32000 32000 625 6377 29000 27863
+window 1 0 0 1091 32000 32000 0 1091 32000 32000
+resource 3708 4940 3000 2183 3708 4940 3000 2183
+disk A "DISQUETTE" 0 1206 3333 2757
+disk B "DISQUETTE" 0 4883 3333 2757
+disk C "BOOT     8Mo" 0 8560 3333 2757
+disk D "PROGS   96Mo" 0 12236 3333 2757
+disk E "GRAPHS 256Mo" 0 15913 3333 2757
+disk F "UTILS   96Mo" 0 19590 3333 2757
+disk G "MUSIC   16Mo" 0 23267 3333 2757
+disk H "GAMES    4Mo" 0 26944 3333 2757
+disk I "TEMPO 40.3Mo" 0 30621 3333 2757
+disk J "BOOT     8Mo" 7333 1206 3333 2757
+disk K "TRANS 32.7Mo" 7333 4883 3333 2757
+disk L "CD-ROM  IDE1" 3666 1206 3333 2757
+disk U "MultiTOS½" 10875 1091 3333 2757
+trashcan "CORBEILLE" 29000 30908 3000 2183
+printer "SANCO SP80" 14500 1091 3125 2183
+prg "C:\\AUTOSORT\\AUTOSORT.PRG" "AUTOSORT  F1" 26666 1206 3125 2183
+prg "D:\\DEVPAC3\\DEVPAC.PRG" "DEVPAC    F2" 26666 3964 3125 2183
+prg "D:\\DEVPAC56\\DEVPAC56.PRG" "DEVPAC56  F3" 26666 6721 3125 2183
+prg "D:\\DEVPAC3\\BIN\\MON.PRG" "MONSTER   F4" 26666 9479 3125 2183
+prg "E:\\APEX\\APEX.PRG" "APEX      F5" 26666 12236 3125 2183
+prg "E:\\GEMVIEW\\GEMVIEW.APP" "GEMVIEW   F6" 26666 14994 3125 2183
+prg "E:\\NEON\\NEONSCN.PRG" "NEON      F7" 26666 17752 3125 2183
+prg "F:\\TEXTE\\7UP_203.FR\\7UP.APP" "7UP       F8" 26666 20509 3125 2183
+prg "F:\\PACK\\STZIP.V26\\STZIP.PRG" "ST ZIP    F9" 26666 23267 3125 2183
+prg "F:\\HTXTHELP\\1STGUIDE\\1STGUIDE.PRG" "1STGUIDE F10" 26666 26025 3125 2183

@@ -1,0 +1,467 @@
+CLA v3 Development Log
+
+==============================================================================
+
+This details the development progress made on CLA v3.
+
+All development done using HiSoft Lattice C v5.52.
+
+It should be noted that the actual GUI code is now independant of the CLA
+code, and is based on the final version of DU_LIB for HiSoft Basic, but
+converted to C. DU_LIB grew out of the GUI module developed for CLAv2.
+
+Source code for GNU C & Lattice C is available for the GUI library, for those
+who fancy using it.
+
+A fairly comprehensive hypertext help file is included with this program.
+
+Comments to:
+Craig Graham.
+   craig.graham@newcastle.ac.uk
+   craig.graham@adlib.centron.com
+
+==============================================================================
+
+[3/9/94]
+o Vector object display routines ported from Basic into C & linked to the
+   object_redraw() functions in DULIB.
+o Vector file format changed slightly to make it easier to use from C.
+
+[10/9/94]
+o File compatibility (load) with v2r3 implemented.
+o Multi-windows.
+o Block navigator window added. **NEW FEATURE IN V3**
+o Colour used for circuit display.
+
+[11/9/94]
+o Shift-Click gate selection. **NEW FEATURE IN V3**
+o Click-Drag gate selection.  **NEW FEATURE IN V3**
+o Delete gate(s).
+o Move gates(s). Move gates also moves wires which link gates (where source &
+  dest gates are both moving). v3's move has more functionality than v2 (and no
+  bugs :) ).
+
+- In the above, I've tried to keep with the general approach used by most GUI's
+  (notably GEM & MSwindows).
+
+[13/9/94]
+o Got Lattice C 5.52 - recompiled, fixed window headers (DULIB), moved Makefile over to
+  Lattive/Pure C .PRJ project file - not as powerful as make, but more
+  convenient. I'll write a makefile for GCC for the final release version....
+
+[29/9/94]
+o Popup icon menu's, changable icons & double click events all added to du_lib.
+  **NEW FEATURE IN V3**
+
+[4/9/94]
+o Fixed bug in popup icon menu storage allocation.
+o All edit operations made generic (take a parameter of type object_list*) so
+  that the same routines can handle all editting functions.
+
+[9/10/94]
+o Debugged select operations to work properly with generic object lists.
+o Move now works on blocks as well.
+
+[11/10/94]
+o Double click on block now opens that block.
+o Double click on background (in block_mode) now moves back up a level.
+o Block creation done.
+o Block re-sizing implemented. **NEW FEATURE IN V3**
+o Recursive block delete implemented.
+
+[12/10/94]
+o Block Navigator now reflects block hierachy better by ordering the
+  blocks correctly & indenting the names by depth in design tree.
+o Fixed block create in scrolling windows.
+o Scrolling list horizontal size setup fixed to match widest entry in the
+  initial list (DULIB bugfix).
+
+[17/10/94]
+o New approach to deleting links - unlink button implemented, operating within
+  the standard select mode (as with delete,rotate & move).
+
+[18/10/94]
+o Debugged the unlink routine.
+
+[19/10/94]
+o Link Gates routine coded & debugged.
+o Block re-size code fixed for scrolled windows.
+o Select All implemented. **NEW FEATURE IN V3**
+
+[23/10/94]
+o External inputs implemented.
+o Adding of hierachical inputs ports.
+
+[26/10/94]
+o Hierachical output port creation.
+
+[3/11/94]
+o EdDI off-screen bitmap support added to GUI library.
+
+[4/11/94]
+o Implemented gate bitmap blitting using EdDI offscreen bitmaps.
+  Unlike CLAv2 obm support, this works with NVDI & Enhancer.
+
+[20/11/94]
+o Improved obm gate support (only uses one vdi_workstation now).
+  Memory usage for gate obms now given by 4*drg_scale^2*32 per gate per
+  direction.
+  Typical @x2 scale,  (4*2^2*32) * 4 = 2048 bytes per primitive,
+  30 primitives by default, 2048 * 30 = 60Kbytes for buffers.
+
+[21/11/94]
+o Fixed obm gates for use with Enhancer as well as NVDI.
+o Fixed gate labelling text when using obm's.
+o Fixed linking to prevent multiple links to a single input gate.
+
+[23/11/94]
+o CLAv2r3a compatible Save Design implemented (Save & Save As).
+  Tested v3 created circuit in v2r3a simulator - works fine.
+
+=====================================================================
+[1/12/94]
+o Beta test 1 sent out.
+=====================================================================
+
+Most of these next few things are changes in light of beta tester bug
+reports and change requests:
+
+[6/12/94]
+o Fixed load vectors bug (thanks to Attila for the bug report).
+
+[14/12/94]
+o DULIB changes following beta tester comments:
+   - Right mouse button now configurable as either a simulated double click
+     or a left mouse click.
+   - Selected item in a scrolled text is now displayed in inverse instead of
+     bold.
+
+[15/12/94]
+o DULIB changes following beta tester comments:
+   - Popup menus fixed in DULIB.
+o Block name in schematic window made into a popup allowing you to step back
+  up the design tree (rather like Selectric's directory selector).
+
+[16/12/94]
+o New options menu added.
+o Config dialog:Scale popup activated.
+o Colour Setup dialog added to allow users to configure the colours themselves.
+
+[17/12/94]
+o Fixed the design save bug.
+o Fixed gate->gate connection bug.
+
+[19/12/94]
+o Program made resolution independant. Even runs in ST low, but note that
+  the GUI cacks up in < 400 vertical res due to the differance in RSC handling.
+  So, any mode from ST-High upwards is recomended....
+
+[20/12/94]
+o Another gate connect bug sorted out.
+o Fixed window size to fit into any size screen.
+
+[27/12/94]
+o More mono support
+   - Colour -> mono resource file conversion (added to DULIB).
+   - Selected items on a mono screen are highlighted in bold (as colour doesn't
+      show up).
+o Changed link mode cursor.
+
+[29/12/94]
+o Fixed 'Select All' to actually work :)
+o Object Move mouse tracking fixed.
+
+[2/1/95]
+o Implemented ASSIGN.SYS parser to find GDOS output devices in the 21-39 range
+  (printer & metafile).
+o Printout font selector popup added.
+
+[3/1/95]
+o GDOS printing implemented. Metafile output tested & working. (Schematic only).
+o 'Print' icon added to schematic window.
+o When outputing as a metafile, primitives are output as group objects, then
+   grouped with their name tag as well. Blocks are grouped with their name tag.
+
+[4/1/95]
+o Grid Snap spacing made setable from options dialog.
+o Fixed another bug in linking.
+o GDOS Print to printer device working.
+
+[7/1/95]
+o Added 'Rename' function.
+o When loading CLAv2r3 files, the block pagesize field is now used to set page
+   sizes (gives better printouts).
+o Added 'New Design' function.
+
+=====================================================================
+[8/1/95]
+o Beta test 2 sent out.
+=====================================================================
+
+[8/1/95]
+o Fixed a bug in external input handling. This only showed up loading CLA3 files
+   into CLAv2 then trying to simulate them (would crash CLAv2).
+o Library definition file now loaded & LibSel dialog working.
+
+[13/1/95]
+o Changed the way right button clicks are detected (stopped using vex_butv()).
+  Thanks to Thomas Binder <binder@rbg.informatik.th-darmstadt.de> for the
+  evnt_button(258,3,0...) hint. Now works ok with WinX.
+
+[16/1/95]
+o Re-coded the popup menu routines following comments from several people.
+   Holding button down when clicking on thing to popup, item selected when button released.
+   Click when doing the above, item selected by clicking.
+   Selected item will follow the mouse.
+o Changed the word 'Editting' to 'Edit' in the menu bar after Attila Mezei
+   complained bitterly :)
+o Fixed Radio button bug (solves problem in Printout dialog).
+
+[17/1/95]
+o 'New design' now closes all windows & opens a new one full screen.
+o Loading a design closes all windows & opens a new top-level window with the
+  correct name.  This means that the design name is actually correct in the
+  first window title bar now.
+o Grid snap can now be turned off.
+
+[7/2/95]
+o Implemented keyboard handling in DULIB, so keyboard shortcuts are now working.
+
+[12/4/95]
+o Fixed the file i/o routines to work with CLA-VHDL generated blocks correctly.
+o Fixed a bug in DULIB popup menus (backgrounds weren't restored correctly).
+o Fixed bug with initial printout defaults.
+
+[13/4/95]
+o Gave up & re-coded the file i/o stuff completely from scratch.
+o Implemented 'Merge Design'.
+o Fixed a bug in Delete, can now delete blocks reliably without CLA crashing.
+
+[14/4/95]
+o When a design is merged into the current design, all it's top-level components
+  are selected so you can move them around easily.
+
+[19/4/95]
+o Whew - sorted out all the data structure bugs that were causing things to go wacky.
+  Took a lot longer than I thought, but now all the deletion & merge functions seem
+  to actually work & things don't crash.
+o Added a data structure integrity checker to help track down bugs. Hit ^D to create
+  a file INTEGRTY.DBG in the current directory  with full info on the circuit data
+  structures within CLA - probably no use to anyone else, but useful to me.
+o Drag & Drop style library support added - can now drag a library module out of the
+  library selector & drop it in the window you want it in.
+
+[22/4/95]
+o Fixed rename.
+o Slightly modified the rename routine to make it easier to rename h.i/o ports
+  - notifies internal/external side of port & lets you rename them seperately.
+
+[24/4/95]
+o Colour names in colour config dialog now actually change colour when modified.
+o Text entry dialog changed slightly (cursor positioned at start of string).
+o Some stuff to do with locating libraries got fixed.
+o Added shortcuts for close window & cycle window.
+
+[25/4/95]
+o Extended the monochrome support (dialogs all drawn correctly in mono now).
+o Disabled colour setup dialog from mono modes.
+
+[29/4/95]
+o Improved click handling in popup menus.
+o Small change to library path handling.
+
+====================================================================
+The rather embaressing beta3 release with the wrong resource file
+thanks to Attila for still managing a short bug report on what
+did work.
+====================================================================
+
+[30/4/95]
+o Added support for AES4.1 (the unreleased MultiTOS version) iconify widget
+  and associated messages to iconify dialogs & main windows.
+o Extended keyboard shortcuts (added select all, delete, rotate, open navigator
+  window).
+o Removed the delay from the drag-select operation (thanks to Attila Mezei for
+  pointing out how annoying it was, I hadn't noticed).
+
+[6/5/95]
+o Fixed some obscure stuff with redraws and clip rectangles for DULIB callback
+  functions. The text edit widget is now working ok (ish).
+
+========================================================================
+Beta4 release sent out.
+========================================================================
+
+[10/5/95]
+o Coded the Auto-Router using the Lee Algorithm. Probably to slow to use on an ST,
+  but quite cool on a falcon.    **NEW FEATURE IN V3**
+
+[11/5/95]
+o Added auto-router configuration dialog.
+o Fixed a bug that had got into the Icon Popup routine (god knows how, that code
+  hadn't been touched in monthes).
+
+[14/5/95]
+o Coded the Encapsulate function, and added drag & drop encapsulated
+  object block support.      **NEW FEATURE IN V3**
+
+[15/5/95]
+o Changes to the way the buttons clicks are handled in DULIB - should improve
+  things a bit....
+o Discovered the 'export C code' option in Mouse-Ka-Mania, so I've added
+  some nice extra mouse shapes for various things (like block resizing
+  and popup menus)....pointless, but hey - why not? everybody else does it..
+
+[17/5/95]
+o Fixed the 'Select All' bug (window was not updated following select all).
+o Fixed 'Rotate' bug (objects could corrupt the widget bars).
+o Got Interface2, so changed over to colour icons instead of mono.
+o Re-worked code for resource file as Interface wouldn't output the
+  right names that I used in WERCS - no mixed case object names :( .
+
+[18/5/95]
+o In response to some problems from beta testers, recoded the icon
+  popup handler. It's now more like the popup menu handler in that
+  the selected icon follows the mouse, and clicking outside the
+  popup selects the default (current) icon.
+o Fixed (hopefully) the problem with the File Exists alert.
+
+[19/5/95]
+o Some more fixes to the GUI library. Improved the radio buttons
+  (icon popups no longer occaionally have the icon disappear).
+o Now accepts a .NET file as a command line parameter, and loads it
+  on startup.
+
+[20/5/95]
+o Added a collection of file icons for various stuff for folks to include
+  in thier deskicon files (or their THING/ICONS file).
+
+[23/5/95]
+o Ported MiNTLIBs to Lattice, and recompiled with them instead of the
+  standard Lattice library. Should improve compatibility with multiTOS
+  and MagiC - if I've got it right :) (still uses the Lattice LCG.LIB
+  library for accessing the AES as it's better than the GNU one, esp.
+  when used with DULIB - but that's now the only Lattice Library I use).
+
+[24/5/95]
+o Got Chris Ridd's port of MiNTLIBpl46 for Lattice, so I now use this
+  instead....still had to do a few patches to get it to work with Lattices
+  GEM libs though.
+
+[30/5/95]
+o Made a couple of changes to the click handler in the DULIB code, nothing
+  major, it just improves the response on certain types of buttons (toggles
+  mostly). Really these were aimed at DUFTP, but they effect CLA as well.
+
+[26/6/95]
+o Fixed bug in the new_design() routine - loading & stuff now works ok
+  (again).
+o Added context sensitive help.
+o Fixed grid-snap alignment bug in 'move object'.
+o Due to changes in DULIB, the problems with SpeedoGDOS have now been fixed.
+
+[27/6/95]
+o More bugfixes.
+o Made print routines a little more multi-tasking friendly: progress
+  dialog updated correctly, also polls for events occasionally so that
+  redraws generated by windows moving,etc, are handled.
+  Suprise side effect is that you can actually carry on with what you
+  were doing whilst the circuit is drawn (but not while it actually prints).
+o If a block is deleted, all windows displaying that block are now closed
+  instead of being left open.
+
+[28/6/95]
+o More Speedo compatibility fixes - this time in the printing routines.
+o Added output point size selection for printing & metafiles. **NEW FEATURE IN V3**
+o Added extents mode for printout - fits actual drawing to paper, rather than
+  fitting the drawing page (which may well be mostly empty). **NEW FEATURE IN V3**
+o When moving gates, option now available to have the auto-router
+  reroute the diagram. This works better than the quick-fix, but isn't
+  nearly as fast.
+
+[29/6/95]
+o Improved dragging of scroll bars in schematic windows.
+o Scrollbar arrows now actually work.
+
+[30/6/95]
+o Coded simulation kernal compiler. Wow - it works. Compiles fast
+  enough that you don't even notice it. Better than 20 times quicker
+  than the CLAv2 compiler even though it's just a convertion from
+  Basic to C of exactly the same algorithm - so the actual simulation
+  won't run any quicker (it couldn't, it's optimised machine code
+  already). Simulator works, but only via the INTEGRITY.DBG file at the
+  moment.
+
+[1/7/95]
+o Coded the Word Generator. Set logic levels, drag & drop re-ordering
+  of inputs (**NEW FEATURE IN V3**), call simulator.
+o The word generator now scrolls (horizontal) **NEW FEATURE IN V3**
+  (been meaning to do that since CLAv1)
+o Simulator resolution now setable in the Config dialog.
+o Can now set probes in the logic analyser. Following the general theme
+  of v3, you can set multiple probes by selecting several primitives &
+  clicking on 'Set Probes'.
+o Logic Analyser working - can do full simulation of designs.
+  I guess this means that the simulator is full working now....at least
+  in batch mode (no interactive simulation at the moment).
+o Logic analyser now scrolls (horizontal) **NEW FEATURE IN V3**
+
+[8/7/95]
+o Simulator now allows access to accessories & stuff during simulation.
+o Logic Analyser updated & scrollable DURING simulation.
+o Save Configuration implemented **NEW FEATURE IN V3**.
+
+[9/7/95]
+o Logic Analsyer traces can now be re-ordered (drag/drop style). **NEW FEATURE IN V3**
+
+[10/7/95]
+o Added an extended resource loader to DULIB, so CLA now works on older machines
+  again. The loader handles colour icons and converts them into old style mono
+  icons on older machines, replacing rsrc_load, rsrc_free & rsrc_gaddr. Thanks to
+  Steve Sowerby for the resource loader routine.
+o Can now delete traces from the logic analyser (drag/drop style).
+
+[11/7/95]
+o Can now print (to metafile or printer) the contents of the logic analyser.
+
+[12/7/95]
+o Improved the logic analyser printing (now works for all devices and
+  adds scale as well).
+
+========================================================================
+Beta5 release sent out.
+========================================================================
+
+[15/7/95]
+o The CLA.INF configuration file is now always placed in the CONFIG.CLA\
+  directory.
+o Added labelled scale/grid to the logic analyser. Dead useful...the GDOS printout
+  of the logic analyser already had it, and it looked so nice I thought the
+  main logic analyser could do with it as well.
+
+[17/7/95]
+o Auto-router now avoids blocks as well as gates.
+
+[22/7/95]
+o Fixed a bug when merging designs / inserting library modules (all external
+  inputs were removed from the word generator).
+o Extended Merge Design to handle merging a design containing external inputs.
+o Fixed display bugs caused by de-selecting groups containing blocks.
+
+[7/8/95]
+o Optimised the schematic redraw routine to get faster window updates.
+o Added detection of VHDL blocks in designs & library modules.
+o VHDL block create icon added. **NEW FEATURE IN V3**
+
+[22/8/95]
+o Fixed bug with wire link redraws when moving H.I/O connectors.
+
+[18/10/95]
+o Fixed another bug when merging blocks and deleting inputs.
+  (Only did this 'coz I've actually got to use CLAv3 to do a design
+  tommorow)
+
+========================================================================
+Beta6 / General Release 1
+========================================================================
+

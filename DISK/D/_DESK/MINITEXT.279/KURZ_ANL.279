@@ -1,0 +1,178 @@
+=================================================================
+
+                          MINITEXT 2.79
+
+             Eine Textverarbeitung fÅr den Atari ST
+
+
+
+                      Autor: Heinrich Mîller
+                             Untere Dorfstraûe 16A
+                             D-3200 Hildesheim
+
+         Programmiersprache: GFA-Basic Interpreter 3.5
+                             GFA-Basic Compiler 3.5
+
+=================================================================
+                    ALLE RECHTE VORBEHALTEN.
+ DAS PROGRAMM IST FREI KOPIERBAR, DABEI DARF DAS COPYRIGHT ABER
+                     NICHT VERéNDERT WERDEN!
+          EINE GEWERBLICHE NUTZUNG IST NICHT GESTATTET!
+=================================================================
+
+
+Hallo Liebe Anwenderinnen und Anwender!
+
+MINITEXT ist ein  kleines handliches Textprogramm  und ermîglicht
+es Ihnen, schnell  und sicher  Ihre Texte  zu erfassen und auszu-
+drucken.
+
+MINITEXT soll folgende AnsprÅche erfÅllen:
+
+ - einfache Bedienung in den Grundfunktionen:
+   Starten-(laden)-schreiben-speichern-drucken-Ende
+ - Åberschaubar in der Funktionsvielfalt
+ - Anpassung an verschiedene Drucker
+
+Leistungsmerkmale:
+
+ - TextlÑnge maximal 6000 Zeilen.
+ - BlocklÑnge maximal 2000 Zeilen.
+ - ZeilenlÑnge bis zu 32767 Zeichen
+ - Einfache Bedienung Åber Tastatur oder Maus
+ - Blockoperationen
+ - Formatierung im Block- oder Flattersatz
+ - Suchen und ersetzen
+ - Textbausteine
+ - verschiedene Schriften mischbar
+ - Positionieren der Cursors mittels Cursortasten oder Maus
+ - Laden und Speichern immer im ASCII-Format
+ - Laden von WORDPLUS (.DOC) Dateien mîglich
+ - Zwischendurch AusfÅhren eines externen Programms
+ - umfangreiche Druckeranpassungen mîglich
+ - UnterstÅtzung der Festplatte
+ - UPN-Rechner integriert
+ - Teilweise Darstellung der Schrift entsprechend den Attributen
+   bei der Ausgabe auf dem Bildschirm (WYSIWYG).
+
+Neu in MINITEXT 2.7x:
+
+ - MenÅ und Tastenbelegung verbessert
+ - Wordwrap unter den MenÅfunktionen
+ - Block wird mit einem Muster hinterlegt
+ - Seitennummerierung
+ - Neue Tastenfunktionen  ^B, ^K, ^M, ^P und ^T
+ - Abbruch bei Einzelblattausgabe mîglich
+ - Schnellere Textausgabe im Editor
+ - Breitschrift wird absatzweise richtig formatiert
+ - Direktory in den Text einfÅgen
+
+Neu in MINITEXT 2.79:
+ - "Anwendung anmelden" wird unterstÅtzt
+ - DateiÅbernahme von anderen Programmen
+ - DateiÅbergabe an andere Programme (Externes PRG...)
+=================================================================
+
+Das Programm "MINITEXT 2.79" ist Shareware, daû bedeutet, daû das
+Programm frei kopiert und weitergegeben werden kann!
+
+Sollten Sie mit dem Programm zufrieden sein und es  benutzen,  so
+ist eine Shareware-GebÅhr von 20 DM fÑllig.
+
+Ich mîchte  Sie bitten, den Betrag  auf  mein Konto Nr. 160740035
+bei der Stadtsparkasse Hildesheim  (BLZ 25950001)  zu Åberweisen.
+Zur Not nehme ich auf 20 DM - Scheine oder Verechnungsschecks.
+
+Sind Sie interessiert an einer Bedienungsanleitung oder haben Sie
+eventuell  RÅckfragen  (vielleicht  zum  Druckertreiber..)?  Dann
+schicken  Sie  mir  bitte  auûer  den  20  DM  auch  eine  leere,
+formatierte  3,5 Zoll Diskette und einen  ausreichend frankierten
+RÅckumschlag!
+FÅr einen  normalen  Briefumschlag  genÅgt zur  Zeit  eine 1.70er
+Briefmarke.
+
+Ich sende Ihnen dann umgehend Ihre Diskette zurÅck mit:
+
+   1. Der Bedienungsanleitung (Åber 40K ASCII-Textdatei)
+   2. Der neuesten PD-Programmversion
+   3. Weiteren Druckertreibern fÅr die gÑngigsten Drucker
+   4. Meiner Telefonnummer fÅr Ihre RÅckfragen.
+
+Sollten  auf  einer eingereichten  Diskette Viren  auftauchen und
+Schaden verursachen, so behalte ich mir rechtliche Schritte vor.
+
+=================================================================
+
+Hier einige Hinweise fÅr die erste Benutzung:
+
+Hardware erforderlich: Atari ST mit Monochrommonitor und Drucker.
+
+    Zu dem Programm MINITEXT 2.7 gehîren folgende Dateien:
+
+      1. MTEXT2_7.PRG      - das eigentliche Programm
+      2. MTEXT2_7.RSC      - die dazugehîrige Resource-Datei
+      und
+      3. NL10_IBM.PRN      - die Druckeranpassung
+         (oder eine andere .PRN-Datei)
+
+    Gestartet wird es durch Doppelklick auf MTEXT2_7.PRG.
+
+Die beigefÅgte Druckeranpassung bezieht sich auf den Drucker "NL-
+10" von "Star" mit  IBM-Interface. Weitere Druckertreiber befin-
+den sich im Ordner "MTEXT.PRN".
+
+Es empfielt sich als erstes Sicherungskopien der Dateien anzufer-
+tigen (s. Atari-Handbuch).  Dazu  sollten Sie die obigen  Dateien
+zusammen  in das Wurzelverzeichnis  oder in einem Ordner  auf die
+Arbeitsdiskette (Festplatte) kopieren.
+
+Ist das Programm gestartet, versucht es die  passende "RSC"-Datei
+zu laden. Wird die Datei nicht gefunden,  so erscheint eine File-
+selectorbox  und Sie mÅssen den  richtigen  Ordner mit  der Datei
+"MTEXT2_7.RSC" îffnen und sie  durch Doppelklick, oder "OK", aus-
+wÑhlen.
+Danach wird, wenn vorhanden, eine Druckeranpassung (".PRN"-Datei)
+geladen.
+
+Nach der Start/Infobox gelangen  Sie automatisch  in den  Editor.
+Eine öbersicht Åber die Editorkommandos  bekommen Sie durch DrÅk-
+ken der "Help"-Taste.
+
+=================================================================
+Ab  der Version 2.1 habe ich einen UPN-Rechner eingebaut.  Da die
+weinigsten wissen wie ein solcher Rechner funktioniert, hier eine
+kurze ErlÑuterung:
+Einen UPN-Rechner (UPN = umgekehrte polnische  Notation)  erkennt
+man an der fehlenden Gleich-Taste(=), dafÅr ist  eine Enter-Taste
+vorhanden.
+Dieser Rechner verhÑlt sich in den eingebauten Funktionen wie ein
+Taschenrechner der Firma Hewlett-Packard. Es sind 4 Stackregister
+(= Ebenen  vorhanden)  x, y, z, und t vorhanden. Das  Register  x
+wird  immer  angezeigt. Mittels ENTER rutschen  alle  Ebenen eine
+tiefer: x nach y, y nach z, z nach t. Dabei bleibt x in x und der
+alte Wert in t geht verloren.
+Bei Rechenoperationen kehrt sich das Verfahren um: x und y werden
+zu x, z nach y, t nach z und t bleibt in t.
+
+Bedient wird der Rechner  Åber die Tastatur. Die ersten 4 Spalten
+entsprechen den Tasten  des Zehnerblocks,  z.B. CHS (=Vorzeichen-
+wechsel) ist  gleich  "(". Die Tasten fÅr die anderen  Funktionen
+werden angezeigt. Die Taste Insert  z.B. dient dazu ein Rechener-
+gebnis direkt in den Text, an Cursorposition, einzufÅgen.
+Durch anklicken  des Move-Balkens kann der Rechner auf dem  Bild-
+schirm verschoben werden. Die RÅckkehr in den Editor erfolgt Åber
+Insert, Esc oder durch anklicken des Schlieûfeldes.
+
+Hier einige Rechenbeispiele:
+ 4+5                  :  4 ENTER 5 +                = 9.0000
+ 8*6-9                :  8 ENTER 6 * 9 -            = 39.0000
+ Wurzel aus (3*3+4*4) :  3 ENTER * 4 Enter * + )    = 5.0000
+ (=Pythagoras, die Klammerzu-Taste steht fÅr die Quadratwurzel)
+ ZÑhlen               :  1 ENTER ENTER ENTER und dann immer +
+=================================================================
+Obwohl das Programm meiner  Meinung nach einfach zu bedienen ist,
+werden Sie aber nicht  alle  Mîglichkeiten  ausnutzen kînnen ohne
+die Bedienungsanleitung gelesen zu haben.
+Wenn Sie eine ausfÅhrliche Anleitung wÅnschen, dann siehe oben...
+
+Ich wÅnsche Ihnen erstmal viel Freude mit dem Programm.

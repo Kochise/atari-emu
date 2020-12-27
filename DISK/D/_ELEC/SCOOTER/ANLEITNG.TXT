@@ -1,0 +1,612 @@
+* BITTE AUSDRUCKEN * BITTE AUSDRUCKEN * BITTE AUSDRUCKEN * BITTE AUSDRUCKEN * 
+
+
+                            S C O O T E R - P C B                             
+                            =====================
+
+                            Demoversion 2.1 Color
+
+
+Die folgende Demodiskette ist voll funktionsf„hig bis auf das Speichern von 
+Platinen. Sie k”nnen also alles nach Herzenslust ausprobieren, auch das 
+Drucken, Plotten und den Autorouter. Um Ihnen den Einstieg in Scooter-PCB 
+ohne Handbuch etwas zu erleichtern, werden im folgenden Text die Men-
+punkte und die verwendeten Begriffe im "Telegrammstil" kurz erl„utert. An-
+schlieend finden Sie ein praktisches Beispiel, wie Sie mit der Demoversion
+eine kleine Platine entflechten k”nnen. Sie sollten diesen Text ausdrucken,
+da Sie sich unm”glich alles merken k”nnen (9 Seiten).
+
+Hardwarevoraussetzungen:
+========================
+
+Die Demoversion von Scooter-PCB l„uft auf allen Atari-ST, -STE und -TT 
+Rechnern mit mindestens 1 Megabyte RAM und beliebiger Aufl”sung (> 640*400
+Punkte). TOS-Versionen >= 1.4 werden empfohlen, sind aber nicht Voraussetzung.
+Diese Demoversion entspricht der Farbversion von Scooter-PCB. Sie
+untersttzt den 2-, 16- und 256-Farbenmodus des TT's, Falcons oder
+Grafikkarten.
+
+Die Disketten:
+==============
+
+Wenn Sie bis hierher gekommen sind, haben Sie entweder zwei Disketten vor sich 
+liegen, eine Programm- und eine Datendiskette, oder ein Verzeichnis auf der 
+Festplatte mit dem Namen SCOOTER.PCB.
+
+Folgende Programme sind enthalten:
+
+SCOOTER.PRG     - Scooter-PCB Hauptprogramm
+PRINTER.PRG     - Druckertreiber
+PLOTTER.PRG     - Plottertreiber
+TRANSFER.PRG    - Hilfsprogramm zur šbersetzung von Verbindungslisten
+PLATINE.PRG     - Konverter fr PLATINE-ST-Dateien
+
+Zus„tzlich befinden sich dort zwei Verzeichnisse mit den Namen "MAKROS" und 
+"PLATINEN". Im Verzeichnis "MAKROS" finden Sie eine kleine Auswahl der ber 
+500 mitgelieferten Bauteile. Im Ordner "PLATINEN" befinden sich einige Bei- 
+spielplatinen sowie Platinen, auf denen einige der mitgelieferten Bauteile 
+abgebildet sind.
+
+
+Die Menpunkte:
+===============
+
+Wenn Sie Scooter-PCB starten, sehen Sie die v”llig mengesteuerte Oberfl„che 
+auf dem Monitor. H„ufig verwendete Funktionen befinden sich im Seitenmen 
+neben dem Fenster, so da sie mit der Maus schnell erreicht werden k”nnen. 
+Weniger h„ufig verwendete befinden sich im Hauptmen oberhalb des Fensters.
+
+Hier nun die Kurzbeschreibung aller Menpunkte im Hauptmen:
+
+Desk:                   Informationen ber Scooter-PCB
+=====
+
+Datei:
+======  
+neue Platine:           Arbeitsspeicher l”schen
+Platine laden:          Laden einer Platine
+Platine sichern:        Sichern einer Platine (nicht in Demoversion)
+sichern als...:         unter einem anderen Namen speichern (nicht in Demo- 
+                        version)
+
+Verbindungsliste laden: Laden einer Verbindungsliste im Multiwire-Format
+Datei l”schen:          Datei l”schen
+=> Druckprogramm:       Wechseln zum Druckprogramm PRINTER.PRG
+=> Plotprogramm:        Wechseln zum Plottertreiber PLOTTER.PRG
+Ende:                   Programm beenden
+
+Makro:
+======
+... laden:              Laden eines Makros. Linke Maustaste: plazieren. 
+                        Rechte Maustaste: drehen. 
+... laden zum ndern:   Laden eines Makros. Makro kann nun editiert werden.
+... sichern:            Sichern im Makroformat.
+Makro l”schen:          L”schen eines Makros auf der Platine.
+Name „ndern:            Makros Namen zuweisen (z.B. IC1).
+Wert „ndern:            Makros Werte zuweisen (z.B. 100nF).
+SMD-Layerwechsel:       Transfer eines Makros auf die jeweils andere Plati- 
+                        nenoberfl„che (z.B. SMD-Bauteil von der L”t- auf die 
+                        Bauteilseite).   
+
+Raster:
+=======
+sichtbar:               Hintergrundraster ein- oder ausblenden
+Einheit:                Einheit der angezeigten Koordinaten w„hlen. Hier wird 
+                        nicht die Rastergr”e auf Millimeter eingestellt, 
+                        sondern nur die Einheit der rechts oben eingeblende- 
+                        ten Mauskoordinate.
+Raster: 0.050":         Einstellen des Hintergrundrasters. Wird dieser Men-
+                        punkt angew„hlt, so erscheint eine Dialogbox, in die  
+                        der gewnschte Rasterwert eingegeben werden kann.     
+                        Hier k”nnen auch Millimeter-Raster eingestellt wer-
+                        den. Geben Sie dazu z.B. "2.75mm" ein.
+ 0.001"
+   :                    Voreingestellte Rasterwerte zur schnellen Anwahl.
+ 0.500"
+
+Pins:
+=====
+Namen sichtbar:         Ein- oder ausblenden der Pin/SMD-Namen
+Auendurchmesser:       Auendurchmesser fr Pins einstellen
+Bohrdurchmesser:        Bohrdurchmesser fr Pins einstellen
+Pinform:                Auswahl der m”glichen Pinformen
+Auendurchmesser:       Auendurchmesser fr Vias einstellen
+Bohrdurchmesser:        Bohrdurchmesser fr Vias einstellen
+Viaform:                Auswahl der m”glichen Viaformen
+SMD:                    Gr”e der SMD-Pads einstellen
+
+Breite:                 Linienbreite der Leiterbahnen festlegen.
+=======
+
+Extras:
+=======
+Textgr”e:              Textgr”e festlegen
+Text „ndern:            ndern von bestehenden Texten
+Textgr”e „ndern:       ndern der Textgr”e von bestehenden Texten
+Leiterbahnbreite:       Breite bereits verlegter Wire-Segmenten „ndern
+L”taugen „ndern:        Nachtr„gliches ndern von Pins/Vias
+SMD-Pad „ndern:         Nachtr„gliches ndern von SMD-Pads
+
+Layer wechseln:         Element auf den aktuellen Layer transferieren mit 
+                        L”schen berflssiger Vias
+Spule erzeugen:         Erzeugen einer Leiterbahnspule
+Puffergr”e:            Einstellen der internen Puffergr”e
+Nullpunkt setzen:       Nullpunkt der Koordinatenanzeige setzen
+Dichte-Verteilung:      Luftliniendichte der Platine anzeigen
+Statistik:              Platinenstatistik
+Layer umbenennen:       aktuelle Ebene umbenennen
+Fllmuster „ndern:      ndern des Darstellungsmusters eines Layers
+Tabellen „ndern:        Hiermit k”nnen die voreingestellten Pop-Up-Mens ge- 
+                        „ndert werden und h„ufig ben”tigte Werte abgelegt 
+                        werden.
+Voreinstellung...:      Voreinstellung von Scooter-PCB beeinflussen und ab- 
+                        speichern. Pfade „ndern.
+
+
+Layer:                  Aktiven Layer ausw„hlen.
+======
+Hinweis: Ein Layer kann grunds„tzlich immer mit den Funktionstasten gewech- 
+selt werden, auch w„hrend der Bearbeitung einer Funktion (z.B. "Wire"). Mit 
+F1 bis F10 werden die Layer 1 bis 10 und in Verbindung mit der Shift-Taste 
+die Layer 11 bis 20 angew„hlt. 
+
+Autorouter:
+===========
+Ratsnest:               Luftlinienl„ngen durch Neuverknpfungen minimieren 
+                        (Reconnect)
+Einseitig:              Die Platine soll einseitig geroutet werden
+Doppelseitig:           Die Platine soll doppelseitig geroutet werden
+Router-Strategie:       W„hlen des Knickwinkels (90 Grad oder 45-90 Grad), 
+                        Vorzugsrichtung und Gte der Einhaltung der Vorzugs- 
+                        richtung.
+Leiterbahn:             Breite der Autorouter-Leiterbahn.
+Abstand:                Vom Autorouter einzuhaltender Sicherheitsabstand zu 
+                        anderen Elementen
+Raster:                 Gr”e des Routing-Rasters einstellen. 0.050" ist 
+                        Standard.
+Route Platine:          Gesamte Platine entflechten, Abbruch mit Escape-Taste
+Route Bereich:          Nur Luftlinien innerhalb des markierten Bereiches 
+                        autorouten
+Route Signal:           Ein komplettes Signal autorouten. Rechte Maust.: Rip-Up
+Route Luftlinie:        Eine Luftlinie autorouten. Rechte Maustaste: Rip-Up
+
+
+
+Die Funktionen des Seitenmens                       
+==============================
+
+M-Load:   siehe "Makro/...laden".
+Reload:   Das zuletzt geladene Bauteil erneut laden.
+Window:   Sichtbereich festlegen. Diese Funktion kann auch w„hrend der Be- 
+          nutzung einer anderen Funktion aufgerufen werden.
+Zoom:     Bildausschnitt vergr”ern.
+Visible:  Layer ein- oder ausblenden.
+Show:     Blinkende Anzeige eines kompletten Signals.
+Move:     Ein Element verschieben. Rechte Taste zum Drehen.
+M-Move:   Ein Makro verschieben. Rechte Taste zum Drehen.
+B-Move:   Einen Block markieren und verschieben. Rechte Taste zum Drehen.
+Copy:     Kopieren von Elementen oder Makros.
+Delete:   Ein Element l”schen. Nur sichtbare Elemente sind l”schbar. Rechte 
+          Taste "Probel”schen".
+Rip-Up:   Leiterbahnzug l”schen.          
+Split:    Teilen eines Wire-Elementes.
+Kreis:    Einen Kreis plazieren. Rechte Taste: gefllt oder leer.
+Rechteck: geflltes Rechteck plazieren (z.B. fr Sperrfl„chen)
+Text:     Text plazieren. Rechte Maustaste: drehen, spiegeln
+Pin:      Pin plazieren. Rechte Maustaste: Form „ndern
+Via:      Via plazieren. Rechte Maustaste: Form „ndern
+SMD-Pad:  SMD-Pad plazieren. Rechte Maustaste: drehen
+Wire:     Wire verlegen. Rechte Maustaste: Knickwinkel einstellen. Space-Ta- 
+          ste: Knickwinkel umklappen. Beim Layerwechsel mit Funktionstasten 
+          werden Vias automatisch gesetzt.
+Route:    Manuelles Routen einer Luftlinie, wie bei "Wire".
+Signal:   Manuelle Eingabe der Luftlinien mit der Maus.
+Name:     Pin, SMD, Signal oder Makro einen Namen oder Bauteilwert zuweisen.
+Info:     Informationen ber ein Element anzeigen lassen.
+Fill:     Fl„chenfllfunktion
+Outline:  Fr„sweg berechnen
+Mirror:   Text nachtr„glich spiegeln
+WCircle:  Kreise mit aktueller Leiterbahnbreite zeichnen
+Rotate:   Bauteil beliebig drehen
+N-Eck:    Zeichnen von N-Ecken mit WCircle
+
+Export:
+Import:
+Copy-Block: Diese Funktionen finden Sie nur in der Vollversion von 
+            Scooter-PCB. Sie erm”glichen das Speichern und Laden von 
+            Platinenbereichen zur Weiterverwendung in anderen Platinen.  
+
+Tastatur-Kommandos:
+===================
+
+Grunds„tzlich kann jeder Menpunkt per Tastatur aufgerufen und selbst 
+konfiguriert werden. Wie das geht, erfahren Sie im folgenden Abschnitt. Fol- 
+gende Tastatur-Kommandos sind fest implementiert:
+
+Escape:                 Funktion abbrechen
+F1 bis F10:             Layer 1 bis 10 anw„hlen
+Shift+ (F1 bis F10):    Layer 11 bis 20 anw„hlen
+1 bis 5:                Seitenmenspalte 1 bis 5 anw„hlen
+Cursortasten:           Bildschirm scrollen
+Shift+Cursortasten:     Bildschirm seitenweise verschieben
+Clr-Home:               Bildschirm neu zeichnen
+Shift+Clr-Home:         Window-Totale, neu zeichnen
+Space:                  Wire-Knickwinkel umklappen
+Return:                 Wire-Knickwinkel w„hlen
+
+
+Menzusammenstellung:
+=====================
+
+Wenn bei Ihnen die Zusammenstellung der Mens m”glicherweise etwas anders 
+aussieht, so deutet das auf die einfache Editierbarkeit der Menpunkte hin. 
+Wird ein Menpunkt mit gehaltener Shift-Taste mit der Maus angeklickt, so
+erscheint eine Dialogbox, in die der Mentitel und eine von Scooter-PCB zu
+interpretierende Anweisung enth„lt.
+
+Probieren Sie doch einmal folgendes aus:
+- Suchen Sie sich einen freien Seitenmenpunkt in Spalte 2 aus,
+- halten Sie eine Shift-Taste gedrckt und klicken Sie diesen Menpunkt an,
+- tragen Sie in der Zeile "Mentitel:" den Text "Wire 2mm" ein,
+- tragen Sie in der Zeile "Befehl:" den Text "WIRE 2.0MM" ein,
+- klicken Sie das Feld "Taste:" an und bet„tigen Sie die Taste "L",
+- klicken Sie schlielich "OK" an.
+
+In Ihrem Seitenmen finden Sie jetzt den neuen Menpunkt "Wire 2mm". Wenn Sie 
+ihn mit der Maus anklicken, k”nnen Sie nun 2 Millimeter breite Leiterbahnen 
+verlegen. Drcken Sie die Escape-Taste, wird die Funktion verlassen. Sie 
+k”nnen die Funktion auch mit der Taste "L" anw„hlen.
+
+
+Beispiel: Entwurf einer Platine
+===============================
+
+Gehen wir einmal davon aus, da Sie einen Schaltplan haben und davon eine 
+Platine anfertigen wollen. Wie geht man am Besten vor?
+
+1)  Zuerst berprft man, ob alle Geh„usetypen, die verwendet werden sollen,
+    bereits in der Bibliothek definiert sind. Wenn nicht, mu man sie selbst
+    definieren.
+
+2)  Die Platinengr”e wird definiert, die ben”tigten Bauteile werden plaziert
+    und ihnen Namen und Werte gegeben (z.B. IC1, 7400).
+
+3a) Eine Verbindungsliste, die von einem Schaltplanprogramm erzeugt wurde, 
+    wird eingelesen oder
+3b) eine Verbindungsliste, die mit einem Textverarbeitungsprogramm erstellt 
+    wurde, wird mit dem Programm TRANSFER.PRG bersetzt und eingelesen oder
+3c) man verzichtet auf eine Verbindungsliste und zieht Luftlinien mit der 
+    Funktion SIGNAL von Pin zu Pin oder
+3d) man verzichtet auf Verbindungslisten und Luftlinien und zeichnet unmit- 
+    telbar Leiterbahnen.
+
+4)  Routen der Luftlinen, entweder manuell mit der Funktion "Route" oder mit 
+    dem Autorouter.
+
+5)  Drucken/Plotten der Platine.
+
+Diese Vorgehensweise stellt nur ein grobes Prinzip dar, wie man am Besten zu 
+einem Ergebnis kommt. Selbstverst„ndlich mu diese Reihenfolge nicht streng 
+eingehalten werden. Sie k”nnen nachtr„glich immer noch Bauteile verschieben, 
+Leiterbahnen l”schen, zus„tzliche Verbindungen herstellen oder irgendwelche 
+anderen Aktionen durchfhren.
+
+
+šbung: Routen einer Platine
+===========================
+
+Auf der Datendiskette finden Sie einige Beispielplatinen, die die unter- 
+schiedlichen Entwicklungsstadien eines 8031-Mikrocontrollerboards darstellen.
+
+8031_1.PLT:     Platine mit Bauteilen und Platinenumrissen
+8031_2.PLT:     Platine mit Luftlinen
+8031_3.PLT:     geroutete Platine
+8031_4.PLT:     fertige Platine mit Massefl„che
+
+Eine „hnliche Platine soll jetzt von Ihnen erzeugt werden. Im folgenden er- 
+halten Sie alle ben”tigten Anweisungen. Sollte es irgendwo Schwierigkeiten 
+geben, so k”nnen Sie mit den vordefinierten Beispieldateien weiterarbeiten.
+
+1. Platinengr”e definieren:
+----------------------------
+- Starten Sie SCOOTER.PRG noch einmal neu, um in einen einheitlichen Aus- 
+  gangszustand zu kommen und legen Sie die Datendiskette ein, wenn Sie mit 
+  Disketten arbeiten,
+
+- w„hlen Sie Layer "Platinengr”e" im Men "Layer" an,
+
+- w„hlen Sie den Menpunkt "Wire" im Seitenmen an,
+
+- klicken Sie mit der rechten! Maustaste und stellen Sie den Knickwinkel fr 
+  Wire-Segmente auf rechtwinklig ein ( 2. linkes Symbol von oben),
+
+- gehen Sie mit der Maus ungef„hr auf das Nullpunktkreuz und klicken Sie 
+  einmal mit der linken Maustaste, um den Startpunkt festzulegen.
+
+Es soll eine ca. 10cm breite und 8cm hohe Platine gezeichnet werden. Bewegen 
+Sie die Maus im Fenster, so wird eine rechtwinklige Leiterbahn mitgezogen. 
+Die Mauskoordinaten werden im Fenster rechts oben in Zoll angezeigt. Gehen 
+Sie mit der Maus zum Menpunkt "Raster/-Anzeige-Einheit-/mm" und klicken Sie 
+ihn an. Jetzt werden die Koordinaten in Millimetern angezeigt, das Raster 
+jedoch nicht ge„ndert.
+
+- Bewegen Sie die Maus ungef„hr zum Punkt X=100, Y=80. Dieser Punkt liegt
+  auerhalb des sichtbaren Bildausschnitts. Verschieben Sie ihn mit den
+  Cursortasten bis Sie den Punkt mit der Maus erreichen k”nnen. 
+
+- Wenn Sie alles richtig gemacht haben, befindet sich immer noch die Leiter- 
+  bahn an der Maus und wird mitgefhrt.
+
+- Klicken Sie diesen Punkt jetzt mit der linken Maustaste an, werden die 
+  Leiterbahnen abgelegt,
+
+- Fhren Sie die Maus zurck zum Nullpunkt und klicken Sie diesen zweimal an.
+  Hierzu mssen Sie wieder den Bildausschnitt verschieben.
+
+Wenn Sie alles richtig gemacht haben, haben Sie vier Linien plaziert, die ein 
+Rechteck bilden. Diese Linien wurden im Layer "Platinengr”e" abgelegt, bil- 
+den also die Auenumrisse der Platine. Layer sind vergleichbar mit trans-
+parenten Folien, die bereinander liegen, von denen jede einen Namen und eine
+Aufgabe erfllt. Bei der Ausgabe auf dem Drucker k”nnen Sie bestimmen, welche
+Ebenen gezeichnet werden sollen.
+
+- W„hlen Sie den Menpunkt "Window - Totale" an oder drcken Sie Shift + Clr 
+  Home. Die Platine wird bildfllend dargestellt.
+
+
+2. Bauteile laden:
+------------------
+Als n„chstes sollen die ben”tigten Bauteile geladen werden. Folgende Bauteile 
+werden ben”tigt:
+
+        Name       Wert       |    Geh„usetyp
+      ---------------------------------------------------
+        IC1        8031       |    IC\DIL40.MAC
+        IC2        74LS373    |    IC\DIL20.MAC
+        IC3        27128      |    IC\DIL28.MAC
+        Q1         12MHz      |    ANALOG\QUARZ_S.MAC
+        C1         30pF       |    ANALOG\C25.MAC
+        C2         30pF       |    ANALOG\C25.MAC
+        C3         10uF       |    ANALOG\ELKO25_S.MAC
+        R1         8.2K       |    ANALOG\R100.MAC
+        CON1                  |    STECKER\LST_1_16.MAC
+        CON2                  |    STECKER\LST_1_02.MAC
+
+
+- Klicken Sie "M-Load" im Seitenmen an. Es erscheint eine Fileselectorbox 
+  mit der das erste Bauteil geladen werden soll. W„hlen Sie den Ordner "IC" 
+  an und suchen Sie das Bauteil DIL40.MAC. Laden Sie es per Doppelklick.
+
+- Sie k”nnen das Bauteil nun mit der Maus verschieben und mit der rechten
+  Maustaste drehen. Plazieren Sie das Bauteil nun an einer beliebigen Stelle 
+  mit der linken Maustaste.
+
+- Fhren Sie die beiden zuvor genannten Schritte fr alle ben”tigten Bauteile 
+  durch.
+
+- Jetzt mssen den Bauteilen die richtigen Namen und Werte zugewiesen werden.
+
+- W„hlen Sie im Seitenmen "Name" und im erscheinenden Pop-Up-Men "Makro-
+  Name" an.
+
+- Bewegen Sie den Mauszeiger auf die Mitte eines Bauteils und klicken Sie es 
+  an. Anstelle des dort stehenden Namens (z.B. #1) geben Sie den richtigen 
+  Namen an (z.B. IC1).
+
+- Klicken Sie die anderen Bauteile an und geben Sie Ihnen ebenfalls die oben 
+  genannten Namen.
+
+- Wenn Sie den Bauteilen auch Ihre Bauteilwerte geben wollen, so wiederholen 
+  Sie den Vorgang mit dem Seitenmenpunkt "Name" - "Makro-Wert".
+
+- Normalerweise wrden Sie jetzt Ihre Platine sichern, um einen Ausgangspunkt 
+  fr die darauffolgende Aktion zu haben. Leider geht das hier nicht.
+
+Tip: Bauteile k”nnen nicht nur in 90-Grad-Schritten gedreht werden. Die
+Funktion "Rotate" kann Bauteile um beliebige Winkel drehen.
+
+3. Verbindungsliste laden:
+--------------------------
+Nachdem Sie Ihre Bauteile geladen und mit Namen versehen haben, kann die be- 
+reits vorgefertigte Verbindungsliste geladen werden. Wie solche Listen er- 
+zeugt werden k”nnen, wrde den Rahmen an dieser Stelle sprengen. Sollten Sie 
+es nicht geschafft haben, eine Platine mit diesen Bauteilen zu erstellen, so 
+laden Sie doch einfach die gleichwertige Datei "8031_1.PLT".
+
+- W„hlen Sie den Menpunkt "Datei / Verbindungsliste laden" an, und laden Sie 
+  die Datei 8031.MLT aus dem Verzeichnis "PLATINEN".
+
+Wenn alle Bauteile richtig bezeichnet worden sind, wird die Verbindungsliste 
+geladen und verbindet alle Bauteile mit Luftlinien. Bauteile k”nnen jetzt mit 
+der Funktion "M-Move" nachtr„glich verschoben und gedreht werden, um eine 
+m”glichst gute Plazierung der Bauteile zu erreichen. Mit Clr-Home kann ein
+Neuzeichnen des Bildschirms ausgel”st werden.
+
+- Mit der Funktion "Autorouter - Ratsnest" k”nnen die Luftlinienl„ngen mini- 
+  miert werden.
+
+An dieser Stelle wrde man die Platine normalerweise wieder sichern, aber das 
+geht ja nicht.
+
+
+4. Routen der Platine:
+----------------------
+Auch wenn Sie bis jetzt nicht hierher gekommen sind, k”nnen Sie das Routen 
+der Platine ausprobieren. Laden Sie in diesem Fall die Datei "8031_2.PLT".
+
+- Vergr”ern Sie einen Ausschnitt der Platine mit "Zoom".
+
+- Stellen Sie mit der Taste "F1" den aktuellen Layer auf L”tseite ein,
+
+- Stellen Sie die gewnschte Leiterbahnbreite (z.B. 0.016") im Men "Breite" 
+  ein.
+
+- W„hlen Sie den Seitenmenpunkt "Route" an,
+
+- Gehen Sie mit der Maus auf eine Luftlinie Ihrer Wahl und klicken Sie sie 
+  an. Dort, wo das n„chstgelegene Luftlinienende war, h„ngt jetzt Ihre Leiter- 
+  bahn fest. Das andere Ende ist frei beweglich und kann mit der Maus pla- 
+  ziert werden.
+
+- Verlegen Sie die Leiterbahn mit der Maus. Mit der rechten Maustaste k”nnen
+  Sie den Knickwinkel einstellen. Wenn Sie das Ende der Luftlinie erreicht
+  haben, ist die Verbindung hergestellt.
+
+- Nehmen Sie eine andere Luftlinie und wiederholen Sie den Vorgang. Sollten 
+  Sie w„hrend des Routens den Layer wechseln, so fgt Scooter-PCB automatisch 
+  Durchkontaktierungen ein.
+
+Sollten Sie etwas mehr Vergr”erung wnschen, so k”nnen Sie jederzeit, auch 
+w„hrend "Route" aktiv ist, die Aufl”sung mit "Window - Vor" „ndern. Auch mit 
+"Zoom" ist dies m”glich, jedoch beendet dies die Route-Funktion. Mit den 
+Cursortasten k”nnen Sie bequem den sichtbaren Bereich verschieben. Sollten 
+Sie die immer noch eingeblendeten Bauteilumrisse st”ren, so schalten Sie  
+doch mit "Visible"  Layer "Bauteile Bauteils." aus.
+
+Selbstverst„ndlich kann auch jederzeit die Dicke der Leiterbahn mit dem Me- 
+npunkt "Breite" eingestellt werden.
+
+Wenn Sie Leiterbahnen l”schen wollen, k”nnen Sie die "Delete"-Funktion ver- 
+wenden. Beim ersten L”schversuch wird aus der Leiterbahn wieder eine Luftli- 
+nie. Soll auch sie gel”scht werden, so erscheint vorher eine Warnmeldung, die 
+darauf hinweist, da ein Signal getrennt wird. Solche Warnmeldungen verhin- 
+dern bei "Route" und "Wire" auch, da ungewollte Verbindungen mit anderen 
+Signalen hergestellt werden.
+
+Eine andere komfortablere M”glichkeit, Leiterbahnen zu l”schen, bietet die 
+"Rip-Up"-Funktion. Hier wird ein ganzer Leiterbahnzug zwischen zwei L”taugen 
+in eine Luftlinie umgewandelt.
+
+Sollen Objekte wie z.B. Leiterbahnen verschoben werden, kann die "Move"-
+Funktion verwendet werden. 
+
+Wenn Sie auch einmal den Autorouter ausprobieren wollen, gehen Sie einfach
+zum Menpunkt "Autorouter - Route Platine" und klicken ihn an. Sofern noch
+Luftlinien vorhanden sind, wird er sie, wenn m”glich, verlegen. Wenn Sie 
+etwas mehr mit dem Autorouter ben wollen, k”nnen Sie jederzeit die 
+8031_2.PLT-Datei laden.
+
+Auch das Fl„chenfllen k”nnen Sie ausprobieren. Laden Sie die fertig gerou- 
+tete Platine "8031_3.PLT" und aktivieren Sie die Funktion "Fill" im Seiten- 
+men. W„hlen Sie in der Dialogbox "Fl„che anlegen" an und zeichnen Sie die 
+Umrisse der zu fllenden Fl„che, z.B. von der Gr”e der Platine. Wenn Sie den 
+Endpunkt des Polygons zweimal anklicken, wird die Funktion abgeschlossen. 
+Gehen Sie jetzt erneut in die Funktion "Fill", stellen Sie die gewnschten 
+Parameter ein (oder lassen Sie die alten Werte) und starten mit "OK". Nach 
+einiger Rechenzeit haben Sie das Ergebnis dann auf dem Bildschirm.
+
+Wenn Sie im Besitz einer Bohr-Fr„s-Anlage sind, k”nnen Sie sogar Platinen
+fr„sen, um schnell zu einem Prototyp zu kommen. Der Fr„sweg wird mit der
+Funktion "Outline" im Seitenmen berechnet. Natrlich sind alle diese
+Funktionen im Lieferumfang von Scooter-PCB enthalten.
+
+5. Drucken/Plotten der Platine:
+-------------------------------
+Um eine Platine zu drucken oder zu plotten, mssen Sie das PRINTER.PRG oder 
+PLOTTER.PRG starten. Leider k”nnen Sie die eben entworfene Platine nicht aus- 
+drucken, da das Speichern in der Demoversion nicht m”glich ist.
+
+Laden Sie daher eine der Beispielplatinen und stellen Sie den gewnschten 
+Drucker- oder Plottertyp ein. Im mittleren Feld k”nnen Sie anw„hlen, welche 
+Lagen ausgedruckt werden sollen. Werden auch andere Layer verwendet, so k”n- 
+nen diese im nebenstehenden Feld zus„tzlich eingeblendet werden. Wenn in der 
+untersten Zeile die richtige Schnittstelle angew„hlt wurde, mte mit einem 
+Druck auf "Drucken" oder "Plotten" die Ausgabe funktionieren.
+
+
+Fazit:
+======
+
+Leider konnte hier nur ein Bruchteil der M”glichkeiten von Scooter-PCB be- 
+schrieben werden. Wesentlich besser werden Sie natrlich im Handbuch der 
+Vollversion auf ca. 150 Seiten informiert. Sollten noch Fragen bei der Ar- 
+beit mit Scooter-PCB auftreten, so k”nnen Sie uns erreichen unter:
+
+        HK-Datentechnik
+        Hubert Kahlert
+        Heerstrae 44
+        Tel.: 02133 / 9 12 44
+        Fax:  02133 / 9 33 19
+        
+        D-41542 Dormagen
+
+Wir wnschen Ihnen viel Spa bei der Arbeit mit Scooter-PCB!
+
+- HK-Datentechnik -
+
+
+Lieferbare Versionen:
+=====================
+
+* Scooter-PCB Color, Layerdarstellung in 16 Farben:     DM 349,-
+
+* Scooter-PCB Monochrom, Layerdarstellung schwarzwei:  DM 279,-
+
+zzgl. Porto und Verpackung (Nachnahme zzgl. DM 13,-, Vorauskasse zzgl. DM 7,-)
+
+
+Begriffsdefinitionen:
+=====================
+
+Mil:    1 Mil = 1/1000 Zoll = 0.0254 mm ist das Grundraster von Scooter-PCB
+
+Pin:    Mit Pins werden L”taugen fr Bauteile bezeichnet. Auen- und Bohr- 
+        durchmesser sind bis 255 Mil m”glich. Es stehen die Formen Quadrat, 
+        Kreis, Achteck und L„nglich zur Verfgung. Einem Pin kann ein Name 
+        zugewiesen werden (max. 8 Zeichen).
+
+Via:    Via steht fr eine Durchkontaktierung. Ist „hnlich wie ein Pin, aber 
+        ohne Name.
+
+SMD:    Ein SMD-Pad ist eine rechteckige Kontaktfl„che fr ein oberfl„chen- 
+        motiertes Bauelement. Die maximale Gr”e betr„gt 255 Mil * 255 Mil. 
+        Ein Name kann zugewiesen werden.
+
+Wire:   Wire ist eine Linie, die fr Leiterbahnen, Bauteilumrisse, Platinen- 
+        umrisse usw. verwendet werden kann. Die jeweilige Funktion ist ab- 
+        h„ngig vom Layer, auf dem sie plaziert ist. Breiten bis 255 Mil sind 
+        m”glich.
+
+Layer:  Scooter-PCB verwaltet 20 logische Layer. Darunter sind:
+        L”tseite:               - Unterseite der Platine
+        Bauteilseite:           - Oberseite der Platine
+        L”tauge:                - hier werden Pins abgelegt
+        Durchkontaktierung:     - hier werden Vias abgelegt
+        Luftlinie:              - Luftlinien zur Anzeige unverbundener
+                                  Signale
+        Bauteil Bauteilseite:   - Bauteilumrisse fr Bauteile auf der         
+                                  Bauteilseite
+        Bauteil L”tseite:       - Bauteilumrisse fr Bauteile auf der         
+                                  L”tseite (z.B. SMD-Bauteile)
+        Platinengr”e:          - Auenumrisse der Platine
+        Sperrfl„che L”tseite:   - Autoroutersperrfl„chen der L”tseite         
+        Sperrfl. Bauteilseite:  - Autoroutersperrfl„chen der Bauteilseite     
+        Sperrfl. Durchkontakt.: - Autoroutersperrfl„chen fr Vias
+        Massefl„che:            - Auenumrisse der Massefl„chen
+        Fr„sweg L”tseite:       - Fr„swege der L”tseite
+        Fr„sweg Bauteilseite:   - Fr„swege der Bauteilseite
+
+Element:
+        Pin, Via, Wire, Rechteck, Kreis, Text und SMD-Pads sind die zur Ver- 
+        fgung stehenden graphischen Elemente. Aus ihnen werden Platinen oder 
+        Makros gebildet. Ein Element wird immer auf einem Layer plaziert.
+
+Raster: Die aktuell angezeigten Rasterpunkte dienen als Aufh„ngepunkte fr 
+        Elemente.
+
+Makro:  Ein Makro ist ein zusammenh„ngendes Objekt aus Elementen. Mit Makros 
+        k”nnen Bauteile definiert werden, die beliebig oft in Platinen ein- 
+        gefgt werden k”nnen.
+
+Signal: Ein Signal ist eine zusammengeh”rige Gruppe von Elementen, die das 
+        gleiche elektrische Potential aufweisen. Dazu geh”ren Pins, Vias, 
+        Leiterbahnen und Luftlinien. Einem Signal kann ein Name zugewiesen 
+        werden (z.B. "GND").
+
+DRC:    Durch den Design-Rule-Check-Mechanismus (DRC) k”nnen Kurzschlsse 
+        zwischen verschiedenen Signale erkannt werden. Das Auftrennen eines 
+        Signales bewirkt ebenfalls eine Warnmeldung.
+
+Diese Demodiskette ist Public-Domain und darf nur kostenlos weitergegeben 
+werden. Die auf der Diskette enthaltenen Texte und Dateien drfen nicht ge- 
+„ndert werden!

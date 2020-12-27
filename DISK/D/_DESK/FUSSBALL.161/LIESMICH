@@ -1,0 +1,197 @@
+            **************************************************
+            *   Fussball-ST  (Version 1.61 PUBLIC DOMAIN)    *
+            *               1988  Rainer Duda                *
+            *                                                *
+            * Falls Ihnen dieses Programm gefÑllt und Sie es *
+            *   gerne spielen, dann schicken Sie mir bitte   *
+            *    20 DM und eine Diskette mit ausreichend     *
+            * frankierten RÅckumschlag an folgende Adresse:  *
+            *                                                *
+            *                 Rainer Duda                    *
+            *             Johannes-Haw-Str. 14               *
+            *                D-5502 Schweich                 *
+            *                                                *
+            * Als Gegenleistung erhalten Sie dann den Source *
+            *          der letzten PD-Version V1.61.         *
+            *                                                *
+            * öber eine neue Verkaufsversion informieren Sie *
+            *  sich bitte beim Autor dieses Programmes bzw.  *
+            *     im 'LIESMICH.170' auf dieser Diskette.     *
+            *                                                *
+            **************************************************
+
+Dieses Programm simuliert die Fussball-Bundesliga. Sie Åbernehmen das 
+Management eines 3.Liga-Clubs und mÅssen versuchen, durch sportlichen Erfolg
+sowie finanziellen Gewinn bis in die 1.Liga zu kommen und dort sogar Meister
+zu werden. Der Haken an der Sache : 63 andere Mannschaften versuchen es auch !!
+Der besondere Reiz an diesem Programm ist sicherlich die mîgliche Spieler-
+anzahl von bis zu 4 Mitspielern. Packende Duelle stehen dann an.
+Gespielt wird eine komplette Liga mit 30 Spieltagen. Da kann viel passieren.
+Je nach Spielstufe ist das Spiel ziemlich schwer. Man sollte lieber îfters 
+Spielstufe 1 gespielt haben, bis man sich weiter wagt. Was nÅtzt einem
+ein sportlicher Erfolg, wenn die Finanzen am Ende sind und der Verein
+zwangsweise absteigen muû, weil er keine Lizenz mehr bekommt.
+Wichtig sind auch die Pokalrunden. Reizvolle Vergleiche, mîglicherweise
+sogar mit Mitspielern stehen auf dem Plan. Nur einer kann gewinnen, es geht
+bis zum Elfmeterschieûen.
+
+          Na !!! Wer gewinnt die nÑchste Liga und den Pokal ??? 
+
+Hardwarevoraussetzungen: - Atari ST (1 Megabyte / ROM-TOS)
+                         - hîchste Auflîsung (640*400 Bildpunkte)
+
+
+Start des Programmes :
+
+Nach dem Laden des Programms durch Doppelklick auf 'Fussball.prg' erscheint 
+eine Infomeldung des Verfassers. Nach DrÅcken einer Taste fragt das Programm  
+ab, ob ein gespeicherter Spielstand geladen werden soll. Bei Bejahung wird
+der Benutzer nach dem Namen des Spielstandes gefragt. Soll kein Spielstand
+geladen werden, muû der Benutzer zunÑchst die Anzahl der Mitspieler anklicken
+(1-4). Danach muû jeder Spieler seinen Namen eingeben und seine Mannschaft
+aus 64 Vereinen heraussuchen. Die 64 Vereine wurden auf 4 Tafeln aufgeteilt.
+Durch Klicken auf die 'Close-Window-Box' an der linken oberen Fensterecke 
+erscheinen die nÑchsten 16 Vereine.
+Nachdem die Initialisierung abgeschlossen ist, geht's mit der Eingabe der
+Spielstufe (1 = leicht    3 = sehr schwer) los. Jeder Spieler findet sich,
+falls kein Spielstand geladen wurde, in der 3.Liga wieder. Er hat je nach
+Spielstufe unterschiedlich viel Kapital zur VerfÅgung sowie 13 Spieler.
+Dann heiût es 30 lange Spieltage erfolgreich durchzustehen. Im Spielgeschehen
+werden neben den Finanzen sowohl die TorschÅtzen als auch nach Schluûpfiff 
+die roten und gelben Karten angezeigt. Ein '*' vor den Spielern mit gelben
+Karten bedeutet, daû der Spieler im nÑchsten Spiel gesperrt ist. Bei 'ROT' 
+ist der Spieler sowieso gesperrt. Ab dem 1.Spieltag kann man seinen Spiel-
+stand abspeichern.
+
+Die abgespeicherte Datei kann sehr lang werden (50 KByte und mehr). öberspielen
+Sie sich das Programm auf eine zweiseitige Diskette oder legen Sie sich eine
+Spielstanddiskette an. Achten Sie auch auf die voreingestellte Ordnerstruktur
+beim Abspeichern in der File-Selector-Box. Eventuell den voreingestellten
+Ordner erst erzeugen.
+
+Nach dem letzen Spieltag wird der TorschÅtzenkînig gekrînt und man erhÑlt eine
+Abschluûstatistik, in der die Spieler nach ihrem Erfolg bewertet werden.
+Dabei kann es natÅrlich vorkommen, daû ein Spieler zwar diese eine Saison 
+gewonnen hat, er aber trotzdem von einem anderen Spieler durch dessen vor-
+herigen Erfolge noch auf einen hinteren Platz verdrÑngt wird. Es zÑhlt ja
+auch die GleichmÑûigkeit der Erfolge. 
+
+            ErklÑrung der Pull-Down MenÅs ( Version 1.6 / 1.61 ):
+
+1. DESK     : Hier befindet sich die Info-Box.
+  
+2. SPIEL    : SPIELSTUFE 1 : 
+              SPIELSTUFE 2 : Bestimmung der Spielstufe ( 3 = schwer )
+              SPIELSTUFE 3 :
+              NEUSTART     : Neustart des Programms
+              SICHERN      : Abspeichern des Spielstandes (ab 1.Spieltag)
+              ENDE         : Programm wird beendet.
+
+3. TRANSFER : KAUF         : Spieler aus dem Transfermarkt kînnen gekauft
+                             werden. Angezeigt werden : 
+              VERKAUF      : Verkauf von Spielern
+              Anmerkung :    Es erfolgen Sicherheitsabfragen, falls Sie 
+                             einen Spieler kaufen bzw. verkaufen wollen.
+                             - max. 3 Transfers pro Zug mîglich
+                             - max.17 Spieler pro Mannschaft
+                             - min.11 Spieler pro Mannschaft
+                     
+4. LIGA     : BILANZ                : Es erscheint ein 'Verein-Auswahl-Window'.
+                                      Durch DrÅcken auf die 'Full-Window-Box'
+                                      rechts oben kann durch die 4 Ligen nach
+                                      dem Club gesucht werden. Ein Druck auf 
+                                      'Close-Window-Box' links oben bricht
+                                      die Funktion ab.
+                                      WÑhlt man einen Verein an, erscheint
+                                      eine tabellarische Bilanz mit Angaben 
+                                      Åber bisherige Ergebnisse, Zuschauer u.a.
+                                      Ein Druck auf die 'Close-Window-Box'
+                                      beendet diese Programmfunktion und kehrt
+                                      zum Programmhauptteil zurÅck.
+                                      Ein Druck auf die 'Full-Window-Box' ruft
+                                      die Bilanzauswahl erneut auf. 
+              POSITION              : Es erscheint ein 'Verein-Auswahl-Window'.
+                                      WÑhlt man einen Verein an, wird der Club
+                                      mit einem '*' gekennzeichnet. Ein Druck
+                                      auf die 'Full-Window-Box' rechts oben
+                                      ruft fÅr die gewÑhlten Vereine (1-3) ein
+                                      Liniendiagramm der TabellenplÑtze 
+                                      wÑhrend einer Saison auf. 'Close-W-B'
+                                      bricht wie gewîhnlich die Funktion ab.
+                                      Dickere Striche bei der 3. und/oder 14.
+                                      Position markieren die Aufstiegs- bzw.
+                                      die Abstiegszone. 
+                                      Nach Betrachten der mîglicherweise
+                                      lustig aussehenden Linien hat man zwei
+                                      Mîglichkeiten :
+                                          a) Close-W-B : ZurÅck zum Programm
+                                          b) Full-W-B  : Nochmal zur 'Verein-
+                                                         Auswahl-Box'
+              INFORMATION           : Von allen 64 Vereinen kann eine
+                                      Statistik Åber StÑrke, Stadiongrîûe,
+                                      bisherige Erfolge, Anzahl Auf- und
+                                      Abstiege und Letztjahresplatzierung
+                                      abgefragt werden.
+                                      Art der Auswahl siehe BILANZ
+              NéCHSTER SPIELTAG     : kompletter nÑchster Spieltag
+                                      (Pokal oder Liga)
+              DIE NéCHSTEN SPIELE   : fÅr maximal 3 Vereine kînnen die 
+                                      nÑchsten 10 Gegner angezeigt werden
+                                      ( interessant fÅr Restprogramm bei Auf-
+                                        oder Abstieg oder bei Meisterschaft )
+                                      Auswahlverfahren siehe Position
+              LIGATABELLE           : Nach einem Pokalspiel kann die
+                                      Ligatabelle abgerufen werden.
+              ANDERE LIGEN          : die 3 anderen Ligen kînnen
+                                      abgefragt werden.
+              NéCHSTER GEGNER       : Statistisches Åber den nÑchsten
+                                      Gegner des Teams
+                                      (Liga,Tabellenplatz,StÑrke, Erfolge in
+                                      der letzten Saison (event. Hinspiel-
+                                      ergebnis)
+              MANNSCHAFT AUFSTELLEN : Mannschaftsaufstellung :
+                                      - dunkle, fette Spieler sind dabei
+                                      - helle Spieler kînnen nicht 
+                                        ausgewÑhlt werden (vielleicht 
+                                        rote/gelbe Karte od. verletzt)
+                                      - jetzige MannschaftsstÑrke links 
+                                        unten angezeigt
+                                      Anmerkung : Sie mÅssen mit 11 Spielern
+                                                  spielen (meistens).                        
+              Anmerkung             : jede 2.gelbe Karte bedeutet
+                                      einmal aussetzen
+5. MANAGER  : SCORE                 : Managerscore des geladenen 
+                                      Spielstandes (Stand: letzte Saison )
+              EINTRITTSPREISE       : Eintrittspreise von sehr niedrig
+                                      bis sehr hoch (in DM)
+              FINANZEN              : Finanzen am jetzigen Spieltag
+                                      - Zuschauereinnahmen
+                                      - Transfereinnahmen/ausgaben
+                                      - Kreditzins (10%)
+                                      - SpielergehÑlter
+                                      - Stadionkosten
+                                      - Fahrtkosten
+              FINANZENBILANZ        : Die jeweiligen Gewinne und Verluste
+                                      pro Spieltag werden in einem Diagramm
+                                      dargestellt. Heimspiele erscheinen
+                                      dunkel.
+              TORSCHöTZENLISTE      : TorschÅtzenliste fÅr die Spieler
+                                      In der nÑchsten Saison wird der
+                                      TorschÅtzenkînig (kînnen auch mehrere
+                                      Spieler sein) automatisch aufgewertet.
+              STADION VERGRôûERN    : Man kann sein Stadion vergrîûern.
+                                      1000 PlÑtze mehr kosten 500000 DM.
+                                      Achtung : bei grîûerem Stadion hat man
+                                      hîhere Stadionkosten !!! 
+              STADION VERKLEINERN   : Falls man sich verkalkuliert hat, kann
+                                      hier sein Stadion wieder verkleinern.
+                                      Kosten : 1000 weniger = 250000 DM
+6. BANK     : KREDIT AUFNEHMEN      : Die Bank gewÑhrt Kredit. 
+                                      ---> Achtung !!! Zwangsabstieg !!!
+                                      Pro Spieltag werden 10% Zinsen 
+                                      verlangt.
+              KREDIT BEZAHLEN       : Hier kann man seinen Kredit zurÅck-
+                                      zahlen.
+7. WEITER   : WEITER                : nÑchster Spieltag bzw. nÑchster
+                                      Spieler
+

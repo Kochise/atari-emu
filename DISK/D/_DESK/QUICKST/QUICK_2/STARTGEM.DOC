@@ -1,0 +1,11 @@
+STARTGEM.PRG is a public-domain program by R. Flashman. This is the latest
+version, and runs with all Atari TOS ROMS. Put it as the last program in an
+AUTO folder (that is, it is the last one you copy into the folder). STARTGEM
+will then look for the file STARTGEM.INF in the root directory of that disk,
+which contains the path/name of the program to automatically run.
+
+STARGEM.INF is currently set to run QUICKR_2.PRG from the root directory of
+drive A:\.
+
+
+Doc file modified by R. Jung, 5/18/89.

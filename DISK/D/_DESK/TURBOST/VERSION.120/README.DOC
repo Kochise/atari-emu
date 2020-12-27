@@ -1,0 +1,67 @@
+TURBO ST  Copyright 1988 Softrek
+Version 1.2   August 18, 1988
+
+Thank you for purchasing Turbo ST, version 1.2.  Version 1.1e, which is
+also supplied on your disk, is provided as a courtesy to users of Easel
+ST.  Use of this version is required if you want your background picture
+to be displayed.  To use this version, simply copy the file inside the
+folder labeled "VERSION1.1E" to any disk you start your computer with.
+Please note that this version is not quite as fast as version 1.2, since
+it does not include our fast fill rectangle routine.
+
+The following are the known limitations of Turbo ST, version 1.2. If
+you encounter a difficulty not referred to on the list, please report
+it.  We do listen and we may able to correct it before the the
+next release.
+
+1) It is recommended that ProCopy be used only when Turbo ST is turned
+off.  Apparently, speeding up the sector write status display, can throw
+off the internal timing of ProCopy when it is copying a disk.
+
+2) Using ST Writer with Turbo ST on a color monitor will produce a
+slightly compressed screen, since ST Writer directly changes the line
+spacing (unfortunately, there is no standard escape sequence for this).
+Other than that, ST Writer will function properly, though much faster.
+
+3) Some programs directly change the TOS font pointer to allow the
+monochrome screen to display 50 lines using the 8x8 system color font. 
+In addition, some programs directly change the TOS font to emulate
+another type of terminal. This will result in a garbled display, but
+it shouldn't crash your machine (simply turn Turbo ST off).
+
+4) When starting up GFA BASIC in low resolution, the hardware register
+that controls screen resolution is apparently changed directly.  Since
+Turbo ST does not see this, the screen display is garbled.  If GFA BASIC
+is started in medium or high resolution, it works fine.
+
+5) A few control sequences may not always operate properly.  It has
+been reported that within the Mark Williams C Shell, control characters
+are not echoed to the screen by Turbo ST, and that within the HiSoft
+GENST editor, the output does not pause when Ctrl/S or Ctrl/C is pressed.
+Other than that, both programs should work well, although in most cases 
+much faster with Turbo ST.
+
+6) The accessory used to access the Atari laser printer, SETUP630.ACC, 
+only works properly when the Diablo 630 printer driver, DIAB630.PRG,  
+is installed after Turbo ST.  Otherwise, the SETUP630 accessory says  
+the Diablo printer driver needs to be installed, even though the laser 
+printer prints fine.
+
+7) Due to the way GDOS changes workstation handles, it is impossible
+to ensure 100% reliable operation with GDOS installed.  In general
+you should have no problems, but the following has been reported:
+Timeworks Desktop Publisher and Microsoft Write will not print text
+to the laser printer and the Beckmeyer MT C-Shell and the SEDT editor
+will crash.  With the GDOS replacement, G+Plus from CodeHead Software
+(P.O. Box 4336, North Hollywood, CA 91607), we should be able to achieve
+100 percent reliable operation in the future.  By the way, if you want
+to run GDOS from the desktop instead of from the auto folder, you should
+first remove Turbo ST, run GDOS, and then install Turbo ST again, other-
+wise the system may crash.
+
+8) It has been reported that dBMAN will not load with the Ztime desk
+accessory and Turbo ST installed.
+
+9) There is no way to insure total compatability with all public domain
+programs, as some of these programs do things in an unorthodox manner.
+Please use these unusual public domain programs with caution.

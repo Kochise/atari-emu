@@ -1,0 +1,160 @@
+
+QuickRUN      The Program Manager Shell                  by Robert Jung
+      Another fun 'n FREE O-MayerVare product!
+
+                        version 2.0   Modified 6/24/1989
+
+
+
+QuickRUN is Copyright 1989 by Robert Jung. This program is in the public
+domain and may be freely copied, as long as this text file, the program
+QUICKR_2.PRG, and QUICKR_2.RSC are distributed together without modification.
+
+
+****************************************************************************
+* If you read nothing else, PLEASE read the last section of this doc file! *
+*                                                          Thank you.      *
+****************************************************************************
+
+      A version 2 salute to my best buddy, Captain Drazil;
+            Maurice Molyneaux, another fan of Movie Maker/Film Director;
+            Dave Small and David Ahl, for the old _Creative Computing_ days;
+            and all the people who wrote me or call the O-Mayer V BBS.
+
+
+WHAT IS QUICKRUN?
+=================
+
+      If you have a hard drive, you've probably got your files organized into
+different partitions and directories. While that's really neat, it can be a
+real hassle : Either the program you want is nested seven folders deep, or you
+have to scroll through dozens of data files to find it.
+
+      QuickRUN is a program manager -- You build lists of ST programs, which
+can then be executed from QuickRUN instead of the Desktop. It doesn't matter
+what the program is, if it's a legal ST TOS program, you can run it with
+QuickRUN. And since QuickRUN is only 18K, it doesn't eat up your memory.
+
+      Imagine, just click on FLASH.PRG, and let QuickRUN find it for you!
+Stick all your games in one list, and run them together conviently! Put your
+editor, compiler, linker, debugger, assembler, and other tools all in one list,
+and avoid hopping between windows, folders, or drives. Or use QuickRUN with the
+"Universal Item Selector", put ALL of your ST programs in a list, and use
+QuickRUN as an alternate Desktop!
+
+
+STARTING QUICKRUN
+=================
+      To get started, run the file QUICKR_2.PRG. This is a GEM-based program,
+so you'll have to either run it from the Desktop, use the auto-execute feature
+of TOS 1.4, or have STARTGEM run it for you automatically (see elsewhere in
+this archive for information on STARTGEM).
+
+      QuickRUN will try to load the file QUICKR_2.RSC. If it is not in the
+same drive/directory as QUICKR_2.PRG, the program will not load.
+
+      If there is a file called DEFAULT.QRL in the same drive/directory as
+QUICKR_2.PRG, it will be automatically loaded in.
+
+      When QuickRUN is ready, you'll see the main dialog box. There's a
+scrollable window on the left, and a bunch of buttons on the right. Everything
+in QuickRUN is activated by a button, which activates a command :
+
+  HELP    -- QuickRUN help and information.
+  ADD     -- Adds a new program to QuickRUN.
+  EDIT    -- Update an existing entry.
+  CLEAR   -- Gets rid of one entry, or the entire list.
+  ORDER   -- Alphabetizes all entries for ease of searching.
+  LOAD    -- Loads a QuickRUN list.
+  SAVE    -- Saves the current QuickRUN listing to disk.
+  RUN     -- Executes the currently selected program.
+  QUIT    -- Leaves QuickRUN.
+
+      You can run a command by either clicking on the button, or pressing the
+first letter of that command on the keyboard.
+
+      You can scroll through the list with the arrows/scroll bar, or by
+pressing the up/down arrow keys. Pressing the arrow keys by themselves will
+scroll the list by one name. Pressing the arrow keys with the SHIFT key held
+down will scroll the list in increments of 20.
+
+      You can select a file to operate with, by clicking it with the mouse, or
+by pressing F1 - F10 (for files numbered 1 through 10) or SHIFT and F1 - F10
+(for files numbered 11 through 20).
+
+      For all commands, information is provided either by a dialog box on the
+screen, or a "what-you-should-do" line at the top of the screen.
+
+
+QUICKRUN COMMANDS
+=================
+
+      ADD lets you put a new program into the current list. With the ST file
+selector box, click on the program you want to add. When you actually run the
+program with QuickRUN, it'll use the path (drive and directory nesting) you
+specify here.
+
+      EDIT will let you update a listing entry. Click on the filename you want
+to update, then click on EDIT. You can then use the file selector box to choose
+a new filename/path for that entry, just like with ADD.
+
+      CLEAR gets rid of listing entries. If you have no filename already
+chosen, CLEAR will allow you to clear the entire list currently in memory. If
+you do have a filename chosen, you can either clear the entire list or just
+that one entry. 
+
+      ORDER will alphabetize the QuickRUN list currently in memory. Once a
+list is alphabetized, there's no way to "un-alphabetize" it, so be sure you
+want to do this.
+
+      LOAD puts a new QuickRUN list into memory. Loading a list will get rid
+of anything you already have, so be careful! Only QuickRUN-generated lists can
+be loaded; any attempt to load an illegal file will be cancelled.
+
+      SAVE writes the list currently in memory onto the disk. If you have
+nothing in the list, the command is ignored. Any filename can be used for a
+QuickRUN list, but if no extender is specified, ".QRL" will be automatically
+tagged on.
+
+      RUN will execute the currently selected file; this will work exactly as
+if you had run it from the GEM Desktop. If the program is not in the
+directory/path it's suppoed to be (as specified with ADD or EDIT commands),
+QuickRUN will not run it.
+
+      QUIT leaves QuickRUN. Anything you have in memory will be erased, so be
+sure to SAVE your work first.
+
+
+WHAT ELSE IS THERE?
+===================
+
+      To tell the truth, there's not much else I can think of to say about
+QuickRUN. All of the commands are obvious, and there are warning prompts
+before anything disasterous can happen.
+
+      The only limit to how many programs you can have in a QuickRUN list is
+the amount of free memory you have. If QuickRUN doesn't have the memory for a
+new entry, there's probably not enough memory left to execute anything anyway.
+
+      QuickRUN works with the "Install Application" feature of the ST Desktop.
+If you use this feature in conjunction with DEFAULT.QRL, the file you selected
+will be loaded, and not DEFAULT.
+
+      This program is completely free, but I really, REALLY, *REALLY* want
+some user feedback! Drop me a postcard or something at the address below, so I
+know that SOMEBODY is actually seeing these things I write. I don't care if you
+have nothing to say, just write SOMETHING. It really makes my day to know that
+someone actually read this file, and not just skipped over it.
+
+      Send comments, suggestions, complaints, questions, bribes, or whatever to
+
+                            Robert Jung
+                            740 South Orange Drive
+                            Los Angeles, CA  90036
+
+      Or (even better!) contact me through
+
+                             THE O-MAYER V BBS
+                             (213) 732-0229
+                             1200-2400 baud, 24 hours
+                             Atari ST/XE, Spectre 128, PC Ditto

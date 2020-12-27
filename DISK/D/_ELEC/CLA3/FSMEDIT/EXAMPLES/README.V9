@@ -1,0 +1,36 @@
+The file V9.FSM contains a state machine design for a controller on a 
+video digitiser board.
+ 
+Anyone interested can get in touch & I can send them a set of plans 
+for the actual digitiser. It was developed at University Of Newcastle, 
+England, by myself as part of a Video Phone project. It interfaces 
+easily to a Falcon or ST via the cartridge port, and is able to grab 
+video in 64 grey levels direct from a moving video, and display in real 
+time at up to 20 frame per second. No pause button required on videos, etc 
+as the digitiser grabs at FMV rates (50+ frames per second).
+ 
+Interfacing details and some simple driver software for a falcon are available: 
+1) In HiSoft Basic, a simple access & display example. This should run on any 
+   machine, but the range of colours displayed will be limited by the machine 
+   (8 grey levels on an ST in 320*200 mode I expect, I've not tryed it). 
+2) In 68000 assembly, a Full Motion Video real time video display program, 
+   running in Falcon True Colour mode, and limited real time FX processing 
+   (fish-eye, funnel, colour wash, etc).
+ 
+Neither of the above programs is very good - but the digitiser is real easy to 
+use anyway:
+ 
+o Just read from one location to trigger a grab, 
+o Wait 1/50th second 
+o The video image is now stored in the Cartridge area of the memory map where 
+  you can read it at your leisure. 
+ 
+Build yourself one - interested? Contact:
+ 
+Craig Graham 
+46 School Rd 
+Langold 
+Worksop 
+Notts 
+S81 9PY 
+email: craig.graham@newcastle.ac.uk

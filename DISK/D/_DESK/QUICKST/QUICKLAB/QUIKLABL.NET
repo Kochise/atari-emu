@@ -1,0 +1,34 @@
+From idec!stc!ukc!mcvax!uunet!zephyr!tektronix!reed!ogccse!husc6!bbn!csd4.milw.wisc.edu!bionet!agate!saturn!koreth@ssyx.ucsc.edu Mon Jul  3 10:09:11 BST 1989
+Article 39 of comp.binaries.atari.st:
+Path: prlhp1!idec!stc!ukc!mcvax!uunet!zephyr!tektronix!reed!ogccse!husc6!bbn!csd4.milw.wisc.edu!bionet!agate!saturn!koreth@ssyx.ucsc.edu
+>From: koreth@ssyx.ucsc.edu (Steven Grimm)
+Newsgroups: comp.binaries.atari.st
+Subject: v05i058: quicklabel -- Label-printing system
+Keywords: arc, uuencode
+Message-ID: <8076@saturn.ucsc.edu>
+Date: 22 Jun 89 13:49:09 GMT
+Sender: usenet@saturn.ucsc.edu
+Lines: 376
+Approved: koreth@ssyx.ucsc.edu
+Posted: Thu Jun 22 06:49:09 1989
+
+Submitted-by: watcgl.waterloo.edu!electro!ignac (Ignac Kolenko)
+Posting-number: Volume 5, Issue 58
+Archive-name: quicklabel
+
+
+the following is Quick Label version 1.0. This program is a fully configurable,
+label editing system which can edit up to 10 labels in memory at once, print
+one or all labels in memory with FULL printer control.
+
+any problems, contact me at:
+
+watmath!watcgl!electro!ignac
+
+[I combined this arcfile with the configuration files, which were submitted
+ separately: -sg]
+
+the following is the configuration file and an example label for Quick Label
+1.0. The configuration file is for an Epson printer.
+
+

@@ -1,0 +1,94 @@
+README for NVDI 5                                     August 1999
+=================
+
+ù Utility programs Fontname, Print monitor, Install printers
+  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+  These utility programs can be found in the "NVDITOOL.S" folder 
+  created on the boot partition by the NVDI install program.
+
+ù ShowMe
+  ÿÿÿÿÿÿ
+  The "NVDITOOL.S" folder also contains a very compact image viewer 
+  that lets you view and print (X)IMG and ESM images.
+
+ù Printer settings
+  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+  The NVDI installer will have installed your selection of printer 
+  drivers. Please remember to choose a print resolution and the type 
+  of paper feed before printing for the first time.
+
+ù Accelerated printing
+  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+  We recommend Peter Missel's fast  "iPRN" device driver for the 
+  Atari ST, TT and Falcon or the "iPRN for MagiC".
+
+  Try the demo version of iPRN. It can be found in the folder 
+  "NVDITOOL.S\IPRNDEMO\". To order "iPRN" contact:
+
+      Peter Missel
+      Greiffstraže 11
+      86157 Augsburg
+      Germany
+
+  Email: peter.missel@augsburg.baynet.de
+
+ù Device drivers for MagiC PC
+  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+  The MagiC PC installer copies the device driver NPC_PRN.DEV which 
+  significantly accelerates all GEMDOS output via the parallel 
+  interface.
+
+ù Fax with TeleOffice
+  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+  Install TeleOffice as accessory to work with the NVDI fax driver. 
+  This is the only way to assure reliable communication between 
+  TeleOffice and FAXOUT.
+
+  To send a fax using the NVDI fax driver manual "ext. Fax 
+  Start/Stop" is NOT required. Just select the desired resolution 
+  (like with any other printer driver), start to print and the 
+  address selector will pop up automatically.
+
+ù COPS
+  ÿÿÿÿ
+  Instructions for the alternate Control Panels accessory COPS can be 
+  found as HTML and ST-GUIDE documents in the "NVDITOOL.S" folder.
+
+ù System extension WDIALOG
+  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+  NVDI utility programs use extended AES functions of MagiC to speed 
+  up loading time and reduce memory requirements. On computers with 
+  older operating systems WDIALOG also makes required MagiC 
+  compatible functions available.
+
+  The NVDI installer copies WDIALOG into the AUTO folder and if 
+  required WDIALOG will load on start up of the system.
+
+ù NOVA-VDI
+  ÿÿÿÿÿÿÿÿ
+  If you use NVDI together with the NOVA-VDI, then make sure that 
+  NVDI loads after MENU.PRG.
+
+ù AutoSwitch-OverScan
+  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+  When used with NVDI 5 the OverScan ST drivers reveal a small 
+  problem with calculating the pixel size showing window elements too 
+  wide. The folder OVERPTCH contains OVERPTCH.TTP to patch OverScan 
+  ST drivers.
+
+  Ingo Godau-Gellert kindly supplied a patch program for OverScan TT 
+  which can also be found in the OVERPTCH folder.
+
+ù Documentation
+  ÿÿÿÿÿÿÿÿÿÿÿÿÿ
+  The folder "DOCS" on disk 2 contains programmer's information for 
+  NVDI 1 to 5, WDIALOG as well as bindings and sample programs. The 
+  documentation comes supplied in HTML format which when unpacked 
+  takes up approximately 2 MB of hard disk space.
+
+ù Epilogue
+  ÿÿÿÿÿÿÿÿ
+  We would like to thank all our beta testers for their dedicated 
+  work and determination to make this product bug free.
+
+Sven & Wilfried Behne

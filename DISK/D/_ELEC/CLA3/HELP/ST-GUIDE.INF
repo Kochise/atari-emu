@@ -1,0 +1,139 @@
+#
+# Suchpfadliste fÅr externe Referenzen
+#
+PATHS=c:\guides;c:\bin;c:\archiver
+#
+# Dieses Verzeichnis wird beim Laden per Fileselektor
+# defaultmÑûig gezeigt und der HCP Åbesetzt defaultmÑûig
+# in diesen Ordner
+#
+HYPFOLD=c:\guides\
+#
+# Diese Applikation wird mit der Anzeige unbekannter
+# Dateitypen beauftragt (sie muû sich im Speicher befinden!)
+#
+EXTVIEW=NOTICE 
+#
+# Dieser Hypertext wird durch die Funktion 'Katalog'
+# und beim ôffnen des ST-Guide ohne Parameter nachgeladen
+#
+HYPTOP=c:\guides\katalog.hyp
+#
+# Diese Datei wird zum Auffinden von Begriffen verwendet
+#
+REF=c:\guides\all.ref
+#
+# Mit diesem Zeichensatz werden Texte vom ST-Guide dargestellt
+#
+FONT=2,12
+#
+# Dieses Programm wird von STool fÅr 'COMPILE' aufgerufen
+#
+HCP=c:\st-guide\hcp.ttp
+#
+# Mit diesem Wert werden Tabulatoren expandiert
+#
+TABSIZE=4
+#
+# Diese Datei wird beim ôffnen des ST-Guide ohne Parameter
+# automatisch geladen
+#
+#DEFHYP=
+#
+# Diese Optionen benutzt der HCP beim Aufruf automatisch
+#
+#HCP_OPT=+zz-s
+# 
+# The following three variables are only relevant in colour resolutions 
+# and are ignored in monochrome resolutions. 
+# TXTCOLOR Displays text in the specified colour. 
+# REFCOLOR Displays references in the specified colour using the 
+#          normal typestyle (NOT bold and underlined). 
+# BCKCOLOR Background colour for ST-Guide windows. 
+# 
+# Default colours (Note! Your system may change these values!): 
+#  0=White        1=Black        2=Red           3=Green 
+#  4=Blue         5=Cyan         6=Yellow        7=Magenta 
+#  8=Grey         9=Dark grey   10=Dark red     11=Dark green 
+# 12=Dark blue   13=Dark cyan   14=Dark yellow  15=Dark magenta 
+TXTCOLOR=1 
+REFCOLOR=10
+BCKCOLOR=8 
+# 
+# If this option is active (the value is irrelevant) a right mouse key  
+# click is interpreted as 'Retrace'. 
+#RIGHTBACK= 
+# 
+# If this variable is active, clicking on 'normal' text does not cause 
+# ST-Guide to search for references. 
+REFONLY= 
+# 
+# This variable is provided to install ARROWPATCH. This patch corrects a  
+# bug in the AES which prevents the scroll bars in windowed accessories 
+# from working correctly with certain TOS versions. 
+# If you exerience this behaviour activate this patch ON (by removing 
+# the preceding #). 
+# This patch is not needed if you are running WINX, MagiC, MTOS or  
+# already have the ARROWPATCH installed globally. 
+#ARROWPATCH=1 
+# 
+# The first two values set the top left corner of the window. The 
+# next two values set the bottom right corner for the ST-Guide window: 
+#WINSIZE=100,100,400,200 
+# 
+# This file will be loaded automatically if ST-Guide is started without  
+# parameters: 
+DEFHYP=ST-GUIDE.HYP 
+# 
+# These options are used automatically when HCP is called: 
+#HCP_OPT= 
+# 
+# Hypfind is called by ST-Guide to search for search masks in all pages 
+# in the current hypertext. 
+HYPFIND=F:\ST-GUIDE\HYPFIND.TTP 
+# 
+# Path for Remarker: 
+# Without '!' preceding the path Remarker is automatically started on 
+# opening ST-Guide. 
+# With '!' preceding the path Remarker is started using [Alternate]+R 
+REMARKER=!C:\ST-GUIDE\REMARKER.PRG 
+# 
+# These options pass parameters from ST-Guide to HypTree: 
+#HYPTREE_OPT= 
+# 
+# Path to RefLink for REFCHECK: 
+REFLINK=F:\ST-GUIDE\REFLINK.TTP 
+# 
+# Default REFCHECK options used if no command line is passed: 
+REFCHECK-OPT=ads 
+# 
+# --------------------- Special HypTree options ----------------------- 
+# 
+# Here the default size of the HypTree window can be displayed. 
+# If these variables are not defined, the size and position of the last 
+# window will be used, if available. 
+HT_WINSIZE=40,40,100,200 
+# 
+# Using this switch you can decide whether all pages included in the  
+# HypTree structure are visible (0 = No, 1 = Yes) 
+HT_OPENALL=1 
+# 
+# This variable sets the position of the triangle in the window 
+# 0 = next to the text, 1 = On the left hand margin of the window. 
+HT_MACLIKE=0 
+# 
+# The following command line is sent to HypTree from ST-Guide (via 
+# VA_START) after the user double clicks on the menu bar title in any 
+# hypertext page. The following strings are replaced with the actual  
+# values when called: 
+# %p  Pathname of the hypertext file 
+# %n  Name of the hypertext file (without path) 
+# %s  The internal name of the hypertext page 
+HT_CALLSTG=-s1 %p %s 
+# 
+# The following command line is sent to ST-Guide from HypTree as soon  
+# as the current hypertext is closed: 
+HT_STOPSTG=-s0 
+# 
+
+

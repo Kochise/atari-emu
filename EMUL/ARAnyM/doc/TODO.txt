@@ -1,0 +1,50 @@
+Things to do eventually
+-----------------------
+
+Fix bugs:
+- "-d" cmdline option doesn't work (doesn't win over config file settings)
+- [ETHx] update with DNS IP address (requires FreeMiNT update)
+- don't store empty config entries (ETH2,3,4; DISK2,3,4,5,6,7; HOSFSA-Z, ..)
+
+TODO in keyboard support:
+- loadable keyboard layout (similar to hatari)
+- editable keyboard layout (need WYSIWYG - impossible in 320x200)
+
+TODO in TOS patches and utilities:
+- automatic updater of BDCONFIG.SYS
+- separate mouse driver from Clocky and make it NatFeat based
+- finish and publish TOS XHDI disk driver
+
+Some hot ideas (before they get forgotten)
+------------------------------------------
+
+Note that the name before a TODO item doesn't mean the item is assigned to
+that particular programmer but rather who is author of the idea :-)
+
+- Petr: make.sh magic: "nfeth-config.c" build by ./make.sh of the xif.
+
+- Petr: write some doc about bridging the tuntap - perhaps the following
+       URL could help?
+       http://tldp.org/HOWTO/Ethernet-Bridge-netfilter-HOWTO-3.html#ss3.1
+
+- Petr: extend the config file routines to save also some comments above
+  each head section. Example:
+
+  # the following section defines hotkeys. Format is 
+  # hotkey = keycode : modifiers
+  # where keycode and modifiers are defined in SDL_keysym.h
+  [HOTKEYS]
+
+- Milan: SIGINT ndebug problem solution
+
+- Milan: --with-opengl-prefix
+
+- STanda: hostfs.cpp: enable debug and implement all NOT IMPLEMENTED needed
+         methods.
+
+- patrice: rework dsp thread synchronization. It seems it may hang sometimes.
+
+- patrice: C++-ize the input layer, get rid of various keytables hacks.
+
+- patrice: fvdi aranym.sys driver (m68k side) must follow the host surface
+  R,G,B,A organization.

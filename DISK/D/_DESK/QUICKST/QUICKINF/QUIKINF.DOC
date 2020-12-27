@@ -1,0 +1,113 @@
+
+Documentation for Quick Inf 1.3
+===============================
+(C) 1989 by Darek Mihocka and Ignac Kolenko
+
+
+Quick Inf runs on any ST, color or mono, with TOS in ROM.
+
+
+Quick Inf - the Desktop Information Editor
+------------------------------------------
+
+Quick Inf is a program developed primarily to allow the user to change the
+desktop window directory search masks. The inability to change the masks
+from the desktop is probably one of the worst deficiencies in the desktop.
+Lets say for instance you wanted to backup all *.C files on the currently
+displayed window for drive C. Right now, you have to go to the menu bar and
+sort by type, then position the slider bar in the window so that it will
+show the *.C files inside the window. This is an incredible pain for backing
+up files, to say the least, and is one area where the Atari ST lags behind
+the IBM! (in MSDOS, you simply say COPY *.C ...)
+
+But now, the Atari ST can have this ability easily with Quick Inf.
+
+To use Quick Inf, double click on the file QUIKINF.PRG. A dialog box will
+appear, and the screen colors will change to white, black, red and green
+(on a color monitor only!). The current desktop information will appear in
+the dialog box. The first editable field is one of the (up to four) windows
+that are on the desktop currently. By clicking on the number beside the 
+field, you can scroll through the different windows currently open. If the
+field cannot be edited, it is because there were no windows open at the time.
+
+The next few lines pertain to editing the application information. The arrows
+obviously scroll through the different applications currently installed. Add
+allows you to choose a new application (the FULL path is remembered, unlike
+the desktop's install application feature). Kill allows you to delete an 
+entry from the list of installed applications. The next button allows you to
+choose the type of application it is: GEM, TOS or TTP. If you click on the
+application name, you can re-edit the path from which that application is
+called. Finally, if you edit the mask, you can allow different files to be
+called for different applications.
+
+A small button with a drive letter, with an editable field next to it
+displays the current name for that drive icon. This is a very convenient
+method of editing the names of the drive icons. Finally, the name of the
+trash icon will appear, and is also editable. Clicking "Exit" will inform
+the desktop of the edits made in the session, and these changes are
+permanent until you rerun this software, or alter the desktop yourself.
+Clicking "Cancel" will leave the session and the desktop untouched.
+
+If you click on the "Curr" button, the dialog box will revert to the current
+values before any editing. If you click 'Load", you can load a DESKTOP.INF
+file into memory for editing. When you exit, the desktop will use the loaded
+desktop information instead of what it was before running this option. If
+you decide not to use the loaded information, simply press "Curr", and the
+old information will re-appear. Clicking "Save" will allow you to write out
+the current information in DESKTOP.INF file format.
+
+Finally, you can install QUIKINF.PRG as an application. It will check the
+commandline for a parameter, and load it as a possible *.INF type file. This
+way you can simply click on a DESKTOP.INF file whenever you want to change
+it!
+
+Quick Inf 1.3 is the latest version of this program. We have new
+features in the works, such as complete control panel and printer options,
+and vary the mouse rates and keyclick rates.
+
+
+Pay for shareware and receive updates!
+--------------------------------------
+
+At this time, we would like to receive some user feedback before we go
+ahead and implement any new features. What else you you like to see in our
+"super desktop inf editor"?
+
+Quick Inf updates will come in two versions. Versions 1.xx will be released to 
+the public. Quick View and Quick Print versions 2.xx will be available 
+to people who have sent the $30 shareware registration fee. We expect to 
+have the first such updates ready during the summer. 
+
+Registered users will also receive Quick ST when it becomes available. The
+program is currently in beta testing and can significantly speed up text
+output of any ST program. No blitter chip required!
+
+To become a registered user, send a $30 check or money order to:
+
+    Darek Mihocka
+    Box 2624, Station B
+    Kitchener, Ontario  N2H 6N2
+    Canada
+
+You can reach us by modem on the following networks:
+
+Darek Mihocka:
+    Compuserve: 73657,2714
+    BIX, Delphi, GEnie: DAREKM
+
+Ignac Kolenko:
+    UNIX mail: watmath!watcgl!electro!ignac
+
+We thank you for supporting shareware and encourage you to support other
+shareware authors. You may distribute copies of Quick Inf
+under the condition that you also include this documentation file. You may
+not charge a fee or in any way try to sell this software.
+
+MACE and Atari Corp. present the Michigan Atari Computer Expo on May 6 (10-6)
+and May 7 (10-5) at the Detroit Metro Airport Hilton.  A sample of exhibitors
+includes ICD, Migraph, Alpha Systems and many more.  Ticket prices are $5 at
+the door and children under 12 are free.  For more info, Please contact Pattie
+Rayl at (313) 973-8825. We hope to see you there! Catch the Quick ST and
+ST Xformer 2.5 demos. Registered users of ST Xformer bring your old disks,
+because you'll want to swap them for version 2.5.
+

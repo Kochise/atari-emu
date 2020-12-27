@@ -1,0 +1,15 @@
+CLA v3 System Startup Log
+=========================
+Version date:Oct 22 1995 time:23:25:42
+
+You have AES version 3.32
+Initial directory:/dev/c/atari/disk/c_f030/cla3
+Loading resource file...OK
+VDI display parameters:
+- mono display:fixing resource rile
+Gdos not installed - printing disabled.
+Loading gate vector descriptions from 'VECTORS\GATES.VEC'...OK.
+Loading Library definitions from CONFIG.CLA\LIB.DEF
+ - libraries are located at /dev/c/atari/disk/c_f030/cla3\LIBRARY\
+Setting online help file to CLA3.HYP
+Cann't find CLA.INF - using internal defaults

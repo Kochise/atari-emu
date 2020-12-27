@@ -1,0 +1,130 @@
+
+Quick ST 1.46
+=============
+
+(C) 1989 by Darek Mihocka and Ignac Kolenko
+
+Quick ST 1.46 is a shareware release of Quick ST and may be copied
+unmodified by Atari ST users to give to other users, uploaded to the
+online services Compuserve, GEnie, Delphi, and BIX, uploaded to Usenet,
+and distributed by Atari ST user groups for no charge other than the cost
+of the disk. It may NOT be sold by any dealer or organization which sells
+public domain software by mail order.
+
+This is a special release of Quick ST 1.4 which is intended to be
+installed in the AUTO folder. Why? There are a number of advantages of
+this method, including the fact that no desk accessory slots are used up
+and the amount of memory used is much smaller (less than 16K).
+
+To use the desk accessory version, which is more configurable, download
+Quick ST 1.4 (dated July 7, 1989) from the Atari ST libraries of
+Compuserve, GEnie, Delphi, or BIX.
+
+Quick ST 1.46 is intended for use in medium resolution or monochrome. Low
+resolution is not supported to save code, since most applications (not
+including video games), do not run in low resolution. Video games usually
+bypass GEM, and so Quick ST would have no effect on them.
+
+What does Quick ST do? It hooks itself into TOS and looks for all screen
+operations, such as printing text, drawing lines, scrolling the screen.
+When this is detected, Quick ST performs the screen operations itself
+(much faster than TOS), and the result is that the screen appears faster.
+
+Screen scrolling becomes roughly 30% faster, and printing text to the
+screen can be up to 4 times as fast. Windows and dialog boxes pop up and
+disappear faster. When used on a Mega ST equipped with a BLiTter chip,
+Quick ST has even more of a speedup effect.
+
+Quick ST is compatible with the Hyperscreen modification for monochrome
+monitors. Instructions for this small hardware upgrade have been posted on
+the online services, which increases the resolution of the ST monitors.
+
+This version fixes a bug in Quick ST 1.4 which caused some text editors to
+actually run slower. A good example is ST Writer. With version 1.46, ST
+Writer is now up to 50% faster at screen scrolling. With Quick ST 1.5, it
+is up to 100% faster.
+
+This version of also supports color text, for use with programs such as
+Phasar and ST Writer in color, and better supports inverse text when used
+on a Hyperscreen monitor in monochrome.
+
+To install Quick ST, simply copy the file QSTAUTO.PRG to the AUTO folder
+on your boot disk (or partition C: on a hard disk). If an AUTO folder does
+not exist, create one first. The order in which Quick ST loads from the
+AUTO folder is not too critical. When used with Easel ST or Bigscreen, it
+makes no difference which loads first.
+
+Quick ST now supports most versions of GDOS. Up until now, it has only
+sped up G+PLUS, which is still supported. When used with Atari GDOS, we
+found that it was more effective if Quick ST loaded after GDOS, but try it
+both ways just to make sure.
+
+To rearrange the order of your AUTO folder programs, copy all the files
+from the AUTO folder to some other disk or folder. Then delete all the
+files in the AUTO folder, then copy them back in the order you wish them
+to load in. We recommend putting programs such as AUTOTIME, TEMPLMON, GDOS
+and DESKMNGR first, followed by the remaining programs.
+
+We received some reports of Quick ST not working properly on very early
+Mega STs due to the TOS ROMs being at a different memory location. We have
+tested this release of Quick ST on every release of TOS including TOS 1.4
+on disk, and found it to be compatible.
+
+A few people also reported that with Quick ST 1.4 loaded on a 520ST, Word
+Writer did not have enough memory to load the spell checker. Although we
+haven't been able to test it with this release, since it only uses 16K
+instead of 35K, it may help out Word Writer and programs like it that are
+short on memory.
+
+There are a few known incompatibility problems remaining. Someone has
+reported a problem with Word Perfect's print spooler which we have not
+been able to reproduce yet, and there is a problem with Interlink's type
+ahead buffer. Monochrome 520STs and 1040STs may show some white lines when
+dragging the mouse on the desktop. This is not a serious problem and is
+caused
+
+Please report any other problems. Remember to include the model of your
+ST, the type of monitor, the version of TOS, and which desk accessories
+and AUTO folder program were in use.
+
+Please contribute to shareware. Quick ST 1.5 is available along with 6
+other Quick Utilities for $30, which is cheap compared to the price of
+commercial software. Send a check for $30 US ($35 Canadian, or equivalent)
+to:
+        Darek Mihocka
+        Box 2624, Station B
+        Kitchener, Ontario
+        N2H 6N2
+
+or call (519)-747-9452 for more information about the other Quick
+utilities. Quick ST 1.5 was released this week to registered users, and
+includes separate color and monochrome AUTO folder, desktop, and desk
+accessory versions. Quick ST 1.5 is also up to 50% faster than this
+release. Although Quick ST is written for the benefit of all ST users, to
+save everybody the hassle of getting a BLiTter chip or 16MHz accelerator
+board, we do expect to get shareware registrations from people that use
+our software.
+
+We had hoped to have a head-to-head comparison of Quick ST and the
+commercial package Turbo ST 1.6. The disk has not arrived yet, but we do
+know that Turbo ST 1.6 uses roughly 50K of memory (ouch!) but is faster
+than Quick ST 1.5 in some cases. That's why development of Quick ST is
+continuing.
+
+For version 1.6 of Quick ST, we will include a smart loader to
+automatically load the correct version and throw away unneeded code, and
+the Quick ST Executive, which is a Control Panel like desk accessory which
+enhances Quick ST and adds some extra commands to the operating system
+which will be used by the other Quick utilities to save memory.
+
+We would like to thank all the people on Compuserve and GEnie who have
+reported bugs and served as testers. We would also like to thanks Charles
+Johnson and John Eidsvoog of Codehead software for providing information
+about G+PLUS, and Keith Gerdes of Double Click Software for helping to
+find all the bugs in the Hyperscreen support. One of our 520STs will soon
+go under the knife for the Hyperscreen operation to ensure that Quick ST
+is compatible with all future releases of the Overscan software. Also, many
+thanks to Thomas Tempelmon for discovering a rare crashing bug in version
+1.45.
+
+

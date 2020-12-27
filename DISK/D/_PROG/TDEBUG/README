@@ -1,0 +1,296 @@
+----------------------------------------------------------------------
+Turbo Debugger 1.0 fÅr den Atari ST                       Borland GmbH
+README                                                    2. MÑrz 1990
+----------------------------------------------------------------------
+
+Sehr geehrte Turbo-Debugger-Benutzer/innen,
+
+bis zur letzten Minute haben wir uns bemÅht, Turbo Debugger  weiterzu-
+entwickeln und zu verbessern. In dieser Datei haben wir die énderungen
+zusammengestellt, die sich nach Drucklegung des Handbuchs ergaben.
+
+Sollten Sie nach dem Studium des  Handbuchs  und  dieser  README-Datei
+dennoch  Fragen  haben, so wenden Sie sich bitte  an  Ihren  Software-
+hÑndler oder die Hotline der BORLAND GmbH von  Montag  bis  Donnerstag
+zwischen 14.00 und 17.00 Uhr und  Freitags  von  14.00  bis  16.00 Uhr
+unter der Telefonnummer 089/7258001.
+
+Mit freundlichen GrÅûen
+
+Borland GmbH
+
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+Inhaltsverzeichnis
+----------------------------------------------------------------------
+
+      ˘ Inhaltsverzeichnis der Turbo-Debugger-Diskette
+      ˘ Optimierte Codeerzeugung & Debuggen
+      ˘ Info-Box (File/Info...)
+      ˘ Variables-Fenster (View/Variables)
+      ˘ Sonstiges
+
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+Inhaltsverzeichnis der Turbo-Debugger-Diskette
+----------------------------------------------------------------------
+
+Auf Ihrer Turbo-Debugger-Diskette sollten Sie  die  folgenden  Dateien
+vorfinden:
+
+      DEMO_ATD\
+                  .\BEZUG.C
+                  .\CCOUNT.C
+                  .\CCOUNT.PRJ
+                  .\CCOUNT.TTP
+                  .\CCOUT.C
+                  .\FOR.C
+                  .\INSPDEMO.C
+                  .\TCFRAME.C
+                  .\TDGEMB.C
+                  .\TDGEMB.PRJ
+                  .\TDTEST.RSC
+                  .\TEXT.DAT
+                  .\WCOUNTB.C
+                  .\WCOUNTB.PRJ
+      README
+      TD.CFG
+      TD.HLP
+      TD.PRG
+
+Sollte sich der  Inhalt  Ihrer  Diskette  von  der  obigen  Auflistung
+unterscheiden,  zîgern  Sie  nicht,  uns  sofort  zu verstÑndigen. Wir
+werden dann umgehend fÅr Ersatz sorgen.
+
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+Optimierte Codeerzeugung & Debuggen
+----------------------------------------------------------------------
+
+Die von Turbo C ausgefÅhrten Optimierungen  kînnen  mitunter  zu  ver-
+wirrenden Effekten beim Debuggen fÅhren. Wenn man diese Effekte kennt,
+stîren sie in aller Regel wenig beim Debuggen.  Wenn  eine  der  unten
+aufgefÅhrten Erscheinungen auftritt, und Sie dennoch stîrt,  empfehlen
+wir, die entsprechende Optimierung auszuschalten.
+
+
+1. Optimierung von SprÅngen (Jump optimization)
+-----------------------------------------------
+
+Diese Optimierung kann zwei stîrende Effekte haben:
+
+  - Kontrollflussanweisungen wie break, continue und goto kînnen
+    verschwinden.
+  - Gleicher Code an verschiedenen Stellen kann zusammengelegt werden.
+
+Den ersten Effekt illustriert das folgende Beispiel:
+
+   int a[10];
+
+   int search(int i)
+   {
+      int j;
+
+      for ( j = 0; j < 10; j++ )
+         if ( a[j] == i )
+            break;
+
+      return(j);
+   }
+
+Hier kann man auf die break-Anweisung keinen Breakpoint setzen, da fÅr
+diese Anweisung selbst kein Code erzeugt wurde.
+
+Der zweite Effekt tritt zum Beispiel in folgendem Codefragment auf:
+
+   int f( int i )
+   {
+      switch ( i )
+      {
+         case 3:
+            i = 5;
+            return( 7 );
+
+         case 6:
+            return( 7 );
+      }
+      return( 0 );
+   }
+
+Wenn man die Funktion f fÅr i gleich 3 schrittweise ausfÅhrt,  springt
+der  Program  Counter  nach  AusfÅhrung von "i = 5;" auf das Statement
+"return(7);" im Fall "case 6:".
+
+Die Sprungoptimierung kann also dazu fÅhren,  daû  statt  des  in  der
+Quelle folgenden Statements ein Ñquivalentes Statement anderswo in der
+Quelle ausgefÅhrt wird.
+Beide aufgefÅhrten Effekte lassen sich verhindern, indem die Compiler-
+option -J (No jump optimization) gesetzt wird.
+
+
+2. Registeroptimierung (Register optimization)
+----------------------------------------------
+
+Der Compiler hat die FÑhigkeit, sich zu merken, was in  den  Registern
+steht und damit mehrfach benîtigte Werte unter UmstÑnden nur einmal zu
+berechnen oder zu laden. Diese  Optimierung  kann  zu  Schwierigkeiten
+fÅhren,  wenn  beim  Debuggen Variablen geÑndert werden. Dann arbeitet
+nÑmlich unter UmstÑnden der compilierte Code mit der  nun  nicht  mehr
+aktuellen Kopie der Variablen in einem Register.
+Hier ein kleines Beispiel:
+
+   int a[10];
+
+   void f(int i)
+   {
+      a[i]     = 4;
+      a[i + 1] = 5;
+   }
+
+Um in das Array a zu indizieren, mu·  der Compiler die Variable i  mit
+zwei  multiplizieren.  Die  Registeroptimierung bewirkt nun, daû diese
+Multiplikation nur fÅr den ersten Zugriff ausgefÅhrt wird. Der  zweite
+Zugriff benutzt den schon beim ersten Zugriff berechneten Wert.
+Wenn nun die Variable i zwischen den beiden Zugriffen  geÑndert  wird,
+bezieht sich der zweite Zugriff trotzdem auf den alten Wert von i.
+
+Dies wird wohl nur sehr selten stîrende Effekte haben. In diesem  Fall
+schafft  Setzen  der  Compileroption  -Z  (No  register  optimization)
+Abhilfe.
+
+
+3. Registervariablen (Register variables)
+-----------------------------------------
+
+Bei dieser Optimierung verwendet der Compiler  selbststÑndig  Register
+fÅr "auto"-Variablen und Parameter, selbst wenn diese  nicht  mit  dem
+"register"-SchlÅsselwort deklariert sind.
+Das allein wÅrde noch recht wenig Schwierigkeiten beim Debuggen verur-
+sachen. Der Compiler legt aber unter gewissen UmstÑnden auch Variable,
+die nicht gleichzeitig verwendet werden, in ein und dasselbe Register.
+Dies hat beim Debuggen den Effekt, daû eine Zuweisung an eine der bei-
+den Variablen auch die andere verÑndert.
+Hier ist ein kleines Beispielprogramm:
+
+   #include <stdio.h>
+
+   int main( void )
+   {
+      int i, j, sum, sumsquare;
+
+      sum = 0;
+      for ( i = 0; i < 10; i++ )
+         sum += i;
+
+      printf( "Summe = %d\n", sum );
+
+      sumsquare = 0;
+      for ( j = 0; j < 10; j++ )
+         sumsquare += j * j;
+
+      printf( "Summe der Quadrate = %d\n", sumsquare );
+
+      return(0);
+   }
+
+Wenn man sowohl i als auch j im Watches-Fenster beobachtet, sieht man,
+daû  sich i und j immer gleichzeitig verÑndern, wenn nur eine der bei-
+den Variablen einen neuen Wert zugewiesen bekommt. Nicht nur das: nach
+dem ersten Aufruf von printf sind beide Werte zerstîrt.
+Wenn man i und j inspiziert, sieht man auch, warum  das  so  ist:  der
+Compiler hat beiden Variablen das Register D0 zugewiesen.
+
+Der vom Compiler erzeugte Code ist korrekt, er macht  genau  das,  was
+der Programmierer verlangt hat. Trotzdem kann natÅrlich beim  Debuggen
+heillose Verwirrung entstehen.
+Solche Effekte sind sicher zu vermeiden, indem man die  Compileroption
+-R (No register variables) setzt. NatÅrlich wird der erzeugte Code da-
+durch ineffizienter.
+
+
+4. Standard Stackframes
+-----------------------
+
+Diese Option erzwingt LINK und UNLK Befehle am Anfang und  Ende  jeder
+Funktion.
+Wenn diese Option nicht gesetzt ist, kann unter UmstÑnden kein  Break-
+point auf die Quelltextzeile mit dem Funktionskopf gesetzt werden, aus
+dem einfachen Grund, weil dort eventuell kein Code steht.
+Hier ein Beispiel:
+
+   int plus1( int i )
+   {
+      return( i + 1 );
+   }
+
+Die Funktion  "plus1" ist so einfach,  daû der Compiler fÅr  den Funk-
+tionskopf keinen  Code erzeugen muû.  Code wird nur  fÅr die Anweisung
+"return( i + 1 )" und fÅr die schlieûende geschweifte Klammer erzeugt.
+
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+Info-Box (File/Info...)
+----------------------------------------------------------------------
+
+ZusÑtzlich zu den im Handbuch beschriebenen Informationen  kînnen  Sie
+der Info-Box auch Startadresse und LÑnge der Text-, Data- und Bss-Seg-
+mente entnehmen. Die Angaben erfolgen in hexadezimaler Darstellung.
+
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+Variables-Fenster (View/Variables)
+----------------------------------------------------------------------
+
+Im Variables-Fenster gibt es zusÑtzlich zu den Schaltern F, S, G und L
+in der linken unteren Fensterecke auch einen Schalter  A.  Ist  dieser
+selektiert, so werden auch Assembler-Symbole angezeigt.
+
+Wenn gleichzeitig auch der Schalter  F  selektiert  ist,  werden  alle
+Assembler-Symbole im Textsegment angezeigt. Ist F  deselektiert,  sind
+die restlichen Symbole zu sehen. Nach jedem Symbol steht als Wert  die
+Adresse, die durch das Symbol reprÑsentiert wird.
+Wenn man einen Doppelklick auf ein Textsymbol macht,  wird  die  zuge-
+hîrige Stelle im Quelltext gezeigt, sofern Debug-Informationen hierfÅr
+vorhanden sind. Ansonsten wird das Assembly-Fenster geîffnet, und  der
+Code ab der entsprechenden Stelle disassembliert.
+Bei Doppelklick auf ein anderes Symbol wird ein Dump-Fenster  geîffnet
+und ein Speicherauszug ab der Symboladresse ausgegeben.
+
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+Sonstiges
+----------------------------------------------------------------------
+
+˘ Cursor, Cursortasten, ...
+  -------------------------
+
+Die Quelltext-, das Assembly-, Log-, File- und Help-Fenster besitzen
+einen als senkrechter Strich dargestellten Cursor. Er dient der
+schnelleren Fortbewegung in diesen Fenstern.
+
+Die Cursorposition kann Åber folgende Tasten/Tastenkombinationen
+beeinfluût werden:
+
+  Taste(n)      Funktion
+----------------------------------------------------------------------
+  Home          An den Anfang des Textes (nicht im Assembly-Fenster)
+  SHIFT-Home    An das Ende des Textes (nicht im Assembly-Fenster)
+               Eine Zeile nach Oben
+  SHIFT-       Eine Seite nach Oben
+               Eine Zeile nach Unten
+  SHIFT-       Eine Seite nach Unten
+               Ein Zeichen nach Links
+  SHIFT-       An den Zeilen-Anfang (nicht im Assembly-Fenster)
+               Ein Zeichen nach Rechts
+  SHIFT-       An das Zeilen-Ende (nicht im Assembly-Fenster)
+
+----------------------------------------------------------------------
+
+
+

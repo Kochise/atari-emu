@@ -1,0 +1,70 @@
+Comment charger un nouveau tos depuis le disque dur:
+
+Copier le fichier boot2.prg l… ou vous le desirez dans votre disque dur.
+Mettez le fichier tos.img du tos que vous desirez charger
+sur votre partition C, … la racine.
+
+Preparez une disquette contenant dans le dossier AUTO:
+  - Votre driver de disque dur AHDI.PRG ou ICDBOOT.PRG par exemple
+  - le programme CAUTO modifie par mes soins sous le nom de
+     CAUTO_M.PRG . La modification consiste … forcer le
+     drive de boot a 2 (lecteur C) par un move.w #2,$446
+
+Prenez un ‚diteur de secteur et cherchez dans le fichier
+TOS.IMG la sequence suivante 42780446 (clr.w _bootdev.w)
+et remplacez ces deux premiers octets par 6002 (BRA PC+2).
+Cette modification fera que votre tos n'ira plus
+systematiquement rechercher ces fichiers AUTO et ACC sur le
+drive 0, lors de chaque reboot ou changement de r‚solution,
+ mais restera sur le dernier lecteur de boot.
+
+Il ne vous reste plus qu'… booter normalement sur disque
+dur, avec la disquette speciale dans le lecteur. Le TOS se
+charge alors depuis le Disque Dur. Une fois charg‚, il va
+chercher sur la disquette le driver de disque dur (qui lui
+permet d'acc‚der au dur) et le programme CAUTO_M qui:
+ - charge les programmes auto depuis le disque C
+ - force le lecteur de boot … C.
+Les accessoires sont alors imm‚diatement et automatiquement
+charg‚s normalement depuis la partition C.
+
+GAIN DE TEMPS et au niveau PRATIQUE: enorme
+ En effet, au lieu de charger 500 Ko de TOS depuis une
+ disquette puis les fichiers AHDI et CAUTO, puis les
+ accessoires sur la disquette, seuls les fichiers AHDI et
+ CAUTO proviennent de celle ci.
+
+Lors des changements de resolutions, il n'y a alors plus
+d'acc‚s disquette intempestifs.
+
+Vous ne booterez plus bettement en TOS4.04 ou 4.92 parce que
+vous avez laiss‚ par erreur la disquette dans votre lecteur
+et qu'elle surpasse le boot de votre dur. Pour changer de
+tos, il suffit d'un opetit cliq sur un prg
+
+Seul d‚faut actuel: lors d'un reset , il faut relancer AHDI
+de la disquette car le nouveau tos cherche … booter depuis
+le dur alors qu'il n'a pas encore charg‚ les driver de celui
+ci. Pour corriger ce d‚faut, il y a 3 voies de recherche:
+
+	- essayer de comprendre pourquoi le nouveau TOS refuse
+	d'aller chercher un secteur de boot sur le dur alors que
+	le TOS en ROM le fait.
+
+	- comprendre comment se passe le reset quand on utilise
+	un tos en RAM. Il ne passe pas en effet par le RESVECTOR
+	dont l'adresse est disponible en 42A, puisque RESVALID
+	ne vaut pas alors $34115926. Comment fait il alors ? Une
+	fois qu'on le saur, il suffira de rajouter dans la
+	routine de boot un CLR.W _bootdev qui le fera alors
+	aller chercher son driver disque dur sur la disquette !
+
+    - patcher le TOS.IMG de maniere a ce que les routines
+    d'acces disque dur qui ont ‚t‚ charg‚s pr‚alablement au
+    TOS ne soient pas ‚cras‚es, ce qui permettrait d'acceder
+    au dur sans recharger le driver.
+    
+Je continue … chercher. Si vous trouvez, faites le moi
+savoir
+
+Marc Abramson    

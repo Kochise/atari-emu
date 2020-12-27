@@ -1,0 +1,8 @@
+This is the folder where Steem will copy as 'AUTORUN.PRG' standalone PRG files
+(zipped or not) that you want to directly run.
+
+If TOS 1.04 -> 1.62 is selected, the program will be run using the DESKTOP.INF
+method.
+With other versions, the AUTO folder method is used.
+
+You must set up a Z: harddrive pointing to this PRG folder.

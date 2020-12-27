@@ -1,0 +1,32 @@
+NET2NET (20/7/94)
+==================
+
+This program converts the older (v2r1/v2r2/v2r2a) file format into v2r4 format.
+Give it the filename as a parameter (type it into the TTP dialog, or drag a
+.NET file onto it). This format has some changes for use with CLAv3, but
+is still compatible with all versions of CLAv2.
+
+It will load the file, then save it in the new format.
+
+What This Program Changes
+==========================
+1) External Inputs
+The changes in file format are to do with EXTERNAL INPUT handling, and unfortunately
+mean that all external inputs (those which would appear in the word generator) will
+be deleted, and will require putting back in by hand. This patch is only applied
+to older files (v1r2/v2r2) and will not change v2r2a files at all.
+
+2) Wire Links
+If you have already used net2net on a file, only the required changes will be
+made to bring the file up to v2r4 spec. This will fix the bug when moving items
+which caused wire paths to be corrupted. The wire link patch is non-destructive,
+so you should be able to use the file again straight away, and it will appear to
+be exactly the same (but, when used with CLAv2r3, the MOVE function will no
+longer mess up wires).
+
+3) Hierachical IO ports
+Some CLAv2 designs have an error in the wires connecting internal & external
+hierachical IO ports. This causes CLAv3 to crash when performing deletes on
+h.i/o's. This patch fixes the problem.
+
+Craig.
