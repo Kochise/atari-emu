@@ -1,9 +1,9 @@
 # atari-emu
 Atari ST emulators in one portable package
 
-DISK : floppy disk images, hard disk images, utilities and programs sorted thematically
-EMUL : various emulators, listed below
-ROMS : bios images to run the emulators
+DISK : floppy disk images, hard disk images, utilities and programs sorted thematically<br>
+EMUL : various emulators, listed below<br>
+ROMS : bios images to run the emulators<br>
 
 | EMUL				| Release mouse			| Fullscreen	| Main menu	| Pause			| Debug			| (Cold) Reset			| Help		| Undo		|
 | :--				| :-:					| :-:			| :-:		| :-:			| :-:			| :-:					| :-:		| :-:		|
@@ -33,13 +33,13 @@ Can map the Windows' partitions to the emulated hard disks, hence see C:\ as... 
 
 http://www.emulators.com/gemul8r.htm
 
-INST : Launch, select "Atari ST", configure "Options" menu (ROM, disk, VM, in that order), click "Restart"
-BOOT : Copy the C_S000 folder in C:\, select to boot on C: (disk options), restart, quickly press 5 as it boots to change desktop size
+INST : Launch, select "Atari ST", configure "Options" menu (ROM, disk, VM, in that order), click "Restart"<br>
+BOOT : Copy the C_S000 folder in C:\, select to boot on C: (disk options), restart, quickly press 5 as it boots to change desktop size<br>
 
 ## Hatari
 Good emulator, with pretty accurate Falcon030 emulation, can emulate up to 1000% of the original speed (but it gets jerky).
 
-INST : Launch, press F12, configure each section
+INST : Launch, press F12, configure each section<br>
 
 ## SainT
 Accurate emulator with little tweaking options, yet tuned to run demos normally not runable on emulator.
