@@ -1,0 +1,14 @@
+[Text]
+
+Description=Bypass dongle, no guarantee
+ApplyWhen=Before playing a match
+Version=STE, TOS 1.62, 4MB
+PatchAuthor=Steven
+
+[Check]
+
+00BE10 = $6600 $0050
+
+[Patch]
+
+00BE10 = $6700 $0050

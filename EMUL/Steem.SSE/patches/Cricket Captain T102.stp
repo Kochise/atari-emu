@@ -1,0 +1,14 @@
+[Text]
+
+Description=Bypass dongle, no guarantee
+ApplyWhen=Before playing a match
+Version=STF, TOS 1.02, 512K
+PatchAuthor=Steven
+
+[Check]
+
+00DF7A = $6600 $0050
+
+[Patch]
+
+00DF7A = $6700 $0050

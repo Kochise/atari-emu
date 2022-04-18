@@ -1,13 +1,13 @@
 ST Ghost v1.0
 ===============================================================================
 
-STG is the extension of "ghost disks" for Steem.
+STG is the extension of "ghost disks" for Steem SSE.
 
 Ghost disks are used to save sector changes in read-only disk image
-formats such as STX (pasti) and IPF, CTR (caps).
+formats such as STX (pasti), IPF (caps), CTR (caps) and SCP.
 
 If SSE option 'Ghost disk' is checked, a STG file is automatically
- created at first sector write, with the same name as the disk image.
+created at first sector write, with the same name as the disk image.
 Steem will check the existence of a STG file at reads.
 
 Only those sectors that are changed are saved, and retrieved when

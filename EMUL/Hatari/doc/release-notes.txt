@@ -4,7 +4,7 @@
                                 Release Notes
 
 
- Version 2.3.0 (2020-11-28)
+ Version 2.3.1 (2020-12-27)
  --------------------------
 
 Following features are deprecated and will be removed in a future release:
@@ -19,6 +19,62 @@ Following features are deprecated and will be removed in a future release:
 - The old ~/.hatari configuration file location (use ~/.config/hatari instead)
 
 Emulation:
+- CPU:
+  - Fix: unneeded extra prefetch for movem in 68020/30 cpu
+    (regression in v2.3)
+- DSP:
+  - Fix: master clock use for crossbar/DSP Handshake mode
+    (partial regression in v1.6)
+  - Fix: hostport PORTB interrupt handling
+
+Emulator:
+- ACSI/IDE/SCSI handling:
+  - Fix: IDE crash when switching to Falcon mode at run-time
+    (regression in v2.3)
+  - Fix: No error dialog on IDE image mount errors
+  - Fix: Duplicate disk image mount failure handling
+- TOS support:
+  - Fix: TOS 2.07 (Sparrow TOS) support
+    (regression in v2.3)
+- Hatari window handling:
+  - Fix: Hatari window disappearing from Python UI
+    when Hatari changes its framebuffer size
+    (SDL2 specific)
+- macOS GUI:
+  - Fix: FPU setting doesn't work when GUI runs in French
+
+Python UI:
+- Several fixes (see its own release-notes.txt)
+- Requires now Gtk v3.22 or newer
+
+Tools:
+- Fix: assert in hatari_profile (profile post-processor)
+  with relative symbols
+
+Documentation:
+- Add PortMidi info to devices dialog section in manual
+- Updated compatibility documentation
+
+Fixed Falcon programs:
+- Music missing in H2O game, in Running game main screen,
+  Stocasto demo and Epidemic music disk
+  (crossbar/DSP handshake mode)
+- Lockup demo freezing at startup
+  (DSP hostport PORTB interrupt handling)
+- Several demos (Cruor 96k, Hmmm..., Keff, Payback 2015) and games
+  (Beats of Rage, Capy, Confusion preview 2, Men at War preview,
+  Moonspeeder preview 2, Neurobot, Pacmania X68000, Slippery Sam
+  and Sokoban by Fun) not starting with TOS4 or EmuTOS unless MMU
+  was enabled (unneeded extra prefetch in movem)
+- Built-in Obsolescence demo, Delmpaint app and Sidetracked GFA
+  musicdisk had other issues also with MMU under TOS4 or EmuTOS
+  (unneeded extra prefetch in movem)
+
+
+ Version 2.3.0 (2020-11-28)
+ --------------------------
+
+Emulation:
 - FDC / Disk :
   - Support for MegaSTE DIP switch register $FF9200
     (set floppy drive to HD by default on MegaSTE/TT/Falcon)
@@ -29,10 +85,10 @@ Emulation:
   - Fix: IDE controller is now always available in Falcon mode, even if
     no hard disks have been configured.
 - CPU:
-  - Update CPU core to latest WinUAE 4.4.0 beta : full support for undocument
-    fields in 68000 bus/address error stack frames, as well as CCR flags for
-    most of the 680x0 instructions (using a cpu tester program on the real
-    hardware that checks all possible opcodes' combinations)
+  - Update CPU core to latest WinUAE 4.4.0 beta : full support for
+    undocumented fields in 68000 bus/address error stack frames, as well as
+    CCR flags for most of the 680x0 instructions (using a cpu tester program
+    on the real hardware that checks all possible opcodes' combinations)
   - 68030 MMU hardware bus error support + various fixes
   - FPU fixes
 - Video:
@@ -50,7 +106,7 @@ Emulation:
   - Improved Falcon's DMA sound interrupt on GPIP7 and AER
 - Blitter:
   - Large rewrite of the blitter's core, improving cycle accuracy and
-    handling the complex cases where xcount=1 and nfsr=1. Code is slighlty
+    handling the complex cases where xcount=1 and nfsr=1. Code is slightly
     smaller and closer to the logic of the real hardware
   - Handle restart in non HOG mode when the CPU uses a RMW instruction
     (eg TAS)
@@ -205,7 +261,7 @@ Fixed programs:
 - MS Write (crash), when it's run from GEMDOS HD
 - Akaisex program reading AKAI S1000 HD floppies converted to STX
 - EmuTos drawing vertical lines with blitter and leaving some trails
-  (blitter in non HOG mode using TAS intruction to restart)
+  (blitter in non HOG mode using TAS instruction to restart)
 - Cecile v2.22, now also works if no IDE drive has been configured
 - Trans D-Bug Express by PHF (lock when running in megaSTE mode at 16 MHz)
 

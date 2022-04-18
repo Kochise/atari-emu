@@ -2,7 +2,7 @@
 
                            Hatari binary for Windows
 
-                                 Version 2.3
+                                 Version 2.3.1
 
                           http://hatari.tuxfamily.org/
 
@@ -19,6 +19,6 @@ official EmuTOS page (http://emutos.sourceforge.net/) for more
 information and for obtaining versions in other languages or the
 source code.
 However, if you want to play games or watch demos, you should better
-use an original TOS ROM image since many games and demos do not work
+use an original TOS ROM image since some games and demos do not work
 very well with EmuTOS yet.
 

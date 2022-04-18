@@ -24,7 +24,7 @@
 <h1 class="pageheader">Hatari User's Manual</h1>
 
 <p class="pageheader">
-Version 2.3, November 2020
+Version 2.3.1, December 2020
 </p>
 <p class="pageheader">
 Manual written by: <strong>Thomas Huth</strong>, <strong>Matthias Arndt</strong>
@@ -172,6 +172,13 @@ common to all (FDC, IKBD, MFP, MIDI, PSG, RS-232...).</p>
       <td class="hwnote">[x] = Needs 68030+ CPU, requires 512k EmuTOS or TOS 2.06</td>
     </tr>
     <tr>
+      <td class="hwfeat">FPU</td>
+      <td>[1]</td><td>[1]</td><td>[1]</td><td>[1]</td><td>X</td><td>[2]</td>
+      <td class="hwnote">
+        [1] = Memory mapped FPU add-ons, not supported by Hatari<br>
+        [2] = 68881/68882 FPU through CPU coprocessor interface</td>
+    </tr>
+    <tr>
       <td class="hwfeat">NVRAM</td>
       <td></td><td></td><td></td><td></td><td>X</td><td>X</td>
       <td class="hwnote"></td>
@@ -252,9 +259,9 @@ supports all Atari HW except for Falcon DSP & 16-bit Videl TrueColor mode.)</p>
   <li>with the (deprecated) UAE CPU core: 68000 - 68040 emulation (less accurate, but faster)</li>
   <li>cycle-accurate 68000 emulation (only) with the WinUAE CPU core, and
       several options for disabling CPU accuracy for performance</li>
-  <li>68881, 68882 and CPU internal FPU emulation, either using
-      host FPU (default, faster), or emulating them completely
-      in SW (more accurate in some corner-cases)</li>
+  <li>68881, 68882 and 68040/060 internal FPU emulation, either using
+      host FPU (default, faster), or emulating them more accurately
+      in SW</li>
 </ul>
 
 <h4>ST hardware emulation</h4>
@@ -373,7 +380,7 @@ well tested.
 <ul>
 <li>A C compiler that supports the "gnu99" C extensions. Thus any recent
  versions of GCC or clang should be fine.</li>
-<li>A working CMake installation (version 2.8.8 or newer). See
+<li>A working CMake installation (version 3.3 or newer). See
 <a href="http://www.cmake.org/">http://www.cmake.org/</a> for details.
 </li>
 <li>The SDL library v1.2.10 or newer. You can get it from
@@ -393,7 +400,7 @@ decrease AVI video recording file sizes. You can get it from
 command line editing.</li>
 <li>The Xlib library to support Hatari Python UI window embedding
 on systems with the X window system (Linux and other unixes).</li>
-<li>The PortMidi library required for MIDI support on macOS and Windows
+<li>The PortMidi library required for MIDI device support on macOS and Windows
 <a href="http://portmedia.sourceforge.net/">http://portmedia.sourceforge.net/</a>.</li>
 <li>The portaudio library for Falcon microphone recording support.</li>
 <li>The udev library for NatFeats SCSI driver media change detection (Linux).</li>
@@ -811,15 +818,16 @@ given port</p>
 <p class="paramdesc">Enable printer support and write data
 to &lt;file&gt;</p>
 <p class="parameter">--midi &lt;bool&gt;</p>
-<p class="paramdesc">Enable MIDI support (PortMidi only)</p>
+<p class="paramdesc">Enable MIDI support
+(when Hatari is built with PortMidi support)</p>
 <p class="parameter">--midi-in
 &lt;filename&gt;</p>
-<p class="paramdesc">Enable MIDI support and write MIDI data
-to &lt;file&gt; (Linux only)</p>
+<p class="paramdesc">Enable MIDI support and write MIDI data to &lt;file&gt;
+(when not built with PortMidi support)</p>
 <p class="parameter">--midi-out
 &lt;filename&gt;</p>
-<p class="paramdesc">Enable MIDI support and read MIDI data
-from &lt;file&gt; (Linux only)</p>
+<p class="paramdesc">Enable MIDI support and read MIDI data from &lt;file&gt;
+(when not built with PortMidi support)</p>
 <p class="parameter">--rs232-in
 &lt;filename&gt;</p>
 <p class="paramdesc">Enable MFP serial port support and use
@@ -1348,12 +1356,14 @@ changes that you have made.
        alt="Hatari's GUI - the CPU dialog" />
 </div>
 
+<h5>CPU type</h5>
+
 <p>
  The CPU type option can be used to select the level of the central processing
  unit. If you are not sure what to use, simply select 68000 for ST and STE
- machines and 68030 for TT and Falcon emulation, since this were the original
+ machines and 68030 for TT and Falcon emulation, since these were the original
  configurations used in the Atari computers. In case you want to vary
- the CPU type, you have got to be aware of some constraints:
+ the CPU type, you should be aware of some constraints:
 </p>
 <ul>
  <li>
@@ -1375,7 +1385,7 @@ changes that you have made.
  </li>
  <li>
   68010 and 68040, 68060 have never been used in official Atari computers,
-  so don't use these CPU types unless you have got some good reasons.
+  so don't use these CPU types without a good reason.
  </li>
  <li>
   The 68060 option is only available in the &quot;WinUAE&quot; builds of
@@ -1383,6 +1393,8 @@ changes that you have made.
   this option unless you know what you are doing.
  </li>
 </ul>
+
+<h5>CPU options</h5>
 
 <p>
  The CPU clock option can be used to select the frequency that is used
@@ -1400,22 +1412,31 @@ changes that you have made.
 </p>
 <p>
  The &quot;Cycle exact&quot;, the &quot;MMU emulation&quot; and
- &quot;24-bit addressing&quot; option are only available in the
+ &quot;24-bit addressing&quot; options are only available in the
  &quot;WinUAE&quot; builds
  of Hatari. They are considered as experimental and should only be changed
  if you know what you are doing.
 </p>
+
+<h5>FPU type</h5>
+
 <p>
  The FPU settings are also only available with the &quot;WinUAE&quot; builds
- of Hatari. They can be used to select the type of floating point unit of CPUs
- &gt;= 68020. In the non-WinUAE builds of Hatari, the FPU is always enabled for
- 68030 and 68040 CPUs.<br/>
- When emulating the FPU, you can use your own PC's CPU/FPU to do the math.
- This is the default and fastest method, but recent CPU might have some slight
- differences in rounding when compared to a real Motorala FPU.<br/>
- For higher precision, you can select the "Softfloat" emulation mode : this will
- emulate all the FPU operations using only the CPU and with the same rules as the
- Motorala's FPU. In that case, FPU emulation will be a little slower.
+ of Hatari. They can be used to select the type of floating point unit of
+ &gt;= 68020 CPUs. In the non-WinUAE builds of Hatari, the FPU is always
+ enabled for 68030 and 68040 CPUs.
+</p>
+<p>
+ When emulating the Motorola FPU, PC host FPU can be used to do the math.
+ This is the default and fastest method, but its results have some slight
+ differences compared to a real Motorala FPU.
+</p>
+<p>
+ For higher precision, you can select the "Softfloat" emulation mode :
+ this will emulate all the FPU operations using only the CPU and with
+ the same rules as the Motorala's FPU. This emulation is bit-exact
+ (except for the last few bits in trig/log functions), and a little
+ slower than using host FPU.
 </p>
 
 
@@ -1911,14 +1932,14 @@ for accurate sound's emulation.
        alt="Hatari's GUI - the device dialog" />
 </div>
 
-<p>Check the first checkmark to enable printer support.
+<p>Check the first checkbox to enable printer support.
 See the <a href="#Emulated_printer">Emulated printer</a> section for
 details.</p>
 
 <p>As Hatari currently only supports printing to file, click on <span
  class="button">Browse</span> to select the file to print to. You can
 enter a new filename as well.</p>
-<p>Check the second checkmark to enable RS232 support.
+<p>Check the second checkbox to enable RS232 support.
 The RS232 device is configured according to the settings of
 the emulated MFP RS232 of the Atari ST/STE/TT. This means Hatari will
 automatically use baudrate and handshaking as configured for the
@@ -1927,14 +1948,42 @@ emulated machine.</p>
 device files for serial input and output.  On Linux a good choice is
 /dev/ttyS0 or /dev/ttyS1.
 </p>
-<p>Check the third checkmark to enable MIDI support.
+<p>
+Check the third checkbox to enable MIDI support.
+</p>
+<h5>MIDI support</h5>
+<p>
+Hatari MIDI support can be provided either with a PortMidi library
+(required on Mac / Windows), or using "raw" MIDI device files. Latter
+supports also MIDI networking in games, and can be used for debug
+output, while PortMidi handles only MIDI events and doesn't currently
+work with all MIDI SW.
+</p>
+<h6>"raw" MIDI device file selection</h6>
+<p>
 Click on <span class="button">Browse</span> to select a suitable
-MIDI device files for MIDI input and output.</p>
-<p><span class="file">midi-linux.txt</span> file explains how to
+MIDI device files for MIDI input and output.
+</p>
+<p>
+<span class="file">midi-linux.txt</span> file explains how to
 select the correct MIDI device file, how to set up software sound
-synthesizing on Linux (using Alsa) if your sound card/driver doesn't
-support MIDI, and how to set up MIDI networking e.g. between multiple
-Hatari instances.
+synthesizing on Linux (using ALSA) if your sound card/driver doesn't
+support MIDI, and how to set up MIDI networking between multiple
+Hatari instances, even over internet.
+</p>
+<div class="floatimage">
+  <img src="images/devices-portmidi.png" width="520" height="114"
+       alt="Hatari's GUI - PortMidi MIDI device selection" />
+</div>
+<h6>PortMidi MIDI device selection</h6>
+<p>
+Click on arrow buttons to select a suitable MIDI devices for MIDI
+input and output.
+</p>
+<p>
+PortMidi will list only currently active MIDI devices.  On Linux
+these are subset of ones listed e.g. by ALSA
+<span class="commandline">aconnect -l</span> command.
 </p>
 
 

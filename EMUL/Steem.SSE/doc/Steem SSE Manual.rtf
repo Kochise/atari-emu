@@ -1,0 +1,1795 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang6153\deflangfe6153{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial Black;}{\f1\fswiss\fprq2\fcharset0 Calibri;}{\f2\fswiss\fprq2\fcharset0 Calibri Light;}{\f3\fnil\fcharset0 Calibri;}{\f4\fmodern\fprq1\fcharset0 Courier;}{\f5\fnil\fcharset0 Arial;}{\f6\fnil\fcharset255 Arial;}{\f7\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red79\green129\blue189;\red47\green84\blue150;\red0\green0\blue255;\red247\green150\blue70;\red31\green55\blue99;\red0\green176\blue80;\red75\green172\blue198;}
+{\stylesheet{ Normal;}{\s1 heading 1;}{\s2 heading 2;}{\s3 heading 3;}{\s4 heading 4;}}
+{\*\generator Riched20 10.0.19041}{\*\mmathPr\mdispDef1\mwrapIndent1440 }\viewkind4\uc1 
+\pard\widctlpar\sa160\sl252\slmult1\qc\cf1\b\f0\fs56\lang2057 STEEM SSE MANUAL\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\b0\f1\fs22 v4.1.2.\par
+
+\pard\keep\keepn\widctlpar\sb240\sa200\sl252\slmult1\cf2\f2\fs32 Atari ST\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 The Atari ST was a legendary 16bit computer of the Eighties.\par
+Beside the price, its forces were a no-nonsense graphical operating system (the GEM, that also existed on the PC), a flicker-free high resolution monochrome display for professional use, and MIDI ports. Thanks to the latter and tight timings provided by the hardware, the Atari ST was for a long while the computer of choice for musicians and studios, running the best MIDI software available at the time, such as Cubase and Notator. In this domain, the ST was number one. In fact it is still used in some studios.\par
+Its native sound is produced by the modest YM2149 chip, which is not too good at sample playback but had some good tunes composed for it, and even a cool speech synthesiser that has been used in commercial records.\par
+The ST struggles on scrolling action games because its chipset wasn't dedicated to that sort of childish programs, it was a serious computer in the beginning. The STE version is better in this respect, in other words, less serious.\par
+The ST has a great collection of games nevertheless, including action games, including scrollers.\par
+Unlike most computers even today, the ST featured two useful keys: Help and Undo (mapped to Page Up and Page Down in Steem!)\par
+Downsides of the ST were that earlier models were sold with single-sided drives, which forced the industry to compromise, the OS in ROM couldn't be easily fixed, memory wasn't easily expandable and viral piracy readily killed the platform. \par
+\par
+
+\pard\keep\keepn\widctlpar\sb240\sa200\sl252\slmult1\cf2\f2\fs32 Steem\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\expndtw15\fs28 Steem Engine, by Anthony & Russell Hayward\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22 Steem is a legendary Atari ST emulator for the PC, both accurate and easy to use thanks to its great user interface. Its development was stopped in 2004, at v3.2. The Steem authors probably got sick of all the lamers. In 2011 the Hayward bros released the source code for further development.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28 Steem SSE\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22 Steem SSE stands for \b\i ST\b0  \b E\b0 nhanced \b EM\b0 ulator \b S\b0 ensei \b S\b0 oftware \b E\b0 dition\i0 . It is an updated version of Steem. \lang6153 Some say an improvement, some say it's worse!\par
+\lang2057 Features have been added and emulation has been improved. Steem SSE's goal is to keep the Atari ST alive in the hearts and minds of old and new generations. \par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang2067 Steem SSE Web site\par
+
+\pard\widctlpar\sa160\sl252\slmult1 {\cf0\expndtw0\f1\fs22{\field{\*\fldinst{HYPERLINK https://sourceforge.net/projects/steemsse/ }}{\fldrslt{https://sourceforge.net/projects/steemsse/\ul0\cf0}}}}\cf0\expndtw0\f1\fs22\par
+\lang2057 There are downloads, a blog, a forum, and the source code repository (SVN).\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28 About the manual\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22 This manual is based on the original readme.txt included with Steem 3.2. It's been updated to reflect all modifications introduced with Steem SSE.\par
+This manual applies to the Windows build. Not all of it is relevant to the Linux build, which has fewer features and some differences. There is specific documentation for the Linux build in its  package, please check the xsteem sse readme file.\par
+The manual doesn't cover the debugger.\par
+\par
+
+\pard\keep\keepn\widctlpar\sb240\sa200\sl252\slmult1\cf2\f2\fs32 Licence\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Steem and Steem SSE are free open source software. The licence is GPL3 as chosen by Steem authors.\par
+\par
+
+\pard\keep\keepn\widctlpar\s1\sb240\sa200\sl252\slmult1\cf2\f2\fs32 Installation\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 There's no setup program. Extract files to a folder of your choice. Text files should be in a \i doc\i0  subdirectory and plugins (dll and other files) in a \i plugins32\i0  (32bit builds) or \i plugins64\i0  (64bit builds) subdirectory, although both can also be in Steem's directory. D3DX9_43.dll must be in Steem's directory, you need copy it only if your DirectX 9 installation is incomplete. Ideally you should update DirectX instead (see Requirements).\par
+When you run a Steem SSE build for the first time, based on the file name, it proposes to add a link to the new version in your start menu if you care about that. If it's a new installation (no steem.ini), you must also select a TOS file.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Builds\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 Ten builds of Steem SSE are available, no less. Four \b main builds \b0 are included in apart packages. The rest, including the debug versions, are all grouped in one single package.\par
+
+\pard\widctlpar\li720\sa160\sl252\slmult1\f3 SteemDebug32D3D.exe\par
+SteemDebug32DD.exe\par
+\b Steem32D3D.exe\par
+\b0 Steem32DD.exe\par
+SteemDebug64D3D.exe\par
+SteemDebug64DD.exe\par
+\b Steem64D3D.exe\par
+\b0 Steem64DD.exe\par
+\b xsteem32\par
+xsteem64\b0\i\par
+
+\pard\widctlpar\sa160\sl252\slmult1\i0\lang6153 SteemDebug builds include a powerful ST debugger interface but are heavier on the CPU. 32/64 stand for bits, DD/D3D for DirectDraw/Direct3D. If the file name ends with a 'b', it's a beta version.\par
+Notice that you don't really need to run the 64bit build on your x64 system, the 32bit build is fine.\par
+\f1\lang2057 D3D builds are better for VSync and true fullscreen. They use DirectX 9, widely installed but old.\par
+Remark that VSync generally consumes more CPU on the 64bit builds, and that only 32bit Windows builds can use STX disk images.\par
+DirectDraw has been deprecated since long by Microsoft. On other than prehistoric systems, it is emulated by the latest DirectX. \par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Requirements\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 You need a PC with a SSE2-compatible processor.\par
+Windows builds require at least Windows 2000 and the 2008 C++ runtime. The D3D builds require DirectX 9.0c. \par
+D3D 9.0 {{\field{\*\fldinst{HYPERLINK https://www.microsoft.com/en-us/download/details.aspx?id=35 }}{\fldrslt{https://www.microsoft.com/en-us/download/details.aspx?id=35\ul0\cf0}}}}\f1\fs22\par
+Visual Studio runtimes\par
+{{\field{\*\fldinst{HYPERLINK https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-160 }}{\fldrslt{https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-160\ul0\cf0}}}}\f1\fs22\par
+32bit {{\field{\*\fldinst{HYPERLINK https://download.microsoft.com/download/5/D/8/5D8C65CB-C849-4025-8E95-C3966CAFD8AE/vcredist_x86.exe }}{\fldrslt{https://download.microsoft.com/download/5/D/8/5D8C65CB-C849-4025-8E95-C3966CAFD8AE/vcredist_x86.exe\ul0\cf0}}}}\f1\fs22\par
+64bit {{\field{\*\fldinst{HYPERLINK https://download.microsoft.com/download/5/D/8/5D8C65CB-C849-4025-8E95-C3966CAFD8AE/vcredist_x64.exe }}{\fldrslt{https://download.microsoft.com/download/5/D/8/5D8C65CB-C849-4025-8E95-C3966CAFD8AE/vcredist_x64.exe\ul0\cf0}}}}\f1\fs22\par
+Note: Microsoft regularly changes its site structure and links to runtimes may be outdated.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Third-party\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 Steem SSE works with various other programs or libraries.\par
+\par
+-ArchiveAccess.dll (7Z, RAR, ZIP and more support)\par
+{{\field{\*\fldinst{HYPERLINK http://sourceforge.net/projects/archiveaccess/ }}{\fldrslt{http://sourceforge.net/projects/archiveaccess/\ul0\cf0}}}}\f1\fs22\par
+This is included in the download package.\par
+\par
+-CAPSImg.dll (IPF, CTR support)\par
+{{\field{\*\fldinst{HYPERLINK http://www.kryoflux.com/ }}{\fldrslt{http://www.kryoflux.com/\ul0\cf0}}}}\f1\fs22\par
+\par
+-Drive image (ACSI hard disk image manager)\par
+{{\field{\*\fldinst{HYPERLINK http://atari.8bitchip.info/drimus.php }}{\fldrslt{http://atari.8bitchip.info/drimus.php\ul0\cf0}}}}\f1\fs22  \par
+\par
+-FreeImage.dll (for screenshots, though you already have PNG in D3D builds)\par
+{{\field{\*\fldinst{HYPERLINK http://freeimage.sourceforge.net/download.html }}{\fldrslt{http://freeimage.sourceforge.net/download.html\ul0\cf0}}}}\f1\fs22\par
+If it's not up-to-date, it will not work well with recent versions of Steem SSE.\par
+\par
+-msa.exe (converts files to ST/MSA disk images)\par
+{{\field{\*\fldinst{HYPERLINK http://msaconverter.free.fr/ }}{\fldrslt{http://msaconverter.free.fr/\ul0\cf0}}}}\f1\fs22\par
+\par
+-pasti.dll (STX support)\par
+{{\field{\*\fldinst{HYPERLINK http://pasti.fxatari.com/ }}{\fldrslt{http://pasti.fxatari.com/\ul0\cf0}}}}\f1\fs22\par
+Check at atari-forum for the most recent version.\par
+\par
+-stvl32.dll or stvl64.dll (low-level ST video logic emulation)\par
+This has not been released yet.\par
+\par
+-unrar.dll or unrar64.dll (RAR and ZIP support)\par
+{{\field{\*\fldinst{HYPERLINK http://www.rarlab.com/rar_add.htm }}{\fldrslt{http://www.rarlab.com/rar_add.htm\ul0\cf0}}}}\f1\fs22\par
+\par
+-unzipd32.dll (ZIP support)\par
+You can find it in older Steem versions.\par
+\par
+-d3d9sweetfx.dll  (D3D)\par
+SweetFX shaders\par
+The plugin will silently fail to load if it doesn't find the Microsoft Visual C++ 2010 SP1 Redistributable Package in your system (or in Steem's main directory). Contrary to VC2008, they're not included in every Windows 10 installations, don't ask me why.\par
+VC2010 32bit {{\field{\*\fldinst{HYPERLINK http://www.microsoft.com/en-us/download/details.aspx?id=8328 }}{\fldrslt{http://www.microsoft.com/en-us/download/details.aspx?id=8328\ul0\cf0}}}}\f1\fs22\par
+VC2010 64bit {{\field{\*\fldinst{HYPERLINK http://www.microsoft.com/en-us/download/details.aspx?id=13523 }}{\fldrslt{http://www.microsoft.com/en-us/download/details.aspx?id=13523\ul0\cf0}}}}\f1\fs22\par
+You need the plugin for the CRT emu option. It is part of the download package, so no worry. d3d9sweetfx.dll is the name for Steem SSE. \par
+\par
+-ShaderGlass\par
+ShaderGlass also works with Steem SSE. There are lots of effects to check, including RetroArch shaders.\par
+{{\field{\*\fldinst{HYPERLINK https://github.com/rohatsu/ShaderGlass }}{\fldrslt{https://github.com/rohatsu/ShaderGlass\ul0\cf0}}}}\f1\fs22\par
+For best effect, disable the tool and status bars.\par
+\par
+All the plugins can be stored in a \i plugins32\i0  or \i plugins64\i0  folder, it's the first place where Steem SSE will look. After that, it looks in a \i plugins\i0  folder, then, for DLL files, in a folder with the same name as the DLL (pasti, FreeImage...). Finally in Steem's main directory. However Steem SSE doesn't control where those plugins look for their own files.\par
+\par
+Steem SSE uses additional data files, that are included in the download package:\par
+-Folder \i DriveSound\i0  with some samples\par
+-Folder \i PRG\i0  to help PRG/TOS files support, which should be copied into Steem's folder.\par
+\par
+
+\pard\keep\keepn\widctlpar\s1\sb240\sa200\sl252\slmult1\cf2\f2\fs32 Emulation limitations\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Emulation is mostly high-level with some low-level elements where it helps most. Define low-level! Steem SSE has a "low-level" 6301 emulation, in that the chip's opcodes are emulated instead of the high level commands sent to the chip, but the emulation of that chip is higher level than Steem's 68000 emulation, which is "high-level." Contrary to what you might think, really low-level emulation of all chips composing the ST is not realistic on current PC systems, as of 2021.\par
+Emulation of the Mega ST and of the Mega STE is partial.\par
+The light gun is not emulated (hard to do on a LCD screen!)\par
+STE digital sound filters are not emulated (should we?). MicroWire isn't accurate.\par
+Only one mouse in port 0 is emulated.\par
+The MC68901 MFP's \i Pulse Width Measurement Operation\i0  isn't emulated. Timer B emulation is pragmatic and a bit dodgy.\par
+SCP: Can't write disk images (they're all read-only anyway). Protections with weak bits can be trouble.\par
+GEMDOS hard drive emulation is not guaranteed to be compatible with all programs (it's a hack after all).\par
+Disk DMA transfer timing is approximate.\par
+MIDI emulation doesn't support network games (MIDI Maze).\par
+MIDI timings aren't Atari-tight (what is?), the timing resolution is about 1ms, so there's some jitter.\par
+The pixel shift due to wakeup of some chips on the STF isn't emulated, the image is centred.\par
+\par
+
+\pard\keep\keepn\widctlpar\sb240\sa200\sl252\slmult1\cf2\f2\fs32\lang1033 Window menu\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22\lang2057 Press Alt-space for the Window menu, or click top left of the window, on the icon.\par
+\i Restore Position\i0  is useful if some window was opened on another display which isn't currently switched on or similar circumstances. If Steem's main window is invisible, you can access the menu through the task bar.\par
+When automatic resizing is off you may find it difficult to get the window to a precise size, making ugly lines appear.\par
+Normal size will resize the window to the double (low res) size. Restore aspect ratio will maintain the current size of the window but will alter it so that its aspect ratio matches that of the selected size for the ST resolution. Also on this menu is Bigger and Smaller Window, they are a quick way to resize the window without going to the Options dialog, and border settings, which also affects the size of the window. As well as all that there's an \i Always on Top\i0  option that keeps the main Steem window above all others.\par
+The window menu also lets you enable the tool bar and the classic menu, and start or stop emulation.\par
+\par
+
+\pard\keep\keepn\widctlpar\sb240\sa200\sl252\slmult1\cf2\f2\fs32\lang1033 Menu and Keyboard\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22\lang2057 If you press the Alt key while emulation is stopped, this toggles the classic menu. Most options of Steem SSE can be changed with just the keyboard.\par
+\par
+
+\pard\keep\keepn\widctlpar\sb240\sa200\sl252\slmult1\cf2\f2\fs32\lang1033 Getting emulation started\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22\lang2057 To use Steem, you need a copy of an Atari ROM with the operating system, called "TOS", and image disk files. A TOS file is 192KB long for the STF, 256KB for the STE. The extension is img or rom. When you first launch Steem SSE (no ini file), you must point to a TOS file, and you can change that later. One important point is to match ST model and TOS (see further), for example STF + TOS 1.02, STE + TOS 1.62.\par
+Use the disk manager or a shortcut to select the disk image, there are various ways to start emulation.\par
+\par
+Disk images are easy to find. For example:\par
+{{\field{\*\fldinst{HYPERLINK http://planetemu.net/index.php?section=menus&machine=34 }}{\fldrslt{http://planetemu.net/index.php?section=menus&machine=34\ul0\cf0}}}}\f1\fs22  \par
+{{\field{\*\fldinst{HYPERLINK http://www.atarimania.com/ }}{\fldrslt{http://www.atarimania.com/\ul0\cf0}}}}\f1\fs22\par
+\par
+TOS:\par
+{{\field{\*\fldinst{HYPERLINK http://www.avtandil.narod.ru/tose.html }}{\fldrslt{http://www.avtandil.narod.ru/tose.html\ul0\cf0}}}}\f1\fs22  \par
+\par
+Legally this is still copyrighted material, and if they really wanted, companies that own it could call a halt on emulation, but they don't. We don't include any TOS in the download not because it is forbidden but because there are really many versions, and since you need programs to run in the emulator anyway, you'll easily find the ROMs as well.\par
+\par
+EmuTOS:\par
+{{\field{\*\fldinst{HYPERLINK http://sourceforge.net/projects/emutos/ }}{\fldrslt{http://sourceforge.net/projects/emutos/\ul0\cf0}}}}\f1\fs22\par
+\par
+
+\pard\keep\keepn\widctlpar\sb240\sl252\slmult1\cf2\f2\fs32\lang1033 Tool bar\par
+\cf0\f1\fs22\lang2057 The tool bar is now optional. On it you find some useful icons; from left to right:\par
+\par
+
+\pard\widctlpar\sa160\sl252\slmult1\i 1st group on the left\par
+
+\pard\widctlpar\li720\sa160\sl252\slmult1\i0 Reset\par
+Play\par
+Fast forward\par
+Memory snapshot\par
+Screenshot\par
+Paste\par
+Configurations\par
+
+\pard\widctlpar\sa160\sl252\slmult1\par
+\i 2nd group on the right\par
+
+\pard\widctlpar\li720\sa160\sl252\slmult1\i0 Disk manager\par
+Joysticks\par
+Patches\par
+Shortcuts\par
+Options\par
+Debugger (Debug builds only)\par
+Info\par
+
+\pard\widctlpar\sa160\sl252\slmult1\par
+If icons are too small on your screen, there's a way to make them bigger (startup options).\par
+Some words of explanation are given for each icon.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Reset\par
+\cf0\expndtw0\f1\fs22\lang2057 A left click on the reset button emulates the reset button of the ST (warm reset).\par
+
+\pard\widctlpar\sa160\sl252\slmult1 Notice that some demos were programmed to react on reset (hidden screen and such). \par
+A right click emulates switching off, waiting as long as necessary for the RAM chips to clear (which could be minutes on a real ST), switching on again, except it's instant (don't think we'll get requests for precise delay).\par
+Keyboard shortcuts may be assigned to warm or cold reset as well.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Play\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 You start/stop emulation by using the play button or the function key \b F12\b0 .\par
+\par
+If you right click on \i Play\i0 , you advance in slow motion. The speed can be set in Options/General. For technical reasons, sound still plays if option \i Emulation thread\i0  is active.\par
+\par
+When emulation starts, the mouse cursor is grabbed by Steem SSE. You may change this (tricky) behaviour in the options. In that case, the mouse still controls Windows, and you can stop emulation by clicking on \i Play\i0  again. If you click in the window, the mouse will be grabbed. Once it is grabbed, you may wonder how to free it?\par
+\b F11\b0  toggles mouse capture.\par
+So \b F11\b0  and \b F12\b0  are the main Steem SSE control keys. They were chosen because the ST had function keys F1 to F10. Yet you may change this in the options, it is possible to use \b pause\b0  and \b shift pause\b0  instead.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Fast forward\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 Use this to skip boring intros. You may still expect accurate emulation. Steem SSE uses more CPU power.\par
+Right clicking on this also activates the \i lightsearch\i0  (check if there is some picture hidden by colour definitions).\par
+If you double click on this button (with the left or right button) it will stick down, so you don't have to hold down the button for particularly long waits.\par
+For technical reasons, sound still plays if the \i Emulation thread\i0  option is active.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Memory snapshot\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 The camera and chip button on the Steem toolbar brings up a menu from which you can load and save memory snapshots. Save snapshot will save out the current state of the ST (not just RAM) to a file. \par
+This can be useful for games without save facilities.\par
+When you load a snapshot it will change your TOS version, monitor type, memory size and the current disks in the drives. The last ten snapshots that have been used appear also on this menu so you can quickly reload them. \par
+There is also an option to undo the last snapshot load or reset in case you did it by mistake or it failed. \par
+\cf4 Tip\cf0  Memory snapshots of 32bit and 64bit builds are not mutually compatible\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Screenshot\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 Use the right mouse button to choose your options and the left one to record a screenshot.\par
+The D3D builds of Steem SSE can natively save a screenshot as a BMP, JPG, PNG or NEO file.\par
+The DD builds of Steem SSE can natively save in BMP or NEO format.\par
+With the FreeImage.dll plugin, more formats and options are available (hint: use the last version).\par
+PNG is the recommended format because it is both small and lossless. Notice that JPG is a lossy format, only appropriate for a very colourful screen.\par
+NEO is the format used by Neochrome on the ST. It is only appropriate when there is no overscan and no palette trick.\par
+It is also possible to save multiple screenshots in a row using a shortcut. \par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Note: Recording the video\tab\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Although you can assign a shortcut to internal ST video recording (DirectDraw builds only), this isn't recommended as it is far too slow. It is better to use a third-party tool or Windows 10's own recorder (Windows key + G), which efficiently produces MP4 files.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Paste\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 This button allows you to quickly and easily paste text from Windows into the ST. Just click on the button and Steem will type in the text at incredible speed. Some programs may struggle with the top speed, to slow it down right click on the button and choose a longer delay. \par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Configurations\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 It is possible to load or save configuration files in Steem. This includes all your current options and joystick settings.\par
+You can manage your configurations through the aptly named option page or directly from this menu.\par
+You can also load configuration files from the disk manager. Wow! All the possibilities!\par
+Loading a configuration file resets the ST.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Disk manager\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 The icon toggle Steem's disk manager (see below).\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Joysticks\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 You can assign keys or real (PC, USB) joysticks to ST joystick ports 0 and 1 and to STE joysticks, and even to parallel port joysticks.\par
+\cf4 Tip \cf0 Most games use standard port 1 for one player game\par
+\cf4 Tip\cf0  If the standard port 0 is selected, the mouse is disabled, as on a real ST (had a lot of bug reports for that)\par
+\cf4 Tip\cf0  Key definitions for joysticks may interfere with keyboard emulation\par
+Steem handles analogue as well as digital PC joysticks.\par
+Six setups may be recorded. In each, joysticks may be always active, never active, or active or not according to the state of your PC keyboard Num Lock and Scroll Lock keys. If those keys are not on your keyboard, you may assign shortcuts (Toggle Joystick ... select) instead with the same effect. A shortcut can also select the setup.\par
+For "up" you have 2 boxes, so you can map a joystick button for jump as in arcade games, in addition to the joystick movement. Unfortunately, ST joysticks only used one button. \par
+F11 or Pause to remove a key selection.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Patches\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 Patches (file extension STP) change the memory of the ST after a program has been loaded to change its behaviour.\par
+This is useful to go around a bug or a protection, cheat in some game, etc.\par
+\cf4 Tip\cf0  You may use the debugger to probe the ST program and create your own patches with a text editor\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Shortcuts\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 You can assign key combinations (up to 3 keys each) to either some Steem control (start/stop, fullscreen, etc.) or some Atari ST key.\par
+Not only keys are taken as shortcuts but also mouse and joystick buttons.\par
+You can load and save as many key sets as you wish and use several of them at the same time.\par
+To avoid overwriting your changes, it's advised to name your own sets rather than edit the Default set.\par
+\cf4 Tip\cf0  You can scroll the list using only the keyboard when the focus is on a Del button. F11 to remove a key selection.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Options\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 The icon makes the extensive options dialog of Steem (see below) appear or disappear.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Debugger\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 This icon, an ST bomb, is only available in the Debug builds. It toggles the Debugger windows. For some information about the debugger, consult the Debugger release notes. It is not really covered by this manual. \par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Info\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 The blue 'i' icon opens an information box that can display this very manual and other useful documentation, and the \i TRACE.txt\i0  debug file if it exists. Pressing F1 when the emulator is stopped also opens that box. Esc closes the box.\par
+\b Status\b0\par
+A page in this window displays program statistics and the current state of chips (68000 etc.) \par
+Most figures are reset at each run (from start to stop by using the icons or F12 or some shortcut), those that are not are displayed in deep blue.\par
+
+\pard{\pntext\f7\'B7\tab}{\*\pn\pnlvlblt\pnf7\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa160\sl240\slmult1 The 4096 colour palette is an STE feature, but notice that a program written for the STF may accidentally use the extra STE bits, and the STE TOS itself uses that extended palette on boot. TOS also sets up default MicroWire settings, and it uses the video timer B on boot. So you need to be careful when interpreting statistics, that's why some are split between TOS and program use.\par
+{\pntext\f7\'B7\tab}Computing statistics may take a while if the current frame contains many colours. For this reason, they are computed only when the \i Status\i0  info page is active (or when you open it). The colour count comprises OSD if present and maxes out at 4096.\par
+{\pntext\f7\'B7\tab}The reported CPU usage, in %, can be higher than in the task manager if your CPU is throttled.\par
+
+\pard\sa160\sl240\slmult1\par
+
+\pard\keep\keepn\widctlpar\sb240\sl252\slmult1\cf2\f2\fs32\lang1033 Status bar\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22\lang2057 Steem SSE optionally features a status bar.\par
+There are 4 parts. Each part can be toggled between two uses by a mouse click .\par
+
+\pard 
+{\pntext\f1 1.\tab}{\*\pn\pnlvlbody\pnf1\pnindent0\pnstart1\pndec{\pntxta.}}
+\fi-360\li360\sa160\sl252\slmult1 Frequency/mouse coordinates\par
+{\pntext\f1 2.\tab}Useful info/Configuration description\par
+{\pntext\f1 3.\tab}Configuration info and icons/searchlight\par
+{\pntext\f1 4.\tab}CAPS NUM SCRL state/disk info\line\par
+
+\pard\sa160\sl240\slmult1 If VSync is engaged, the first figure is for the ST, the second for the current PC screen.\par
+Mouse coordinates may help when precision is necessary, in serious software or in games. Mouse coordinates will be correct in programs using GEM and programs reading the absolute mouse position. It's a hack reading the 6301 RAM or intercepting values returned by VDI function \i vq_mouse\i0 . Because of the technique, it will fail with some games. Even in this case, it is possible to put the correct address in a configuration file (further).  A program can also use \i Emu detect\i0  to point to the correct address. \par
+
+\pard\sa160\sl252\slmult1 The searchlight is the same feature as when you right click on fast forward, but without fast forward.\par
+
+\pard\widctlpar\sa160\sl252\slmult1 CAPS NUM SCRL info is handy if you don't have leds on your keyboard (remote keyboard, laptop...) \par
+Disk info is an alternative to the OSD option.\par
+\cf4 Tip\cf0  Multiple status bar refreshes due to drive operation can be a drag on the system\par
+\par
+Steem SSE may also use the status bar to communicate some issues such as...\par
+ \fs24 HALT\fs22\par
+In some conditions, the ST processor (MC68000) can \i halt\i0 , that is stop operating.\par
+It generally means the program it was running crashed, and it's not possible to recover from this situation. This may be an emulation bug or, more likely, not (bad disk image, buggy ST program, etc.) The ST won't run again, it must be reset or rebooted.\par
+\cf4 Tip\cf0  On real hardware, the rest of the system may sometimes still run somewhat, but this is not emulated in Steem SSE\par
+\par
+ \fs24 BLIT ERROR\fs22\par
+Serious problem with video rendering. In some cases, Steem SSE can recover, in others you have to leave or even use the task manager to kill Steem SSE. Sorry.\par
+Also, if you see GDI on the status bar, it means DirectX stopped working and you'd better restart Steem SSE (or maybe the \i No DirectX\i0  startup option is checked). Those issues mostly happen with fullscreen endeavours going wrong, or power management interfering.\par
+\par
+ \fs24 6301 CRASH\fs22\par
+The keyboard controller (6301) emulation hanged.\par
+\par
+SYSTEM ERROR\par
+Steem SSE caught a system exception. The most prudent approach is to leave, but in some cases, you can resume emulation. If you quit while this message is showing, Steem SSE won't attempt to save the configuration in \i steem.ini\i0  in order to avoid file corruption (you still should make regular backups).\par
+\par
+
+\pard\keep\keepn\widctlpar\sb240\sa200\sl252\slmult1\cf2\f2\fs32\lang1033 Options\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22\lang2057 Steem is a very complete emulator and there are really many options, spread on several pages (or tabs). All are explained here, tab by tab.\par
+Some options can be changed only when the \i Show all settings\i0  box has been checked on the \i Misc.\i0  page. They are marked with a star (*) in this manual.\par
+\cf4 Tip\cf0  In Steem SSE you can change almost all options live, that is when the emulator is running. This is handy but not guaranteed to work all the time. After all, buffers are created, moved, deleted on the fly, and changing an option could alter a buffer while it is being used.\par
+This is especially the case when the \i Emulation thread\i0  option is checked: you really have two threads running on the same data set, and there are only a few locks in Steem SSE. Freezes and crashes when changing display and sound are possible.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Startup\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 You need to quit and restart Steem for those options to have effect.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Only one Steem SSE\fs22\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1 If you want to start Steem SSE (v4.1+) again, directly or by launching an associated file, it will go to your current instance instead.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Big GUI\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This setting may help for high DPI screens. You can also choose the font size, though the GUI was designed with the defaults in mind.\par
+\cf4 Tip\cf0  Since v4.1, Steem SSE disables Windows scaling by default. If you wish you can override this by changing the DPI properties (right click on the icon, properties, compatibility, high DPI settings, check \i High DPI scaling override\i0 , select \i Scaling performed by: System\i0 ). \par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Restore Previous State\fs22\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1 You can choose to have Steem remember the state of the ST when it quits, so you can return to what you were doing next time you run it. Below the option is a box where you can type in the filename that will be used to save the state, this file will be saved in the directory Steem is in.\par
+\cf4 Tip\cf0  Sometimes, the file gets corrupted and makes Steem SSE fail, possibly crash. The solution is to delete it (the file).\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Run on startup\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 I did it to compare CPU use of instances of Steem SSE starting at the same time, but it can be handy in other cases.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Start in Fullscreen Mode\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 If DirectX is enabled and working, then you can make Steem fill the whole screen when it first runs, to impress your friends.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Lock window size\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 When it's checked you can't change the size of the window by dragging the borders so that you won't be able to sabotage Steem's nice display. \par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Never Use DirectDraw/Direct3D /DirectSound\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 If you have DirectX errors when you boot up, or DirectX doesn't work properly, then you can tell Steem to not use it. Sound doesn't work without DirectSound and drawing is slower without DirectDraw. If you are having problems, it is best to install the latest version of DirectX through Windows Update.\par
+\cf4 Tip\cf0  Really it shouldn't happen, this option was more useful in the time of Windows 95 when Steem first was released. What could happen is that those options are checked by accident. People using Wine to run Steem may also prefer GDI rendering.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 TRACE.txt\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 If checked, Steem SSE will write some debugging info in a file in its running directory.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 General\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\expndtw0\fs24\lang2057 Run speed (hack)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Sometimes you will find a game/program that isn't significantly affected by changing CPU speed, it is still too slow. In that case you can use this option to change the speed Steem runs and make sure a program speeds up (or even slows down if you want). The disadvantage is that sound doesn't work above 105% or below 80%.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Slow motion speed\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This option determines how fast Steem will run when you have slow motion turned on (right-click on the play button).\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Maximum fast forward speed\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Using this option, you can limit Steem's speed, fastest isn't always best (you can find you have zipped through the bit you wanted to see).\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Show pop-up hints\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This little option toggles those pop-up hints on and off, now you've read the manual you don't really need them.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Make Steem high priority\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 When this option is ticked Steem will get first use of the CPU ahead of other applications. This means Steem will still run smoothly even if you start doing something in another window at the same time, but everything else will run slower.  It's at your discretion which processes are more vital on your computer. The spreadsheet or Steem?\par
+\cf4 Tip\cf0  This does make a difference for a stable frame rate when your computer gets busy (internet browser, disk activity...)\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Emulation thread\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This option could make Steem SSE more responsive. Steem gets a tad more system resources for its supplementary thread. When it's checked, you may change any other options you like live (emulation running), but there's no guarantee it will not crash! With the debugger, effects are unpredictable.\par
+Noticeably, with the apart thread, emulation isn't stopped when you move any Steem window and the sound doesn't loop. The shortcut for double clicking in the ST requires this option. When the emulation thread crashes or stalls, you can kill it using F12 or the classic menu.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Pause emulation when inactive\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 When this option is checked Steem will pause emulation when you switch to another program. Steem uses some PC CPU time when running which may slow other programs down, if you are switching between programs regularly you may want to use this option.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Disable system keys when running\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This option allows you to send certain key combinations that are used by Windows to the ST instead. When it is checked Alt+Tab, Ctrl+Esc and Ctrl+Alt+Delete will go to the ST instead of to the PC. Although Steem is very stable this option could cause a bit of a disaster if Steem stops responding for any reason, you won't be able to shut it down with Ctrl+Alt+Delete, so for safety reasons it is best only to use this option when you really need it. \par
+Unfortunately, this option doesn't always work in fullscreen mode. Depending on your version of Windows, it may not be possible to capture certain key combinations - you can use shortcuts (see below) to trigger the keys you want from other keys. \par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Start emulation on mouse click\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 When checked clicking on Steem's main window will start emulation.\par
+\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Machine\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\expndtw0\fs24\lang2057 ST Model\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 The STE was the better computer but most programs were coded with the older STF (and 520ST) in mind. \par
+You can change this option during emulation but at your risk (ST crash likely). Notice that the auto-config feature (see below) doesn't operate while Steem SSE is running. \par
+Notice that there was no model called Atari STF or Atari STF, they had a number like 520ST, 1040STFM, 520STE. There were also Mega models.\par
+In Steem SSE, the Mega ST is like an STF with a blitter and a Ricoh real time clock. Its CPU clock is different (8010613Hz instead of 8021247Hz). You choose the memory. If you want to emulate the keyboard with Cherry black switches, you need to purchase a mechanical keyboard!\par
+If you use a US TOS, the CPU clock will also be different on the STF (8010600Hz) and the STE (8053976Hz): those are the NTSC variants.\par
+The Mega STE uses the same CPU clock as the STE, but it can programmatically switch to 16MHz too. It also has the Ricoh RTC. It can use 1.44MB disks. By convenience, other models can too (hack).\par
+The STFM (*) is almost like the STF, it just has some more bus errors on STE-only device addresses.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Clocks\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 You can set the clocks of both the CPU and the MFP chip.\par
+There are two settings for the CPU, one in MHz and one in Hz. \par
+The MHz setting is a hack that can boost the speed of the emulated ST, to improve those painfully slow games that were released.  The ST's CPU ran at 8 megahertz but here you can whack it up to get things going faster. A couple of points: setting the CPU speed above 8MHz will cause the emulator to run \b slower\b0 , because it has more processing to do for each screen displayed. It will also cause many ST programs to crash/not work properly, because they rely on the processor running at the correct speed. If you want really high speed (512mhz and above), you may prefer the 64bit build because it has larger cycle counters that make it safer.\par
+\cf4 Tip\cf0  You don't need to change the setting if you want to run the Mega STE at 16MHz as on real hardware. Just like on real hardware, the CPU clock is internally commanded. There's no \i turbo\i0  switch on the machine, not even a GEM option (design fault in my opinion).\par
+In Steem SSE you can fine tune the clock of the CPU and the MFP timer clock (crystal or "xtal"). The default values correspond to typical machines. Apparently there was quite some variation, especially for the MFP xtal (was there a typo in the STE schematics?) So contrary to the CPU MHz setting, those sliders are not just hacks, they allow precise emulation of real models.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 RAM Memory\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Here you can select how much memory will be available in the virtual ST. \par
+The most compatible choice is generally 1MB, some apps need more, some apps crash with 4MB.\par
+12MB (*) includes 8MB of ALT-RAM as on the MonSTer board. A driver and an appropriate TOS (e.g. 2.06) are necessary to use that RAM.\par
+Please note that 14MB (*) wasn't supported on the ST range of computers without special hacks, so not everything will work either with that option selected. \par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Cartridge (optional)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Steem can emulate ROM cartridges using cartridge images, here you can choose to insert one. For details how to make a cartridge image see the \i cart image howto\i0  file that comes with Steem.\par
+\cf4 tip\cf0  Few cartridges were actually available. Generally the ST operated without a cartridge.\par
+\i Switch off\i0  makes the cartridge transparent (or crashes Steem SSE if I forgot a bug). It's the same as if you removed the cartridge.\par
+\i Freeze\i0  emulates the freeze button of the \i Multiface\i0  and \i Ultimate Ripper\i0  cartridges. For the latter, you need to select the appropriate Port connexion.\par
+If you insert the (fake) MV16 cartridge image, Steem SSE will play the samples in the original B.A.T game. \par
+Steem SSE also emulates playback of the Replay 16 cartridge (not recording).\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 TOS (ROM)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 TOS officially stands for \i The Operating System\i0 .\par
+\par
+Including the BIOS, the GEM graphic environment and other layers, the full OS, except on very early models (also emulated), was printed on ROM chips. You need an image of one of those roms to use Steem.\par
+\par
+Generally, TOS 1.02 is the most compatible for STF and TOS 1.62 for STE mode. \par
+The Mega ST can have TOS 1.02 or 1.04, the Mega STE TOS 2.05 or 2.06.\par
+Some rare programs prefer another version (check Hints file).\par
+\par
+1985: TOS 1.00 (ST/STM/STF) - original ROM version\par
+1986: TOS 1.02 (STM/STF/STFM/Mega ST) - blitter support\par
+1989: TOS 1.04 (STF/STFM/Mega ST) - coloured Atari logo, better disk I/O, many bugfixes, faster.\par
+1990: TOS 1.06 (STE) - STE hardware support\par
+1991: TOS 1.62 (STE) - bugfixed version of above\par
+1990: TOS 2.05 (Mega STE) - new desktop, customizable icons, HD disk support\par
+1991: TOS 2.06 (Mega STE) - bugfixed version of above, support for future hardware. It could also work on a heavily modified STF (emulated in Steem).\par
+TOS 3.0X TT\par
+TOS 4.0X Falcon\par
+\par
+
+\pard\widctlpar\sl252\slmult1\b Colour code\b0\par
+
+\pard\widctlpar\sa160\sl252\slmult1 To help you, Steem SSE will display recognised and compatible (with the currently selected ST model) files in green, apparently compatible files in black, unrecognised or incompatible files in red. For the moment only UK TOS are recognisable by Steem SSE, if you want other languages please communicate the CRC32 of good TOS.\par
+\par
+
+\pard\widctlpar\sl252\slmult1\b US TOS versions \b0\par
+
+\pard\widctlpar\sa160\sl252\slmult1 Using a United States TOS causes games to be run in the NTSC screen mode (60Hz). This is okay emulation-wise but a lot of ST games and demos do not work in this screen mode, and often just crash or act oddly rather than telling you why. We recommend that American users of Steem use UK TOSs for games and demos, the only time a US version is required is for word processing, due to tiny differences between the US and UK keyboards. \par
+\cf4 Tip\cf0  UK and US keyboard definitions are available.\par
+\par
+
+\pard\widctlpar\sl252\slmult1\b TOS 1.00\par
+
+\pard\widctlpar\sa160\sl252\slmult1\b0 The first version of TOS isn't as bugged as is often said. TOS 1.00 is much decried for its hard drive management, but it's not really better on TOS 1.02 (Mega ST), and not that bad actually, the Mega ST was a capable computer. It is relatively slow. TOS 1.04 and above feature better handling of hard drives.\par
+\par
+
+\pard\widctlpar\sl252\slmult1\b TOS 1.06 and 1.62 UK\b0\par
+
+\pard\widctlpar\sa160\sl252\slmult1 Watch out, before Steem came along most copies of these TOSs were corrupt (because no emulator could test them properly). If you have problems with this version try downloading a new copy.\par
+\par
+
+\pard\widctlpar\sl252\slmult1\b Language\b0\par
+
+\pard\widctlpar\sa160\sl252\slmult1 Some localised version of the TOS may be necessary for some programs.\par
+If you have some trouble with a program, you may give it a try. For instance, digits need shifting on a French keyboard but no an English one.\par
+\par
+
+\pard\widctlpar\sl252\slmult1\b EmuTOS\b0\par
+
+\pard\widctlpar\sa160\sl252\slmult1 EmuTOS is a GEMDOS compatible operating system for Atari ST series computers. It is made from Digital Research's GPLed original sources and is a free and open source replacement for common TOS images for Atari ST emulators. It hasn't exactly the same functions and compatibility as regular TOS. It is regularly improved.\par
+{{\field{\*\fldinst{HYPERLINK http://sourceforge.net/projects/emutos/ }}{\fldrslt{http://sourceforge.net/projects/emutos/\ul0\cf0}}}}\f1\fs22\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 ST Video\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 Some of those settings could as well be on the \i Display\i0  page, actually the \i ST Video \i0 page was created because the \i Display\i0  page was getting crowded. They could as well be named \i Display 1\i0  and \i Display 2\i0 . The \i ST Video\i0  page concerns itself with the video output of the ST, including overscan (hence borders) and the kind of monitor, including scanlines. This is a part of emulation, while the \i Display\i0  page focuses on the PC side of video rendering, such as window size.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Monitor\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 The monitor type can be \i Colour\i0  (for ST low and medium resolutions) or \i Monochrome\i0  (for ST high resolution). It was an important choice on the ST, because only the appropriate monitor could display such or such resolution. Like the ST, Steem runs in one or the other mode. You can change the monitor type on the fly (it rarely does something good, generally a reset or a crash, so careful).\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Extended monitors (hack) (*)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Also available are extended monitors; these are larger screens than a standard ST could manage but are achieved by some tinkering with the ST operating system. The only programs that have any chance of working with extended monitors are GEM applications (windows/menu bars), all other programs will crash or make a mess of the screen (there is nothing that can be done about that). Most GEM apps will fail too, but some will work and allow you to fit more on the screen than anyone could ever need! NOTE: Extended monitors only work with TOS versions above 1.02, also if you use a 4-plane resolution (e.g. 800x600x4) the ST can get very confused if it tries to change to medium resolution, so try to avoid it. You have to do a cold reset of the ST before any changes to this option take effect.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Borders\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Here you can choose whether you want to see the ST borders, and which size.\par
+Some games (and quite a lot of demos) use a technique called "overscan" to display graphics in the borders, that's one reason you might want to see them.\par
+\b DirectDraw.\b0  The border option affects the fullscreen mode: with borders on, Steem displays fullscreen in the 800x600 screen resolution (flip screen or straight blit modes).\par
+\par
+Steem SSE offers no less than 4 modes:\par
+\f4                   Resolution     Low       Medium     High\par
+  Border  \par
+  Off                         320x200    640x200   640x400\par
+  Normal                      384x270    768x270   768x540    \par
+  Normal (US TOS)             384x242    768x242   768x484    \par
+  Large                       412x275    826x275      -\par
+  Max                         416x283    832x283      -\par
+\f1\par
+The normal mode for the US TOS has fewer scanlines because the ST typically operates at 60Hz. This is applied whenever Steem SSE is resized.\par
+Why various sizes, while other emulators only offer one? There are many reasons.\par
+- Bigger display sizes in Steem SSE use various tricks and hacks and there's always a risk something is broken, so we keep the original size available. Palette change timings were especially trouble during development.\par
+- There's a performance hit for larger displays.\par
+- Not all real monitors display the full border, in particular modern LCD screens or the original Atari monitors would typically display the same borders as Steem does in normal mode, therefore it is most realistic.\par
+- Normal size may be merciful when the program displays trash in the border, typically because the programmer couldn't see it (see above).\par
+- Only the normal (or no) border makes sense for monochrome emulation.\par
+- Most programs, including games, don't display video in the borders at all, and they shouldn't as this is beyond specs.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 ST A.R.\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 The typical ST screen's pixels were vertically stretched, this option emulates that aspect ratio. The 60Hz mode on a 50Hz screen, very stretched, is emulated if borders are disabled.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Scanlines\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This makes Steem display black lines between actual video lines ; this may or may not be quicker than doubled lines but looks pretty ugly to some people. To others, it may be part of the emulation. Some people insist on crisp scanlines, others want filters and interpolation.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Single pixels (v4.1.2)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 The same as scanlines, but vertically.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 CRT (D3D)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Emulates a Cathode Ray Tube screen (maybe the youngest people have never seen a real one!) using SweetFX by CeeJay.dk, which should be in your plugins folder, under the name of d3d9sweetfx.dll.\par
+You can change all parameters, but not inside Steem. In Steem SSE, there's just this option to toggle the effect, keys won't be transmitted to the plugin (depending on the settings).\par
+If you don't like that integration, it's possible to use SweetFX the usual way, Steem D3D was already compatible with the hack.\par
+This option is only available in D3D builds, and uses the power of your video card, not the CPU.\par
+\cf4 Tip \cf0 Creating the surfaces and switching to and from fullscreen takes more time, don't panic\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Overscan options\par
+
+\pard\widctlpar\sl252\slmult1\cf0\b\f1\fs22 Hardware Overscan (*)\b0\par
+
+\pard\widctlpar\sa160\sl252\slmult1 Steem SSE can emulate two hardware overscan circuits, either \i Lacescan\i0  or \i Autoswitch\i0 . You need appropriate ST drivers. For technical reasons those devices weren't available on the STE. \par
+\par
+
+\pard\widctlpar\sl252\slmult1\b Software Overscan\par
+
+\pard\widctlpar\sa160\sl252\slmult1\b0 There is a trade-off between emulation accuracy and performance.\par
+\par
+\b None\b0 : Normal video output, most video tricks (abusing the GLUE, the MMU, the Shifter*), generally called "Shifter tricks", are not emulated as there is no overscan check during emulation. This is actually enough for most programs, including most games, as overscan wasn't part of the ST specification, but many demos won't display correctly. Who watches demos anyway, right? Spectrum-512 emulation will still work.\par
+\f5\fs18 *: GLU(E): General Logic Unit; MMU: Memory Management Unit; Shifter: combines and displays video pixels\par
+\f1\fs22\par
+\b High-level (C2)\b0 : Efficient emulation using knowledge of often used Shifter tricks. It should run almost all games and demos. CPU use varies with what is being emulated but is generally low. \par
+\par
+\b Low-level (C3)\b0 : Directly emulates the video chips, the option is available only if the \i STVL\i0  plugin was detected. It hasn't been released yet, so it's normal if the option is greyed out. CPU use is constant (per resolution) but high.\par
+\par
+\cf4 Tip\cf0  For technical reasons, just displaying this option page causes an  internal update of video emulation! It could possibly cause glitches if emulation is running.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Wakeup options (*)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This is a very technical point, related to variable latency in some electronic chips. Normally you'll use these options only if the display of some demo isn't correct without (see Hints). \par
+\par
+You can adjust the wakeup settings for the GLU(E) and for the Shifter.\par
+\par
+The GLU wakeup option allows you to choose one of the 4 wake states of the STF. On the STE, the value is 1 and can't be changed.\par
+\par
+The Shifter wakeup option changes the precise cycle when the pixel is matched to the palette. If it isn't what the program expects, you can see some artefacts on \i Spectrum 512\i0  pictures (blame the ST and the programmers for that, not the emulator!) The default (0) should be most compatible.\par
+\par
+\i Random on boot\i0  randomises those wakeups so that you get the delightful surprise as on real hardware.\par
+\par
+\i Unstable Shifter\i0  alters some aspects of high-level (C2) or low-level (C3) software overscan emulation. \par
+C2: Option needed to emulate the \i beeshift\i0  effect and some other cases (\i Overdrive/Dragon\i0  for instance).\par
+C3: Likelier to get Shifter bands and other funny glitches if you change the wakeup!\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Frequency (hack)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Option to change the frequency if you don't like the current one. \par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Fast blit (hack)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 No timing cycles are counted for blitter or Line A operations. Could make the system more responsive but it's bad for programs that depend on precise timings (there are not so many, fullscreen demos generally). The Line A isn't used as much as you would expect in GEM.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Display\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\expndtw0\fs24\lang2057 Frameskip\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This is a very useful option for slower processors. Drawing the screen takes quite a bit of PC CPU time so skipping frames is a very effective way to speed things up to the same speed as a real ST. Auto frameskip makes Steem skip up to 8 frames dependant on how fast it is running. \par
+If possible, \i None\i0  is the best option because auto frameskip always induces some glitches.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Reset Video\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\sa200\sl240\slmult1\cf0\f1\fs22 Steem SSE will release the DirectX video resources then reacquire them again, sometimes it works.\par
+
+\pard\widctlpar\sa160\sl252\slmult1\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Use video buffer\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Steem SSE will prepare each scanline in an intermediate buffer before copying it to the video buffer (wherever it is, controlled by the driver). The effect on speed and CPU use may vary according to the system and what Steem is emulating, usually unchecked is more efficient, checked more stable.\par
+There's also a difference in the way optional scanlines are rendered.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Microseconds\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Use precise hardware counters to time video rendering, if it's not checked milliseconds are used. Microseconds allow emulating the real video frequencies, which are fractional. Timing of display still depends on the hardware and OS (better with FreeSync). \par
+This setting is ignored when VSync is engaged.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 BFI (D3D)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 BFI stands for \i Black Frame Insertion\i0 . Steem SSE will update the display at twice the ST rate, one frame will be black, one frame will be the emulated image. It results in less movement blur, but video gets dimmer and some flicker may be perceptible.\par
+This option operates in windowed and fullscreen modes, with or without VSync, but better with VSync. The screen must be set at a high frequency or in FreeSync.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Timing Loop\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Steem SSE will start a hard polling loop so many milliseconds before the planned time of blit (video rendering). A higher setting means more CPU use. Generally 2ms seems to be a good compromise (1ms is the previously hardcoded setting). \par
+However, if your PC is very busy, no matter how high the setting, Steem SSE may lag. The general\i  \i0 option \i Make Steem high priority\i0  has a greater impact here.\par
+This setting is ignored when VSync is engaged.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Stretch Filter (Direct3D)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 One of the standard D3D filters is applied when the image is stretched. It can blur the picture a little and reduce distortion. This setting applies to both windowed and fullscreen modes.\par
+\cf4 Tip \cf0 Even if you don't explicitly select a stretched display option, Steem SSE may need to stretch the picture to make it fit in the window\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Triple Buffering (DirectDraw)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This used to be useful to eliminate tearing or ghosting, at the price of quite higher CPU use in windowed mode on Windows XP.\par
+Window compositing, a feature introduced in Windows Vista and enforced (can't disable) in Windows 8, could interfere with this. Compositing does its own triple buffering, without CPU use penalty.\par
+Generally, this option isn't necessary anymore.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Windowed Mode\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Four sizes are available. With \i Show all settings\i0  option, you can choose for each resolution.\par
+\i Stretch \i0 makes Steem use the video card to convert the image from the ST output size to the size of the window. No Stretch will make Steem draw the ST screen larger in order to avoid stretching. \par
+If \i biggest \i0 is still too small for you, it's possible to just make the window bigger by stretching it the usual way. Check on the status bar for a precise multiplier. To keep the size through session, uncheck the following option.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Automatic resize on resolution change\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 There is also the option of whether Steem should automatically resize its window or not when the ST resolution changes (also on reset, starting Steem).\par
+This can have an impact on performance if an ST program changes resolution all the time.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Lock aspect ratio\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 With this you may drag all you want, the window will keep the same proportions. Steem SSE also keeps the normal aspect ratio for all window sizes, which may introduce blur or artefacts. For instance, the \i big\i0  size in medium resolution (corresponding to x3 in low resolution) uses a non integer multiplier.\par
+If the option isn't checked, you're free to change the aspect ratio of the emulated screen and some window sizes have a different aspect ratio. For instance, the medium resolution may be twice larger horizontally.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Stretch\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Choose between the two rendering modes. Stretch allows you to use a filter. Non-stretched has smaller OSD.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 VSync\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This version of vertical synchronisation is for windowed mode. \par
+\b DirectDraw\b0 : Steem uses some CPU power to adjust speed.\par
+\b Direct3D\b0 : Speed is adjusted at no CPU cost by the system.\par
+Speed adjustment means that emulation speed isn't realistic anymore if the display refresh rate significantly differs from the ST rate. Note that even if your hardware displays at 50, 60 or 72Hz precisely, the real ST has a slightly different refresh rate based on its main clock.\par
+VSync works with double frequencies (e.g. ST 50Hz/PC 100Hz).\par
+\cf4 Tip \cf0 The ST can operate in 3 frequencies, 50Hz (PAL, "Europe"), 60Hz (NTSC, "USA") and 72Hz ("Monochrome"). Some programs change the frequency all the time to trick the hardware, but hopefully there's still one main frequency, generally 50Hz.\par
+\cf4 Tip \cf0 It may depend on hardware/OS, but VSync only works on the primary monitor (main display), even if Steem is on the second monitor. Notice that it is very easy to switch the main display.\par
+\cf4 Tip \cf0 For a long time, LCD screens defaulted to 60Hz and had no 50Hz mode. It was a miserable period for emulation. Thanks to the HDMI requirement, a lot of screens now do 50Hz. Steem SSE can also use 100Hz as if it were 50Hz.\par
+\cf4 Tip \cf0 Many screens and video cards now offer G-Sync or FreeSync. With this you can get smooth animation at every ST frequency without changing your display settings. You can check that with the early Automation menu disks (0 for 60Hz). It's still not always as smooth as VSync, for various possible reasons, but the emulation speed is more realistic.\par
+\cf4 Tip \cf0 If you use G-Sync or FreeSync, don't check VSync\par
+\cf4 Tip \cf0 Process priority (general\i  \i0 options) makes a difference\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Auto VSync\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 With this option, VSync will be enabled only when the main display refreshes at a frequency close to the ST frequency (+-2Hz).\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Screenshots\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 These options configure where screenshots are saved. \par
+\par
+You may also choose the format options here.\par
+\par
+The last option is \i Minimum size screenshots\i0 , when checked this will make Steem always save screenshots at the smallest size possible for the resolution, this is handy for people taking screenshots to put on a website.\par
+\par
+Warning: Sometimes this might make a mess as Steem will have to shrink the picture, but this is never a problem if you are using \i Stretch\i0  mode for drawing (see the Fullscreen options and Display/Window Size options).\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Fullscreen Mode\par
+
+\pard\widctlpar\sl252\slmult1\cf5\expndtw0\fs24\lang2057 Go Fullscreen Now/Go Windowed Now\cf0\f1\fs22\par
+
+\pard\widctlpar\sa160\sl252\slmult1 The top button in this page allows one to toggle between windowed and fullscreen modes. You may also assign shortcuts to enter or toggle fullscreen mode (alt-enter also works).\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Fullscreen on Maximize Window\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 You can change Steem's behaviour on hitting the maximize button. \par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Fullscreen GUI\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 The fullscreen GUI is handy if it works. No guarantee. Blame Microsoft and video card drivers for all bugs. \b\par
+\cf4\b0 Tip\cf0  On Windows 10, it doesn't work well in D3D builds for true fullscreen, and when it hangs, it's hard to come back to a normal desktop. The option is disabled for true fullscreen modes, but this can be overridden in the ini file for those who have an older OS (see INI file options).\par
+If the option is checked, you can leave fullscreen mode by clicking on the blue icon (second from the right) of the interface, or pressing alt-Enter.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Stretch (D3D)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Choose between the two rendering modes for fullscreen. Stretch allows you to use a filter. Non-stretched has smaller OSD.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 VSync\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This version of vertical synchronisation is for fullscreen, including Windowed Borderless. See the remarks in \i Display\i0 .\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Auto VSync\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 See  \i Display\i0 .\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Triple Buffering\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 One more buffer is used in video rendering. It could fail on some systems. The exact way it works (or not) depends on your system, generally it's a FIFO queue, which means an extra buffer may increase latency.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s4\sb40\cf2\f2\fs24 Aspect ratio\i\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\b\i0\f1\fs22 Screen\b0 : resolution of your PC monitor, \b correct\b0 : magnified resolution of the ST, \b crisp\b0 : could be (much) smaller but no distortion.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Mode\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 The option is different in DirectDraw and Direct3D builds.\par
+In DirectDraw builds, this is a bit of a confusing option, you really don't need to know what the possible settings mean, but which is best will be different depending on your computer's hardware, try them all to see which is quickest. \i Stretch blit\i0  makes Steem draw small and then use the video card to stretch the resulting image to fill the screen, at your chosen resolution. This can be slow on very old, bad video cards, and on many video cards it causes the image to be slightly blurred ("alpha-blitted"), which makes it better resemble the bad televisions usually plugged into STs. If this blurring annoys you, switch to the first modes. In those modes, colour pixels are doubled and Steem uses the 800x600 resolution if borders are displayed, 640x480 if not. Screen Flip is not recommended for monochrome monitor emulation if the screen refresh rate is inferior to 72Hz. In the DirectDraw builds, Windowed Borderless is one of the listed modes. In Windowed Borderless mode, Steem SSE uses the native resolution and its own calculations of the drawing zone. In medium and high resolutions, the picture could be crisp but small, or big but distorted. It's because there are already many pixels in these ST resolutions.\par
+\cf4 Tip\cf0  Try with border off\par
+In Direct3D builds, the option isn't available when the Windowed Borderless Mode option is checked. This lists all D3D 32bit fullscreen modes that are available on your video card. You just select the one you like. Note that whether a mode works or not also depends on your display and your other options. Only some monitors will display 320x200 or 320x240 properly. On a LCD screen, you may go for the maximal resolution (the same as your desktop). Steem SSE will then compute how to display the biggest possible ST screen for the aspect ratio.\par
+All true fullscreen modes require some time to adjust to the settings. It's a Windows feature. In D3D builds, true fullscreen on a secondary monitor is possible.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Scanlines (DirectDraw)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 When you are in \i Straight Blt\i0  or \i Screen Flip\i0  drawing mode, \i Scanlines\i0  makes every other vertical line black, this can make the display a bit dark but it can also make Steem run quicker. \par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Use 640x400 (DirectDraw)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This option makes the screen switch to 640x400 pixels when you run in fullscreen. This means the ST display will fill the entire screen instead of having small borders to the top and bottom. You can only use 640x400 mode when borders are set to \i Off\i0 , and if the mode is available on your video card.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s4\sb40\cf2\f2\fs24 Use desktop refresh rate (D3D)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This will bypass the Hz setting in Mode, using the current desktop refresh rate instead. It can be useful if the video card can force a refresh rate that is not officially supported by the display (or its driver). \par
+\par
+
+\pard\keep\keepn\nowidctlpar\s4\sb40\cf2\f2\fs24 Windowed Borderless Mode (D3D)\i\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\i0\f1\fs22 This 'fake' fullscreen mode bypasses most other settings. You lose the benefits of true fullscreen, such as refresh rate choice, hardware lower resolution, triple buffering and possibly better performance (Steem isn't as demanding as a 3D game so no worry), but it may be more compatible with a variety of computers. It is also faster to go in and out.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Colour Control\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 Some PC monitors/video cards can be very dark, this can make the ST display unrealistic, or even make some things that should be visible black. Here are some simple options to fix this problem, just fiddle with the two values until in the colour bar display you can see colours above the number 2 and the colours above 15 and 16 are a different shade. Sometimes other colours on the screen can make this difficult, to get around that click on the image of the bars to make it fill the whole screen.\par
+Steem SSE also includes controls for gamma correction, one slider per RGB colour. \par
+Comparing with a CRT display, I couldn't confirm that Steem needs gamma correction, but it's always a handy (or fun) setting.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Reset\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 The power of computers, no need to reset everything yourself.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Vivid colours\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 We adapt the scales to get brighter colours on both the STE (4096 colours) and the STF (512 colours). It's not a trick, we just extend the values used on the PC side.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 B/W\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Black & white screen using the greyscale technique.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Green\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 A nostalgic emulation of the Philips CM8833 Green button.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 On Screen Display (OSD)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 The Steem OSD is there to look pretty and give information, it can be configured to suit your needs.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Logo\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 You can configure how long the 'Steem' logo will be displayed after you start emulation.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Speed bar\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 The blue bar in the bottom-left corner indicates the current speed of the emulator compared to the refresh rate of the monitor on a real ST - if the bar is full it is drawing at the ST sync rate. \par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 State icons\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 These icons tell you whether the emulator is running, fast-forwarding, sound recording or just stopped.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 CPU speed indicator\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This icon appears next to the speed bar when you have ST CPU Speed set to more than 8 megahertz.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Time\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 If you ever wonder how much time you waste on Steem, this is the control for you. Mercifully it resets at each cold reset.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Debug info\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Some information will be displayed on the top left corner of the window:\par
+\lang1036 EXC\tab CPU exception number\par
+\lang2057 OVR\tab keyboard ACIA overrun\par
+PRT\tab printing\par
+CRC\tab disk checksum error\par
+\cf4 Tip\cf0  The same info can go to the status bar if you click the second pane\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Hints\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 At startup, when the mouse is captured.\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24\par
+FPS (Frames per Second)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 With this frame rate counter, Steem can reveal the hard reality about some of those games.\par
+Palette changes are ignored. It's not guaranteed to work with everything due to the technique used, based on video registers VBASE and VCOUNT, and a simple checksum of the video memory.\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24\par
+Disk access light\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This is a small light that appears in the top right of the screen, it emulates the light that was on the right hand side of a real ST, except that the led is green for reading, red for writing, yellow for hard disk. \par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Drive track info\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Alternatively, this will display current drive, side, track and sector, like those devices some people had attached to their ST. Track is the current drive cylinder, sector is the WD1772 SR register.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Scrolling messages\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 After a while, they're not so useful anymore and can be distracting, so you can turn this off.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Bad jokes\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 For those scrollers that never were useful.\par
+This also switches the startup slogan over the welcome picture that appears if no snapshot is loaded.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Disable on screen display\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This will disable all elements of the on-screen display.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 No OSD on stop\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22\lang6153 Stop is then delayed by one frame. This is useful if you want to take screenshots or want the colour count.\lang2057\par
+\lang6153 DirectDraw: could be necessary for correct screenshots\par
+\lang2057\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Sound\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\expndtw0\fs24\lang2057 Mute sound\par
+\cf0\f3\fs22 You can change it live, hopefully it won't crash.\par
+\cf5\f2\fs24\par
+Mute sound when inactive\par
+\cf0\f3\fs22 Sound will stop when you're busy with other apps, and play again when Steem has the focus.\par
+
+\pard\widctlpar\sa160\sl252\slmult1\f1\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Device\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Sound Driver lets you configure which DirectSound driver Steem will use.\par
+The options allow you to tweak the sound output, firstly volume. Next is frequency. If your soundcard isn't able to deliver one of the higher rates, Steem will settle for the maximum available. It makes a difference in some cases where the emulated PSG vibrates faster than 22KHz. It does happen, as the max PSG frequency is 125KHz! It can cause horrible aliasing. However, Steem includes an anti-aliasing filter, so 44.1KHz should be fine. \par
+Note that 56KHz is precisely 56066 (the maximum, and rarely used rate for STE sound), 25KHz is precisely 25033 and 22KHz is 22050. The next option is format. We highly recommend 16bit stereo, except for some rare STE demos that insist on mono sound.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 YM2149 Sound\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 The YM2149 was the original sound chip of the ST. It is also called PSG for \i Programmable Sound Generator\i0 . The fact that you can disable it is a hack, on a real ST you can't (option Hacks).\par
+\par
+\i Low-level\i0  activates a lower level YM2149 emulation inspired by MAME (thx Couriersud). When it's checked, Steem SSE also uses a big sample table of the chip made up by ljbk based on measurements on an actual STF (which includes filters). Thanks to this accuracy of PSG emulation is much improved. The sound is more saturated, which is correct.\par
+\par
+You can then set the anti-alias filter frequency, it should be somewhere around 10KHz (the ST was no CD player). Totally right turns it off, which will produce aliasing artefacts on some tunes.\par
+\par
+When \i low-level\i0  isn't checked, Steem's original PSG emulation runs. It is not too bad and uses less CPU. You may then choose a filter type. Those filters are primitive but do the job.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Digital sound (STE)\par
+\cf0\f1\fs22 The fact that you can disable it is a hack, on a real STE you can't. It is generally called DMA sound, also by Atari, but DMA (Direct Memory Access) on the ST is a procedure that uses bus arbitration, for disk operation and for the blitter, so it is Digital sound in Steem!\par
+\cf5\f2\fs24\par
+\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Unfortunately, emulation of the ultra-cheap MicroWire tone controller is rather primitive.\par
+\par
+The YM-12db setting does what the STE should but doesn't when asked to, that is attenuate the screaming YM2149 sound so that you may hear the STE samples better. It's a hack. So is \i Slow fade\i0 , which may avoid pops when the program changes the volume too fast (\i Sea of Colour, Talk Talk 2\i0 ).\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Drive sound\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Yes! This SainT feature is imitated in Steem too.\par
+\cf4 Tip \cf0 For STX files, a version 0.4 or greater of pasti.dll will allow more accurate sound\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Record\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 These options allow you to record Steem's output to a wav file. Clicking on the red button begins recording, clicking on it again (or stopping emulation) will end recording. You can choose the name and location of the wav file to output by clicking on choose.\par
+Alternatively, Steem can save a YM file. This is usable by STSound and other utilities. The file is uncompressed.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Keyboard/Mouse\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\expndtw0\fs24\lang2057 Low level 6301 emulation (C1)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Using code by Arne Riiber and doc by Stephane Catala - Belzebub / ST Connexion, Steem SSE features low-level emulation of the HD6301 \i intelligent keyboard\i0  (IKBD) chip. The main goal was to be able to run some (very rare!) demos reprogramming that chip but it does more than that now, being better than high level emu in some cases. When you change this option, you should reset the ST. In case you're curious, the titles that reprogram the chip are: \i Audio Sculpture\i0 , \i Dragonnels\i0 , \i Froggies over the Fence\i0 , \i Transbeauce 2\i0 .\par
+\par
+The option also commands ACIA (the MC6850 chip) improvements, mainly more precise timings. Both the IKBD and the MIDI connector use a 6850 to communicate with the CPU, though at different speeds.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Battery\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 The keyboard chip can be used to keep time, and when equipped with a battery, keep time when the ST is switched off too. There's an option for being 2000-ready, which original hardware wasn't. Ticking this option off may be more compatible as most STs had no such battery.\par
+ \cf2\expndtw15\f2\fs28\lang1033\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf1\expndtw0\b\fs24\lang2057 Keyboard\cf5\b0\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Here you can configure the keyboard. This is an area that many people have problems with because most non-English PC keyboards are vastly different from their ST counterparts. The important thing is that your PC keyboard language, TOS language and ST keyboard language all match, that gives you a chance of having the right characters appear for the right keys.\par
+When the \i Shift and alternate correction\i0  option is checked this makes Steem do its best to get round the differences between ST and PC keyboard layouts by fooling the ST into thinking you are pressing keys you aren't. This works well for GEM programs but it could cause problems for games and any other program that reads the keyboard directly. \par
+\par
+The last choice in the language list, \i Mapping file\i0 , allows you to select an ini file that contains key definitions. Definitions are included in the package for the German and the French keyboards, which should be the most used beside English. Also included are definitions to use US or UK keyboard on UK or US TOS, it could be handy.\par
+The point of the feature is to allow you to create your own file in case you're not satisfied with Steem SSE's hardcoded mapping.\par
+The file format is as follows. \par
+\cf6\f6\fs20\lang1033 # = comment, at start or end of line\par
+entry format: 5 fields, each followed with a ; and return\par
+1;22;33;44;\par
+1: PC key to type (1 character)\par
+2: ANSI code of PC key to type (2 characters)\par
+3: Alt (a) and Shift (s) modifiers of PC key to type, if any (2 characters)\par
+4: ST scancode, hexadecimal without header (2 characters)\par
+5: Alt (a) and Shift (s) modifiers of ST key (2 characters)\par
+The length of each entry must be the same, insert spaces where appropriate\par
+The ; separator must end each field including the last one\par
+Empty lines allowed\par
+You may type the PC character, the ANSI code, or both. If there's a code,\par
+Steem uses it. If not it uses the character. Both ANSI and UTF-8 encoded\par
+characters should work, but the code, if any, must be ANSI (Windows-1252\par
+actually), not UTF-8.\par
+When you need to press shift or alternate (Gr) on the PC, field 1 contains\par
+the 1st character of the key, not the character you want to see.\par
+For instance, on a German keyboard, you need to press Alt Gr and < to\par
+get |. The entry is: <;  ;a ;2b;s ;\par
+In Steem, you don't use Alt Gr, you use Alt instead, like on a ST.\par
+Both ANSI and ST scancode are two digit hexadecimal numbers.\par
+\cf0\f1\fs22\lang2057\par
+Please share it if you get it working. The file may be in Windows-1252 or UTF-8 format (unicode).\par
+There is also the option to manually remap the keys using shortcuts (see below).\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Click (hack)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 People like some feedback when they type. Atari thought about it, but instead of  equipping the ST with expensive clicky keyboard, they provided the sound in ssoftware. Note that the Mega ST had a mechanical keyboard, eexcellent but not clicky (Cherry MX Black).\par
+The sound may be disabled in the control panel, but this isn't always available (games that must boot the system...)\par
+So in Steem SSE you can disable it directly. In some cases it should remain enabled though (see Hints), so the best is to disable it only when it's annoying you.\par
+\par
+\cf1\b\f2\fs24 Mouse\cf0\b0\f1\fs22\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Capture\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Off: the mouse isn't captured unless you press F11 (even if you click in the window).\par
+On: Steem SSE grabs the mouse when running, frees it when stopping. F11 can free the mouse.\par
+Auto: Steem SSE grabs the mouse if it was captured at the last stop. F11 toggles and clicking in the window grabs the mouse.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 VM-friendly\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This option helps when Steem is run in a virtual machine (works with VirtualBox, VMware). Another method is used to poll the mouse, and the cursor isn't bounded by the window frame (haven't found a way TBH). Some people actually prefer this way, even without a virtual machine.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Hide pointer on blit\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Some video cards can make a mess when the PC mouse pointer is over the Steem window, with this option on that will never happen as Steem hides the mouse before drawing to its window. This can however cause the PC mouse to flicker while Steem is running, if that is a problem try turning it off and see if your video card is one of the messy ones.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Speed\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 There's also a mouse speed dial.\par
+\cf4 Tip \cf0 Changing your PC mouse settings may help, the fact is that mice today are fast and not so precise. They are set up to rapidly go through thousands of pixels, the ST mouse was much slower and not accelerated.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 I/O Ports\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 This page configures the emulated ST's link to outside hardware. There are sections for parallel and serial ports , as well as a section for various adapters. The MIDI port is handled on the MIDI page. To set up a port select one of the options from the box next to \i Connect To\i0 . When you do the section will fill up with options related to the connection you chose.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 MIDI Device\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 When you select this you must then select the PC MIDI device you want the ST's messages to be sent to and the PC MIDI device you want to be able to send data to the ST. \par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Parallel Port (LPT)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This allows you to connect an ST port to one of your PC's parallel ports. The only option is to choose which one. Warning: This may not work on all versions of Windows. See the FAQ for information on printing from Steem. Note: that port is generally not featured anymore.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 COM Port\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 By selecting this option, you can connect an ST port to one of your PC's COM ports. Again, just select the required port. Warning: This may not work on all versions of Windows.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 File\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Using this option, you can send all output from an ST port to a file. Click on the \i Change File\i0  button to open the file selector where you can select the output file (you can create a new one by typing in a new name and clicking \i Open\i0 ). The file will record the raw data (see below, SMM804).\par
+The \i Reset Current File\i0  button will delete everything that is currently in the file, it will also close (not delete) currently open RTF or PBM files and reset the page counters for those. \par
+You can't use a file for input.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Loopback (Output->Input)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Selecting this will cause anything that is sent to the port to be then received by the port, what use that is I really don't know!\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Various\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Some (simple) dongles are emulated. You can select one in the Ports page. For joystick port dongles, option C1 ('Low-level emulation' on the Keyboard/Mouse option page) must be checked.\par
+This section also covers some other adapters:\par
+-Pro Sound Designer: soundcard used by \i Wings of Death\i0  and \i Lethal Xcess\i0 .\par
+-Switches for Ultimate Ripper Cartridge and Multiface ST.\par
+\par
+This is also the place where you can engage options for a dot matrix printer (SMM804) or a laser printer (SLM804).\par
+When printing is detected, Steem automatically opens an RTF file in the selected print folder. This file may have formatted output (bold, italics, etc.) \par
+When graphics printing is detected (such as printing the screen using alt-help), or the Laser printer is used, Steem automatically opens a PBM file per page in the same folder.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 MIDI\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 Here are some options that affect the PC side of Steem's MIDI emulation.\par
+Remember that the ST side is also affected by ACIA emulation.\par
+The Steem MIDI interface is only suitable for programs that communicate using MIDI messages. Any program that attempts to send raw data over the MIDI ports (for example a MIDI network game) will not work.\par
+Also, don't count on Atari-style tight MIDI timings in this emulation (the resolution is 1ms).\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Volume\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Not that useful but here nevertheless. It won't work for all devices.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Device choice\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Like the \i I/O Ports\i0  page.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Sysex (system exclusive)\par
+\i Allow running status for output/input\i0\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Normal MIDI messages are made up of one status byte that describes the message and then one or two data bytes. If a program wants to send the same message again it can leave off the status byte and just send the data. By default, Steem doesn't allow this and adds the status byte itself if it has been omitted, but this could cause problems to programs that require a very high transfer rate. \par
+These options mean that running status will be passed on to Windows which has to decide what to do with it, so if you are having problems with MIDI tempo you can try this.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\i\f2\fs24 Sysex Buffers\i0\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 The number of system exclusive buffers affects MIDI when it is sending/receiving many small system exclusive messages quickly. If the number of buffers is too small, it is possible for there to be so little time between messages that Steem is still busy with all the buffers when a new sysex message arrives (and therefore part of it gets lost). If you find some MIDI program having input or output problems that sound like this it's worth a try increasing the number of buffers, something like 6 should do the job for almost anything. The size of the buffers allows you to choose the maximum length of message Steem can send or receive. This is important if you are transferring large memory banks from the device to the ST and vice-versa. \par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\i\f2\fs24 Input speed\i0\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This option allows you to slow down the speed Steem feeds any received data from the MIDI device to the ST. Due to restrictions of Windows Steem sends all data as fast as possible to the ST regardless of the speed it was actually sent by the device, but some ST programs can't handle that. If you have problems with receiving bank dumps it might be an idea if you slow this down a bit. Also related to this is the shortcut action \i Pause until next SysEx\i0 , this can get around time-outs on ST programs waiting for a bank dump to start. See the shortcuts section for details of how to assign this action to a key/combination of keys.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Configurations\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 This page allows you to store many different Steem configurations and use them when you like. To make a new file containing the current Steem configuration click on \i New\i0 . You can then restore it at any time by selecting it and clicking on \i Load\i0 . Be careful though as your configuration before you load another one will be lost forever. \par
+Below is a list of sections that affect loading configurations, you can enable or disable each section. This allows you to only load specific options in Steem and keep other options that you don't want changed. As in macros (see below) you can organise all your configurations using the \i Configurations \i0 folder display.   \par
+For example, the 520 ST configuration would have 512KB memory and TOS 1.0, maybe a single-sided drive, the 1040 STFM would have TOS 1.02.\par
+You can set up some configurations for STF, STE, Mega ST, Mega STE colour or monochrome, with GEMDOS or ACSI hard drive emulation, etc., and then select one in one click rather than manually changing all the settings. They can be auto-selected when you change the ST model, if the misc. option \i Default ST configs\i0  is checked. The config must have the exact same name as the model. STF will work, 520 STF will not.\par
+If you want to change startup options, such as starting in full screen, you should first select the config then change the option.\par
+Please be advised that the whole configuration is saved, the checkboxes are for loading only some parts of it.\par
+When you save a configuration, the paths to the ROM folder and to the home folder aren't saved. Paths to the current TOS and disk image files in floppy drives are made relative to those folders. That way, config files are more portable.\par
+  \par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Record Input\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 This is a handy feature that will allow you to record sequences of input in to the ST and play them back later as macros. At the top there is a display of your macro folder: each macro is stored in a file with the extension stmac, and they are displayed here (if you have any). To record a macro, first click on \i New Macro\i0 , name it something snazzy and then click on the big red record button. \par
+Now go to the main Steem window, start emulation and do some sort of input (move the mouse, press a key, move a joystick). When you have recorded what you want to go back to the macro display and click on the record button again to turn it off. Don't worry about doing this too quickly, Steem doesn't start recording until some input is received and it will cut off any time on the end that doesn't have any input. Now you can replay the actions you recorded by pressing the green play button (next to the record button). \par
+\par
+You can have as many macro files as space on your hard drive will allow. \par
+This might mean they get a bit difficult to find on the list, so you can organise them into folders using the macro folder display. Just right click to create a new folder and drag appropriate macros in there. You can also right click on the bold \i Macros\i0  folder and choose to open it in Windows explorer if you prefer to use that for your organising.\par
+\par
+There are 2 options that affect how macros work:\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Maximum mouse speed\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This affects recording and playing macros. Some ST programs won't accept really fast mouse movements as ST mice couldn't generally move very far in a short time. This option lets you allow for this problem by configuring the maximum speed for each macro individually.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Playback event delay\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 For most macros you will want your actions to be played back as quickly as possible (for instance in the case of clicking on a shoot button in a game). \par
+This option allows you to configure how long Steem will wait between input changes, as some programs won't accept lots of very quick inputs. If speed isn't an issue then you can always set this to \i As Recorded\i0 , then playing the macro will replay the recorded events at the speed you recorded them at.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Icons\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 You can customise Steem's look by altering its icons. On this page you will see a box containing all the icons, just left click on one to be able to select an ico file to replace it with. Right clicking on an icon restores it to its default, click on the \i All Icons to Default\i0  button to restore them all. You can also download icon schemes to change all or just some of Steem's icons with a single click on the \i Load Icon Scheme\i0  button, go to:\par
+{{\field{\*\fldinst{HYPERLINK http://steem.atari.st/icons.htm }}{\fldrslt{http://steem.atari.st/icons.htm\ul0\cf0}}}}\f1\fs22  (link still working)\par
+or\par
+{{\field{\*\fldinst{HYPERLINK https://sourceforge.net/projects/steemsse/files/Other/ }}{\fldrslt{https://sourceforge.net/projects/steemsse/files/Other/\ul0\cf0}}}}\f1\fs22\par
+to see what is available.\par
+\par
+You can create your own full set based on the stico file.\par
+This option page is not available when the big GUI is active.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 File Associations\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 Windows programs love to associate and de-associate themselves with file types. This dialog allows you to choose which files you want to associate with Steem. Just click the \i Associate\i0  button next to the desired files, it changes to \i associated\i0 .\par
+Click again to de-associate.\par
+\par
+Note: if you used an old version of Steem and associated files, you must re-associate with the current version (or rename the program 'Steem'). If you used a version before v.3.5.3, you should manually remove the associations in the registry, HKEY_CLASSES_ROOT part. This is because in newer versions, associations are recorded for each user, in older versions, they were for the computer, and you needed administrative rights (as was natural on older Windows versions).\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Misc.\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 Misc. stands for miscellaneous, of course, but it's easier to spell. Those are the options that don't fit in another option page.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Tool bar\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 The tool bar can be hidden, in case you don't like it or you need Steem to blit on the full client area of the window. It's a technical point with practical implications: third party tools like ShaderGlass work with the client area, for example.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Menu bar\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 You can control Steem SSE with the menu instead of the tool bar. The menu isn't part of the client area.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Status bar\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 If you don't want the magnificent status bar, this is where you can toggle it.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Show all settings\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Steem SSE can do a lot of things but only a small percentage of users will need some of the exotic features and options. The GUI is now clearer when the option isn't checked. Generally it is recommended to leave it unchecked except if you do need the extra features, such as extended monitor. Extra features are indicated with (*) in this manual.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Reset settings\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Restore settings to generally compatible values.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Hacks\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This option covers three kinds of things:\par
+
+\pard{\pntext\f7\'B7\tab}{\*\pn\pnlvlblt\pnf7\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa160\sl252\slmult1 Convenience hacks, like accelerating STE booting (hard drive detection is slow)\par
+{\pntext\f7\'B7\tab}Options that go beyond the plain vanilla ST, like faster drive, faster CPU, bigger screen, etc. Without \i Hacks\i0 , those options are not available\par
+{\pntext\f7\'B7\tab}Emulation hacks, at least Steem SSE is straightforward about it\par
+
+\pard\widctlpar\sa160\sl252\slmult1 Uncheck for an authentic ST experience.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Emu detect\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Steem includes a facility to interact with ST programs that want to communicate with the emulator. If you uncheck the option, this facility is disabled. It's still possible to detect Steem using emulation inaccuracies, but this way is unreliable since further versions are supposed to be more accurate.\par
+\par
+The ST program writes $456D753F (\i Emu?\i0 ) in both D6 and D7, and calls xbios function VSync ($25).\par
+\par
+Steem returns with $53544565 (STEe) in D6, $6D456E67 (mEng) in D7 and $FFC100 in A0, which is the base of \i secret \i0 addresses used for interaction. It's not "SSE" to maintain compatibility.\par
+\par
+\cf6 Read\cf0\par
+$ffc100 version \par
+$ffc102 slow motion\par
+$ffc104 fast forward\par
+$ffc106 Debugger present\par
+$ffc107 snapshot loaded\par
+$ffc108 emulation speed\par
+$ffc10a average frame time \par
+$ffc10c CPU cycle counter (32bit only)\par
+$ffc110 time of last vbl (32bit only)\par
+$ffc114 time of last hbl (32bit only)\par
+$ffc118 scan_y (scanline)\par
+$ffc11a write logs to printer\par
+$ffc122 runstate (Debugger only, emu detect not necessary)\par
+\par
+\cf6 Write\par
+\cf0 $ffc100 create disk image from source (effective address) string:\par
+Name, Sides, TracksPerSide, SectorsPerTrack, each ending with /0\par
+$ffc104 leave emu detect\par
+$ffc105 set cpu speed in mhz\par
+$ffc107 snapshot loaded\par
+$ffc108 set run speed (in %)\par
+$ffc10a write byte\par
+
+\pard{\pntext\f7\'B7\tab}{\*\pn\pnlvlblt\pnf7\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa160\sl252\slmult1 $4D ('M') informs Steem that D5 contains the address of mouse coordinates, to be displayed in the status bar\par
+{\pntext\f7\'B7\tab}$51 ('Q') to quit Steem\par
+{\pntext\f7\'B7\tab}$52 ('R') to reboot (cold reset)\par
+{\pntext\f7\'B7\tab}$51 ('r') to reset\par
+{\pntext\f7\'B7\tab}$53 ('S') to stop\par
+
+\pard\widctlpar\sa160\sl252\slmult1 $ffc11a write logs to ST printer (Debugger)\par
+$ffc1f0 write source string to log (Debugger)\par
+$ffc1f4 wipe log (Debugger, emu detect not necessary)\par
+$ffc123 trigger breakpoint (Debugger, emu detect not necessary)\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Clock always correct\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 When this option is checked, the various ways the system can get the date and time will be hacked to report the PC time (the little clock in your taskbar). So that if you stop emulation for a while, you still get the correct time when you resume, and not the emulated time. This covers the Gemdos software clock, the Mega ST Ricoh clock and the 6301 keyboard chip. This option can interfere with some programs.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Default ST configs\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 If checked, Steem SSE looks into the current configuration folder for a configuration file with exactly the same name as the ST model which you select on the Machine page, e.g. STF.ini. You need to save such a file, the best way is to go through the Configuration page where you can select which options are to be retrieved. Maybe it's best to only select \i Machine and TOS\i0  for this purpose.\par
+\par
+
+\pard\widctlpar\sl252\slmult1\cf5\f2\fs24 Use Pause instead of F11/F12\cf0\f1\fs22\par
+
+\pard\widctlpar\sa160\sl252\slmult1 In previous versions of Steem SSE, F12 was reserved for start/stop instead of Pause/Break because F12 is available on every keyboard, Pause isn't. However if you have the Pause key, you may want to use it and free F11 and F12 for some shortcuts. Now you can.\par
+When the option is engaged, Pause will toggle emulation run, and Shift Pause will toggle mouse capture. Note that the ST will get the Shift key, it's a problem you don't have with F11.\par
+\par
+
+\pard\widctlpar\sl252\slmult1\cf5\f2\fs24 Save backup snapshot on reset (v4.1.2)\cf0\f1\fs22\par
+
+\pard\widctlpar\sa160\sl252\slmult1 Notice the operation can cause a glitch during emulation.\par
+\par
+
+\pard\keep\keepn\widctlpar\sb240\sl252\slmult1\cf2\f2\fs32\lang1033 Disk manager\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22\lang2057 This window controls all the disks on the ST, and the two boxes up the top hold the disks currently in the drives. This window is resizable.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Disk Images (ST, STX, MSA, DIM, STT, IPF, HFE, SCP, STW, CTR)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 Disk images are floppy disks turned into files, this is how most programs are accessed on ST emulators. For details of how to create disk images from ST floppy disks have a look at the \i disk image howto.txt\i0  that comes with Steem. You will find most images on the internet however.\par
+\par
+The large box at the bottom of the disk manager window shows all the disk images in the current directory. The disk manager is like a little Explorer window, you can go into a folder by double clicking on it or by selecting it and pressing return. All disk image files, zip/rar/7z/bz2/gz/tar/arj archive files and any Windows shortcuts to those types of files are shown. \par
+\par
+Steem SSE needs some DLL files to handle archive files.\par
+-unzipd32.dll for zip files (32bit)\par
+-unrar.dll or unrar64.dll for rar files\par
+-ArchiveAccess.dll for 7z/bz2/gz/tar/arj files\par
+ArchiveAccess.dll manages zip and rar files too if the other plugins are not available to Steem SSE. ArchiveAccess can't handle newer rar archives (v5).\par
+\par
+Steem SSE doesn't know if some archive contains a disk image or not, so all archives are displayed in the Disk manager as ZIP floppies regardless. There is an option to make Steem SSE check inside archives, but it is slow. All archives have the same default icon "ZIP". If you hover over a disk file icon, the hint will display what kind of image the archive contains.\par
+\par
+To insert a disk image into a drive, drag it to the box to the right of the big drive icon (or press A or B). To remove it from the drive just drag it back out to the directory view (or press Delete).\par
+\par
+If you right click in the directory view a menu will pop up allowing you to create a new standard size disk image (ST), a custom size disk image (ST, MSA or DIM), a STW disk image or an HFE (Rev.1.1) disk image. High density versions are available for ST and STW.\par
+\par
+Custom disk images can be up to 2 megabytes in size, although larger ones can be emulated correctly, most TOS versions didn't support them, you may find they will only work with TOS 2.05+ or maybe not at all. Only some real Mega STE could handle high density disks. In Steem SSE, other models can only handle such images when Hacks are enabled.\par
+\par
+ST disk images contain raw data bytes without any meta information (so that emulators must guess the disk configuration, if it isn't correctly written on the disk image). MSA and DIM images also contain extra information. MSA images can be created on an ST using Magic Shadow Archiver. Steem can read compressed images, but writes back uncompressed so you should have backups, beware! DIM images can be created on an ST using \i FastCopy Pro\i0 . Steem needs all sectors.\par
+\par
+STW and HFE disk images include clock bits as well as data, encoded into MFM words. Those STW and HFE images are more than twice larger than ST images but allow emulating the WD1772 disk controller at a lower level, and so handling the Format command. Because they're formatted inside the emulated ST, there's no sides/tracks/sectors options. You get a raw disk full of random data, lucky you! It's up to you to format the disk exactly as you would on a ST. STW is the simplest such format. If you open a disk image in a hex editor, you will find sync marks coded as $4489. HFE is optimised for the HxC floppy emulator hardware. It's quite handy if you own such device. \par
+STW images may even be bigger if they are version 2. Those images were converted from STX or SCP and contain fuzzy data and timing information.\par
+\par
+\cf4 Tip\cf0  If you plan to write on STW or HFE disk images, turbo drive is less reliable\par
+\par
+Beside those ST, MSA, DIM, STW and HFE disk images Steem can create itself, it is also able to handle:\par
+-STT images (read-only)\par
+-STX images (read-only, need pasti.dll)\par
+-IPF and CTR images created with Kryoflux hardware (read-only, need CAPSImg.dll)\par
+-SCP images created with Supercard Pro hardware (read-only)\par
+\par
+A right click option allows you to convert DIM, MSA and ST images to STW. Make sure both drives are empty when you do that to avoid any interference. There's also a MFM emulation option that does that on the fly, but the extra steps take some time.\par
+\par
+About STX, IPF and CTR images, as they are handled by a third-party plugin, whether they work or not is also up to this plugin. Make sure you have the last version.\par
+\par
+Steem SSE directly handles SCP images, there's no plugin, so any bug should be fixed in Steem SSE itself. SCP images can also be converted to STW (v2) images.\par
+\par
+STT is a Steem-specific format that is to be considered legacy. It is a sort of "STX light", it was abandoned when the STX format appeared, but Steem and other programs still support it.\par
+\par
+If you right click in the box to the right of the big drive icon, a context menu allows you to toggle the read-only or write-protect property (important for some games), swap disks A and B, get the previous or next disk (Disk Swapper), remove the disk, or go to where the disk is stored. Notice that it is possible to eject a writable disk without saving the changes, this is handy in case you made some mistake.\par
+Write-protect is internal: it will not change the file property, when it's checked it's like the sliding tab on the floppy was up. Read-only will change the file property. When you insert a disk, the option will be set if  it's Read Only or an archive.\par
+\par
+Right clicking on a disk image displays a menu with a myriad of options to allow you to organise and use your disk images. \i Get CRC32 and Contents\i0  is useful if the disk image is a compilation disk, selecting it will display a list of what the disk contains. For it to work, \i disk image list.txt \i0 must be in the doc folder, and it must contain the entry. This list uses CRC32 checksums to identify files. It was based on a previous TOSEC version and misses some disk images. Some have been added in the version shipped with Steem.\par
+If you right click on an archive that contains multiple disk images, you can select the image thanks to the little arrows in the menu.\par
+\cf4 Tip\cf0  Steem is good at finding images in multiple files archives, but it can't open an archive inside an archive\par
+\i MSA Converter\i0  is a great program that allows you to edit the contents of a disk and convert it to a different format. \par
+\cf4 Tip\cf0  It can convert a zip file containing ST files to a ST disk image in a single click\par
+\i Properties\i0  allows you to change the way Steem uses the disk, it is very unlikely you will have to change the setting from the default.\par
+\par
+You can also run config files (INI) from the disk manager.\par
+\par
+If you double click in some empty space of the main window, you go to the parent folder of the current one.\par
+\par
+If you don't want to use the Disk manager to select disk images, two shortcuts are available to use Windows' classic file selector instead, and you also may use the classic menu by pressing the Alt key.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Drive icons\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 Left-clicking on the B: drive icon toggles drive B:.\par
+\par
+Right-clicking on the drive icons opens a context menu with some options to:\par
+
+\pard{\pntext\f7\'B7\tab}{\*\pn\pnlvlblt\pnf7\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa160\sl252\slmult1 Stop the motor if it's running you crazy. It's a hack and will not work every time.\par
+{\pntext\f7\'B7\tab}Change your fine internal or SF314 double sided drive into a miserable internal or SF354 single-sided drive (if you were unlucky back then and feel really nostalgic, or you just need to check things). For example, \i Star Ray\i0  loads sampled music from side B if it can.\par
+{\pntext\f7\'B7\tab}Select the drive or the side of the disk as if you were using a \i freeboot\i0  switch (don't forget to reset that later!) On drive A:, it selects the second side but on drive B:, it swaps drives so that a game can boot on the external drive, which was very useful back then.\par
+{\pntext\f7\'B7\tab}Select drive sound samples. You pick the folder, the files must have those names:\i\par
+
+\pard\widctlpar\sa160\sl252\slmult1\i0\tab\i drive_startup.wav, drive_spin.wav, drive_click.wav, drive_seek.wav\par
+\cf4\i0\tab Tip \cf0 XSteem recognises Wavosaur's loop markers inside a wav file\i\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\i0\f2\fs28\lang1033\par
+Smart Disk Swapper\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 Steem SSE's disk swapper is called smart because you don't need to create a list, Steem SSE will look for disks in the current folder or archive. Accessible through shortcuts, the classic menu or the context menu. Also see options below.\par
+If the disk image is found, Steem SSE will insert it and mention the name in the status bar (or on the OSD) for a while. If not, nothing happens. Searching may take a while especially going backwards because Steem SSE must check inside archives.\par
+You may assign two shortcuts for \i Previous\i0  and \i Next\i0 .\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 GEMDOS\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 Another handy button on the disk manager is the GEMDOS hard drive icon. A left click opens the GEMDOS hard drive manager. You can have up to 10 virtual hard drives. To set one up select the folder on your PC and then select the letter that you want it to be on the ST. Those virtual drives are called GEMDOS drives because they're based on interception of GEMDOS commands.\par
+\par
+You need to know that this type of emulation is very convenient for you, because you just use your PC hard drive, but it is based on hacks, and in some cases, it could not work as on a real Atari, or something could work in Steem but not on a real Atari.\par
+Hard drives aren't as reliable as disk images for games, most things will work but not everything. If a program isn't working properly copy it to a disk image (using the ST desktop) to see if that helps. Another option in this box is to choose which hard drive to boot from if floppy drive A is empty. You can force Steem to boot from a hard drive even when drive A contains a disk by holding down the CONTROL key when you run after performing a cold reset of the ST. ALT may force loading the floppy disk (on some TOS).\par
+\par
+Right-clicking on the icon will toggle GEMDOS hard drives on/off.\par
+\par
+Notice: this emulation based on interception will only work with TOS and compatible OS as EmuTOS, not MagiC for instance. \par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 ACSI Hard Drives\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 There's also a hard drive icon for ACSI hard drives. Right-clicking on this icon will toggle ACSI hard drives on/off, left-clicking opens a box with setup details. ACSI (Atari Computer Systems Interface) was the SCSI-like interface between the ST and a hard disk or a laser printer. ACSI emulation uses img files that contain all sectors of an Atari hard drive (data only, like an ST floppy disk image). Note that unlike GEMDOS hard drives, each ACSI device may be split into several partitions (C:, D:...). The driver you use must be able to handle each of those drives (Atari's AHDI is). \par
+Two ready examples are provided in the download, images of the familiar SH204 and MEGAFILE 60 hard drives, empty save fore the drivers.\par
+It is also possible to enable GEMDOS virtual hard disks at the same time as ACSI virtual hard disks, you need to adapt letters, of course. ACSI drives will take the first letters. It's handy to copy files.\par
+You can also use a 3rd party file manager to transfer files to and from ST hard disk images, \i Drive image\i0  by Petari:\par
+{{\field{\*\fldinst{HYPERLINK http://atari.8bitchip.info/drimus.php }}{\fldrslt{http://atari.8bitchip.info/drimus.php\ul0\cf0}}}}\f1\fs22  \par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\sa200\sl240\slmult1 It is possible to create hdd images using Steem SSE's interface. Enter the number of megabytes you wish (1MB=1,000,000 bytes). The file is filled with zeroes. It's up to you to make it a working hdd image. ICD Pro and other ST software may help. The feature isn't much but without it you need special utilities just to create the file.\par
+
+\pard\widctlpar\sa160\sl252\slmult1\par
+\cf4 Tip\cf0  Some programs will work with a GEMDOS hard drive but not with an ACSI one, sometimes depending on the driver\par
+\par
+In turn, ACSI emulation being lower level, it should be compatible with any alternative OS, such as Magic (I haven't personally tested).\par
+\par
+Pasti also provides ACSI emulation, for it to work it must be enabled in the disk manager and Steem's ACSI emulation must be disabled. The hard drive image is selected in pasti itself.\par
+\par
+\cf4 Tip\cf0  Make regular backups of your image files\par
+\par
+The Atari SLM804 Laser printer also uses the ACSI connection. You don't need to enable ACSI hard drives to use the printer, the option is on the \i I/O Ports\i0  page. The printer controller is hardcoded as ACSI device #7.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Home Folder\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 The disk manager allows you to select a home folder. This is where all your disks or shortcuts to disks should be stored. You can go to your home folder at any time by clicking the third button from the left in the disk manager window. If you are away from your home folder you can quickly move/copy/create shortcuts to disks in your home folder by right mouse button dragging them to the home button. The button to the right of the home folder button sets the current folder as your home folder. Right clicking on the home button and the set-home button brings up menus allowing you to go to/set 10 quick-folder links.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Options\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 To the right of the set-home button is the disk manager options button, it brings up a menu with the following choices:\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Turbo Drive (hack)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Floppy disk drives are slow, horribly tediously slow, so optionally Steem does away with the waits and emulates disk access at impossibly high speed. \par
+Unfortunately, some ST software uses, ahem, colourful ways of accessing the STs floppy disk controller that only work if the disk access is horribly, tediously slow. Even some contemporary demos poorly program the controller. \par
+Though the \i Drive sound\i0  and \i Drive track info\i0  options may make this ordeal more bearable, as you can see and hear what the drive is doing, you don't get the feeling the emulator is stuck. It's emulated the way it was.\par
+Generally, we don't recommend leaving this option checked with unknown disk images, it is less compatible.\par
+The option doesn't operate with CTR, IPF, and SCP images. Speed for images run by Pasti is set in \i Pasti configuration\i0 .\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Count DMA transfer cycles\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 On real hardware, each time disk data is transferred to or from memory, the CPU must surrender the bus. It is correct emulation to do the same, but it can be trouble according to the floppy or hard disk emulation method (especially accelerated). This option allows you to disable the feature. \par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Automatic fast forward on disk access\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Sometimes disk access can be really slow, so this option makes Steem always fast forward when the ST is doing it. There are some programs that continue while accessing the disk, if you are going to use one of them then you should turn this off.\par
+This feature is compatible with accurate disk access times, with MFM, Caps (SPS) and Pasti emulation, which means you can get both accurate and fast emulation.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Read/Write Archives (Changes Lost on Eject)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 To access disk images in archives Steem extracts them to a temporary file and uses that like a normal disk image file. Unfortunately re-archiving the temporary file can be difficult according to the archive type. Besides, modifying an archive is questionable, maybe we just shouldn't.\par
+Because of this by default all disk images in archives are treated as read-only, so they can't be changed. \par
+By turning on this option you can make Steem allow writes to the temporary file, but any changes will get lost when the temporary file is deleted (the disk is ejected). \par
+Some ST programs require their disk to be read/write, this option will allow you to run them without having to extract them.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Connect drive B:\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 By default, Steem emulates an ST with only one internal floppy drive. It can also emulate an external drive, this is usually very useful. Unfortunately, most STs only had one drive and some programs will get confused when there are two. \par
+It is usually a good idea to reset after you change this option as the ST might still think there is a drive B when really there isn't.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Enable ghost disks for protected disks\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Check this option to harmlessly save high scores or game progress with CTR/IPF/STX/SCP disk images, or other images that are read-only. STG files are automatically created when the program tries to save data on the disk, leaving your image file untouched. The image may be in an archive. STG files are simple and compact collections of sectors, only those that have been changed. The feature may interfere with some programs, in that case you only need to disable the option.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Run PRG and TOS files\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This enables direct support of PRG and TOS files. To run standalone PRG or TOS files, you need to set up a Z: hard drive that points to a PRG folder, preloaded with a DESKTOP.INF file and an AUTO folder, as provided in the download. Steem SSE will copy the file in this folder (always under the same name, so don't worry about disk waste). This should work with files inside archives. The main limitation is that it only handles single files. If the PRG needs a data file, it won't work. If you want it to work, just use the regular GEMDOS hard drive feature. Also, some programs just aren't meant to work that way. In this case they should be run from a floppy or hard disk.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Automatically Insert Second Disk\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Lots of games come on two disks, if this option is on when inserting a disk into drive A Steem will look for a second disk image with a similar name and insert it into drive B. Note that even if Steem manages to insert the second disk in drive B:, the game may still require a disk swap in drive A:. Many games had only one drive in mind unfortunately. The same for demos.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Disk Swapper Patterns\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 When checked, the disk swapper will look for a name where only one number or letter changes, for example [1], 2 of 4, or Disk B. It should work in many cases, and it is fast.\par
+If unchecked, the swapper will just look for the next or previous disk image in the directory or the archive.  If you so fancy, you can go through the full \i Automation \i0 set with just the disk swapper. It can be slower in large directories with lots of archives, especially going backwards, because Steem must look into all archives until a match is found.\par
+When there's no previous or next file in an archive, Steem SSE warns you first, then if you insist it looks for a file out of the archive, in the folder. The order of files is logical but can sometimes be unexpected.\par
+For instance:\par
+
+\pard\widctlpar\sl252\slmult1 Chrono Quest (B).STX\par
+Chrono Quest (C).STX\par
+Chrono Quest (D).STX\par
+
+\pard\widctlpar\sa160\sl252\slmult1 Chrono Quest.STX\par
+The first disk is last in the sorted directory. There are ways to name your files so that this problem doesn't occur. Chrono Quest (A).STX comes to mind. For the game, however, disks B to D are data-disks 1 to 3!\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Eject Disks When Quit\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This makes Steem eject all the disks from the drives when you quit.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Close Disk Manager After Insert, Reset and Run\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 If you don't like the disk manager open when you run a game, give this a go.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Pasti options\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Pasti, by Jorge Cwik (ijor at {{\field{\*\fldinst{HYPERLINK http://www.atari-forum.com }}{\fldrslt{http://www.atari-forum.com\ul0\cf0}}}}\f1\fs22 ), is the way to use the STX floppy disk format in Steem. This format allows emulation of original (protected) floppy disks of yore. Try to use the last version of the plugin (check at atari-forum).\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s4\sb40\cf2\i\f2\fs24 Pasti for all floppies and ACSI\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\i0\f1\fs22 Pasti can handle  ST, MSA and ACSI disk images, if you want that check this option (for examplae to go around a Steem SSE bug).\par
+If the option is checked, the SLM804 Laser printer isn't available.\par
+If the option is unchecked, pasti will only handle STX images.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s4\sb40\cf2\i\f2\fs24 Configuration\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\i0\f1\fs22 It opens a dialog box managed by pasti.dll. It is recommended to set all speed options to \i slow\i0  for precise emulation, which is what you should expect of STX images, and to disable warnings.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 MFM emulation\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf7\f1\fs22 Auto-convert\cf0\par
+The first option allows Steem SSE to internally use an MFM format for ST, MSA and DIM disk images. Steem automatically converts those images to STW on insertion and back on ejection. MFM emulation is more precise. It can be slower and disk image conversion on the fly takes some time too. \par
+If option \i Use Pasti for all floppies and ACSI\i0  is checked, this option has no effect on images handled by pasti.\par
+\cf7 Low-level\cf0\par
+STW, HFE, and other images if \i Auto-convert\i0  is checked, will be handled bit by bit as if they were SCP images. \par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Double Click Action\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This allows you to configure what happens when you double click the left mouse button on a disk image (or a shortcut to a disk image). By default, doing this will insert the disk into drive A, reset the ST and then run.\par
+The same effect is assigned to the Enter key.\par
+\par
+\cf5\f2\fs24 Hide\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\i Hidden files\i0\par
+\i Extension\i0\par
+\i Non-Disk Archives and Broken Shortcuts\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\i0\f1\fs22 This option hides shortcuts that point to a file that doesn't exist. If you show these shortcuts, then you can right click on them and select Fix Shortcut to allow Windows to search for the target file. You may want to check this if you have many broken shortcuts that are going to stay broken to speed up displaying of their folders.\par
+The option also hides archives that don't contain any actual disk images. It can be really slow if there are many archives in the folder.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Icon Size and Icon Spacing\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Save space with small icons, see more clearly with larger spaces.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Sort by\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 The disk manager can sort by date, newest first, it's useful when you point to your download folder.\par
+\par
+
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Tools\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 Next to disk manager options is the disk image management tools button, it brings up a menu with the following options.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Search Disk Image Database\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Steem uses the great disk image database created and maintained by Keili to be able to recognise disk images. Using this option you can search for a program to find out what disk images contain it. To download the disks have a look at Steem's comprehensive links in the General Info dialog.\par
+\cf4 Tip\cf0  The database, as a text file, is now updated and versioned in the Steem SSE project itself\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Open Current Folder in Explorer\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Opens the folder the disk manager is looking at in Windows Explorer.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Folders Pane in Explorer\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 When checked causes the folders pane to appear when you open a folder in Explorer.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Find in Current Folder\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 Opens a Windows find dialog with the \i Look in\i0  directory set to the current folder, useful if you have a large number of disks in many folders and you want to find one quickly.\par
+\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf5\f2\fs24 Run MSA Converter\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 This loads the MSA Converter program that can be used to edit disk images. It needs to be there, of course.\par
+\par
+
+\pard\keep\keepn\widctlpar\sb240\sl252\slmult1\cf2\f2\fs32\lang1033 Command-line options\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22\lang2057 Here are some useful command line options for Steem. The easiest way to run Steem with them is to make a shortcut to Steem.exe, right click on it and select Properties. In the text box labelled Target add the command line options on the end (after the " if there is one).\par
+This is also how a frontend will launch Steem.\par
+You don't need to add - before the options.\par
+\par
+ NODD, GDI - don't use DirectDraw.\par
+\par
+ NODS, NOSOUND - don't use DirectSound.\par
+\par
+ .st, .msa, .stt, .dim, .stx, .ctr, .ipf, .scp, .stw, .hfe, .zip, .rar, .7z, .stz file - load disk & go. \par
+If two disks are passed, then the first will go in drive A and the second will be in drive B. Autoinsert second disk won't work.\par
+\par
+ .prg, .tos: same as disk but those are individual ST files. \par
+\par
+ .sts file - load snapshot & go.\par
+\par
+ .stc file - insert specified cartridge.\par
+\par
+ NONEW - means that if one of the above files is passed to Steem and a Steem window is already open it will be opened in the current Steem and not in a new window.\par
+\par
+ OPENNEW - means the opposite of NONEW, the files will always be opened in a new Steem window.\par
+\par
+ NOLPT - this removes the option to connect an ST port to your PC's LPT ports (that option can cause a crash on some versions of Windows).\par
+\par
+ NOCOM - this removes the option to connect an ST port to your PC's COM ports.\par
+\par
+ INI=[filename] - load [filename] instead of steem.ini.\par
+\par
+ TRANS=[filename] - use [filename] as translation file.\par
+\par
+ SOF=[freq] - stands for Sound Output Frequency. Output will be forced to [freq]Hz and all other factors will be ignored (unless setting the sound card output to [freq]Hz fails, in that case Steem will ignore this option and use its usual method of determining output frequency).\par
+\par
+ WINDOW - force Steem to boot in windowed mode.\par
+\par
+ FULLSCREEN - force Steem to boot in fullscreen mode. There's also a Startup option for that.\par
+\par
+ DOUBLECHECKSHORTCUTS - this makes Steem's disk manager check shortcut files more thoroughly, some people have had problems when a shortcut's target file name is in a different case to the actual file. This option makes the disk manager slower to display folders with shortcuts in them.\par
+\par
+ SCLICK - this option makes Steem output a click when you run and stop instead of a bump.\par
+\par
+ NOPCJOYSTICKS - don't look for any PC joysticks, sometimes joystick drivers do some weird things!\par
+\par
+ OLDPORTIO - we changed how I/O to LPT and COM ports worked in v2.4, if you are using Win9x/ME then you can use this switch if it doesn't work anymore.\par
+\par
+ SCREENSHOT[=path] - this tells the currently open Steem to take a screenshot. If no Steem is open, then it won't do anything.\par
+\par
+ ALLOWREADOPEN - this command line option makes Steem open hard drive files as read only. TOS has a bug in it that allows programs that open files for read to write to them, most versions of Windows and all versions of Linux don't allow it. Steem gets around this by opening all files as read and write. \par
+This works well except in circumstances when another Windows program is accessing the same file. If you want to do that then use this command line option to open the file as read-only.\par
+\par
+ SCREENSHOTUSEFULLNAME - this makes Steem use the full disk name as the screenshot name, rather than just the first word.\par
+\par
+ NONOTIFYINIT - disable the "Steem is Initialising" box.\par
+\par
+ STFMBORDER - if it is not overruled by the saved options or memory snapshot, this makes Steem start as an STF.\par
+\par
+ NOTRACE - Steem SSE won't create a Trace.txt file with debugging info (there is also a more convenient option in the startup page).\par
+\par
+
+\pard\keep\keepn\widctlpar\sb240\sl252\slmult1\cf2\f2\fs32\lang1033 INI file options\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22\lang2057 Those options are inside the steem.ini file to avoid bloating the emulator interface (GUI) itself.\par
+\par
+\b DefaultSnapshot\par
+\b0 You can define a shortcut, called "Load Default Memory Snapshot", that will load the memory snapshot you specify in the [Main] part of steem.ini, for example:\par
+DefaultSnapshot=[path to Steem]\\memory snapshots\\mysupergame.sts\par
+\par
+\b ScreenshotWithSnaphot (D3D) (v.4.1.2)\b0\par
+If you add this line in the [Main] part of steem.ini:\par
+ScreenshotWithSnaphot=0\par
+Steem won't save a screenshot with the same name as the memory snapshot. The screenshot is loaded and displayed together with the memory snapshot.\par
+\par
+\b WindowTitle\par
+\b0 You can change the name that is displayed as window title and in the task bar by adding a line in the [Main] part of steem.ini, for example:\par
+WindowTitle=Microsoft Excel\par
+It is useful if you mean to run several specialised instances, each in its own folder.\par
+Limitation: mustn't be longer than 100 characters.\par
+\par
+\b MonochromeDisableBorder\par
+\b0 If you add this line in the [Main] part of steem.ini:\par
+MonochromeDisableBorder=1\par
+Borders will be off in monochrome mode, except if you switch them on after the cold reset. You can also use different configurations instead.\par
+\par
+\b NoNotify\par
+\b0 If you add this line in the [Main] part of steem.ini:\par
+NoNotify=1\par
+It does the same as argument NONOTIFYINIT.\par
+\par
+\b NoIntro\par
+\b0 If you add this line in the [Main] part of steem.ini:\par
+NoIntro=1\par
+Steem won't run its intro proposing to add a shortcut. Useful for frontends, maybe.\par
+\par
+\b TrueFullScreenGui\par
+\b0 By default, on the D3D builds, only the Windowed Borderless fullscreen mode can show the GUI while in fullscreen.\par
+If you add this line in the [Display] part of steem.ini:\par
+TrueFullScreenGui=1\par
+Steem will enable the GUI option for true fullscreen too, just in case it works on older systems (XP?).\par
+\cf4 Tip\cf0  For example it doesn't work on my Windows 10 system!\par
+\par
+\b PreciseModel\par
+\b0 This is for config files, not steem.ini.\par
+It is possible to have the exact model you want displayed in the status bar, you just need to add a line in the [Machine] part of your configuration file.\par
+For example, in the 520 ST.ini config, you have\par
+PreciseModel=520ST\par
+You can create a 520ST with only a single-sided floppy drive running TOS 1.0, a 520STF with a double-sided drive...\par
+Notice that the drive A: is always included, it cannot be disconnected.\par
+\par
+\b MouseAd\par
+\b0 This is for config files, not steem.ini.\par
+In the [Patches] section of the configuration file you can set the ST address where Steem will read mouse coordinates which it can display on the status bar. It's useful when the other ways to get the data won't work. That happens with lots of games.\par
+The address must be in integer format and point to 2 words for x,y.\par
+For example in Barbarian, the address is $62C:\par
+[Patches]\par
+MouseAd=1580\par
+\cf4 Tip\cf0  The \i Patches\i0  section of the configuration must be checked\par
+\cf4 Tip\cf0  The setting will be remembered even through reset, until another ini is loaded. It is also saved with snapshots\par
+\par
+Here's a few if you want to create ini files.\par
+\ul Title\tab\tab\tab\tab TOS\tab Address (hex)\tab\tab MouseAd\par
+\cf6\ulnone Barbarian\cf0\tab\tab\tab 102\tab $62C\tab\tab\tab 1580\par
+\cf6 Captain Blood\cf0\tab\tab\tab 102\tab $17926\tab\tab\tab 96550\par
+\cf6 Defender of The Crown\cf0\tab\tab 102\tab $2886C\tab\tab\tab 165996\par
+\cf6 Dungeon Master\cf0\tab\tab 102\tab $2F024\tab\tab\tab 192548\par
+\tab\tab\tab\tab 162\tab $2CEBA\tab\tab\tab 183994\par
+\cf6 The Final Conflict\cf0\tab\tab 100\tab $33226\tab\tab\tab 209446\par
+\tab\tab\tab\tab 162\tab $339BE\tab\tab\tab 211390\par
+\cf6 Flight Simulator II\cf0\tab\tab 102\tab $055CE8\tab\tab 351464\par
+\cf6 The Guild of Thieves\cf0\tab\tab 162\tab $FC46\tab\tab\tab 64582\par
+\cf6 King's Quest 1 + 3\cf0\tab\tab 102\tab $021788\tab\tab 137096\par
+\cf6\tab\tab\cf0\tab\tab 162\tab $01F83E\tab\tab 129086\par
+\cf6 Maupiti Island\tab\cf0\tab\tab 102\tab $04E9FE\tab\tab 322046\par
+\cf6 The Pawn\cf0\tab\tab\tab 102\tab $13418\tab\tab\tab 78872\par
+\cf6 Phantasie 3\cf0\tab\tab\tab 102\tab $3C43E\tab\tab\tab 246846\par
+\par
+\b RunOnStartup\par
+\b0 This option is also in the GUI, and it also works when you double click on a configuration file in the Options dialog.\par
+It should be placed in the [Options] part of your configuration file.\par
+RunOnStartup=1\par
+\par
+\b Spurious\par
+\b0 A spurious interrupt occurs when the MC68000 is interrupted but the interrupt request (IRQ) clears during the \i interrupt acknowledge\i0  (IACK) cycle. On the ST, this may happen with the MFP. Emulation of this is tricky, you can deactivate it by changing this line in the [Options] part of your configuration file:\par
+Spurious=0\par
+\cf4 Tip\cf0  The option was in the GUI in previous versions so it's possible that it's 0 in your ini file\par
+\par
+
+\pard\keep\keepn\widctlpar\sb240\sl252\slmult1\cf2\f2\fs32\lang1033 Debugging info\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22\lang2057 If you check the TRACE.txt startup option, Steem SSE saves a log with that name containing some useful information in its running directory each time it is stopped. \par
+\par
+It is possible to read the trace file from inside Steem SSE, in the info dialog. Notice that Windows will need time to update the dialog if the file is large (but it eventually does).\par
+\par
+Sometimes, a fatal error happens (system exception). To help reporting, an alert box describes the error. The message is also copied into the Trace file. If the bug happens in Steem SSE itself, it's sometimes possible to track it down using this message.\par
+\par
+If you post a bug report, please read the rules before. Ask yourself if you're giving all useful information to get the bug fixed or if you're just venting your frustration. Don't forget to copy the trace. \par
+\par
+Bug reports:\par
+{{\field{\*\fldinst{HYPERLINK https://sourceforge.net/p/steemsse/forum/bugs/ }}{\fldrslt{https://sourceforge.net/p/steemsse/forum/bugs/\ul0\cf0}}}}\f1\fs22\par
+\par
+}
+ 

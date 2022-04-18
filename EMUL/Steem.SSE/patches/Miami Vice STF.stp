@@ -1,0 +1,14 @@
+[Text]
+
+Description=Pass protection, no guarantee
+ApplyWhen=Password screen, then type anything
+Version=STF, TOS 1.02, 1MB
+PatchAuthor=Steven
+
+[Check]
+
+016736 = $6608
+
+[Patch]
+
+016736 = $4E71

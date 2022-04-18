@@ -1,18 +1,20 @@
 # atari-emu
 Atari ST emulators in one portable package
 
+![Hatari](https://raw.githubusercontent.com/Kochise/atari-emu/master/IMGS/hatari.png)
+
 DISK : floppy disk images, hard disk images, utilities and programs sorted thematically<br>
 EMUL : various emulators, listed below<br>
 ROMS : bios images to run the emulators<br>
 
-| EMUL				| Release mouse			| Fullscreen	| Main menu	| Pause			| Debug			| (Cold) Reset			| Help		| Undo		|
-| :--				| :-:					| :-:			| :-:		| :-:			| :-:			| :-:					| :-:		| :-:		|
-| [ARAnyM]			| LShift+LCtrl+LAlt+Esc	| ScrollLock	| Pause		| (menu)		| LAlt+Pause	| (LShift+)LCtrl+Pause	| n/a		| n/a		|
-| [Gemulator]		| F11					| Alt+Enter		| Ctrl+F11	| n/a			| F12			| Ctrl+F12				| n/a		| n/a		|
-| [Hatari]			| (borders)				| F11			| F12		| (menu)		| n/a			| n/a					| n/a		| n/a		|
-| [SainT]			| n/a					| n/a			| F12		| (menu)		| (menu)		| (Shift+)F11			| PrintScr	| ScrollBrk	|
-| [Steem.SSE]		| F11					| n/a			| (button)	| n/a			| n/a			| n/a					| PageUp	| PageDown	|
-| [VirtualJaguar]	| n/a					| n/a			| n/a		| n/a			| n/a			| n/a					| n/a		| n/a		|
+| EMUL				| Version	| Release mouse			| Fullscreen	| Main menu	| Pause			| Debug			| (Cold) Reset			| Help		| Undo		|
+| :--				| :-:		| :-:					| :-:			| :-:		| :-:			| :-:			| :-:					| :-:		| :-:		|
+| [ARAnyM]			| 1.10		| LShift+LCtrl+LAlt+Esc	| ScrollLock	| Pause		| (menu)		| LAlt+Pause	| (LShift+)LCtrl+Pause	| n/a		| n/a		|
+| [Gemulator]		| 9.00 CE	| F11					| Alt+Enter		| Ctrl+F11	| n/a			| F12			| Ctrl+F12				| n/a		| n/a		|
+| [Hatari]			| 2.3.1		| (borders)				| F11			| F12		| (menu)		| n/a			| n/a					| n/a		| n/a		|
+| [SainT]			| 2.40		| n/a					| n/a			| F12		| (menu)		| (menu)		| (Shift+)F11			| PrintScr	| ScrollBrk	|
+| [Steem.SSE]		| 4.1.2		| F11					| n/a			| (button)	| n/a			| n/a			| n/a					| PageUp	| PageDown	|
+| [VirtualJaguar]	| 2.1.2		| n/a					| n/a			| n/a		| n/a			| n/a			| n/a					| n/a		| n/a		|
 
 [ARAnyM]: https://github.com/aranym/aranym/releases
 [Gemulator]: http://www.emulators.com/download.htm#ATARIST

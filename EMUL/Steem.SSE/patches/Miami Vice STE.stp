@@ -1,0 +1,14 @@
+[Text]
+
+Description=Pass protection, no guarantee
+ApplyWhen=Password screen, then type anything
+Version=STE, TOS 1.62, 2MB
+PatchAuthor=Steven
+
+[Check]
+
+0147EC = $6608
+
+[Patch]
+
+0147EC = $4E71

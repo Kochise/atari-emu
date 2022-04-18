@@ -1,0 +1,10 @@
+[Text]
+
+Description=Pass protection, no guarantee
+ApplyWhen=Password screen, then type 1234
+Version=STF, TOS 1.02, 1MB
+PatchAuthor=Steven
+
+[Patch]
+
+0312A8 = $04D2

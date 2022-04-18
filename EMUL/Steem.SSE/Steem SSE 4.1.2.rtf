@@ -1,0 +1,114 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang6153\deflangfe6153{\fonttbl{\f0\fnil\fcharset0 Arial Black;}{\f1\fswiss\fprq2\fcharset0 Calibri Light;}{\f2\fswiss\fprq2\fcharset0 Calibri;}{\f3\fnil\fcharset0 Calibri Light;}}
+{\colortbl ;\red79\green129\blue189;\red47\green84\blue150;\red31\green55\blue99;\red0\green0\blue255;}
+{\stylesheet{ Normal;}{\s1 heading 1;}{\s2 heading 2;}{\s3 heading 3;}}
+{\*\generator Riched20 10.0.19041}{\*\mmathPr\mdispDef1\mwrapIndent1440 }\viewkind4\uc1 
+\pard\keepn\widctlpar\s1\sb240\sa60\sl252\slmult1\qc\cf1\kerning32\b\f0\fs32 Steem SSE 4.1.2 release notes\par
+
+\pard\keepn\widctlpar\s1\sb240\sa60\sl252\slmult1\f1 Atari ST\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\kerning0\b0\f2\fs22 The Atari ST was a legendary 16bit computer of the Eighties.\par
+
+\pard\keepn\widctlpar\s1\sb240\sa60\sl252\slmult1\cf1\kerning32\b\f1\fs32 Steem Engine, by Anthony & Russell Hayward\par
+
+\pard\widctlpar\sl252\slmult1\cf0\kerning0\b0\f2\fs22 Steem is a legendary Atari ST emulator for the PC, both accurate and easy to use thanks to its great user interface.\par
+
+\pard\keepn\widctlpar\s2\sb240\sa60\sl252\slmult1\cf1\b\i\f1\fs28 Steem SSE\par
+
+\pard\widctlpar\sl252\slmult1\cf0\b0\i0\f2\fs22 Steem SSE stands for \b\i ST\b0  \b E\b0 nhanced \b EM\b0 ulator \b S\b0 ensei \b S\b0 oftware \b E\b0 dition\i0 . It is an updated version of Steem. Some say an improvement, some say it's worse!\par
+
+\pard\keepn\widctlpar\s2\sb240\sa60\sl252\slmult1\cf1\b\i\f1\fs28 Licence\par
+
+\pard\widctlpar\sl252\slmult1\cf0\b0\i0\f2\fs22 Steem is free open source software. The licence is GPL3 as chosen by Steem authors.\par
+
+\pard\keepn\widctlpar\s1\sb240\sa60\sl252\slmult1\cf1\kerning32\b\f1\fs32 Installation\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\kerning0\b0\f2\fs22 Extract files to a folder of your choice. There's no setup program.\par
+\lang2057 When you run a Steem SSE build for the first time, based on the file name, it proposes to add a link to the new version in your start menu if you care about that.\par
+Steem SSE can work with various plugins, please check \i Third-party\i0  in the manual.\par
+\cf1\kerning32\b\f1\fs32\lang6153 v4.1.2 Features\cf0\kerning0\f3\fs24\lang2057\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf2\expndtw15\b0\f1\fs28\lang1033 Key mappings\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\sa200\sl240\slmult1\cf0\expndtw0\f2\fs22\lang2057 New keyboard mappings for French and German PC keyboards targeting serious software running in UK TOS ("what you type is what you get"), or menu disks and games (what counts is the key position, check \i Megaroids\i0  and\i  Thrust\i0 ).\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf2\expndtw15\f1\fs28\lang1033 Joystics\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\sa200\sl240\slmult1\cf0\expndtw0\f2\fs22\lang2057 6 setups instead of 3\par
+Shortcut to select the setup, as an alternative to selection through \i Num Lock\i0  and \i Scroll Lock\i0  (laptops typically don't have those keys).\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf2\expndtw15\f1\fs28\lang1033 Snapshot & screenshot (D3D)\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\sa200\sl240\slmult1\cf0\expndtw0\f2\fs22\lang2057 Steem SSE will save a screenshot together with the memory snapshot, and on load it will display that screenshot instead of trying to draw the video memory (didn't work with overscan and Spectrum 512-like pictures).\par
+If the option \i Restore previous state\i0  isn't checked, a nice picture will be loaded at startup, provided you copied it in Steem's directory. You can of course customise this.\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf2\expndtw15\f1\fs28\lang1033 Floppy Disk\par
+\cf3\expndtw0\fs24\lang2057 Write-protect\cf0\f2\fs22\par
+New option to write-protect the disk (the sliding tab on the floppy is up), this is now used instead of the Read Only file property in drive emulation. When you insert a disk, the option will be set if the file is read-only or an archive, then you can change it if you will.\par
+\cf3\f1\fs24 MFM emulation\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\sa200\sl240\slmult1\cf0\f2\fs22 Disk image format STW v2: handling fuzzy bits, timing variation and variable track length\par
+New context option to convert SCP images to STW\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf2\expndtw15\f1\fs28\lang1033 ACSI hard drive\par
+\cf3\expndtw0\fs24\lang2057 Create\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\sa200\sl240\slmult1\cf0\f2\fs22 New button to create a hdd image file. Enter the number of megabytes you wish (1MB=1,000,000 bytes). The file is filled with zeroes. It's up to you to make it a working hdd image. ICD Pro and other ST software may help. The feature isn't much but without it you need special utilities just to create the file.\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf2\expndtw15\f1\fs28\lang1033 Display\par
+\cf3\expndtw0\fs24\lang2057 Single pixels\cf2\expndtw15\fs28\lang1033\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\sa200\sl240\slmult1\cf0\expndtw0\f2\fs22\lang2057 New option \i Single pixels\i0 , it is like scanlines but vertical.\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\sl240\slmult1\cf3\f1\fs24 Gamma correction\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\sa200\sl240\slmult1\cf0\f2\fs22 If option \i Show all settings\i0  isn't checked, there's only one slider for gamma control.\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf2\expndtw15\f1\fs28\lang1033 Sound\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\sa200\sl240\slmult1\cf0\expndtw0\f2\fs22\lang2057 New option \i Slow fade\i0  for MicroWire emulation. The feature already existed but it was commanded by option \i Hacks\i0  before, now it is clearer. Use it If you want to avoid pops when the program changes the volume too fast.\par
+\cf2\expndtw15\f1\fs28\lang1033 Status bar\par
+\cf0\expndtw0\f2\fs22\lang2057 Little redesign, by default the 2nd pane contains useful info, ROM and RAM info is moved to the 3rd pane. Click on panes to change the behaviour.\cf2\expndtw15\f1\fs28\lang1033\par
+Misc.\cf0\expndtw0\f2\fs22\lang2057\par
+
+\pard\widctlpar\sl252\slmult1\cf3\f1\fs24 Save backup snapshot on reset\cf0\f2\fs22\par
+
+\pard\widctlpar\sa160\sl252\slmult1 This was automatic, now it's optional (because saving is a file operation, it can cause a glitch).\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\sa200\sl240\slmult1\cf2\expndtw15\f1\fs28\lang1033 Features enabled in Linux builds\par
+\cf0\expndtw0\f2\fs22\lang2057 Various features that were only available in Windows builds have been ported to Linux:\par
+Ghost disks\par
+MFM Emulation for standard disk images and conversion of image disks to STW\par
+Option Count DMA cycles on disk operations\par
+PRG/TOS support\par
+Special adapters (dongles etc.)\par
+YM -12db hack for STE\par
+Freeboot\par
+Joystick jump button\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf1\kerning32\b\f1\fs32\lang6153 v4.1.2 Emulation improvements\cf0\kerning0\f3\fs24\lang2057\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf2\expndtw15\b0\f1\fs28\lang1033 Blitter\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\sa200\sl240\slmult1\cf0\expndtw0\f2\fs22\lang2057 Closer to hardware for the NFSR flag\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf2\expndtw15\f1\fs28\lang1033 MFP (MC68901)\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\sa200\sl240\slmult1\cf0\expndtw0\f2\fs22\lang2057 Some timing modifications to increase compatibility\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\cf2\expndtw15\f1\fs28\lang1033 Floppy Disk\par
+\cf3\expndtw0\fs24\lang2057 MFM emulation\par
+
+\pard\keep\keepn\nowidctlpar\s3\sb40\sa200\sl240\slmult1\cf0\f2\fs22 Better timings on SCP images\par
+
+\pard\keepn\widctlpar\s1\sb240\sa60\sl252\slmult1\cf1\kerning32\b\f1\fs32\lang6153 Steem SSE Web site\par
+
+\pard\widctlpar\sa160\sl252\slmult1 {\cf0\kerning0\b0\f2\fs22{\field{\*\fldinst{HYPERLINK http://sourceforge.net/projects/steemsse/ }}{\fldrslt{http://sourceforge.net/projects/steemsse/\ul0\cf0}}}}\cf0\kerning0\b0\f2\fs22\par
+There you will find a blog, a forum (for bug reports), all versions of Steem SSE and the source code (subversion repository)\par
+
+\pard\keepn\widctlpar\s1\sb240\sa60\sl252\slmult1\cf1\kerning32\b\f1\fs32 R0\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\kerning0\b0\f2\fs22\lang2057 Initial release, full of bugs\par
+03 April 2022\par
+\cf1\kerning32\b\f1\fs32\lang6153\par
+}
+ 

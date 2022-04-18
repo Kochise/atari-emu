@@ -1,0 +1,14 @@
+[Text]
+
+Description=Pass protection, no guarantee
+ApplyWhen=Password screen, before typing anything
+Version=STF, TOS 1.02, 1MB
+PatchAuthor=Steven
+
+[Check]
+
+03B92E = $6700
+
+[Patch]
+
+03B92E = $6000

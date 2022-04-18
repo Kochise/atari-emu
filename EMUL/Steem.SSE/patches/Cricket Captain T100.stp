@@ -1,0 +1,14 @@
+[Text]
+
+Description=Bypass dongle, no guarantee
+ApplyWhen=Before playing a match
+Version=STF, TOS 1.00, 1MB
+PatchAuthor=Steven
+
+[Check]
+
+00B67A = $6600 $0050
+
+[Patch]
+
+00B67A = $6700 $0050

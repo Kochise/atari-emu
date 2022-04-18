@@ -1,0 +1,136 @@
+STW Version 2.0
+================================================================================
+
+STW is an Atari ST disk image format devised for Steem SSE.
+
+The purpose of the first version of this format was to allow emulation of all
+WD1772 (floppy disk controller) commands in Steem SSE, and keep the results of
+command Write Track (Format).
+
+Version 2 of the format also contains fuzzy byte and timing information.
+The purpose is to convert other formats like STX and SCP to STW. Images with
+different than standard timing or with fuzzy bytes are not images of floppy
+disks formatted by the ST's WD1772 controller. Those floppy disks could be
+produced by special duplication hardware or any other controller (Amiga,
+Trace duplicator, Hardcopier, Discovery cartridge...). Generally they were
+protected disks.
+
+If the source is SCP, the STW image should be an ideal representation of the
+diskette. If it is STX, it is more like an interpretation, that sometimes will
+not be working.
+
+Images are twice the size of STW v1 images, about 4 MB uncompressed for a
+DD disk.
+
+
+Header 
+======
+
+The file header is 16 bytes long.
+
+4 bytes: "STW", case-sensitive, null-terminated C string
+
+1 big endian word: version in hex ($0200 to begin with, meaning 2.00)
+If the version number is $300 or higher, Steem SSE 4.2 will refuse to handle
+the image. If it is lower than $200 but at least $100, it will be handled
+as a STW v1 image.
+
+1 byte: #sides.
+Should be 2.
+
+1 byte: #tracks.
+Should be 84.
+
+1 byte: density. 
+1 for a SD disk (unexpected)
+2 for a DD disk (Double Density 720 KB)
+4 for HD (High Density 1,44 MB)
+
+1 byte: encoding.
+1 for FM (unexpected)
+2 for MFM
+
+1 byte: source program.
+1 for Steem SSE
+
+5 bytes: reserved (0 for the moment).
+
+
+Tracks
+======
+
+There are normally 84 tracks per side, 2 sides.
+
+The order of tracks is:
+
+Side 0, track 0 - side 1, track 0 - side 0, track 1 - side 1, track 1 - ...
+
+Track header
+------------
+
+The track header is 16 bytes long.
+3 bytes: "TRK" (no null character termination)
+1 byte: side (0-1)
+1 byte: track (0-83)
+1 little endian word: #MFM records (variable, should be around 6250)
+1 little endian double word: #bits (clock and data)
+1 byte: source image type (0 for no source/unformatted, 5 for STX, 12 for SCP)
+4 bytes: reserved (0 for the moment)
+
+
+The #bits may be longer than #MFM records*16, according to the source image.
+The number of extra bits is, in C:
+
+            #bits%16
+
+In that case, only those extra bits in the last MFM record are part of the disk
+image. The image should wrap perfectly. The last bit of the track is followed
+by the first bit.
+
+The list of possible sources (some quite unlikely) is:
+None     0 (there was no track record, the track is unformatted)
+ST       1
+MSA      2
+DIM	 3
+STT	 4
+STX	 5
+IPF	 6
+CTR	 7
+STG	 8
+STW	 9
+PRG	10
+TOS	11
+SCP	12
+HFE	13
+
+The source can be different for different tracks.
+
+
+Track data
+----------
+
+The track data contains MFM records.
+
+Each MFM record is 4 bytes long and is made up of:
+
+1 little endian word: MFM data
+Each word is made up of 1 clock byte and 1 data byte, encoded in MFM.
+Which bit is clock and which is data depends on the image, and may change
+along the track, like on a real floppy disk.
+Therefore, bits are recorded after fluxes have passed through the DPLL but
+before data separation. This means that the recorded bits are not raw as
+on an SCP image, but also depend on the floppy disk controller, in our case
+the WD1772. Timing and fuzzy bits also depend on the DPLL.
+
+  raw data -> DPLL > STW image -> data separator -> sync and data
+
+1 byte: fuzzy mask (pasti-like, bit cleared for fuzzy, $FF means no fuzzy bit)
+
+1 byte: timing (pasti-like, $80 is standard, higher means slower)
+
+
+Padding
+-------
+
+Track records end with enough zeroes to be divisible by 16 (for easier hex
+editing). Those bytes are not included in #MFM records.
