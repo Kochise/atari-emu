@@ -24,7 +24,7 @@
 <h1 class="pageheader">Hatari User's Manual</h1>
 
 <p class="pageheader">
-Version 2.3.1, December 2020
+Version 2.4.1, August 2022
 </p>
 <p class="pageheader">
 Manual written by: <strong>Thomas Huth</strong>, <strong>Matthias Arndt</strong>
@@ -156,7 +156,7 @@ common to all (FDC, IKBD, MFP, MIDI, PSG, RS-232...).</p>
     <tr>
       <td class="hwfeat">SCSI</td>
       <td></td><td></td><td></td><td></td><td>X</td><td>X</td>
-      <td class="hwnote"></td>
+      <td class="hwnote">Hatari support is incomplete</td>
     </tr>
     <tr>
       <td colspan="7" class="hwsubdiv">Other HW features:</td><td></td>
@@ -218,18 +218,15 @@ common to all (FDC, IKBD, MFP, MIDI, PSG, RS-232...).</p>
   </tfoot>
 </table>
 
-<p>(512k version of EmuTOS included with Hatari binary packages
-supports all Atari HW except for Falcon DSP & 16-bit Videl TrueColor mode.)</p>
+<p>(EmuTOS v1.1+ included with Hatari binary packages supports
+all Atari HW except for Falcon 16-bit Videl TrueColor mode.)</p>
 
 
 <h3>Features</h3>
 
 <h4>Emulator features</h4>
 <ul>
-  <li>with SDL1: 2x scaling for ST-low resolutions,
-      aspect correction and integer factor scaling
-      for small Falcon resolutions</li>
-  <li>with SDL2: scaling any resolution to any size</li>
+  <li>scaling any resolution to any size (using the SDL2 scaling)</li>
   <li>interleaved lines rendering with TV "monitor type"
       for ST-medium and (scaled) ST-low resolutions</li>
   <li>joystick and joypad emulation via cursor keys and
@@ -255,10 +252,9 @@ supports all Atari HW except for Falcon DSP & 16-bit Videl TrueColor mode.)</p>
 
 <h4>CPU / FPU emulation</h4>
 <ul>
-  <li>with the (default) WinUAE CPU core: 68000 - 68060 and MMU emulation</li>
-  <li>with the (deprecated) UAE CPU core: 68000 - 68040 emulation (less accurate, but faster)</li>
-  <li>cycle-accurate 68000 emulation (only) with the WinUAE CPU core, and
-      several options for disabling CPU accuracy for performance</li>
+  <li>68000 - 68060 and MMU emulation</li>
+  <li>cycle-accurate 68000 emulation, and several options for
+      disabling CPU accuracy for performance</li>
   <li>68881, 68882 and 68040/060 internal FPU emulation, either using
       host FPU (default, faster), or emulating them more accurately
       in SW</li>
@@ -326,7 +322,7 @@ and later HW:</p>
   <li>TT low/med/high resolution support</li>
   <li>Second (TT) MFP chip</li>
   <li>ST/TT palette switching and video shifter</li>
-  <li>Up to 512 MiB of TT-RAM and 32-bit memory addressing</li>
+  <li>Up to 1024 MiB of TT-RAM and 32-bit memory addressing</li>
   <li>Only TOS version 3.05 and 3.06 (and 512k EmuTOS) can be used in TT mode.</li>
 </ul>
 
@@ -337,7 +333,7 @@ and later HW:</p>
   <li>STE/Falcon palette switching and shifter</li>
   <li>Mono/RGB/VGA/TV monitor types</li>
   <li>DSP co-processor emulation</li>
-  <li>RAM up to 14MiB (ST-RAM) and up to 512 MiB (TT-RAM)</li>
+  <li>Up to 14 MiB of ST-RAM and 1024 MiB of TT-RAM</li>
   <li>Experimental microphone (jack) emulation</li>
   <li>Experimental Crossbar sound matrix (ADC (mic &amp; PSG), DAC, DMA, DSP)
       interconnect emulation + support for the additional DMA sound
@@ -391,7 +387,7 @@ well tested.
 <p>Optional:</p>
 <ul>
 <li>The zLib compression library. You can get it from
-<a href="http://www.gzip.org/zlib/">http://www.gzip.org/zlib/</a>.
+<a href="https://zlib.net/">https://zlib.net/</a>.
 </li>
 <li>The PNG image library for PNG format screenshots and to
 decrease AVI video recording file sizes. You can get it from
@@ -402,7 +398,6 @@ command line editing.</li>
 on systems with the X window system (Linux and other unixes).</li>
 <li>The PortMidi library required for MIDI device support on macOS and Windows
 <a href="http://portmedia.sourceforge.net/">http://portmedia.sourceforge.net/</a>.</li>
-<li>The portaudio library for Falcon microphone recording support.</li>
 <li>The udev library for NatFeats SCSI driver media change detection (Linux).</li>
 <li>The IPF support library
 <a href="http://www.softpres.org/download">http://www.softpres.org/download</a>.</li>
@@ -497,8 +492,7 @@ to toggle windowed and fullscreen mode. </p>
 <p>Hatari settings can come from several sources, with later ones
 overriding the earlier given ones:
 <ul>
-<li>Builtin Hatari default options (which are different for old UAE and WinUAE
-    CPU core builds, former defaults to ST, latter to Falcon)</li>
+<li>Builtin Hatari default options</li>
 <li>Global <span class="commandline">/etc/hatari.cfg</span>
     (or <span class="commandline">/usr/local/etc/hatari.cfg</span>)
     configuration file</li>
@@ -572,8 +566,38 @@ user configuration files
 </p>
 <p class="parameter">-k, --keymap
 &lt;file&gt;</p>
-<p class="paramdesc">load keyboard mapping from
-&lt;file&gt;</p>
+<p class="paramdesc">load keyboard mapping from &lt;file&gt;.
+"Symbolic" mapping will be used as fallback for keys not defined there
+</p>
+<p class="parameter">--country &lt;x&gt;</p>
+<p class="paramdesc">
+Set EmuTOS ROM country code on Mega/ST/STe machines lacking NVRAM,
+when EmuTOS indicates supporting multiple ones.
+</p><p class="paramdesc">
+In 512k EmuTOS images, country code selects the TOS keyboard layout
+and screen refresh (US = 60Hz NTSC, 50Hz PAL otherwise).  In 1024k
+EmuTOS images (coming with Hatari binaries and supporting multiple
+languages), country code selects also TOS language.
+</p><p class="paramdesc">
+Alternatively, one can use "tos-lang-change" tool from EmuTOS project
+to modify country code in the ROM image file itself. That works
+also for TOS v4</p>
+<p class="parameter">--layout &lt;x&gt;</p>
+<p class="paramdesc">Set NVRAM keyboard layout value.
+Set NVRAM keyboard layout value. While both TT and Falcon machines
+have NVRAM, only TOS v4 and EmuTOS 512k / 1024k ROM versions support
+multiple layouts.</p>
+<p class="paramdesc">
+Regardless of whether keyboard layout change is done through the ROM
+country code or NVRAM setting, it may impact your key mappings in
+Hatari key mapping files, Hatari Python UI arguments, or key injection
+in your automation scripts for Hatari debugger, command FIFO or
+hconsole tool</p>
+<p class="parameter">--language &lt;x&gt;</p>
+<p class="paramdesc">Set NVRAM language value.
+While both TT and Falcon machines have NVRAM, only TOS v4 and EmuTOS
+1024k ROM versions support multiple languages.  Default is taken from
+the LANG environment variable
 <p class="parameter">--fast-forward
 &lt;bool&gt;</p>
 <p class="paramdesc">On fast machine helps skipping (fast
@@ -649,14 +673,9 @@ resolution.
 </p>
 <p class="parameter">-z, --zoom &lt;x&gt;</p>
 <p class="paramdesc">
-With the Hatari SDL1 build, this is just a shortcut for overriding
-maximum screen size settings with values that result in ST/STe low
-resolution being doubled or not (1=no, 2=yes).
-</p><p class="paramdesc">
-With the Hatari SDL2 build, this option overrides max width/height
-options so that e.g. ST-low resolution gets always doubled, and all
-resolutions (except TT-high) have approximately the same size, like on
-a real CRT monitor.
+This option overrides max width/height options so that e.g. ST-low
+resolution gets always doubled, and all resolutions (except TT-high)
+have approximately the same size, like on a real CRT monitor.
 </p><p class="paramdesc">
 Zoom factor is then used to scale that up (or down) to the Hatari
 output window.  This way scaling results always in approximately
@@ -667,7 +686,7 @@ the output, with integer zoom factors, scaling is done using nearest
 neighboring pixels for sharper output.  This applies also to window
 resizes.
 </p><p class="paramdesc">
-To get SDL1 "-z 1" behavior with SDL2, use "--zoom 1 --max-width 416
+To avoid zooming for low ST resolutions, use "--zoom 1 --max-width 416
 --max-height 276" (if you don't need borders, 320x200 size is enough).
 Disabling low resolution doubling like this is not recommended for
 Falcon emulation because TOS v4 bootup and some demos switch
@@ -682,23 +701,6 @@ resolutions frequently.
 <p class="paramdesc">Run emulation without displaying video (audio only)</p>
 
 <h3>ST/STE specific display options</h3>
-<p class="parameter">--desktop-st
-&lt;bool&gt;</p>
-<p class="paramdesc">
-NOTE: this has effect only for SDL1 Hatari build.  In SDL2 build,
-<i>--desktop</i> option controls also ST/STe mode.</p>
-<p class="paramdesc">Whether to use desktop resolution on fullscreen
-to avoid issues related to resolution switching (messing multi-screen
-setups, several seconds delay needed for resolution switching by some
-LCD monitors and the resulting sound break). Otherwise fullscreen will
-use a resolution that is closest to the Hatari window size.</p>
-<p class="paramdesc">As Hatari ST/STe display code doesn't support
-zooming (except low-rez doubling), it doesn't get scaled (by Hatari or
-monitor) when this is enabled, and you may get large black borders
-around ST/STe screen. Therefore this is mainly useful only if you
-suffer from the described effects, but still want to grab mouse and
-remove other distractions from the screen just by toggling fullscreen
-mode. (disabled by default)</p>
 <p class="parameter">--spec512
 &lt;x&gt;</p>
 <p class="paramdesc">Hatari uses this threshold to decide
@@ -757,14 +759,13 @@ depth &lt;x&gt; (x = 1, 2 or 4)</p>
 <p class="parameter">--vdi-height
 &lt;h&gt;</p>
 <p class="paramdesc">Use extended VDI resolution with height
-&lt;h&gt; (200 &lt; h &lt;= 1280)</p>
+&lt;h&gt; (160 &lt; h &lt;= 1280)</p>
 <p>
 Because TOS and popular GEM programs have problems with certain screen
 sizes, Hatari enforces restrictions on VDI screen size.  In total VDI
-screen size is limited to 32-300kB, width to multiple of 128/planes,
-and height to multiple of 16 pixels (or 8, depending on system font
-height). That translates to following maximum standard resolutions for
-the VDI mode:
+screen size is limited to 32-300kB, width to multiple of 16 pixels,
+and height to multiple of 8 pixels (smaller system font height). That
+translates to following maximum standard resolutions for the VDI mode:
 </p>
 <p class="parameter">monochrome</p>
 <p class="paramdesc">
@@ -942,12 +943,12 @@ IDE 0</p>
 &lt;x&gt;</p>
 <p class="paramdesc">Set amount of emulated RAM, x = 1 to 14
 MiB, or 0 for 512 KiB. Other values are considered as a size in KiB.
-While Hatari allows 14MB for all machine types, on real HW, ST/STE can
-have up to 4MB, MegaSTE/TT up to 10MB and Falcon up to 14MB RAM.</p>
+While Hatari allows 14 MiB for all machine types, on real HW, ST/STE can
+have up to 4 MiB, MegaSTE/TT up to 10MiB, and Falcon up to 14 MiB RAM.</p>
 <p class="parameter">--ttram
 &lt;x&gt;</p>
 <p class="paramdesc">Set amount of emulated TT RAM (for Falcon and TT
-mode), x = 0 to 512 MiB</p>
+mode), x = 0 to 1024 MiB (in 4MiB steps)</p>
 
 <h3>ROM options</h3>
 <p class="parameter">-t,
@@ -964,7 +965,7 @@ you are doing!</p>
 (only works if GEMDOS HD emulation and extended VDI resolution are
 disabled)</p>
 
-<h3>Common CPU options</h3>
+<h3>CPU/FPU/bus options</h3>
 <p class="parameter">
 --cpulevel &lt;x&gt;</p>
 <p class="paramdesc">Specify CPU (680x0) to use (use x &gt;=
@@ -974,10 +975,8 @@ disabled)</p>
 <p class="paramdesc">Set the CPU clock (8, 16 or 32 MHz)</p>
 <p class="parameter">--compatible
 &lt;bool&gt;</p>
-<p class="paramdesc">Use a more compatible, but slower 68000
-CPU mode with better prefetch accuracy and cycle counting</p>
-
-<h3>WinUAE CPU core options</h3>
+<p class="paramdesc">Use a more compatible 68000 CPU mode
+with better prefetch accuracy and cycle counting</p>
 <p class="parameter">--cpu-exact &lt;bool&gt;</p>
 <p class="paramdesc">Use cycle exact CPU emulation (cache emulation)</p>
 <p class="parameter">--addr24 &lt;bool&gt;</p>
@@ -997,15 +996,27 @@ megaste, tt or falcon)</p>
 <p class="parameter">--blitter
 &lt;bool&gt;</p>
 <p class="paramdesc">Enable blitter emulation (ST only)</p>
+<p class="parameter">--vme &lt;x&gt;</p>
+<p class="paramdesc">
+Hatari doesn't have proper MegaSTE/TT VME emulation yet, but this
+controls access to related SCU registers (MegaSTE/TT only).
+</br></br>
+With "dummy", (no-op) access is allowed (=VME HW), otherwise TOS v2
+and v3 crash on bootup on MegaSTE and TT.  Supports VME tracing.
+</br></br>
+With "none", register access causes errors (=no VME HW), which is
+needed for Linux to boot with TT emulation until there's full SCU
+interrupt support.  No VME tracing support.
+</p>
 <p class="parameter">--dsp &lt;x&gt;</p>
 <p class="paramdesc">Falcon DSP emulation (x = none, dummy
 or emu, Falcon only)</p>
 <p class="parameter">--timer-d
 &lt;bool&gt;</p>
-<p class="paramdesc">Patch redundantly high Timer-D
-frequency set by TOS. This about doubles Hatari speed (for ST/e
-emulation) as the original Timer-D frequency causes most of the
-interrupts.</p>
+<p class="paramdesc">Patch redundantly high Timer-D frequency set by TOS.
+This can increase Hatari speed significantly (especially for ST/e emulation)
+as the original Timer-D frequency causes large amount of extra interrupts
+to emulate.</p>
 <p class="parameter">--fast-boot
 &lt;bool&gt;</p>
 <p class="paramdesc">Patch TOS and initialize the so-called
@@ -1101,11 +1112,6 @@ E.g. EmuTOS uses it for debug output.</p>
 <p class="paramdesc">Save Hatari configuration and exit.
 Hatari UI needs Hatari configuration file to start, this can be
 used to create it automatically.</p>
-<p class="parameter">--no-parachute</p>
-<p class="paramdesc">Disable SDL parachute to get Hatari
-core dumps. SDL parachute is enabled by default to restore video
-mode in case Hatari terminates abnormally while using non-standard
-screen resolution.</p>
 <p class="parameter">--control-socket &lt;path&gt;</p>
 <p class="paramdesc">
 Hatari connects to given local socket file and reads commands from it.
@@ -1213,8 +1219,8 @@ changes that you have made.
 <p>
  To enter a folder or choose a file, simply click on the entry in the
  main box of the dialog. To navigate in the file list, you can use the
- scrollbar on the right with mouse, or use keyboard up + down arrow,
- page up + down, Home and End keys.
+ scrollbar on the right with mouse, use mousewheel, keyboard up + down
+ arrow (with Alt), or page up + down keys.
 </p>
 <p>
  You can use the three buttons in the upper right corner for additional folder
@@ -1388,8 +1394,7 @@ changes that you have made.
   so don't use these CPU types without a good reason.
  </li>
  <li>
-  The 68060 option is only available in the &quot;WinUAE&quot; builds of
-  Hatari, and is currently also considered as experimental, so do not use
+  The 68060 option is currently considered as experimental, so do not use
   this option unless you know what you are doing.
  </li>
 </ul>
@@ -1412,19 +1417,16 @@ changes that you have made.
 </p>
 <p>
  The &quot;Cycle exact&quot;, the &quot;MMU emulation&quot; and
- &quot;24-bit addressing&quot; options are only available in the
- &quot;WinUAE&quot; builds
- of Hatari. They are considered as experimental and should only be changed
- if you know what you are doing.
+ &quot;24-bit addressing&quot; options are considered as experimental and
+ should only be changed iif you know what you are doing.
 </p>
 
 <h5>FPU type</h5>
 
 <p>
- The FPU settings are also only available with the &quot;WinUAE&quot; builds
- of Hatari. They can be used to select the type of floating point unit of
- &gt;= 68020 CPUs. In the non-WinUAE builds of Hatari, the FPU is always
- enabled for 68030 and 68040 CPUs.
+ The FPU settings can be used to select the type of floating point unit
+ of &gt;= 68020 CPUs. (68882) FPU is enabled by default only for TT
+ machines, as they were only ones that originally shipped with one.
 </p>
 <p>
  When emulating the Motorola FPU, PC host FPU can be used to do the math.
@@ -1604,11 +1606,11 @@ ends with a 'b'.
 </div>
 
 <p>You can select the amount of RAM for the emulated machine here.
-While Hatari allows 14MB for all machine types, on real HW, ST/STE can
-have up to 4MB, MegaSTE/TT up to 10MB and Falcon up to 14MB RAM. Of
-values below 4MB, only ones that were valid on a real unmodified STFM
+While Hatari allows 14 MiB for all machine types, on real HW, ST/STE can
+have up to 4 MiB, MegaSTE/TT up to 10MiB, and Falcon up to 14 MiB RAM. Of
+values below 4 MiB, only ones that were valid on a real unmodified STFM
 are available</p>
-<p>TT RAM size allows to emulate up to 512 MiB of 32-bit RAM. This is
+<p>TT RAM size allows to emulate up to 1024 MiB of 32-bit RAM. This is
 only useful in Falcon and TT mode, and require to disable "24 bit
 addressing" mode in the CPU options (Hatari needs to patch Falcon TOS
 v4 for this)
@@ -1740,8 +1742,8 @@ resolutions:</em></p>
 <ul>
 <li>Only GEM conformant applications work with them, 99% of all games
 and demos don't.</li>
-<li>Several GEM programs accessing screen directly (like NVDI) crash
-with large enough screen sizes.</li>
+<li>GEM programs accessing screen directly (like NVDI) may crash with
+large enough screen sizes.</li>
 <li>Memory reserved for (larger) extended resolutions breaks TOS v3 memory
 detection, so you need to interrupt boot up memory detection.</li>
 <li>TOS v4 isn't compatible with them. In Falcon emulation you need to
@@ -1854,8 +1856,6 @@ the screenshots and recorded videos.
  layout. However, you might experience some problems with special keys like
  brackets etc.</p>
 <p>"Scancode" uses the scancode values of your PC keys for keyboard mapping.
- This only works on certain architectures like Linux where the scancodes are
- similar to the ST scancodes (e.g. it does not work on macOS with SDL1.2).
  If it works on your system, this often gives better results than the symbolic
  mapping. Note that you also need a TOS version with the right language
  (e.g. use a French TOS if you are using a French keyboard).</p>
@@ -1956,8 +1956,8 @@ Check the third checkbox to enable MIDI support.
 Hatari MIDI support can be provided either with a PortMidi library
 (required on Mac / Windows), or using "raw" MIDI device files. Latter
 supports also MIDI networking in games, and can be used for debug
-output, while PortMidi handles only MIDI events and doesn't currently
-work with all MIDI SW.
+output, while PortMidi handles only MIDI events, but makes it easier
+to connect Hatari to host MIDI programs (software synthetizers etc).
 </p>
 <h6>"raw" MIDI device file selection</h6>
 <p>
@@ -1967,9 +1967,9 @@ MIDI device files for MIDI input and output.
 <p>
 <span class="file">midi-linux.txt</span> file explains how to
 select the correct MIDI device file, how to set up software sound
-synthesizing on Linux (using ALSA) if your sound card/driver doesn't
-support MIDI, and how to set up MIDI networking between multiple
-Hatari instances, even over internet.
+synthesizing on Linux (using ALSA and virtual MIDI devices) if your
+sound card/driver doesn't support MIDI, and how to set up MIDI
+networking between multiple Hatari instances, even over internet.
 </p>
 <div class="floatimage">
   <img src="images/devices-portmidi.png" width="520" height="114"
@@ -1981,9 +1981,15 @@ Click on arrow buttons to select a suitable MIDI devices for MIDI
 input and output.
 </p>
 <p>
-PortMidi will list only currently active MIDI devices.  On Linux
-these are subset of ones listed e.g. by ALSA
-<span class="commandline">aconnect -l</span> command.
+PortMidi lists only MIDI devices that were active when Hatari was
+started. To see ones added after that, Hatari needs to be restarted.
+</p>
+<p>
+PS. For MIDI devices which names are not constant, but include e.g.
+instance identifier at end, Hatari supports matching device by first
+part of the name when there's no full match.  To use this, remove the
+device identifier part from the end of the device name in saved Hatari
+configuration file.
 </p>
 
 
@@ -1991,23 +1997,32 @@ these are subset of ones listed e.g. by ALSA
 
 <p>There are multiple ways to interact with the SDL GUI.</p>
 
-<p>TAB and cursor keys change focus between UI elements.  Additionally
-Home key moves focus to first item, End key to last one.  Initially
-focus is on default UI element, but focus changes are remembered
-between dialog invocations. Enter and Space invoke focused item. UI
-elements with underlined characters can be invoked directly with Alt +
-key with that character.  Alt + arrow keys will act on arrow
-buttons.</p>
+<p>
+TAB and cursor keys change the focus between UI elements. Home key
+moves focus to the first dialog item, End key to the last one.
+Initially focus is on the default UI element, but focus changes are
+remembered between dialog invocations.
+</p>
+<p>
+Enter and Space invoke the focused item, ESC key invokes the dialog
+cancel option (if there is one).
+</p>
+<p>
+UI element which name has an underlined character can be invoked
+directly by pressing Alt + key with that character.  Alt + arrow keys
+will act on dialog arrow buttons.
+</p>
 
-<p>Most importantly:</p>
+<p>Main keyboard interactions:</p>
 <ul>
 <li><em>Options GUI main view</em>: Enter accepts configuration, ESC
 cancels it.</li>
-<li><em>Options GUI dialogs</em>: Enter (or End+Enter if focus was moved)
+<li><em>Options GUI dialogs</em>: Enter (or End + Enter if focus was moved)
 returns back to main view.</li>
-<li><em>Fileselector</em>: Page up and down keys scroll the file list.
-Enter on focused file name selects it.  Enter on OK button accepts
-the selected file. ESC cancels the dialog/selection.</li>
+<li><em>Fileselector</em>: Page up and down keys move the file list by
+one page, mouse wheel and Alt + cursor keys scroll it by one item.
+Enter on the focused file name selects it. Enter on the OK button
+accepts the selected file. ESC cancels the dialog/selection.</li>
 <li><em>Alert dialogs</em>: Enter accepts and ESC cancels the dialog.</li>
 </ul>
 
@@ -2166,8 +2181,26 @@ key on the ST. The following keys have special meanings: </p>
       <td><span class="key">Page Down</span></td>
       <td>will emulate the ST's ) in the keypad</td>
     </tr>
+    <tr>
+      <td><span class="key">Num Lock</span></td>
+      <td>Toggle cursor emulation mode in the keypad (see below)</td>
+    </tr>
   </tbody>
 </table>
+
+<p>
+You can use the <span class="key">Num Lock</span> key to toggle between
+normal Atari ST keypad mode and a special cursor key mode. The cursor key
+mode is designed for Atari programs and games that expect the original
+Atari cursor key layout (like the game &quot;Dungeon Master&quot;), i.e.
+where the &quot;Insert&quot; and &quot;Clr-Home&quot; keys are right next
+to the cursor keys. The <span class="key">7</span> on the keypad is then
+mapped to the &quot;Insert&quot; Atari key, and the <span class="key">9</span>
+key on the keypad is mapped to the &quot;Clr-Home&quot; Atari key.
+The keypad numbers <span class="key">8</span>, <span class="key">4</span>,
+<span class="key">5</span> and <span class="key">6</span> are mapped to the
+&uarr;, &larr;, &darr; and &rarr; cursor keys on the Atari side respectively.
+</p>
 
 <p>If joystick emulation via keyboard is enabled, by default cursor keys
 are used for the directions and <span class="key">right CTRL</span> key
@@ -2237,11 +2270,14 @@ a bit tricky for these effects. As a result, some demos using these
 techniques might not be displayed correctly in Hatari, known ones are
 listed in the <span class="file">compatibility.html</span> file.
 </p>
-<p>Beside that you can setup extended VDI modes. These only work with
-GEM-compliant applications and they are equal to fitting a videocard
-into your Mega ST.</p>
-<p>Make sure to disable extended VDI modes for playing games as 99% of
-all ST games will not be able to make use of higher resolutions.</p>
+<p>Beside that you can setup extended VDI mode. It works well only
+with GEM-compliant applications, but allows using larger screen
+resolutions than the standard ST ones. VDI mode is not accelerated, so
+better optimized VDI implementation (e.g. NVDI) is recommended,
+especially for larger screen sizes.
+</p>
+<p>Make sure to disable extended VDI mode for (non-GEM) games as 99%
+of all ST games will not be able to make use of higher resolutions.</p>
 
 <h3 id="Emulated_printer">Emulated printer</h3>
 
@@ -2420,8 +2456,8 @@ for bigger images is not tested very well yet.
 </p>
 <p>
 The maximum size of partitions inside the hard disk (images) depends on the
-TOS version. TOS 1.00 and 1.02 support up to 256 MB, TOS 1.04 to 3.06 up to
-512 MB and TOS 4.0x supports up to 1 GB partitions.
+TOS version. TOS 1.00 and 1.02 support up to 256 MiB, TOS 1.04 to 3.06 up to
+512 MiB and TOS 4.0x supports up to 1 GB partitions.
 </p>
 <p>
 NOTE: you need to be careful when mounting device files.  Depending on
@@ -2779,21 +2815,6 @@ the (Linux/Unix) "top" command.
 <h3>Build options impact on performance</h3>
 
 <p>
-<em>Linux</em>: Some HW platforms don't have properly HW accelerated
-3D driver and SDL implementation. On these platforms it's better to
-build Hatari with SDL v1.x than SDL 2.x, as latter can cause CPU
-based 3D driver to be used for scaling Hatari graphics.
-</p>
-
-<p>
-<em>MacOS</em>: With SDL v1.x, frame skipping, zooming and drive LED
-options (listed below) seem to have a large effect on performance in
-the windowed mode. This is apparently due to issues in the SDL macOS
-backend and how macOS itself composites non-fullscreen window
-contents. These shouldn't be an issue with the SDL2 build of Hatari.
-</p>
-
-<p>
 <em>Compiler</em>: Unless you have disabled compiler optimizations
 (like GCC's -O2 or -O3 options) in the Hatari build, the extra
 optimization flags (like GCC's "-mtune=i686") don't seem to have very
@@ -2803,26 +2824,9 @@ demos) that use very heavily interrupts.
 </p>
 
 <p>
-<em>CPU emulation</em>: Hatari can be built with two different CPU
-core implementations. The newer WinUAE CPU core has more accurate CPU
-emulation and supports all of the higher end 680x0 CPU features. This
-accuracy causes it to be clearly slower, than the OldAUE CPU core
-implementation. If run-time options (acceptable to you) don't give
-enough performance, give the OldUAE CPU core also a try.
-</p>
-
-<p>
 <em>Older versions</em>: If nothing else helps, try (building) much
 earlier Hatari version.  More accurate emulation in newer Hatari
 versions means that they can be slower despite optimizations.
-</p>
-
-<h3>Run-time options not affecting emulation accuracy</h3>
-
-<p>
-Hatari currently runs best in 16 or 32 bits per pixel color depth
-mode, so try to avoid 24 bits per pixel display modes if possible.
-16-bit mode is faster with SDL1.  MacOS uses always 32-bit mode.
 </p>
 
 
@@ -2850,7 +2854,7 @@ fine without the real DSP emulation.
 <h4>CPU: cycle exact (030/TT/Falcon)</h4>
 
 <p>
-WinUAE CPU core supports 030 cache emulation for cycle accuracy. This
+CPU core supports 030 cache emulation for cycle accuracy. This
 is very heavy.  Unless program needs cycle accuracy to work correctly,
 you can disable it.  Many Falcon demos need it, applications and games
 normally don't.
@@ -2860,10 +2864,10 @@ normally don't.
 <p>
 With ST/STe, the single largest factor contributing to general Hatari
 emulation performance is the handling of interrupts.  Enabling Timer-D
-patching option (about) doubles Hatari ST/STE emulation performance
-with OldUAE CPU core as it significantly reduces the number of
-interrupts generated by the emulated Atari machine. Using this has
-adverse effect only for very rare programs.
+patching option greatly improves Hatari ST/STE emulation performance
+as it significantly reduces the number of interrupts generated by the
+emulated Atari machine. Using this has adverse effect only for very
+rare programs.
 </p>
 
 <h4>FDC</h4>

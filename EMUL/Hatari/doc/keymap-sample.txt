@@ -7,10 +7,8 @@
 #
 # The key name is the libSDL symbolic name of the key, see the following
 # URL for a list: https://wiki.libsdl.org/SDL_Keycode
-# You can also use the symbolic keycode value instead of the name,
-# which you can get with the "--trace keymap" output from Hatari, for
-# example, but note that the values are different between SDL1 and SDL2
-# and thus they are not portable.
+# You can also use the symbolic keycode value instead of the name, which
+# you can get with the "--trace keymap" output from Hatari, for example.
 #
 # The given host key will be mapped to the ST key which is specified by
 # second number - the ST scan code of the key.  "--trace keymap" output
@@ -22,8 +20,9 @@
 # key mapping.  Symbolic key mapping does not work with so called "dead"
 # keys.
 #
-# Scan codes for Atari keyboard key positions can be seen here:
-#   http://eerott.mbnet.fi/hatari/img/st-keymap.png
+# Scan codes for Atari keyboard key positions in different TOS versions
+# are documented here:
+#   http://tho-otto.de/keyboards/
 #
 # tests/keymap/ directory contains programs to discover/test the PC SDL
 # and Atari scan code values.  Hatari's default PC key code -> ST scan
