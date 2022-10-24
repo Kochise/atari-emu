@@ -4,7 +4,7 @@
 {\*\generator Riched20 10.0.19041}{\*\mmathPr\mdispDef1\mwrapIndent1440 }\viewkind4\uc1 
 \pard\widctlpar\sa160\sl252\slmult1\qc\cf1\b\f0\fs56\lang2057 STEEM SSE MANUAL\par
 
-\pard\widctlpar\sa160\sl252\slmult1\cf0\b0\f1\fs22 v4.1.2.\par
+\pard\widctlpar\sa160\sl252\slmult1\cf0\b0\f1\fs22 v4.1.2\par
 
 \pard\keep\keepn\widctlpar\sb240\sa200\sl252\slmult1\cf2\f2\fs32 Atari ST\par
 
@@ -50,8 +50,8 @@ The manual doesn't cover the debugger.\par
 
 \pard\keep\keepn\widctlpar\s1\sb240\sa200\sl252\slmult1\cf2\f2\fs32 Installation\par
 
-\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 There's no setup program. Extract files to a folder of your choice. Text files should be in a \i doc\i0  subdirectory and plugins (dll and other files) in a \i plugins32\i0  (32bit builds) or \i plugins64\i0  (64bit builds) subdirectory, although both can also be in Steem's directory. D3DX9_43.dll must be in Steem's directory, you need copy it only if your DirectX 9 installation is incomplete. Ideally you should update DirectX instead (see Requirements).\par
-When you run a Steem SSE build for the first time, based on the file name, it proposes to add a link to the new version in your start menu if you care about that. If it's a new installation (no steem.ini), you must also select a TOS file.\par
+\pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22 There's no setup program. Extract files to a folder of your choice. Text files should be in a \i doc\i0  subdirectory and plugins (dll and other files) in a \i plugins32\i0  (32bit builds) or \i plugins64\i0  (64bit builds) subdirectory, although both types can also be in Steem's directory. \par
+When you run a Steem SSE build for the first time, based on the file name, it proposes to add a link to the new version in your start menu if you care about that. If it's a new installation (no steem.ini), you must also select a TOS file (see Getting emulation started).\par
 \par
 
 \pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Builds\par
@@ -79,9 +79,9 @@ DirectDraw has been deprecated since long by Microsoft. On other than prehistori
 \pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Requirements\par
 
 \pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 You need a PC with a SSE2-compatible processor.\par
-Windows builds require at least Windows 2000 and the 2008 C++ runtime. The D3D builds require DirectX 9.0c. \par
+Windows builds require at least Windows 2000 and the 2008 C++ runtime. The D3D builds require DirectX 9.0c. If Windows tells you it can't find some related library, try to update your coputer:\par
 D3D 9.0 {{\field{\*\fldinst{HYPERLINK https://www.microsoft.com/en-us/download/details.aspx?id=35 }}{\fldrslt{https://www.microsoft.com/en-us/download/details.aspx?id=35\ul0\cf0}}}}\f1\fs22\par
-Visual Studio runtimes\par
+Visual Studio runtimes (there are good chances they're already installed on your computer):\par
 {{\field{\*\fldinst{HYPERLINK https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-160 }}{\fldrslt{https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-160\ul0\cf0}}}}\f1\fs22\par
 32bit {{\field{\*\fldinst{HYPERLINK https://download.microsoft.com/download/5/D/8/5D8C65CB-C849-4025-8E95-C3966CAFD8AE/vcredist_x86.exe }}{\fldrslt{https://download.microsoft.com/download/5/D/8/5D8C65CB-C849-4025-8E95-C3966CAFD8AE/vcredist_x86.exe\ul0\cf0}}}}\f1\fs22\par
 64bit {{\field{\*\fldinst{HYPERLINK https://download.microsoft.com/download/5/D/8/5D8C65CB-C849-4025-8E95-C3966CAFD8AE/vcredist_x64.exe }}{\fldrslt{https://download.microsoft.com/download/5/D/8/5D8C65CB-C849-4025-8E95-C3966CAFD8AE/vcredist_x64.exe\ul0\cf0}}}}\f1\fs22\par
@@ -124,7 +124,7 @@ You can find it in older Steem versions.\par
 \par
 -d3d9sweetfx.dll  (D3D)\par
 SweetFX shaders\par
-The plugin will silently fail to load if it doesn't find the Microsoft Visual C++ 2010 SP1 Redistributable Package in your system (or in Steem's main directory). Contrary to VC2008, they're not included in every Windows 10 installations, don't ask me why.\par
+The plugin will silently fail to load if it doesn't find the Microsoft Visual C++ 2010 SP1 Redistributable Package in your system (or in Steem's main directory). Contrary to VC2008, they're not included in every Windows 10 installation, don't ask me why.\par
 VC2010 32bit {{\field{\*\fldinst{HYPERLINK http://www.microsoft.com/en-us/download/details.aspx?id=8328 }}{\fldrslt{http://www.microsoft.com/en-us/download/details.aspx?id=8328\ul0\cf0}}}}\f1\fs22\par
 VC2010 64bit {{\field{\*\fldinst{HYPERLINK http://www.microsoft.com/en-us/download/details.aspx?id=13523 }}{\fldrslt{http://www.microsoft.com/en-us/download/details.aspx?id=13523\ul0\cf0}}}}\f1\fs22\par
 You need the plugin for the CRT emu option. It is part of the download package, so no worry. d3d9sweetfx.dll is the name for Steem SSE. \par
@@ -176,17 +176,16 @@ The window menu also lets you enable the tool bar and the classic menu, and star
 \pard\widctlpar\sa160\sl252\slmult1\cf0\f1\fs22\lang2057 To use Steem, you need a copy of an Atari ROM with the operating system, called "TOS", and image disk files. A TOS file is 192KB long for the STF, 256KB for the STE. The extension is img or rom. When you first launch Steem SSE (no ini file), you must point to a TOS file, and you can change that later. One important point is to match ST model and TOS (see further), for example STF + TOS 1.02, STE + TOS 1.62.\par
 Use the disk manager or a shortcut to select the disk image, there are various ways to start emulation.\par
 \par
-Disk images are easy to find. For example:\par
+Disk images are files that contain the data of a floppy disk. They are easy to find. For example:\par
 {{\field{\*\fldinst{HYPERLINK http://planetemu.net/index.php?section=menus&machine=34 }}{\fldrslt{http://planetemu.net/index.php?section=menus&machine=34\ul0\cf0}}}}\f1\fs22  \par
 {{\field{\*\fldinst{HYPERLINK http://www.atarimania.com/ }}{\fldrslt{http://www.atarimania.com/\ul0\cf0}}}}\f1\fs22\par
 \par
 TOS:\par
 {{\field{\*\fldinst{HYPERLINK http://www.avtandil.narod.ru/tose.html }}{\fldrslt{http://www.avtandil.narod.ru/tose.html\ul0\cf0}}}}\f1\fs22  \par
 \par
-Legally this is still copyrighted material, and if they really wanted, companies that own it could call a halt on emulation, but they don't. We don't include any TOS in the download not because it is forbidden but because there are really many versions, and since you need programs to run in the emulator anyway, you'll easily find the ROMs as well.\par
+To get you started, a TOS image is included in the download. It is compatible with the STF model (settings/machine/STF).\par
 \par
-EmuTOS:\par
-{{\field{\*\fldinst{HYPERLINK http://sourceforge.net/projects/emutos/ }}{\fldrslt{http://sourceforge.net/projects/emutos/\ul0\cf0}}}}\f1\fs22\par
+Legally this is still copyrighted material, and if they really wanted, companies that own it could call a halt on emulation, but they don't. \par
 \par
 
 \pard\keep\keepn\widctlpar\sb240\sl252\slmult1\cf2\f2\fs32\lang1033 Tool bar\par
@@ -1221,7 +1220,7 @@ There are 2 options that affect how macros work:\par
 This option allows you to configure how long Steem will wait between input changes, as some programs won't accept lots of very quick inputs. If speed isn't an issue then you can always set this to \i As Recorded\i0 , then playing the macro will replay the recorded events at the speed you recorded them at.\par
 \par
 
-\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Icons\par
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 Icons (*)\par
 
 \pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 You can customise Steem's look by altering its icons. On this page you will see a box containing all the icons, just left click on one to be able to select an ico file to replace it with. Right clicking on an icon restores it to its default, click on the \i All Icons to Default\i0  button to restore them all. You can also download icon schemes to change all or just some of Steem's icons with a single click on the \i Load Icon Scheme\i0  button, go to:\par
 {{\field{\*\fldinst{HYPERLINK http://steem.atari.st/icons.htm }}{\fldrslt{http://steem.atari.st/icons.htm\ul0\cf0}}}}\f1\fs22  (link still working)\par
@@ -1233,7 +1232,7 @@ You can create your own full set based on the stico file.\par
 This option page is not available when the big GUI is active.\par
 \par
 
-\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 File Associations\par
+\pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\f2\fs28\lang1033 File Associations (*)\par
 
 \pard\widctlpar\sa160\sl252\slmult1\cf0\expndtw0\f1\fs22\lang2057 Windows programs love to associate and de-associate themselves with file types. This dialog allows you to choose which files you want to associate with Steem. Just click the \i Associate\i0  button next to the desired files, it changes to \i associated\i0 .\par
 Click again to de-associate.\par
@@ -1422,7 +1421,7 @@ Right-clicking on the drive icons opens a context menu with some options to:\par
 {\pntext\f7\'B7\tab}Select drive sound samples. You pick the folder, the files must have those names:\i\par
 
 \pard\widctlpar\sa160\sl252\slmult1\i0\tab\i drive_startup.wav, drive_spin.wav, drive_click.wav, drive_seek.wav\par
-\cf4\i0\tab Tip \cf0 XSteem recognises Wavosaur's loop markers inside a wav file\i\par
+\cf4\i0\tab Tip \cf0 Steem SSE for Linux recognises Wavosaur's loop markers inside a wav file\i\par
 
 \pard\keepn\widctlpar\sa160\sl252\slmult1\cf2\expndtw15\i0\f2\fs28\lang1033\par
 Smart Disk Swapper\par
@@ -1647,6 +1646,8 @@ If two disks are passed, then the first will go in drive A and the second will b
 \par
  .prg, .tos: same as disk but those are individual ST files. \par
 \par
+ .img, .rom: path to the TOS file \par
+\par
  .sts file - load snapshot & go.\par
 \par
  .stc file - insert specified cartridge.\par
@@ -1786,7 +1787,7 @@ It is possible to read the trace file from inside Steem SSE, in the info dialog.
 \par
 Sometimes, a fatal error happens (system exception). To help reporting, an alert box describes the error. The message is also copied into the Trace file. If the bug happens in Steem SSE itself, it's sometimes possible to track it down using this message.\par
 \par
-If you post a bug report, please read the rules before. Ask yourself if you're giving all useful information to get the bug fixed or if you're just venting your frustration. Don't forget to copy the trace. \par
+If you post a bug report, please read the rules before. Ask yourself if you're giving all useful information to get the bug fixed or if you're just venting your frustration. Don't forget to copy the trace if appropriate. \par
 \par
 Bug reports:\par
 {{\field{\*\fldinst{HYPERLINK https://sourceforge.net/p/steemsse/forum/bugs/ }}{\fldrslt{https://sourceforge.net/p/steemsse/forum/bugs/\ul0\cf0}}}}\f1\fs22\par

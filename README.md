@@ -7,17 +7,17 @@ Atari ST emulators in one portable package
 **EMUL** : various emulators, listed below<br>
 **ROMS** : bios images to run the emulators<br>
 
-| EMUL				| [ARAnyM]						| [Gemulator]	| [Hatari]		| [SainT]		| [Steem.SSE]	| [VirtualJaguar]	|
+| **EMUL**			| [ARAnyM]						| [Gemulator]	| [Hatari]		| [SainT]		| [Steem.SSE]	| [VirtualJaguar]	|
 | :--				| :-:							| :-:			| :-:			| :-:			| :-:			| :-:				|
-| **Version**		| 1.10							| 9.00 CE		| 2.4.1			| 2.40			| 4.1.2			| 2.1.2				|
+| **Version**		| 1.10							| 9.00 CE		| 2.4.1			| 2.40			| 4.1.2 R5		| 2.1.2				|
 | **Release mouse**	| LShift + LCtrl + LAlt + Esc	| F11			| (borders)		| n/a			| F11			| n/a				|
 | **Fullscreen**	| ScrollLock					| Alt+Enter		| F11			| n/a			| n/a			| n/a				|
 | **Main menu**		| Pause							| Ctrl+F11		| F12			| F12			| (button)		| n/a				|
 | **Pause**			| (menu)						| n/a			| (menu)		| (menu)		| n/a			| n/a				|
 | **Debug**			| LAlt + Pause					| F12			| n/a			| (menu)		| n/a			| n/a				|
 | **(Cold) Reset**	| (LShift +) LCtrl + Pause		| Ctrl+F12		| n/a			| (Shift +) F11	| n/a			| n/a				| 
-| Help				| n/a							| n/a			| n/a			| PrintSc		| PageUp		| n/a				| 
-| Undo				| n/a							| n/a			| n/a			| ScrollBrk		| PageDown		| n/a				| 
+| **Help**			| n/a							| n/a			| n/a			| PrintSc		| PageUp		| n/a				| 
+| **Undo**			| n/a							| n/a			| n/a			| ScrollBrk		| PageDown		| n/a				| 
 
 [ARAnyM]: https://github.com/aranym/aranym/releases
 [Gemulator]: http://www.emulators.com/download.htm#ATARIST
