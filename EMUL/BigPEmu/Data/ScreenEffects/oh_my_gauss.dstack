@@ -1,0 +1,232 @@
+{
+	"DickPostStack": {
+		"UserOptions": [],
+		"Textures": [],
+		"CommonDataBlocks": [
+			{
+				"Name": "UBO",
+				"Type": "ConstantBuffer",
+				"Location": 0,
+				"Size": 64,
+				"DataProviders": [
+					{
+						"Name": "mMVP",
+						"Type": "float4x4",
+						"Offset": 0,
+						"SourceType": "MVP"
+					}
+				]
+			}
+		],
+		"Passes": [
+			{
+				"RTFormat": "R16G16B16A16_FLOAT",
+				"RTTexFilter": "Linear",
+				"RTSizeType": "UnfilteredScreen",
+				"TextureProviders": [
+					{
+						"Name": "sTex",
+						"Type": "2D",
+						"SourceType": "PreviousPass"
+					}
+				],
+				"DataBlocks": [
+					{
+						"Type": "Loose",
+						"DataProviders": [
+							{
+								"Name": "sTargetAreaOffsets",
+								"Type": "float4",
+								"SourceType": "TargetAreaOffsets"
+							}
+						]
+					}
+				],				
+				"PixelGLSL": "util/copypass_tolin_ps.glsl",
+				"VertexGLSL": "util/copypass_vs.glsl"
+			},
+			{
+				"RTFormat": "R16G16B16A16_FLOAT",
+				"RTTexFilter": "Linear",
+				"RTSizeType": "PreviousPass",
+				"TextureProviders": [
+					{
+						"Name": "sTex",
+						"Type": "2D",
+						"SourceType": "PreviousPass"
+					}
+				],
+				"DataBlocks": [
+					{
+						"Type": "Loose",
+						"DataProviders": [
+							{
+								"Name": "sRatiosAndScales",
+								"Type": "float4",
+								"SourceType": "RatiosAndScales"
+							}
+						]
+					}
+				],			
+				"PixelGLSL": "util/copypass_ps.glsl",
+				"VertexGLSL": "oh_my_gauss/scale_up_vs.glsl"
+			},
+			{
+				"Name": "BlurBase",
+				"RTFormat": "R16G16B16A16_FLOAT",
+				"RTTexFilter": "Linear",
+				"RTSizeType": "PreviousPass",
+				"TextureProviders": [
+					{
+						"Name": "sTex",
+						"Type": "2D",
+						"SourceType": "PreviousPass"
+					}
+				],
+				"DataBlocks": [
+					{
+						"Type": "Loose",
+						"DataProviders": [
+							{
+								"Name": "sRTSize",
+								"Type": "float4",
+								"SourceType": "RTSize"
+							}
+						]
+					}
+				],
+				"PixelGLSL": "oh_my_gauss/blur_h_ps.glsl",
+				"VertexGLSL": "util/copypass_vs.glsl"
+			},
+			{
+				"InheritPass": "BlurBase",
+				"PixelGLSL": "oh_my_gauss/blur_v_ps.glsl"
+			},
+			{
+				"InheritPass": "BlurBase",
+				"PixelGLSL": "oh_my_gauss/blur_h_ps.glsl"
+			},
+			{
+				"InheritPass": "BlurBase",
+				"PixelGLSL": "oh_my_gauss/blur_v_ps.glsl"
+			},
+			{
+				"InheritPass": "BlurBase",
+				"PixelGLSL": "oh_my_gauss/blur_h_ps.glsl"
+			},
+			{
+				"InheritPass": "BlurBase",
+				"PixelGLSL": "oh_my_gauss/blur_v_ps.glsl"
+			},
+			{
+				"Name": "Canvas",
+				"RTFormat": "R16G16B16A16_FLOAT",
+				"RTTexFilter": "Linear",
+				"RTSizeType": "Backbuffer",
+				"TextureProviders": [
+					{
+						"Name": "sTex",
+						"Type": "2D",
+						"SourceType": "PreviousPass"
+					}
+				],
+				"PixelGLSL": "util/copypass_togamma_ps.glsl",
+				"VertexGLSL": "util/copypass_vs.glsl"
+			},
+			{
+				"Name": "TerribleWarpedScreen",
+				"RTFormat": "R8G8B8A8_UNORM",
+				"RTTexFilter": "Linear",
+				"RTSizeType": "TargetArea",
+				"TextureProviders": [
+					{
+						"Name": "sTex",
+						"Type": "2D",
+						"SourceType": "UnfilteredScreenTex"
+					}
+				],
+				"DataBlocks": [
+					{
+						"Type": "Loose",
+						"DataProviders": [
+							{
+								"Name": "sScreenSize",
+								"Type": "float4",
+								"SourceType": "UnfilteredScreenSize"
+							},
+							{
+								"Name": "sHCurve",
+								"Type": "float",
+								"InlineData": 2.0
+							},
+							{
+								"Name": "sHBias",
+								"Type": "float",
+								"InlineData": 0.98
+							},
+							{
+								"Name": "sVCurve",
+								"Type": "float",
+								"InlineData": 2.0
+							},
+							{
+								"Name": "sVBias",
+								"Type": "float",
+								"InlineData": 0.98
+							},
+							{
+								"Name": "sBoundaryFade",
+								"Type": "float",
+								"InlineData": 1.0
+							}
+						]
+					}
+				],
+				"PixelGLSL": "warping/warping_ps.glsl",
+				"VertexGLSL": "util/copypass_vs.glsl"
+			},
+			{
+				"BlendMode": "Alpha",
+				"RTLayerTarget": "Canvas",
+				"RTSizeType": "Backbuffer",
+				"TextureProviders": [
+					{
+						"Name": "sTex",
+						"Type": "2D",
+						"SourceType": "NamedPass",
+						"RefName": "TerribleWarpedScreen"
+					}
+				],
+				"DataBlocks": [
+					{
+						"Type": "Loose",
+						"DataProviders": [
+							{
+								"Name": "sTargetAreaOffsets",
+								"Type": "float4",
+								"SourceType": "TargetAreaOffsets"
+							}
+						]
+					}
+				],
+				"PixelGLSL": "oh_my_gauss/ol_ps.glsl",
+				"VertexGLSL": "oh_my_gauss/ol_vs.glsl"
+			},
+			{
+				"RTFormat": "R8G8B8A8_UNORM",
+				"RTSizeType": "Backbuffer",
+				"ForceViewportSize": true,
+				"TextureProviders": [
+					{
+						"Name": "sTex",
+						"Type": "2D",
+						"SourceType": "NamedPass",
+						"RefName": "Canvas"
+					}
+				],
+				"PixelGLSL": "util/copypass_ps.glsl",
+				"VertexGLSL": "util/copypass_vs.glsl"
+			}
+		]
+	}
+}
