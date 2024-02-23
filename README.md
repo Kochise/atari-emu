@@ -9,8 +9,8 @@
 
 | **EMUL**			| [ARAnyM]						| [Gemulator]	| [Hatari]		| [SainT]		| [Steem.SSE]	| [BigPEmu]		| [VirtualJaguar]	|
 | :--				| :-:							| :-:			| :-:			| :-:			| :-:			| :-:			| :-:				|
-| **Version**		| 1.1.0							| 9.00 CE		| 2.4.1			| 2.40			| 4.1.2 R5		| 1.054			| 2.1.2				|
-| **Date**			| 2019/04/14					| 2008/11/30	| 2022/08/03	| 2015/12/12	| 2022/10/23	| 2023/03/07	| 2014/10/10		|
+| **Version**		| 1.1.0							| 9.00 CE		| 2.4.1			| 2.40			| 4.1.2 R5		| 1.094			| 2.1.2				|
+| **Date**			| 2019/04/14					| 2008/11/30	| 2022/08/03	| 2015/12/12	| 2022/10/23	| 2023/12/24	| 2014/10/10		|
 | **Release mouse**	| LShift + LCtrl + LAlt + Esc	| F11			| (borders)		| 				| F11			| 				| 					|
 | **Screenshot**	| PrintScreen					| 				| 				| 				| 				| 				| 					|
 | **Fullscreen**	| ScrollLock					| Alt + Enter	| F11			| 				| 				| 				| 					|
