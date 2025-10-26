@@ -4,7 +4,7 @@
 {\*\generator Riched20 10.0.19041}{\*\mmathPr\mdispDef1\mwrapIndent1440 }\viewkind4\uc1 
 \pard\keep\keepn\widctlpar\s1\sb240\sl252\slmult1\qc\cf1\b\f0\fs32\lang2057 Steem SSE FAQ\par
 
-\pard\widctlpar\sa160\sl252\slmult1\cf0\b0\f1\fs22 v4.1.1\par
+\pard\widctlpar\sa160\sl252\slmult1\cf0\b0\f1\fs22 v4.2.0\par
 \par
 Q:\par
 What is the Atari ST?\par
@@ -24,28 +24,29 @@ Depends on your needs and wants, Steem SSE can do more and features improved emu
 Q:\par
 Is Steem SSE cycle-accurate?\par
 A:\par
-No, Steem SSE tries to be 100% compatible with all ST software, so it is cycle-accurate where it should be to ensure that compatibility. From experience, total cycle accuracy using low-level emulation can be very demanding even on our fast computers.\par
+No, Steem SSE tries to be 100% compatible with all ST software, so it is cycle-accurate where it should be to ensure that compatibility. Total cycle accuracy using low-level emulation can be very demanding even on our fast computers.\par
 \par
 Q:\par
 Doesn't Steem SSE make the ST appear better than it was?\par
 A:\par
 Potentially it is possible because Steem SSE has the options to do that (higher speed, bigger screen etc.). \par
+The options that make it possible are available only if the \i Hacks\i0  option is checked.\par
 \par
 Q:\par
 Wasn't the Amiga better anyway?\par
 A:\par
 Undoubtedly, the Amiga games generally had better graphics and 2D animation.\par
 
-\pard\widctlpar\sa160\sl252\slmult1\tx3550 For native sound, there's a discussion because the ST's modest YM2149 ain't that great, the Amiga's  8bit samples neither, yet brilliant tunes have been produced on both machines. The Amiga has one more voice, so hopefully fewer games forced you to choose between sound effects and music, or would mute part of the music in order to play effects.\par
+\pard\widctlpar\sa160\sl252\slmult1\tx3550 For native sound, there's a discussion because the ST's modest YM2149 ain't that great, the Amiga's 8bit samples neither, yet brilliant tunes have been produced on both machines. The Amiga has one more voice, so hopefully fewer games forced you to choose between sound effects and music, or would mute part of the music in order to play effects.\par
 
 \pard\widctlpar\sa160\sl252\slmult1 For utilities, the Amiga shined (flickered actually) in colour graphics and, in the USA, for video. The ST was good in MIDI especially, and most of the rest thanks to its no-nonsense OS and hardware, including the great monochrome monitor.\par
 \par
 Q:\par
 Should I use the 32bit build or the 64bit build (or neither)?\par
 A:\par
-One good reason for using the 32bit build is that there's no 64bit \i pasti.dll\i0  for the moment, so no support for STX disk images.\par
 
-\pard\keep\keepn\nowidctlpar\s3\sb40\sa200\sl240\slmult1 VSync generally consumes more CPU on the 64bit builds.\par
+\pard\keep\keepn\nowidctlpar\s3\sb40\sa200\sl240\slmult1 There's no big difference.\par
+VSync generally consumes more CPU on the 64bit builds.\par
 
 \pard\widctlpar\sa160\sl252\slmult1 Since v4.1, the 64bit build uses a main cycle counter running at 32MHz instead of 8MHz. The effect on emulation is extremely limited for now (just bugs probably).\par
 \par
@@ -57,7 +58,7 @@ Steem is free software. \par
 Q:\par
 How does it work?\par
 A:\par
-To use Steem SSE, you need a copy of one of the Atari ST ROM, called \i TOS\i0 , and some image disk files. When you first launch Steem, you may indicate where they are, which you can change later. Disk images are easy to find. Legally this is still copyrighted material, and if they really wanted, companies that own it could call a halt on emulation, but they don't.\par
+To use Steem SSE, you need a copy of one of the Atari ST ROM, called \i TOS\i0 , and some image disk files. When you first launch Steem, you may indicate where they are, which you can change later. Disk images are easy to find (at least they used to be). Legally this is still copyrighted material, and if they really wanted, companies that own it could call a halt on emulation, but they don't.\par
 \par
 Q:\par
 Where do I find roms?\par
@@ -73,7 +74,7 @@ STF=F for Floppy, because the floppy drive is integrated in the console. This is
 STE=ST Enhanced, because it has more features, like hardware scrolling, stereo sound, etc. (a bit game-oriented!)\par
 Beside 520 ST and 520 STF, there were also 520 STM and 520 STFM models. All 1040 were STF, STFM or STE.\par
 The STF came before the STE. The STE is better but most programs targeted the STF for commercial reasons. Generally the STE disappointed as a computer coming 5 years after the STF.\par
-The Mega models were professional-oriented. So professional that Atari first called them Mega ST, then just Mega. Like the "ST" was more infamous than "Atari" :)\par
+The Mega models were professional-oriented. So professional that Atari first called them Mega ST, then just Mega, like the "ST" was more infamous than "Atari" :)\par
 \par
 Q:\par
 Which ST model should I select?\par
@@ -88,7 +89,7 @@ You need to edit the text files in the plugins folder. I know it's not ideal but
 Q:\par
 Which TOS should I use?\par
 A:\par
-Generally, TOS 1.02 is the most compatible for STF mode, and TOS 1.62 for STE mode. Some rare programs require another version, like TOS 1.00 for very old games, or even depend on a country-specific TOS.\par
+You may start with EmuTOS, that works with both STF and STE, but isn't compatible with every program. Generally, TOS 1.02 is the most compatible for STF mode, and TOS 1.62 for STE mode. Some rare programs require another version, like TOS 1.00 for very old games, some even depend on a country-specific TOS.\par
 \par
 Q:\par
 There's some option I don't find anymore!\par
@@ -100,25 +101,20 @@ It's not a problem because those options are persistent, you can set it and forg
 Q:\par
 Help! Something went wrong and now even quitting and restarting Steem SSE doesn't help.\par
 A:\par
-You could delete the file \i auto32.sts\i0  or \i auto64.sts\i0  in Steem's directory. It can get corrupted. In rare cases of very bad corruption you may even need to delete or edit \i steem.ini\i0 . That's why you should back it up from time to time.\par
-\par
-Q:\par
-Help! I reset the ST, stop and start Steem SSE, delete \i auto32.sts\i0  and I just get a blank screen.\par
-A:\par
-Check options ST model and TOS, they absolutely must be compatible now (no more STE with TOS 1.02, it won't work, just like real hardware). \par
+You could delete the file \i auto32.sts\i0  or \i auto64.sts\i0  in Steem's directory. It can get corrupted. In rare cases of very bad corruption you may even need to delete or edit \i steem.ini\i0 . That's why you should back it up from time to time. Mismatch between TOS and ST model is possible. Also the VSync settings can play up.\par
 \par
 Q:\par
 Steem can't handle zip or rar or 7z files.\par
 A:\par
 Check that necessary DLL files are in your Steem /plugins folder (or your system folder). \par
-Steem can use unrar.dll, unzipd32.dll and ArchiveAccess.dll, the latter being able to handle rar and zip images as well as 7z.\par
-XSteem can also handle rar and 7z files using command-line tools.\par
+On Windows Steem can use unrar.dll, unzipd32.dll and ArchiveAccess.dll, the latter being able to handle rar (v2) and zip images as well as 7z.\par
+On Linux Steem can also handle rar and 7z files using command-line tools.\par
 \par
 Q:\par
 I find scrollers and games jerky compared with a real ST.\par
 A:\par
 Believe it or not, Steem can be very smooth on the right hardware. The key is being able to use VSync at the correct frequency. For ST emulation, this is a headache as the beast could display at 50Hz, 60Hz or 72Hz. Note that after a long period of 60Hz only, many LCD screens can now refresh at those frequencies.\par
-The option \i Microseconds\i0  uses a more precise counter. Useful if you have FreeSync hardware. It will also help if you make Steem a high priority process (general options tab). Steem is low CPU but it has a hard timing requirement: it wants to blit a frame 50, 60 or 71 times per second, evenly. \par
+The \i Microseconds\i0  option uses a more precise counter, useful if you have FreeSync hardware. It will also help if you make Steem a high priority process (general options tab). Steem is low CPU but it has a hard timing requirement: it wants to blit a frame 50, 60 or 71 times per second, evenly. \par
 \par
 Q:\par
 How do I know if VSync is operating?\par
@@ -128,7 +124,7 @@ In windowed mode you will see two figures (ST/PC) in the status bar if the optio
 Q:\par
 Does Steem SSE support G-Sync and FreeSync?\par
 A:\par
-Yes. Don't enable VSync. If everything is OK, it will be smooth even if your program changes the frequency on the fly like those earlier Automation menu disks do. In my experience, VSync is still smoother, may depend on your hardware. If you want VSync, disable FreeSync for best results.\par
+Yes. Don't enable VSync. If everything is OK, it will be smooth even if your program changes the frequency on the fly. In my experience, VSync is still smoother, may depend on your hardware. If you want VSync, disable FreeSync for best results.\par
 \par
 Q:\par
 What if have no FreeSync?\par
@@ -168,12 +164,7 @@ Check that you don't have some autofire on.\par
 Q:\par
 The mouse doesn't respond.\par
 A:\par
-Could be that joystick 0 is selected, it's as on hardware since v4.1.\par
-\par
-Q:\par
-I have fullscreen issues (distorted picture, crash, hanging...)\par
-A:\par
-Sorry about that, it's tough to get right, and Steem SSE is not the only parameter here. If you report a bug we try to fix it.\par
+Could be that joystick 0 is selected, like on a real ST you can't have both that and the mouse.\par
 \par
 Q:\par
 What's the difference between ACSI and GEMDOS hard drives?\par
@@ -203,18 +194,13 @@ It is the state in which your ST booted, due to synchronisation between various 
 Q:\par
 I don't want to mess with wakeup states but I want all edgy demos to display perfectly!\par
 A:\par
-Some (rare) programs don't work well with some GLUE wakeups, so there's no choice. Unless you only run STE programs, on this machine there's no GLUE wakeup variation.\par
+Don't be a lamer. Some (rare) programs don't work well with some GLUE wakeups, so there's no choice. Unless you only run STE programs, on this machine there's no GLUE wakeup variation.\par
 The default for Shifter wakeup, 0, is correct for Spectrum 512 pictures. I take it as the standard.\par
 \par
 Q:\par
 Hey, you claim you fixed file associations, but it doesn't work on my computer.\par
 A:\par
 For it to work you first need to manually remove the associations in the HKEY_CLASSES_ROOT part of the registry, that were put by previous versions of Steem.\par
-\par
-Q:\par
-There's a strange bug, the keyboard doesn't click like on a real ST.\par
-A:\par
-Check the keyboard options.\par
 \par
 Q:\par
 Steem SSE stutters when loading a SCP game.\par
@@ -239,15 +225,16 @@ A STW disk image is a simple MFM encoding format of regular Atari ST floppy disk
 Q:\par
 Why did you create STW if Steem SSE supports the similar HFE anyway?\par
 A:\par
-STW support came first, I thought HFE was much more complicated. It is now but notice that Steem SSE doesn't support the more recent and elaborate HFE format.\par
+STW support came first, I thought HFE was much more complicated.\par
+It is now but notice that Steem SSE doesn't support the more recent and elaborate HFE format, and people responsible for HFE don't want their specification to be "adopted" anyway.\par
 \par
 Q:\par
 PRG support doesn't work!\par
 A:\par
-You really need to choose a path pointing to a PRG folder in the Gemdos hard drive manager and assign the Z letter to it. You also need to enable the option in the Disk Manager. You don't need to enable Gemdos hard drives. It won't work if other files are needed beside the PRG/TOS one.\par
+You really need to choose a path pointing to a PRG folder in the GEMDOS hard drive manager and assign the Z letter to it. You also need to enable the option in the Disk Manager. You don't need to enable GEMDOS hard drives. It won't work if other files are needed beside the PRG/TOS one.\par
 \par
 Q:\par
-Why do the Linux builds (XSteem SSE) have fewer features than the Windows builds?\par
+Why do the Linux builds have fewer features than the Windows builds?\par
 A:\par
 Simple question of time and motivation, also Windows has more resources (Direct X). Fortunately, work has resumed on that build, mainly thanks to VMware and CodeLite that make it more fun.\par
 \par
@@ -264,7 +251,7 @@ That way Steem SSE is still compatible with old systems running, for example, Wi
 Q:\lang1036\par
 I get mush as graphics in almost every demo.\par
 A:\par
-Since v4, emulation of software overscan is optional (ST Video).\par
+Since v4, emulation of software overscan is optional (ST Video page).\par
 \lang2057\par
 Q:\par
 Steem SSE freezes when I change options while emulation is running.\par

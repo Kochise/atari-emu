@@ -1,38 +1,35 @@
-Steem SSE 4.1.2
+Steem SSE 4.2.0
 
 Atari ST emulator
 
-https://sourceforge.net/p/steemsse/blog/2022/04/steem-sse-412/
+https://sourceforge.net/projects/steemsse/
 
 R0
 Initial release, full of bugs
-03 April 2022
+20 July 2025
 
-R1 (Linux-only)
-Fix Steem SSE can only load 128K cartridge
-Fix Steem SSE GEMDOS hard disk emulation can't see folders
-10 April 2022
+R1
+Fix bug in archive handling
+25 July 2025
 
 R2
-Stability fixes
-Fix Stats max track wrong with the frequent $90-$D0 technique
-Timing of outwards single MIDI status messages, clock
-25 June 2022
+Fix blitter read Lines per Bit-Block register
+Fix debugger IO labels
+10 August 2025
 
 R3
-ACSI: Can handle disk images bigger than 2GB
-ACSI: Fix DMA transfer speed with option 'Count DMA transfer cycles' on
-Reload TOS on reboot
-Some doc updates
-27 August 2022
+Various bugfixes
+24 August 2025
 
 R4
-Fix Timer B tick timing (Cool STE)
-11 September 2022
-
-R5
-GUI: Fix bad interaction between ALT-triggered and optional menu bar (Windows)
-Various fixes
-23 October 2022
-
-Note: debug builds in steemsse_412R5.7z
+On starting, Steem SSE looks first in the application folder for your current
+steem.ini file, then in Documents/steem then in the registry and lastly in the
+roaming "AppData/steem" user folder.
+If it can't find it, it asks you where it is or it should be created. All your
+settings will be recorded in that file.
+Steem also needs a temp folder for archive handling and such. First it checks
+in the steem.ini file if the path is specified ([Main]TempPath). If not it
+tries to use "AppData/steem", if not writable the system temp folder
+(adding /steem), if not writable the place where steem.ini is, if not writable
+the folder where the executable was started.
+21 September 2025
