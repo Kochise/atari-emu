@@ -1,5 +1,5 @@
 Title: BigPEmu
-Version: 1.094
+Version: 1.19
 Author: Rich Whitehouse
 Website: https://www.richwhitehouse.com/jaguar/
 Description: An Atari Jaguar emulator, featuring compatibility with every title in the Jaguar's retail library. See below for copyright and licensing information.
@@ -7,6 +7,9 @@ Description: An Atari Jaguar emulator, featuring compatibility with every title 
 
 Patreon: /richwhitehouse
 https://patreon.com/richwhitehouse
+
+Bluesky: @richwhitehouse.bsky.social
+https://bsky.app/profile/richwhitehouse.bsky.social
 
 Twitter: @DickWhitehouse
 https://twitter.com/DickWhitehouse
@@ -16,6 +19,107 @@ Please consider showing your support!
 
 Release Notes
 -------------
+Version 1.19
+ - Added some more unaligned read/write edge case handling. This addresses a problem in Theme Park, possibly among other things.
+ - Changed some undocumented RISC instruction behavior to match some of my local hardware tests. One of these changes is known to correct an issue with object directions in Defender 2000.
+ - Added more Jaguar GD functionality. Filesystem functions are stubbed out, but I wasn't sure if anyone really needs/wants this fully implemented, so let me know if it's important to you.
+ - Fixed a few "undefined" Blitter cases. (not known to affect any existing titles)
+ - Linux ARM64 builds are now part of the automated build set. Special thanks to cubanismo for guiding me through the minefield of cross-compiling for ancient Linux targets.
+ - Significant improvements to the network rollback functionality, propagated back from BigInstinct.
+ - All kinds of new platform/framework functionality, also propagated back from BigInstinct. I didn't feel like going through hundreds of changes to make a coherent summary, but one of the more notable additions is a byuu-style run-ahead option.
+ - Exposed a bunch of sound spatialization functionality to the scripting API.
+ - Exposed MOD and MP3 playback to the scripting API.
+ - Added a timing fix for Val d'Isere Skiing and Snowboarding.
+ - Various developer build changes to more accurately reflect hardware and/or detect errors which would break on non-developer builds. (this includes enabling M68K address exceptions)
+ - Lots of "anti-emulator" code will be failing in developer builds at this point, and some related functionality may be propagating to non-developer builds soon; relying on inaccuracies to prevent your software from running in BigPEmu is unwise. If you really want to prevent your software from running in BigPEmu, contact me about better/future-proof methods.
+
+Version 1.18
+ - New Steam integration! This includes support for game servers, friends/invites, rich presence, and more. At the time of this writing, Valve is still holding the actual Steam release up over some petty nonsense. (like supported categories and Patreon references)
+ - Added a script for Breakout 2000 touch control. The paddle is horizontally positioned to match the first active touch.
+ - Added an audio interpolation setting, along with a higher-quality bandlimited audio interpolator.
+ - Added an option to change the size of the state operation undo buffer.
+ - Exposed a few more network settings.
+ - Added options for PvP damage scaling and infinite shotgun ammo to the AvP MP script.
+ - Added another terrible secret.
+ - Fixed a bunch of problems in the socket implementation for non-Windows platforms. Special thanks to Luigi for spending the entire morning of December 4, 2024 helping me debug these problems and for offering some excellent tips on developing class consciousness. (he's a big fan of OOP)
+ - Various changes/optimizations in the network protocol.
+ - Fixed swipe velocity not being explicitly reset when entering the menu.
+ - Fixed a GUID conflict bug in the SDL2 input plugin. Thanks to Tartifless for the bug report.
+ - Fixed script input callbacks having the potential to break movie recording/playback.
+
+Version 1.17
+ - Added a script for Raiden touch control. Ship automatically travels to the touch point and auto-fires when held, with a 2-finger tap to trigger bombs.
+ - Added a script for Vid Grid touch control. Drag and drop!
+ - Added a script for Towers II touch control. (with an option to uncap the framerate) In-game menu cursor is touch-driven, 2-finger tap exits the menu.
+ - Added a script for Myst touch control. Hold to drag the cursor, tap to activate.
+ - Added some scripting functionality to allow setting custom read/write handlers for non-RAM/ROM memory regions.
+ - The iOS port now prompts the user to determine their battery/heat versus performance preference on first run. (since we can't just be energy-efficient without the iOS scheduler punishing us, and I'm not having any luck getting anyone to read the FAQ/user manual)
+ - The iOS port now has a separate "Connected Idle Time" setting, which defaults to 3.0 and is used instead of "Overlay Idle Time" when at least one external device is connected. (workaround for the same FAQ/user manual problem above)
+ - Added lots of random new scripting functionality.
+ - Fixed game thumbnails rendering at the incorrect scale in portrait mode.
+
+Version 1.16
+ - The iOS port is done, get it on the App Store here: https://apps.apple.com/us/app/bigpemu/id6737359949 Special thanks to neurocrash for putting so much time into testing the iOS build for me.
+ - Lots of new interface functionality (including a touch-based interface option), courtesy of the mobile port work. All of this functionality can be accessed through the menu on non-mobile platforms.
+ - Multi-touch device support has been added for the Windows (x64 and ARM64) platforms, in order to take advantage of the touch interface work done for the mobile ports.
+ - Added a "Pad Wheel" feature, which can be activated through the input binding system.
+ - Support for a new BigPImage disc format. BigPImage files can be created from existing images or physical discs through the developer menu. Before anyone asks, CHD support looked problematic for quite a few reasons (mostly pertaining to the likelihood of image-based performance problems and implementation bloat inherent to the format), making this new format a much more optimal choice for the particular needs of this emulator.
+ - Added stereoscopic rendering support to the AvP script.
+ - Added a new DOOM script with throttling and music options.
+ - Added a new turbo/rapid fire script.
+ - Added a "Factory Reset" option, as a convenient means of resetting the configuration across all categories.
+ - Added an option to auto-assign new input devices. Devices will not be auto-assigned if they have any existing associations with any Jaguar inputs.
+ - Fixed an incredible number of bugs, pertaining to both interface and emulation. Because so many fixes have been made to the emulator core in this release, I'm especially interested in finding regression bugs. Please let me know if you experience any issues which don't occur in 1.15.
+
+Version 1.15
+ - Added a pure software video plugin for Windows builds. This plugin is primarily intended for development and diagnostic purposes, and is only visible in developer mode.
+ - New Noesis debugger scripting functionality for developer builds, this enables several new features. Make sure you're using the newest version of Noesis to take advantage of the functionality.
+ - Added -uiscale, -menunodex, and -menunodey command line options.
+ - Added a recalibration option under the Input menu.
+ - Added several more native window management functions to the script API.
+ - Added an optional flags parameter to the "opdump" debugger command, check the "help" output for details.
+ - Added the most terrible secret of all.
+ - Fixed a problem with directory checks on UNC paths under Windows, thanks to King Puff for the bug report.
+ - Lots of smaller fixes/changes in preparation for more port/interface functionality.
+
+Version 1.14
+ - Added bigpemu_register_event_audio_frame, scripts are now able to read/modify audio frames.
+ - Added various audio/sampling utility functions to the scripting system. (see the spectrum analyzer sample usage in hello_pussycat and the full list of functions in bigpcrt.h)
+ - Added bigpemu_set_named_var_data and bigpemu_get_named_var_data, along with a "ScriptOption" Screen Effect data provider type. This allows script code to drive Screen Effect data, see hello_pussycat and liz for example usage.
+ - Added bigpemu_native_window_handle, as a convenience for scripts which may want to pass the window handle to a native DLL.
+ - Added support for the "physical disc" path under Linux. This will only function correctly with drives (virtual or otherwise) which support raw subchannel reads.
+ - Fixed a potential developer build crash from forcing script reloads while employing conditional breakpoints.
+ - Fixed an issue which could result in the application window being positioned incorrectly after switching to fullscreen.
+ - Fixed some SDL2-specific fullscreen/multi-monitor issues. Thanks to cubanismo for nudging me into investigating this.
+
+Version 1.13
+ - Fixed a problem which resulted in some of the built-in D3D12 shaders requiring Shader Model 6.0.
+ - Added more logging for various D3D12 initialization failure cases.
+
+Version 1.12
+ - New D3D12 video plugin. The shader tool has also been updated and supports generating DXIL.
+ - New Windows ARM64 builds. Less frequently used platform-dependent functionality may remain unimplemented on this platform.
+ - Added a Blitter capture feature for developer builds. See the "blitcap" debugger command.
+ - Various minor cross-platform fixes which came along with the new port/backend work.
+
+Version 1.11
+ - Unmapped input labels now display an angle suffix for hat switches.
+ - Unmapped input labels now display a +/- prefix for analog bindings, when applicable.
+ - Added a -forcegpusync command line option.
+
+Version 1.1
+ - Added a native Linux (x64) port. Generally not well tested, but seems to be working well enough in local testing under a couple of different distributions. Less frequently used platform-dependent functionality may remain unimplemented on this platform.
+ - Added a new SDL2 plugin for audio, video, and input. Not particularly recommended under Windows, but a Windows build is provided nonetheless.
+ - Added custom sky/background functionality to the Checkered Flag script.
+ - Added an "Alternate Scheduling" option.
+ - Added a "Rewind Skip" option.
+ - Added a "Frame Time Display" developer option.
+ - Fixed a minor interrupt timing issue.
+ - Fixed a bug in the object browser which could, rarely, result in a memory leak.
+ - Fixed a bug preventing BIGPEMU_TEXFLAG_REPEAT from affecting texture wrap mode in the OpenGL video plugin.
+ - Fixed another timing issue, which was manifesting as a rare crash in Cybermorph. Thanks to Will for managing to capture a saved state illustrating this problem.
+ - Developer builds will avoid crashing and warn the developer (via connected debugger) when a read/write straddles the end of ROM. Normal builds will still crash, in order to avoid overhead. Thanks to DrTypo for the bug report.
+
 Version 1.094
  - The Checkered Flag "Uncap Framerate" option can now be switched between 30Hz and 60Hz.
  - Added some sync code to the Checkered Flag script to fix possible flickering issues. (only became noticeable at 60Hz)
@@ -223,21 +327,29 @@ Those Who Bare Fangs at God:
  - Mark Sowden (hogsy)
  - John Perez (neurocrash)
  - Benjamin Bettridge
+ - Jan D. (thank you for going so far above and beyond)
  - ZoeB
- - B.J. West
  - Scott LeGrand
+ - William Thorup
+ - Dan McCombs
+ - noigeaR
+ - Luigi Mangione (thank you for your sacrifice)
+ - B.J. West
  - Shannon Gates
+ - Havard Vatne
+ - Tony Walsh
+ - guru emulation
 May your oppressors suffer all the torments this world has to offer, my friends.
 
 Thank you to my daughter, Alaura, for brightening my life from the moment of her birth.
 
-Thank you to my wife and my good friends (Ruth, Kirt, Joseph, Boris, Jake) for helping me through (the remains of) my life as I suffer with cancer.
+Thank you to my wife and my good friends (Ruth, Joseph, Boris, Jake) for helping me through (the remains of) my life as I suffer with cancer.
 
 As with all of the free software that I write, I accept no liability and offer no warranty. By using this software, you agree that you are solely responsible for any form of harm which may result from the use of this software.
 
 I forbid the use of this software for any form of private financial gain. You may not distribute this software without the inclusion of this document in unmodified form, and you may not distribute modified versions of the main BigPEmu executable file. Any exemption from these terms requires my written permission.
 
-For a list of third party software included in BigPEmu and the corresponding license/copyright information, please see the Data/ThirdParty/Licenses directory. I've also auto-converted and included a few shaders written by Hyllian under the MIT license, see the relevant shader files in Data/ScreenEffects for the original license/copyright information.
+For a list of third party software included in BigPEmu and the corresponding license/copyright information, please see the Data/ThirdParty/Licenses directory. (location may vary per platform/distribution, check the application documents folder on iOS/macOS) I've also auto-converted and included a few shaders written by Hyllian under the MIT license, see the relevant shader files in Data/ScreenEffects for the original license/copyright information.
 
 BigPEmu: The World's Prefurred Large Pussycat Emulator
 

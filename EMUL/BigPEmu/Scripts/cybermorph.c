@@ -18,6 +18,7 @@ static uint32_t sCurrentUploadPrgAddr = 0;
 static uint32_t sCurrentBufferAddr = 0;
 
 #define CM_SUPPORTED_HASH					0x3F97A08E8550667CULL
+#define CM_REVB_HASH						0xB16C980E3FB809BBULL
 #define CM_UPLOAD_GPU_PC					0x008095E2
 #define CM_UPLOAD_GPU_FINISH_PC				0x0080961A
 #define CM_POLY_DRAW_GPU_PROG_ADDR			0x008AC038
@@ -294,6 +295,10 @@ static uint32_t on_sw_loaded(const int eventHandle, void *pEventData)
 		bigpemu_jag_m68k_bp_add(CM_BG_BLIT_PC, cm_bg_blit_bp);
 		bigpemu_jag_m68k_bp_add(CM_ENDFRAME_PC, cm_end_frame_bp);
 	}
+	else if (hash == CM_REVB_HASH)
+	{
+		printf_notify("This version of Cybermorph is not supported by the active script.");
+	}
 	return 0;
 }
 
@@ -307,6 +312,8 @@ static uint32_t on_video_frame(const int eventHandle, void *pEventData)
 void bigp_init()
 {
 	void *pMod = bigpemu_get_module_handle();
+	
+	bigpemu_set_module_usage_flags(pMod, BIGPEMU_MODUSAGE_DETERMINISMWARNING);
 	
 	const int catHandle = bigpemu_register_setting_category(pMod, "Cybermorph");
 	sNativeRenderSettingHandle = bigpemu_register_setting_bool(catHandle, "Native Res", 1);

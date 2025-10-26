@@ -32,7 +32,7 @@
                 "Constant": "OutputGamma",
                 "Type": "float",
                 "Description": "CRT - Output Gamma",
-                "DefaultVal": 2.200000047683716,
+                "DefaultVal": 2.2,
                 "MinVal": 0.0,
                 "MaxVal": 5.0,
                 "StepVal": 0.1
@@ -275,7 +275,11 @@
                     }
                 ],
                 "PixelGLSL": "crt-hyllian/_pass00_pixel.glsl",
-                "VertexGLSL": "crt-hyllian/_pass00_vertex.glsl"
+                "VertexGLSL": "crt-hyllian/_pass00_vertex.glsl",
+                "PixelESSL": "crt-hyllian/_pass00_pixel.essl",
+                "VertexESSL": "crt-hyllian/_pass00_vertex.essl",
+                "PixelDXBC": "crt-hyllian/_pass00_pixel.dxbc",
+                "VertexDXBC": "crt-hyllian/_pass00_vertex.dxbc"
             }
         ]
     }

@@ -1,7 +1,7 @@
 #version 430
 
 
-//This file has been auto-generated from 'xbr-lv3' by author 'Hyllian'. Original license and copyright:
+//This file has been auto-generated from 'xbr-lv3-pass1' by author 'Hyllian'. Original license and copyright:
 
 /*
 
@@ -39,11 +39,6 @@ struct Push
     vec4 OriginalSize;
     vec4 OutputSize;
     uint FrameCount;
-    float XBR_Y_WEIGHT;
-    float XBR_EQ_THRESHOLD;
-    float XBR_EQ_THRESHOLD2;
-    float XBR_LV2_COEFFICIENT;
-    float corner_type;
 };
 
 uniform Push params;
@@ -52,26 +47,16 @@ layout(location = 0) in vec4 Position;
 layout(location = 0) out vec2 vTexCoord;
 layout(location = 1) in vec2 TexCoord;
 layout(location = 1) out vec4 t1;
-layout(location = 2) out vec4 t2;
-layout(location = 3) out vec4 t3;
-layout(location = 4) out vec4 t4;
-layout(location = 5) out vec4 t5;
-layout(location = 6) out vec4 t6;
-layout(location = 7) out vec4 t7;
+layout(location = 2) out vec2 delta;
 
 void main()
 {
     gl_Position = global.MVP * Position;
     vTexCoord = TexCoord * 1.00039994716644287109375;
-    vec2 ps = vec2(1.0) / params.SourceSize.xy;
+    vec2 ps = vec2(1.0 / params.OriginalSize.x, 1.0 / params.OriginalSize.y);
     float dx = ps.x;
     float dy = ps.y;
-    t1 = vTexCoord.xxxy + vec4(-dx, 0.0, dx, (-2.0) * dy);
-    t2 = vTexCoord.xxxy + vec4(-dx, 0.0, dx, -dy);
-    t3 = vTexCoord.xxxy + vec4(-dx, 0.0, dx, 0.0);
-    t4 = vTexCoord.xxxy + vec4(-dx, 0.0, dx, dy);
-    t5 = vTexCoord.xxxy + vec4(-dx, 0.0, dx, 2.0 * dy);
-    t6 = vTexCoord.xyyy + vec4((-2.0) * dx, -dy, 0.0, dy);
-    t7 = vTexCoord.xyyy + vec4(2.0 * dx, -dy, 0.0, dy);
+    t1 = vec4(dx, 0.0, 0.0, dy);
+    delta = vec2(params.SourceSize.x / params.OutputSize.x, (0.5 * params.SourceSize.x) / params.OutputSize.x);
 }
 

@@ -320,8 +320,10 @@ void bigp_init()
 {
 	void *pMod = bigpemu_get_module_handle();
 	
+	bigpemu_set_module_usage_flags(pMod, BIGPEMU_MODUSAGE_DETERMINISMWARNING);
+	
 	const int catHandle = bigpemu_register_setting_category(pMod, "MC3D");
-	sStereoEnabledHandle = bigpemu_register_setting_bool(catHandle, "Stereosopic Mode", 0);
+	sStereoEnabledHandle = bigpemu_register_setting_bool(catHandle, "Stereoscopic Mode", 0);
 	sStereoSeparationHandle = bigpemu_register_setting_int_full(catHandle, "Eye Separation", 32, 1, 16384, 1);
 	sStereoFocalDistanceHandle = bigpemu_register_setting_int_full(catHandle, "Focal Distance", 0, 0, 100000, 10);
 	

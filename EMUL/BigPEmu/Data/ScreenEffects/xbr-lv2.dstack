@@ -133,7 +133,11 @@
                     }
                 ],
                 "PixelGLSL": "xbr-lv2/_pass00_pixel.glsl",
-                "VertexGLSL": "xbr-lv2/_pass00_vertex.glsl"
+                "VertexGLSL": "xbr-lv2/_pass00_vertex.glsl",
+                "PixelESSL": "xbr-lv2/_pass00_pixel.essl",
+                "VertexESSL": "xbr-lv2/_pass00_vertex.essl",
+                "PixelDXBC": "xbr-lv2/_pass00_pixel.dxbc",
+                "VertexDXBC": "xbr-lv2/_pass00_vertex.dxbc"
             }
         ]
     }

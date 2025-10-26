@@ -105,6 +105,7 @@ static SCFGameState sGS;
 #define CF_SKY_XOFFSET_ADDR					0x00059002
 #define CF_SKY_YOFFSET_ADDR					0x00004390
 #define CF_SKY_COLOR_ADDR					0x000040CC
+#define CF_SKY_TEXTURE_COUNT				7
 #define CF_STEER_ADDR						0x0000455E
 #define CF_INPUT_ADDR						0x00004068
 #define CF_SPEED_ADDR						0x0000405C
@@ -145,6 +146,8 @@ static SCFGameState sGS;
 #define CF_PLAYSOUND_PC						0x008131B6
 #define CF_PLAYSOUND_RET_PC					0x0081329A
 #define CF_DRAWMAP_PC						0x000DD34A
+#define CF_GPU_DECOMP_BYTE_PC				0x000D8CF6
+#define CF_GPU_DECOMP_WORD_PC				0x000DCF44
 
 #define CF_GPU_DRAW_POLY_PC					0x00F0342A
 #define CF_GPU_SEC_DRAW_BITMAP_PC			0x00F03B78
@@ -173,6 +176,36 @@ static uint8_t sTempFramebuffer[CF_FB_WIDTH * CF_FB_HEIGHT * 2];
 
 static float sNativeWidth = CF_FB_WIDTH;
 static float sNativeHeight = CF_FB_HEIGHT;
+
+typedef struct 
+{
+	uint32_t mWidth;
+	uint32_t mHeight;
+	TSharedResPtr mResPtr;
+} SSkyTextureOverride;
+
+static const uint32_t skSkyTextureAddresses[CF_SKY_TEXTURE_COUNT] =
+{
+	0x008CD722, //generic rain/fog
+	0x0093252C, //island hop, deep wood
+	0x00940794, //the hole, concrete canyon
+	0x00955260, //arctic run
+	0x00963AE4, //green valley, river mouth
+	0x00971720, //the gorge, desert pass
+	0x0097D6A8 //sunset strip
+};
+
+//we're only allowed to deal with native resources on the main thread, so we so this op value to issue loads/frees from other threads
+typedef enum
+{
+	kSkyOp_None = 0,
+	kSkyOp_Load,
+	kSkyOp_Free
+} ESkyOp;
+
+static SSkyTextureOverride sSkyTextureOverrides[CF_SKY_TEXTURE_COUNT];
+static int32_t sSkyTextureOverrideIndex = -1;
+static ESkyOp sSkyOp = kSkyOp_None;
 
 static double get_abs_time_ms()
 {
@@ -207,7 +240,7 @@ static float ndc_y(const int32_t y)
 	return ndc_y_fl((float)y);
 }
 
-static void add_quad_tex(const int32_t x, const int32_t y, const int32_t w, const int32_t h, const uint32_t texWidth, const uint32_t texHeight, const uint32_t texPitch, const uint32_t texAddr, const uint32_t extraPolyFlags, void *pNativeTexAddr)
+static void add_quad_tex(const int32_t x, const int32_t y, const int32_t w, const int32_t h, const uint32_t texWidth, const uint32_t texHeight, const uint32_t texPitch, const uint32_t texAddr, const uint32_t extraPolyFlags, void *pNativeTexAddr, TSharedResPtr sharedRes)
 {
 	int32_t clipPos[2];
 	int32_t clipSize[2];
@@ -255,7 +288,9 @@ static void add_quad_tex(const int32_t x, const int32_t y, const int32_t w, cons
 	polyInfo.mPosOffset = 0;
 	polyInfo.mUvOffset = 4 * 4;
 	polyInfo.mColorOffset = 4 * 3;
-	polyInfo.mTexRefIndex = bigpemu_jag_op_create_frame_tex(sGS.mCurrentFbAddr, frameTexAddr, frameTexIsJagAddr, texWidth, texHeight, (texPitch << 1), kOPVMTex_CRY16, texFlags, NULL);
+	polyInfo.mTexRefIndex = (!sharedRes) ?
+	                                       bigpemu_jag_op_create_frame_tex(sGS.mCurrentFbAddr, frameTexAddr, frameTexIsJagAddr, texWidth, texHeight, (texPitch << 1), kOPVMTex_CRY16, texFlags, NULL) :
+	                                       bigpemu_jag_op_create_tex_from_res(sGS.mCurrentFbAddr, sharedRes, 0);
 	polyInfo.mPosType = kOPVMPos_XyzFloat32;
 	polyInfo.mUvType = kOPVMUv_Float32;
 	polyInfo.mColorType = kOPVMColor_RGB32;
@@ -484,9 +519,20 @@ static void cf_draw_sky_bp(const uint32_t addr)
 		const uint32_t skyAddr = CF_SKY_TEX_ADDR + ((skyYOffset * CF_SKY_PITCH + skyXOffset) << 1);
 		const uint32_t skyHeight = CF_SKY_HEIGHT - skyYOffset;
 		const uint32_t skyQuadYOffset = 7;
-		add_quad_tex(0, skyQuadYOffset, CF_FB_WIDTH, skyHeight, CF_SKY_WIDTH, skyHeight, CF_SKY_PITCH, skyAddr, 0, NULL);
-		const uint32_t skyColor = BIGPEMU_SWAP32(bigpemu_jag_read32(CF_SKY_COLOR_ADDR));
-		add_quad(0, skyQuadYOffset + skyHeight - 1, CF_FB_WIDTH, (CF_FB_HEIGHT - skyHeight) + 2, skyColor);
+		if (sSkyTextureOverrideIndex >= 0)
+		{
+			//draw from the native resource, intentionally stretching 2 quads outside of the framebuffer so that the canvas clipping automatically adjusts the uv coordinates for us
+			const SSkyTextureOverride *pSkyTex = &sSkyTextureOverrides[sSkyTextureOverrideIndex];
+			assert(pSkyTex->mResPtr);
+			add_quad_tex(-skyXOffset, skyQuadYOffset, CF_SKY_PITCH, CF_FB_HEIGHT, CF_SKY_WIDTH, skyHeight, 0, 0, 0, NULL, pSkyTex->mResPtr);
+			add_quad_tex(CF_SKY_PITCH - skyXOffset, skyQuadYOffset, CF_SKY_PITCH, CF_FB_HEIGHT, CF_SKY_WIDTH, skyHeight, 0, 0, 0, NULL, pSkyTex->mResPtr);
+		}
+		else
+		{
+			add_quad_tex(0, skyQuadYOffset, CF_FB_WIDTH, skyHeight, CF_SKY_WIDTH, skyHeight, CF_SKY_PITCH, skyAddr, 0, NULL, 0);
+			const uint32_t skyColor = BIGPEMU_SWAP32(bigpemu_jag_read32(CF_SKY_COLOR_ADDR));
+			add_quad(0, skyQuadYOffset + skyHeight - 1, CF_FB_WIDTH, (CF_FB_HEIGHT - skyHeight) + 2, skyColor);
+		}
 		bigpemu_jag_m68k_set_pc(CF_DRAW_SKY_RET_PC);
 	}
 }
@@ -512,7 +558,7 @@ static void cf_buffer_flip_bp(const uint32_t addr)
 		bigpemu_jag_write64(tObjAddr, tCw);
 		bigpemu_jag_write16(CLUT + 6, 0);
 		
-		add_quad_tex(0, 0, CF_FB_WIDTH, CF_FB_HEIGHT, CF_FB_WIDTH, CF_FB_HEIGHT, CF_FB_WIDTH, 0, OPVM_POLYINFO_FLAG_ADDDSEL_SIGN, sTempFramebuffer);
+		add_quad_tex(0, 0, CF_FB_WIDTH, CF_FB_HEIGHT, CF_FB_WIDTH, CF_FB_HEIGHT, CF_FB_WIDTH, 0, OPVM_POLYINFO_FLAG_ADDDSEL_SIGN, sTempFramebuffer, 0);
 	}
 	//no valid fb target unless we hit the sky draw later in the frame (other scenes aren't handled natively)
 	sGS.mCurrentFbAddr = 0;
@@ -698,6 +744,98 @@ static void cf_playsound_bp(const uint32_t addr)
 	}
 }
 
+static void cf_gpu_decomp_bp(const uint32_t addr)
+{
+	const uint32_t dstAddr = bigpemu_jag_m68k_get_areg(0);
+	if (dstAddr == CF_SKY_TEX_ADDR)
+	{
+		//for byte-style decompression, a1 is the pointer to the compressed data stream.
+		//for word-style decompression, a1 is the run data and a2 is the separate stream of word (cry) samples.
+		//for our purposes, though, we just want a unique address associated with the sky, so we use a1 in both cases.
+		const uint32_t srcAddr = bigpemu_jag_m68k_get_areg(1);
+		//this is how the skSkyTextureAddresses list was created
+		//printf("Sky source: %08x\n", srcAddr);
+		
+		sSkyTextureOverrideIndex = -1;
+		for (int32_t skyIndex = 0; skyIndex < CF_SKY_TEXTURE_COUNT; ++skyIndex)
+		{
+			if (skSkyTextureAddresses[skyIndex] == srcAddr)
+			{
+				const SSkyTextureOverride *pSkyTex = &sSkyTextureOverrides[skyIndex];
+				if (pSkyTex->mResPtr)
+				{
+					//looks like we've got a cusotm texture for the active sky, so set the index
+					sSkyTextureOverrideIndex = skyIndex;
+				}
+				break;
+			}
+		}
+	}
+}
+
+static void cf_load_custom_skies()
+{
+	void *pMod = bigpemu_get_module_handle();
+	void *pSkyBuffer = NULL;
+	uint32_t skyBufferSize = 0;
+	char skyName[BIGP_CRT_MAX_LOCAL_BUFFER_SIZE];
+	for (int32_t skyIndex = 0; skyIndex < CF_SKY_TEXTURE_COUNT; ++skyIndex)
+	{
+		sprintf(skyName, "cf_custom_sky_%08x.png", skSkyTextureAddresses[skyIndex]);
+		const uint64_t skyFile = fs_open(skyName, 0);
+		if (skyFile)
+		{
+			const uint32_t fileSize = (uint32_t)fs_get_size(skyFile);
+			if (fileSize > skyBufferSize)
+			{
+				if (pSkyBuffer)
+				{
+					bigpemu_vm_free(pSkyBuffer);
+				}
+				//(re)allocate a buffer to read the file if necessary
+				pSkyBuffer = bigpemu_vm_alloc(fileSize);
+			}
+			fs_read(pSkyBuffer, fileSize, skyFile);
+			fs_close(skyFile);
+			
+			uint32_t width, height;
+			uint32_t texFlags = BIGPEMU_TEXFLAG_REPEAT;
+			if (sLastTexFilter)
+			{
+				texFlags |= (BIGPEMU_TEXFLAG_BILINEAR | BIGPEMU_TEXFLAG_GENMIPS);
+			}
+			const TSharedResPtr resPtr = bigpemu_res_texture_from_png(pMod, &width, &height, pSkyBuffer, fileSize, texFlags);
+			if (resPtr)
+			{
+				//alright, we got a custom sky texture, store the dimensions and handle off
+				SSkyTextureOverride *pSkyTex = &sSkyTextureOverrides[skyIndex];
+				pSkyTex->mWidth = width;
+				pSkyTex->mHeight = height;
+				pSkyTex->mResPtr = resPtr;
+			}
+		}
+	}
+	
+	if (pSkyBuffer)
+	{
+		bigpemu_vm_free(pSkyBuffer);
+	}
+}
+
+static void cf_free_custom_skies()
+{
+	void *pMod = bigpemu_get_module_handle();
+	for (int32_t skyIndex = 0; skyIndex < CF_SKY_TEXTURE_COUNT; ++skyIndex)
+	{
+		const SSkyTextureOverride *pSkyTex = &sSkyTextureOverrides[skyIndex];
+		if (pSkyTex->mResPtr)
+		{
+			bigpemu_res_texture_free(pMod, pSkyTex->mResPtr);
+		}
+	}
+	memset(sSkyTextureOverrides, 0, sizeof(sSkyTextureOverrides));
+}
+
 static void cf_reset_local_vars()
 {
 	memset(&sGS, 0, sizeof(sGS));
@@ -715,6 +853,7 @@ static uint32_t on_sw_loaded(const int32_t eventHandle, void *pEventData)
 	if (cf_is_loaded())
 	{
 		cf_reset_local_vars();
+		sSkyOp = kSkyOp_Load;
 		sGS.mGameLoaded = 1;
 		bigpemu_jag_m68k_bp_add(CF_UPLOAD_GPU_DRAW_CODE_PC, cf_upload_draw_code_bp);
 		bigpemu_jag_m68k_bp_add(CF_DRAW_SKY_CODE_PC, cf_draw_sky_bp);
@@ -731,9 +870,12 @@ static uint32_t on_sw_loaded(const int32_t eventHandle, void *pEventData)
 		bigpemu_jag_m68k_bp_add(CF_GAMELOOP_PC, cf_looptime_bp);
 		bigpemu_jag_m68k_bp_add(CF_RENDERLOOP_PC, cf_renderloop_bp);
 		bigpemu_jag_m68k_bp_add(CF_PLAYSOUND_PC, cf_playsound_bp);
+		bigpemu_jag_m68k_bp_add(CF_GPU_DECOMP_BYTE_PC, cf_gpu_decomp_bp);
+		bigpemu_jag_m68k_bp_add(CF_GPU_DECOMP_WORD_PC, cf_gpu_decomp_bp);
 	}
 	else
 	{
+		sSkyOp = kSkyOp_Free;
 		sGS.mGameLoaded = 0;
 	}
 	return 0;
@@ -757,6 +899,23 @@ static uint32_t on_video_frame(const int32_t eventHandle, void *pEventData)
 		bigpemu_get_setting_value(&sLastCamTilt, sCamTiltSettingHandle);
 		bigpemu_get_setting_value(&sLastSkidNoise, sSkidNoiseSettingHandle);
 		bigpemu_get_setting_value(&sLastDrawRain, sDrawRainSettingHandle);
+	}
+	if (sSkyOp != kSkyOp_None)
+	{
+		switch (sSkyOp)
+		{
+		case kSkyOp_Load:
+			cf_free_custom_skies();
+			cf_load_custom_skies();
+			break;
+		case kSkyOp_Free:
+			cf_free_custom_skies();
+			break;
+		default:
+			assert(!"invalid sky op");
+			break;
+		}
+		sSkyOp = kSkyOp_None;
 	}
 	return 0;
 }
@@ -790,6 +949,8 @@ void bigp_init()
 {
 	void *pMod = bigpemu_get_module_handle();
 	
+	bigpemu_set_module_usage_flags(pMod, BIGPEMU_MODUSAGE_DETERMINISMWARNING);
+	
 	const int32_t catHandle = bigpemu_register_setting_category(pMod, "Checkered Flag");
 	sNativeRenderSettingHandle = bigpemu_register_setting_bool(catHandle, "Native Res", CF_NATIVE_RES_DEFAULT);
 	sTexFilterSettingHandle = bigpemu_register_setting_bool(catHandle, "Texture Filter", CF_TEX_FILTER_DEFAULT);
@@ -815,6 +976,7 @@ void bigp_init()
 	sOnStateLoadEvent = bigpemu_register_event_load_state(pMod, on_load_state, CF_SUPPORTED_HASH);
 	
 	cf_reset_local_vars();
+	memset(sSkyTextureOverrides, 0, sizeof(sSkyTextureOverrides));
 }
 
 void bigp_shutdown()
@@ -863,4 +1025,5 @@ void bigp_shutdown()
 	sLastDrawRain = CF_DRAWRAIN_DEFAULT;
 	
 	cf_reset_local_vars();
+	cf_free_custom_skies();
 }

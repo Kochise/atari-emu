@@ -95,6 +95,18 @@ int bigpemu_get_api_version();
 void *bigpemu_get_module_handle();
 
 EBigPEmuPlatform bigpemu_get_platform();
+uint64_t bigpemu_native_window_handle(EBigPEmuWindowPlatform *pPlatOut); //pPlatOut may be NULL
+//params may be NULL, corresponds to FindWindowA under windows
+uint64_t bigpemu_find_native_window(const char *pClassName, const char *pTitle);
+uint64_t bigpemu_native_window_parent(const uint64_t windowHandle);
+//id/params may be truncated or unnused depending on window platform
+uint64_t bigpemu_send_native_window_message(const uint64_t windowHandle, const uint64_t msgId, const uint64_t wParam, const uint64_t lParam);
+uint32_t bigpemu_native_window_title(char *pDst, const uint64_t windowHandle);
+
+void bigpemu_set_platform_api(const char *pName, void *pPtr);
+void *bigpemu_get_platform_api(const char *pName);
+vmuptr_t bigpemu_machine_global_call(const vmuptr_t arg0, const vmuptr_t arg1);
+vmuptr_t bigpemu_machine_object_call(const vmuptr_t arg0, const vmuptr_t arg1);
 
 double bigpemu_time_ms();
 
@@ -111,33 +123,53 @@ int bigpemu_register_event_pre_ui(void *pModuleHandle, TBigPEmuEventCallback pCb
 int bigpemu_register_event_post_ui(void *pModuleHandle, TBigPEmuEventCallback pCb);
 int bigpemu_register_event_save_state(void *pModuleHandle, TBigPEmuEventCallback pCb, const uint64_t softHash);
 int bigpemu_register_event_load_state(void *pModuleHandle, TBigPEmuEventCallback pCb, const uint64_t softHash);
+int bigpemu_register_event_audio_frame(void *pModuleHandle, TBigPEmuEventCallback pCb);
+int bigpemu_register_event_input_frame(void *pModuleHandle, TBigPEmuEventCallback pCb);
 
 void bigpemu_unregister_event(void *pModuleHandle, const int eventHandle);
 
+void bigpemu_set_module_usage_flags(void *pModuleHandle, const uint64_t usageFlags);
+
 uint64_t bigpemu_get_loaded_fnv1a64();
 void bigpemu_get_loaded_software_path(char *pDst, const uint32_t bufferSize);
+
+//name of localized string goes in, localized string comes out. (if found) buffer must be at least BIGP_CRT_MAX_LOCAL_BUFFER_SIZE bytes. returns >=0 (string length) on success.
+int bigpemu_get_localized_string(char *pInOut);
+
+//similar to above, returns >=0 on success and the buffer pointed to by pOut must be at least BIGP_CRT_MAX_LOCAL_BUFFER_SIZE bytes.
+int bigpemu_get_localized_emu_button_name(char *pOut, const uint32_t buttonIndex);
+
+void bigpemu_set_rich_presence(const char *pMsg, const uint32_t displayTimeMs);
+
+//returns non-0 if the menu is active
+uint32_t bigpemu_menu_is_active();
+//returns non-0 if we're in "portrait" mode (a resolution where height > width)
+uint32_t bigpemu_is_portrait_mode();
 
 //once settings (and their categories) are registered, they stay registered until the module is unloaded.
 int bigpemu_register_setting_category(void *pModuleHandle, const char *pCatName); //returns cat handle
 int bigpemu_register_setting(void *pModuleHandle, const int catHandle, const char *pSettingName, const EBigPEmuSettingType settingType, const void *pDefaultVal, const void *pMinVal, const void *pMaxVal, const void *pStepVal); //returns setting handle
 int bigpemu_get_setting_value(void *pOut, const int settingHandle); //returns 0 on success
+int bigpemu_set_setting_value(const void *pIn, const int settingHandle); //returns 0 on success
 //convenience for common approaches (use bigpemu_register_setting directly for anything else)
 static inline int bigpemu_register_setting_bool(const int catHandle, const char *pSettingName, const int32_t defaultVal)
 {
-	bigpemu_register_setting(bigpemu_get_module_handle(), catHandle, pSettingName, kBPE_VMSetting_Bool, &defaultVal, NULL, NULL, NULL);
+	return bigpemu_register_setting(bigpemu_get_module_handle(), catHandle, pSettingName, kBPE_VMSetting_Bool, &defaultVal, NULL, NULL, NULL);
 }
 static inline int bigpemu_register_setting_int(const int catHandle, const char *pSettingName, const int32_t defaultVal)
 {
-	bigpemu_register_setting(bigpemu_get_module_handle(), catHandle, pSettingName, kBPE_VMSetting_Int, &defaultVal, NULL, NULL, NULL);
+	return bigpemu_register_setting(bigpemu_get_module_handle(), catHandle, pSettingName, kBPE_VMSetting_Int, &defaultVal, NULL, NULL, NULL);
 }
 static inline int bigpemu_register_setting_int_full(const int catHandle, const char *pSettingName, const int32_t defaultVal, const int32_t minVal, const int32_t maxVal, const int32_t stepVal)
 {
-	bigpemu_register_setting(bigpemu_get_module_handle(), catHandle, pSettingName, kBPE_VMSetting_Int, &defaultVal, &minVal, &maxVal, &stepVal);
+	return bigpemu_register_setting(bigpemu_get_module_handle(), catHandle, pSettingName, kBPE_VMSetting_Int, &defaultVal, &minVal, &maxVal, &stepVal);
 }
 static inline int bigpemu_register_setting_float_full(const int catHandle, const char *pSettingName, const float defaultVal, const float minVal, const float maxVal, const float stepVal)
 {
-	bigpemu_register_setting(bigpemu_get_module_handle(), catHandle, pSettingName, kBPE_VMSetting_Float, &defaultVal, &minVal, &maxVal, &stepVal);
+	return bigpemu_register_setting(bigpemu_get_module_handle(), catHandle, pSettingName, kBPE_VMSetting_Float, &defaultVal, &minVal, &maxVal, &stepVal);
 }
+
+#ifndef _BIGP_PLATFORM_NEW_
 
 //IMPORTANT NOTE:
 //!!!!!!!!!!!!!!! <--- this means read this note for real
@@ -236,8 +268,10 @@ void bigpemu_jag_blitter_raw_set(const EBigPEmuBlitterRaw blitterRaw, const uint
 uint32_t bigpemu_jag_blitter_raw_get(const EBigPEmuBlitterRaw blitterRaw);
 void bigpemu_jag_blitter_set_excycles(const uint32_t exCycles);
 
-void bigpemu_jag_set_stereo_enabled(const uint32_t flags);
+void bigpemu_jag_set_stereo_enabled(const uint32_t flags); //(flags & 1) = enabled, (flags & 2) = duplicate eye mode
 void bigpemu_jag_set_stereo_scan_eye(const uint32_t isLeft);
+
+uint32_t bigpemu_jag_get_vmode_divisor();
 
 void bigpemu_jag_op_set_special_transparency(const uint32_t objectSrcAddr, const uint32_t color, const EOPVMColorType colorType);
 void bigpemu_jag_op_add_poly(const uint32_t objectSrcAddr, const SOPVMPolyInfo *pPolyInfo);
@@ -260,12 +294,40 @@ uint32_t bigpemu_jag_m68k_cycle_for_usec(const double usec);
 double bigpemu_jag_usec_for_risc_cycle(const uint32_t cyc);
 double bigpemu_jag_usec_for_m68k_cycle(const uint32_t cyc);
 
+//rectangle is in the form of x0 (left), x1 (right), y0 (top), y1 (bottom)
+//x units are pixel clocks, y units are progressive lines
+void bigpemu_jag_get_display_region(int32_t *pRect);
+
+//pRect 0,1,2,3=ul x, lr x, ul y, lr y. x should be specified in pixel clocks. pass a null pointer to reset.
+void bigpemu_jag_force_display_bounds(const int32_t *pRect);
+//can be used to force a given aspect ratio, e.g. 320.0 / 240.0. set to 0 to reset.
+void bigpemu_jag_force_display_ratio(const double aspectRatio);
+
+uint32_t bigpemu_jag_get_rw_handler_alignment();
+//returns 1 on success. addresses must be aligned to whatever bigpemu_jag_get_rw_handler_alignment returns.
+//addresses must also be in a valid/supported region. ram/rom addresses are not supported for performance reasons.
+//rwMask should be some combination of BIGPEMU_HANDLER_MASK_* values. non-inclusive of endAddr.
+//all handlers will be reset on software load, so it's a good idea to install them in a "software loaded" handler.
+uint32_t bigpemu_jag_set_rw_handler(const TBigPEmuReadWriteCallback pCb, const uint32_t startAddr, const uint32_t endAddr, const uint32_t rwMask);
+
 //the following jag functions are thread-safe
 void bigpemu_jag_set_paused(const uint32_t isPaused);
+
+#else //_BIGP_PLATFORM_NEW_
+
+//the same threading rules apply to bigpemu_emu_* functions as those outlined for bigpemu_jag_* functions above.
+	
+uint64_t bigpemu_emu_get_frame_count();
+
+//the following emu functions are thread-safe
+void bigpemu_emu_set_paused(const uint32_t isPaused);
+
+#endif //_BIGP_PLATFORM_NEW_
 
 //input functions are thread-safe and may be used from any thread.
 //the input data structure is opaque and may vary per input plugin, so bigpemu_input_get_input_size must be used to determine how much space is needed for input buffers.
 uint32_t bigpemu_input_get_input_size();
+uint32_t bigpemu_input_get_input_data_version();
 uint32_t bigpemu_input_get_all_held_inputs(void *pInputBuffer, const uint32_t maxHeldCount);
 uint32_t bigpemu_input_create_input_from_vk(void *pInputBuffer, const uint32_t vk); //input buffer must be at least bigpemu_input_get_input_size() byte, vk uses windows vk codes (even on non-windows platforms), returns non-0 on success
 //raw data comparison may not yield correct results when comparing inputs to, for example, see if a button is held.
@@ -273,18 +335,26 @@ uint32_t bigpemu_input_create_input_from_vk(void *pInputBuffer, const uint32_t v
 //the return value will be non-0 if the single input is in the set.
 uint32_t bigpemu_input_input_in_set(const void *pSetBuffer, const uint32_t setEntryCount, const void *pSingleInputBuffer);
 uint32_t bigpemu_input_get_input_name(char *pDst, const uint32_t dstSize, const void *pInputBuffer); //returns length of string on success, 0 on failure. fails of dstSize is too small.
+uint32_t bigpemu_input_get_device_count();
 
 //all res functions may only be called from the main thread.
 //correctly freeing resources is encouraged, but all resources are associated with the module and will be auto-freed when the module is freed.
 TSharedResPtr bigpemu_res_texture_from_png(void *pModuleHandle, uint32_t *pWidthOut, uint32_t *pHeightOut, const uint8_t *pData, const uint32_t dataSize, const uint32_t texFlags);
 TSharedResPtr bigpemu_res_texture_from_rgba32(void *pModuleHandle, const uint8_t *pData, const uint32_t width, const uint32_t height, const uint32_t texFlags);
+void bigpemu_res_texture_rgba32_reupload(TSharedResPtr pRes, void *pModuleHandle, const uint8_t *pData, const uint32_t width, const uint32_t height, const uint32_t texFlags);
+TSharedResPtr bigpemu_res_texture_rgba32_create_or_reupload(TSharedResPtr pRes, void *pModuleHandle, const uint8_t *pData, const uint32_t width, const uint32_t height, const uint32_t texFlags);
 void bigpemu_res_texture_free(void *pModuleHandle, TSharedResPtr pRes);
 TSharedResPtr bigpemu_res_sound_from_wave(void *pModuleHandle, const uint8_t *pData, const uint32_t dataSize);
+TSharedResPtr bigpemu_res_sound_from_mod(void *pModuleHandle, const uint8_t *pData, const uint32_t dataSize);
+TSharedResPtr bigpemu_res_sound_from_mp3(void *pModuleHandle, const uint8_t *pData, const uint32_t dataSize);
 void bigpemu_res_sound_free(void *pModuleHandle, TSharedResPtr pRes);
 
 //all drawui functions may only be called from pre-ui and post-ui callbacks
 void bigpemu_drawui_get_virtual_canvas_size(float *pWHOut);
 void bigpemu_drawui_get_virtual_to_native_scales(float *pXYOut);
+//the display rectangle represents the display area for the emulated system.
+//rectangle is in the form of x0 (left), x1 (right), y0 (top), y1 (bottom)
+void bigpemu_drawui_get_virtual_display_rect(float *pRect);
 void bigpemu_drawui_text_ex(const char *pText, const float x, const float y, const float scale, const float *pRgba, const EDrawUITextJustify tj, const float wrapDist);
 void bigpemu_drawui_text(const char *pText, const float x, const float y, const float scale);
 uint32_t bigpemu_drawui_text_bounds_ex(float *pRectOut, const char *pText, const float scale, const float wrapDist); //returns 0 on failure
@@ -296,8 +366,47 @@ void bigpemu_drawui_outlined_rect(const float x, const float y, const float w, c
 void bigpemu_drawui_lines_ex(const float *pPoints, const uint32_t pointCount, const float width, const float *pRgba, const float innerWidth, const float hardness, const float *pSecRgba, const float attnDist);
 void bigpemu_drawui_lines(const float *pPoints, const uint32_t pointCount, const float width, const float *pRgba);
 
-//currently only basic non-attenuated/panned playback is supported through scripting
+uint32_t bigpemu_touch_count();
+//note that the actual touch at a given index may change across frames.
+//you should always use id instead of index to track touches across frames.
+//additionally, touches should always be queried on the main thread. there is the potential to miss single-frame touches
+//when querying from the emulator thread.
+void bigpemu_touch_info(TBigPEmuTouchInfo *pInfo, const int32_t touchIndex);
+//returns -1 if the touch id given is no longer active
+int32_t bigpemu_touch_index_for_id(const uint64_t id);
+//returns non-0 (BIGPEMU_TOUCHOL_* bits) if any touch overlay elements are intersected at the given position
+uint64_t bigpemu_touch_intersecting_overlay(const float *pPos, const float *pSize);
+void bigpemu_touch_set_prefer_hidden_elems(const uint64_t hideBits);
+
+//all listener params are 3d vectors (3 floats each)
+int32_t bigpemu_audio_loadir(const uint8_t *pData, const uint32_t dataSize); //pass NULL, 0 to get an index to the default/embedded hrir
+void bigpemu_audio_update_listener(const float *pPos, const float *pFwd, const float *pRight, const float *pUp);
+void bigpemu_audio_default_spatial(TBigPEmuSpatialAudio *pSpatial);
 void bigpemu_audio_play_sound(TSharedResPtr pRes);
+//ex version returns a sound id
+uint64_t bigpemu_audio_play_sound_ex(TSharedResPtr pRes, const uint32_t soundFlags, const TBigPEmuSpatialAudio *pSpatial);
+void bigpemu_audio_sound_update_spatial(const uint64_t soundId, const TBigPEmuSpatialAudio *pSpatial);
+void bigpemu_audio_sound_stop(const uint64_t soundId);
+uint32_t bigpemu_audio_sound_finished(const uint64_t soundId); //returns non-0 if sound is no longer playing
+
+void bigpemu_audio_resample(int16_t *pDst, const uint32_t dstCount, const int16_t *pSrc, const uint32_t srcCount, const uint32_t channelCount);
+//optionally, pDstRight may be NULL to automatically mix channels into pDstLeft
+void bigpemu_audio_stereo_deinterleave_and_expand(float *pDstLeft, float *pDstRight, const int16_t *pSrcSamples, const uint32_t sampleCount);
+void bigpemu_audio_stereo_interleave_and_compress(int16_t *pDstSamples, const float *pSrcLeft, const float *pSrcRight, const uint32_t sampleCount);
+void bigpemu_audio_mix_int16(int16_t *pInOut, const int16_t *pIn, const uint32_t sampleCount, const uint32_t flags); //(flags & 1) == treat samples as big-endian
+//note that pDftData requires sizeof(double) * 2 * sampleCount storage (interleaved real-imaginary values)
+void bigpemu_dft(double *pDftData, const float *pSampleData, const uint32_t sampleCount);
+void bigpemu_idft(float *pSampleData, const double *pDftData, const uint32_t sampleCount);
+void bigpemu_scale_signal(float *pSampleData, const uint32_t sampleCount, const float f);
+void bigpemu_bias_signal(float *pSampleData, const uint32_t sampleCount, const float f);
+void bigpemu_clamp_signal(float *pSampleData, const uint32_t sampleCount, const float minVal, const float maxVal);
+void bigpemu_replace_signal(float *pSampleData, const uint32_t sampleCount, const float minVal, const float maxVal, const float newVal);
+void bigpemu_rotate_signal_buffer(float *pSampleData, const uint32_t sampleCount, const uint32_t offset);
+float bigpemu_get_signal_mean(float *pSampleData, const uint32_t sampleCount);
+float bigpemu_get_signal_max(float *pSampleData, const uint32_t sampleCount);
+float bigpemu_get_signal_min(float *pSampleData, const uint32_t sampleCount);
+void bigpemu_quantize_dft_amplitudes(float *pBuckets, const double *pDftData, const uint32_t bucketCount, const uint32_t sampleCount, const uint32_t flags);
+void bigpemu_render_signal_rgba32(uint8_t *pRgbaOut, const uint32_t widthOut, const uint32_t heightOut, const float *pSamples, const uint32_t sampleCount, const float *pColorLow, const float *pColorHigh);
 
 int bigpemu_register_event_net_update(void *pModuleHandle, TBigPEmuEventCallback pCb);
 int bigpemu_register_event_net_receive(void *pModuleHandle, TBigPEmuEventCallback pCb);
@@ -320,11 +429,25 @@ uint32_t bigpemu_net_behind(const int32_t clientDestIndex);
 uint32_t bigpemu_net_hostmsg(char const *pFmt, ...); //may only be used on host
 uint32_t bigpemu_net_disconnect(const int32_t clientDestIndex);
 int32_t bigpemu_net_lastclient();
+//only valid from host, returns non-0 (string length) on success.
+//likely to return 0 in various circumstances, such as client information not yet arriving on host, disconnection, insufficient buffer size
+uint32_t bigpemu_net_client_name(char *pBuffer, const uint32_t bufferSize, const uint32_t clientIndex);
 
 //looks in the last used rom image directory for supported file types. returns the number of names in the pNameOffsets array, if any. may not be called from the emulator thread.
 uint32_t bigpemu_get_rom_dir_list(char *pNamesBuffer, const uint32_t namesBufferSize, uint32_t *pNameOffsets, const uint32_t maxNameCount);
 //loads an image from the last used rom image directory. accepts local names only. returns non-0 on success. may not be called from the emulator thread.
 uint32_t bigpemu_load_rom_from_current_dir(const char *pName);
+
+void bigpemu_set_named_var_data(const char *pName, const void *pData, const uint32_t dataSize);
+void bigpemu_get_named_var_data(void *pData, const char *pName, const uint32_t dataSize);
+
+//returns < 0 on failure (this means all overlay elements are claimed), otherwise the ol elem index
+int32_t bigpemu_claim_user_ol_elem();
+void bigpemu_set_user_ol_elem_data(const int32_t userElemIndex, const char *pLabel, const uint8_t *pInputData, const uint32_t inputCount, void *pResv);
+
+//returns non-0 on success
+uint32_t bigpemu_get_cfg_data_blob(void *pBlobData, uint32_t *pBlobSize, const uint32_t dataMaxSize, const char *pBlobName);
+uint32_t bigpemu_set_cfg_data_blob(const void *pBlobData, const uint32_t blobSize, const char *pBlobName);
 
 //these functions can be ok for one-off uses, but it's generally not recommend that you use them repeatedly.
 //performance is not good (not optimized at all), and unfreed allocs will remain leaked even after your module is unloaded.
@@ -438,8 +561,8 @@ double sqrt(const double x);
 //printf will only go to the log (if enabled), while printf_notify will also go through the menu/HUD notify system and be auto-endlined.
 int printf(char const *pFmt, ...);
 int printf_notify(char const *pFmt, ...);
-char *sprintf(char *pBuf, const char *pFmt, ...);
-char *vsprintf(char *pBuf, const char *pFmt, va_list ap);
+int sprintf(char *pBuf, const char *pFmt, ...);
+int vsprintf(char *pBuf, const char *pFmt, va_list ap);
 int sscanf(const char *pBuf, const char *pFmt, ...);
 
 char *strcpy(char *pDst, const char *pSrc);
@@ -472,6 +595,20 @@ uint64_t fs_read(void *pBuffer, const uint64_t readSize, const uint64_t fh);
 uint64_t fs_write(const void *pBuffer, const uint64_t writeSize, const uint64_t fh);
 uint64_t fs_get_size(const uint64_t fh);
 void fs_close(const uint64_t fh);
+
+#define BIGPEMU_VK_BACK			0x08
+#define BIGPEMU_VK_TAB			0x09
+#define BIGPEMU_VK_RETURN		0x0D
+#define BIGPEMU_VK_CONTROL		0x11
+#define BIGPEMU_VK_ESCAPE		0x1B
+#define BIGPEMU_VK_SPACE		0x20
+#define BIGPEMU_VK_LEFT			0x25
+#define BIGPEMU_VK_UP			0x26
+#define BIGPEMU_VK_RIGHT		0x27
+#define BIGPEMU_VK_DOWN			0x28
+#define BIGPEMU_VK_NUMPADKEYS	0x60 //0 .. 9
+#define BIGPEMU_VK_FKEYS		0x70 //F1 .. F24
+//A.. Z and 0..9 correspond to ASCII ranges
 
 #define BIGPEMU_MAX(a, b) (((a) >= (b)) ? a : b)
 #define BIGPEMU_MIN(a, b) (((a) <= (b)) ? a : b)

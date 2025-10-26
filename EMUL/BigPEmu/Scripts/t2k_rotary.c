@@ -111,6 +111,8 @@ void bigp_init()
 {
 	void *pMod = bigpemu_get_module_handle();
 	
+	bigpemu_set_module_usage_flags(pMod, BIGPEMU_MODUSAGE_DETERMINISMWARNING);
+	
 	sOnLoadEvent = bigpemu_register_event_sw_loaded(pMod, on_sw_loaded);
 }
 

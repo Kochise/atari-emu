@@ -105,6 +105,8 @@ void bigp_init()
 {
 	void *pMod = bigpemu_get_module_handle();
 	
+	bigpemu_set_module_usage_flags(pMod, BIGPEMU_MODUSAGE_DETERMINISMWARNING);
+	
 	const int catHandle = bigpemu_register_setting_category(pMod, "Wolf3D");
 	sEnableMouseLookHandle = bigpemu_register_setting_bool(catHandle, "Mouselook", WOLF3D_DEFAULT_MOUSELOOK);
 	sMouseLookSensHandle = bigpemu_register_setting_int_full(catHandle, "Sensitivity", WOLF3D_DEFAULT_MOUSESENS, 1, 128, 1);

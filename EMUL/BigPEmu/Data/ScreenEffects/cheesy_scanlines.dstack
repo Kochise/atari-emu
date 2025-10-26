@@ -66,7 +66,11 @@
 					}
 				],
                 "PixelGLSL": "cheesy_scanlines/cheesy_scanlines_ps.glsl",
-                "VertexGLSL": "util/copypass_vs.glsl"
+                "VertexGLSL": "util/copypass_vs.glsl",
+                "PixelESSL": "cheesy_scanlines/cheesy_scanlines_ps.essl",
+                "VertexESSL": "util/copypass_vs.essl",
+                "PixelDXBC": "cheesy_scanlines/cheesy_scanlines_ps.dxbc",
+                "VertexDXBC": "util/copypass_vs.dxbc"
             },
             {
 				"InheritPass": "ScanPass",
@@ -109,7 +113,11 @@
 					}
 				],
                 "PixelGLSL": "cheesy_scanlines/composite_ps.glsl",
-                "VertexGLSL": "util/copypass_vs.glsl"
+                "VertexGLSL": "util/copypass_vs.glsl",
+                "PixelESSL": "cheesy_scanlines/composite_ps.essl",
+                "VertexESSL": "util/copypass_vs.essl",
+                "PixelDXBC": "cheesy_scanlines/composite_ps.dxbc",
+                "VertexDXBC": "util/copypass_vs.dxbc"
             }
 		]
 	}

@@ -4,213 +4,11 @@
 
 #include "bigpcrt.h"
 
-#define AVP_SUPPORTED_HASH					0x1BCB3230DB41AA47ULL
+#include "avp_common.h"
 
 #define AVP_DAMAGE_TO_PLAYER_ENERGY_SCALE	5 //effectively scales pvp damage
 
-//tried to correlate naming to available source, where possible, but a lot of this is just reverse engineered from disassembly.
-#define AVP_CUR_LEVEL						0x0002F5AA //uint16
-#define AVP_NEW_LEVEL						0x0002F5AC //uint16
-#define AVP_NEW_X							0x0002F5AE //int32 (16:16 with maze coordinate packed in top 16, but whatever, just assume these sizes are correct and not much else)
-#define AVP_NEW_Y							0x0002F5B2 //int32
-
-#define AVP_MAZE_DATA						0x0004FC00
-#define AVP_MAZE_BLOCK_SIZE					8
-#define AVP_MAZE_PAD_DIMENSION				0
-#define AVP_MAZE_MAX_WIDTH					(128 + AVP_MAZE_PAD_DIMENSION)
-#define AVP_MAZE_MAX_HEIGHT					(128 + AVP_MAZE_PAD_DIMENSION)
-#define AVP_MAZE_MAX_BLOCK_COUNT			(AVP_MAZE_MAX_WIDTH * AVP_MAZE_MAX_HEIGHT)
-#define AVP_MAZE_MAX_SIZE					(AVP_MAZE_MAX_BLOCK_COUNT * AVP_MAZE_BLOCK_SIZE)
-
-#define AVP_AMPS_PTR						0x0002F1B4 //uint32
-#define AVP_GMPS_PTR						0x0002F1B8 //uint32
-#define AVP_CLIST_PTR						0x0002F1BC //uint32
-#define AVP_MAZE_WIDTH						0x0002F1C0 //int32
-#define AVP_MAZE_HEIGHT						0x0002F1C4 //int32
-#define AVP_SPRITE_RESCALE					0x0002F1C8 //uint16
-#define AVP_TRUE_WIDTH						0x0002F1CA //uint16
-#define AVP_CENTER_OFFSET					0x0002F1CC //uint16
-#define AVP_X_POS							0x0002F1CE //int32 (copied to $3EAD8)
-#define AVP_Y_POS							0x0002F1D2 //int32 (copied to $3EADC)
-#define AVP_CENTER_ANGLE					0x0002F1D6 //int32
-#define AVP_PLAYER_TYPE						0x0002F1DA //uint16
-#define AVP_END_COUNT						0x0002F1DE //uint16
-#define AVP_AMMO_SG							0x0002F214 //uint16
-#define AVP_NEW_WEAPS						0x0002F30A //uint8
-#define AVP_OLD_WEAPS						0x0002F30B //uint8
-#define AVP_NEW_WEAPNO						0x0002F30C //uint16
-#define AVP_FIRE_DAMAGE						0x0002F316 //uint16
-#define AVP_INIT_MOVE						0x00030A34 //uint32
-#define AVP_RESET_MOVE						0x00030A38 //uint32
-#define AVP_DO_MOVE							0x00030A3C //uint32
-#define AVP_NEW_POS							0x00030A40 //uint32
-#define AVP_OLD_POS							0x00030A44 //uint32
-#define AVP_ANG_VEL							0x00030A48 //uint16
-#define AVP_ANG_ACC							0x00030A4A //uint16
-#define AVP_MAX_AVEL						0x00030A4E //uint16
-#define AVP_ACC_SHIFT						0x00030A50 //uint16
-#define AVP_DECC_SHIFT						0x00030A52 //uint16
-#define AVP_X_VEL							0x00030A54 //uint32
-#define AVP_Y_VEL							0x00030A58 //uint32
-#define AVP_PLAYER_VEL						0x00030A5C //uint16
-#define AVP_PLAYER_DEAD						0x00030A60 //uint16
-#define AVP_GAME_OVER						0x00030A62 //uint16
-#define AVP_KEY_LOCK						0x00030A64 //uint16
-#define AVP_DESTRUCT_FLAG					0x00030A66 //uint16
-#define AVP_LAUNCH_FLAG						0x00030A68 //uint16
-#define AVP_PLAYER_ENERGY					0x00030A6A //uint16
-#define AVP_MAX_ENERGY						0x00030A6C //uint16
-#define AVP_MAX_SPEED						0x00030A6E //uint32
-#define AVP_PAIN_COLLS						0x00030A72 //uint32
-#define AVP_SCORE							0x00030A76 //uint32
-#define AVP_CHEAT							0x00030A7A //uint16
-#define AVP_PAIN							0x00030A7C //uint16
-#define AVP_OLD_ENERGY						0x00030A7E //uint16
-#define AVP_LAST_MOAN						0x00030A80 //uint16
-#define AVP_DISCFLAG						0x0003EAC2 //uint16
-#define AVP_NEW_MESSAGE						0x00039834 //uint32
-#define AVP_CHASE_X							0x0003EAD8 //int32
-#define AVP_CHASE_Y							0x0003EADC //int32
-#define AVP_AMP_PROXFLAG					0x00042AE0 //uint16
-#define AVP_INV_TABLE						0x00042AE8 //uint8[16]
-
-#define AVP_AMPOFS_XPOS						0 //int32
-#define AVP_AMPOFS_YPOS						4 //int32
-#define AVP_AMPOFS_MODE						8 //int32 (non-0 effectively means display/in-use)
-#define AVP_AMPOFS_CREATURE					12 //int16
-#define AVP_AMPOFS_ANIMSEQ					14 //int16
-#define AVP_AMPOFS_ANIMFRAME				16 //int16
-#define AVP_AMPOFS_ANGLE					18 //int16
-#define AVP_AMPOFS_TIMER					20 //int32
-#define AVP_AMPOFS_XVEL						24 //int16
-#define AVP_AMPOFS_LAUNCHAMP				24 //int16
-#define AVP_AMPOFS_YVEL						26 //int16
-#define AVP_AMPOFS_LDIR						28 //int16
-#define AVP_AMPOFS_XVEC						30 //int32
-#define AVP_AMPOFS_YVEC						34 //int32
-#define AVP_AMPOFS_ENERGY					38 //int16
-#define AVP_AMPOFS_OLDENERGY				40 //int16
-#define AVP_AMPOFS_FLAGWORD					42 //int16
-#define AVP_AMPOFS_YOFFSET					44 //int16
-#define AVP_AMPOFS_ASTYPE					46 //int16
-#define AVP_AMPSIZE							48 //always align to 4 byte boundary
-#define AVP_MAX_AMP_COUNT					300
-#define AVP_AMP_TOTAL_SIZE					(AVP_AMPSIZE * AVP_MAX_AMP_COUNT)
-#define AMP_FLAG_KILLABLE					(1 << 0)
-#define AMP_FLAG_DEADGEN					(1 << 1)
-#define AMP_FLAG_PLAYER						(1 << 2)
-#define AMP_FLAG_DEAD						(1 << 3)
-#define AMP_FLAG_COLLECT					(1 << 4)
-#define AMP_FLAG_MOTION						(1 << 5)
-#define AMP_FLAG_STUN						(1 << 6)
-#define AMP_FLAG_PHIT						(1 << 7)
-#define AMP_FLAG_CHATFLAG					(1 << 8)
-#define AMP_FLAG_EGGOPEN					(1 << 9)
-#define AMP_FLAG_CLOSEHIT					(1 << 10)
-#define AMP_FLAG_INVHIT						(1 << 11)
-#define AMP_FLAG_SSHIELD					(1 << 12)
-#define AMP_FLAG_ALTFRAME					(1 << 15)
-#define AMP_FLAG_AVATAR						(1 << 13) //claim an unused a bit
-#define AMP_DEFAULT_AVATAR_FLAGS			(AMP_FLAG_KILLABLE | AMP_FLAG_MOTION | AMP_FLAG_AVATAR)
-
-#define AVP_AVATAR_AMP_MODE					-1 //"static"
-#define AVP_CURLEVEL_INVALID				0xFFFFFFFF
-
-//not all of these are currently used, but figured i might as well leave some extras documented
-#define AVP_PCADDR_COLLECTIT				0x0000F940
-#define AVP_PCADDR_COLLECTIT_KILLEITHER		0x0000F91C
-#define AVP_PCADDR_COLLECTIT_KILLCF			0x0000F922
-#define AVP_PCADDR_COLLECTIT_KILLAMP		0x0000F938
-#define AVP_PCADDR_COLLECTIT_KILLGRID		0x0000F93C
-#define AVP_PCADDR_PLAYER_ATTACK_CHECK		0x0000FD1A
-#define AVP_PCADDR_PLAYER_SHOOTLOOP			0x0000FD24
-#define AVP_PCADDR_PLAYER_DAMAGE			0x0000FD9A //a1 = amp taking damage, d4/d5 = vec to amp, a4 = player x, a5 = player y, a6 = offset of hit
-#define AVP_PCADDR_PLAYER_DAMAGE_RET		0x0000FE0E
-#define AVP_PCADDR_CHECK_NEWLEVEL			0x0000C2FA //.not_comp
-#define AVP_PCADDR_PROCESS_ENDGAME			0x0000C5AC
-#define AVP_PCADDR_ENDGAME_DEATHYELL		0x0000C66A
-#define AVP_PCADDR_ENDGAME_RET				0x0000C6E4
-#define AVP_PCADDR_LIFT_DOOR				0x0001156A
-#define AVP_PCADDR_LIFT_DOOR_ABORT			0x00011712
-#define AVP_PCADDR_NORMAL_DOOR				0x00011670
-#define AVP_PCADDR_MOVEDOORS				0x00011832
-#define AVP_PCADDR_CHECK_ACCESS				0x00011B7E
-#define AVP_PCADDR_NO_ACCSND				0x00011C2A
-#define AVP_PCADDR_SAFEPOS					0x000121A0
-#define AVP_PCADDR_MAKE_AMP					0x00015078
-#define AVP_PCADDR_REBUILD_LEVEL			0x000150C0
-#define AVP_PCADDR_RAM_SAVE					0x00015176
-#define AVP_PCADDR_AMP_REQ					0x000151E2
-#define AVP_PCADDR_AMP_RELEASE				0x00015226
-#define AVP_PCADDR_SAVE_LEVEL				0x00015242
-#define AVP_PCADDR_RESTORE_LEVEL			0x00015272
-#define AVP_PCADDR_RAND_SET					0x000153FA
-#define AVP_PCADDR_UPDATE_AMPS				0x00015478
-#define AVP_PCADDR_AMP_SLEEP				0x000156F4
-#define AVP_PCADDR_AMP_SLEEP_TEST			0x00015700
-#define AVP_PCADDR_AMP_DAMAGE_CHK			0x000157EE
-#define AVP_PCADDR_AMP_CLOSE_FIGHT			0x00015836
-#define AVP_PCADDR_AMP_CHKFAR				0x0001596A
-#define AVP_PCADDR_AMP_HUMANMOVES			0x00015A94
-#define AVP_PCADDR_AMP_OK_TO_MOVE			0x00015B8A
-#define AVP_PCADDR_AMP_NOFACE				0x00015C86
-#define AVP_PCADDR_AMP_RANGE_PLAYER			0x000163D0
-#define AVP_PCADDR_AMP_THROWDISC			0x00016AEA
-#define AVP_PCADDR_AMP_THROWDISC_RET		0x00016B7A
-#define AVP_PCADDR_AMP_PRE_DISCMODE			0x00016B7C
-#define AVP_PCADDR_AMP_LAUNCFIRE			0x00016C92
-#define AVP_PCADDR_AMP_LAUNCHIT				0x00016CB8
-#define AVP_PCADDR_AMP_LAUNCHIT_P0			0x00016D84
-#define AVP_PCADDR_AMP_LAUNCHIT_P1			0x00016DE8
-#define AVP_PCADDR_AMP_LAUNCHIT_P2			0x00016E4C
-#define AVP_PCADDR_AMP_LAUNCHIT_P3			0x00016EB8
-#define AVP_PCADDR_AMP_PRE_FLAMEON			0x00016EBA
-#define AVP_PCADDR_AMP_FLAMEON				0x00016ED0
-#define AVP_PCADDR_AMP_LASER				0x00017018
-#define AVP_PCADDR_AMP_LASER_RET			0x00017120
-#define AVP_PCADDR_AMP_WEAPON_HIT			0x0001718C
-#define AVP_PCADDR_AMP_WEAPON_HIT_RET		0x0001719C
-#define AVP_PCADDR_AMP_CHK_SQUARE			0x00017226
-#define AVP_PCADDR_PLAYER_WEAPON			0x00017636
-#define AVP_PCADDR_PLAYER_WEAPON_RET		0x000176E2
-#define AVP_PCADDR_AMP_FIRE_HUG				0x00017CF6
-#define AVP_PCADDR_AMP_FIRE_HUG_RET			0x00017D62
-#define AVP_PCADDR_AMP_EXPLOSION			0x00018380
-#define AVP_PCADDR_AMP_EXPLOSION_RET		0x00018430
-#define AVP_PCADDR_OCCUPY_SQR				0x00017860
-#define AVP_PCADDR_MAKE_SPARK				0x00018932
-#define AVP_PCADDR_MAKE_SPARK_RET			0x00018A26
-#define AVP_PCADDR_WEP_SFX					0x00009C3A
-#define AVP_PCADDR_SFX						0x00009C6C
-
-#define AVP_COLLMAP							0x0003EAE0
-#define AVP_OBJMAP							0x00040AE0
-#define AVP_COLLMAP_SIZE					((64 * 2) * 64)
-#define AVP_OBJMAP_SIZE						((64 * 2) * 64)
-#define AVP_COLLMAP_GROUP_SIZE				256
-#define AVP_COLLMAP_GROUP_COUNT				(AVP_COLLMAP_SIZE / AVP_COLLMAP_GROUP_SIZE)
-#define AVP_OBJMAP_GROUP_SIZE				256
-#define AVP_OBJMAP_GROUP_COUNT				(AVP_OBJMAP_SIZE / AVP_COLLMAP_GROUP_SIZE)
-
-#define AVP_PT_HUMAN						0
-#define AVP_PT_ALIEN						4
-#define AVP_PT_PREDATOR						8
-#define AVP_AC_ALIEN						0
-#define AVP_AC_PREDATOR						1
-#define AVP_AC_HUMAN						2
-#define AVP_AC_EGG							3
-#define AVP_AC_FACEHUG						4
-#define AVP_AC_ACRAWL						5
-#define AVP_AC_SMART						6
-#define AVP_AC_BOLT							7
-#define AVP_AC_FIRE							8
-
-#define AVP_HUWEAP_SG						(1 << 1)
-#define AVP_HUWEAP_AR						(1 << 2)
-#define AVP_HUWEAP_FT						(1 << 3)
-#define AVP_HUWEAP_CG						(1 << 4)
-
-#define AVP_PROTOCOL_VERSION				124
+#define AVP_PROTOCOL_VERSION				125
 #define AVP_NET_MAZEBLOCKS_PER_MSG					1
 #define AVP_NET_MAZEGROUP_SIZE						(AVP_NET_MAZEBLOCKS_PER_MSG * AVP_MAZE_BLOCK_SIZE)
 //message id is an arbitrary 16-bit value used to track delta compression behind the scenes.
@@ -240,20 +38,59 @@
 
 #define MAX_AVP_CLIENTS								32
 #define AVP_MAX_PENDING_ACTIONS						32
+#define AVP_MAX_HOST_MESSAGES						4
+#define AVP_MAX_HOST_MESSAGE_SIZE					1024
 
-#define AVP_CLIENTDRIVEN_DIST						((128 * 7) << 8)
+#define AVP_CLIENTDRIVEN_CHECK_DIST					((128 * 7) << 8)
+#define AVP_CLIENTDRIVEN_REAL_DIST					(9.0f)
+#define AVP_CLIENTDRIVEN_REAL_DIST_SQ				(AVP_CLIENTDRIVEN_REAL_DIST * AVP_CLIENTDRIVEN_REAL_DIST)
 #define AVP_PROJ_HIT_CLIENT_DIST					(0.3f)
 #define AVP_PROJ_HIT_CLIENT_DIST_SQ					(AVP_PROJ_HIT_CLIENT_DIST * AVP_PROJ_HIT_CLIENT_DIST)
 #define AVP_MAX_DISTANCE_FOR_BROADCAST_SFX			(20.0f)
 #define AVP_MAX_DISTANCE_FOR_BROADCAST_SFX_SQ		(AVP_MAX_DISTANCE_FOR_BROADCAST_SFX * AVP_MAX_DISTANCE_FOR_BROADCAST_SFX)
 
+#define AVP_GAMEFLAG_INFINITE_SHOTGUN				(1 << 0)
+#define AVP_GAMEFLAG_PVPDMGEXP_OFFSET				1
+#define AVP_GAMEFLAG_PVPDMGEXP_BITS					3
+#define AVP_GAMEFLAG_PVPDMGEXP_MASK					(((1 << AVP_GAMEFLAG_PVPDMGEXP_BITS) - 1) << AVP_GAMEFLAG_PVPDMGEXP_OFFSET)
+
 //sorry, this one's sloppier than usual, i've got the plague at the moment and i'm just trying to hack this into being functional enough to demo.
 //this is all the excuse i can offer, but in truth, it's mostly just that i don't care enough. i'm at least still trying to comment enough to make this useful as an example.
 //oh yeah, and this is full of security holes, but caring about that in this context would also be silly.
 
+typedef enum
+{
+	kAVPMPOption_InfiniteShotgun = 0,
+	kAVPMPOption_PVPDamageExp,
+	kAVPMPOption_DeathMessages,
+	kAVPMPOption_Count
+} EAVPMPOption;
+
 typedef struct
 {
-	int32_t mVersion;
+	const char *mpName;
+	const EBigPEmuSettingType mType;
+	const int32_t mDefaultValue;
+	const int32_t mMinValue;
+	const int32_t mMaxValue;
+	const int32_t mStepValue;
+	int32_t mHandle;
+	int32_t mValue;
+} TAVPMPOption;
+
+static TAVPMPOption sAVPMPOptions[kAVPMPOption_Count] =
+{
+	{ "Infinite Shotgun Ammo", kBPE_VMSetting_Bool, 0, 0, 1, 1, -1, 0 },
+	{ "PVP Damage Exponent", kBPE_VMSetting_Int, 1, 1, (1 << AVP_GAMEFLAG_PVPDMGEXP_BITS), 1, -1, -1 },
+	{ "Death Messages", kBPE_VMSetting_Bool, 1, 0, 1, 1, -1, 0 },
+};
+
+#define AVPMP_OPTVAL(opt) sAVPMPOptions[opt].mValue
+
+typedef struct
+{
+	uint16_t mVersion;
+	uint16_t mAccessLevel;
 	int32_t mClientIndex;
 	int32_t mAMPIndex;
 	uint32_t mPos[2];
@@ -269,7 +106,8 @@ typedef struct
 
 typedef struct
 {
-	int32_t mVersion;	
+	uint16_t mVersion;	
+	uint16_t mGameFlags;
 	uint32_t mHostPos[2];
 	uint64_t mFrameCount;
 	uint16_t mCurLevel;
@@ -282,6 +120,7 @@ typedef struct
 	int32_t mClientIndex;
 	uint32_t mCurLevel;
 	uint32_t mA0;
+	uint32_t mA4;
 	uint16_t mD4;
 	uint16_t mD5;
 	uint16_t mD1;
@@ -299,9 +138,13 @@ typedef struct
 } TAVPPlayerDamage;
 
 #define SFX_R3_NO_LOCALIZE		0x12345666
+#define SFX_TYPE_STANDARD		0
+#define SFX_TYPE_MESSAGE		1
+#define SFX_MESSAGE_DEATH		0
 typedef struct
 {
-	uint32_t mCurLevel;
+	uint16_t mCurLevel;
+	uint16_t mType;
 	int32_t mClientIndex;
 	int32_t mPos[2];
 	uint32_t mDRegs[4];
@@ -320,6 +163,11 @@ typedef struct
 	uint32_t mLocalFlags;
 	int32_t mClientController;
 } TLocalAMPState;
+
+typedef struct
+{
+	char mMsg[AVP_MAX_HOST_MESSAGE_SIZE];
+} TAVPHostMessage;
 
 //always assumed that this will be larger than any other socket data
 #define AVP_NET_BUFFER_SIZE					(sizeof(TAVPGameState) + AVP_AMP_TOTAL_SIZE + AVP_MAZE_MAX_SIZE + AVP_COLLMAP_SIZE + AVP_OBJMAP_SIZE)
@@ -352,6 +200,9 @@ static uint32_t sAVPAMPDriveRequestCount = 0;
 static uint8_t sAVPTransferAMPData[AVP_MAX_TRANSFER_AMP_SIZE];
 static uint32_t sAVPTransferAMPDataSize = 0;
 
+static TAVPHostMessage sAVPHostMessages[AVP_MAX_HOST_MESSAGES];
+static uint32_t sAVPHostMsgCount = 0;
+
 static TAVPPlayerState sClientStates[MAX_AVP_CLIENTS];
 static uint32_t sClientHurt[MAX_AVP_CLIENTS];
 
@@ -373,6 +224,9 @@ static uint64_t sLocalFrameCount = 0;
 static uint32_t sCurMazeWidth = 0;
 static uint32_t sCurMazeHeight = 0;
 static int32_t sCurLevelLocal = -1;
+static uint32_t sAirlockLevel = 0;
+static int32_t sLastDoorClientIndex = -1;
+static uint32_t sLastDoorPanelAddress = 0;
 
 static int32_t sSafeSpotLevel = -1;
 static uint32_t sSafeSpotPos[2];
@@ -380,6 +234,7 @@ static uint32_t sSafeSpotPos[2];
 static int32_t sOnLoadEvent = -1;
 static int32_t sOnNetUpdateEvent = -1;
 static int32_t sOnNetReceiveEvent = -1;
+static int32_t sOnVideoEvent = -1;
 
 static uint32_t sDidShowNetWarning = 0;
 
@@ -440,6 +295,15 @@ static uint32_t get_maze_group_count()
 #endif
 }
 
+static uint32_t client_is_active(TAVPPlayerState *pCS)
+{
+	if (pCS->mClientIndex < 0 || pCS->mSWHash != AVP_SUPPORTED_HASH || pCS->mCurLevel != sCurLevelLocal)
+	{
+		return 0;
+	}
+	return 1;
+}
+
 static void avp_lift_door(const uint32_t addr)
 {
 	const ESharedNetConnectionType connType = bigpemu_net_connection_type();
@@ -454,6 +318,7 @@ static void avp_lift_door(const uint32_t addr)
 		TAVPRemoteOpenDoor *pRemOpen = &sAVPOpenDoorActions[sAVPOpenDoorActionCount++];
 		pRemOpen->mCurLevel = bigpemu_jag_read16(AVP_CUR_LEVEL);
 		pRemOpen->mA0 = bigpemu_jag_m68k_get_areg(0);
+		pRemOpen->mA4 = bigpemu_jag_m68k_get_areg(4);
 		pRemOpen->mD4 = bigpemu_jag_m68k_get_dreg(4) & 0xFFFF;
 		pRemOpen->mD5 = bigpemu_jag_m68k_get_dreg(5) & 0xFFFF;
 		pRemOpen->mD1 = bigpemu_jag_m68k_get_dreg(1) & 0xFFFF;
@@ -461,6 +326,42 @@ static void avp_lift_door(const uint32_t addr)
 	}
 	//abort local code path
 	bigpemu_jag_m68k_set_pc(AVP_PCADDR_LIFT_DOOR_ABORT);
+}
+
+static void avp_airlock_pre_find_exit(const uint32_t addr)
+{
+	const ESharedNetConnectionType connType = bigpemu_net_connection_type();
+	if (bigpemu_net_current_device() != kSharedNetDev_Script || connType != kSharedNetConn_Host)
+	{
+		return;
+	}
+	
+	const uint32_t newLevel = (uint32_t)bigpemu_jag_read16(AVP_NEW_LEVEL);
+	sAirlockLevel = newLevel;
+}
+
+static void avp_airlock_post_find_exit(const uint32_t addr)
+{
+	const ESharedNetConnectionType connType = bigpemu_net_connection_type();
+	if (bigpemu_net_current_device() != kSharedNetDev_Script || connType != kSharedNetConn_Host)
+	{
+		return;
+	}
+	
+	const uint32_t newLevel = (uint32_t)bigpemu_jag_read16(AVP_NEW_LEVEL);
+	if (sAirlockLevel == newLevel && sLastDoorClientIndex >= 0 && sLastDoorPanelAddress)
+	{
+		TAVPPlayerState *pDoorCS = &sClientStates[sLastDoorClientIndex];
+		sLastDoorClientIndex = -1;
+		//failed to find a new level, try the position of the last door client
+		if (client_is_active(pDoorCS))
+		{
+			bigpemu_jag_write16(AVP_NEW_X + 2, (pDoorCS->mPos[0] & 0xFFFF));
+			bigpemu_jag_write16(AVP_NEW_Y + 2, (pDoorCS->mPos[1] & 0xFFFF));
+			bigpemu_jag_m68k_set_areg(4, sLastDoorPanelAddress);
+			bigpemu_jag_m68k_set_pc(AVP_PCADDR_AIRLOCK_PRE_FIND_EXIT);
+		}
+	}
 }
 
 static uint32_t sRestore68KRegs = 0;
@@ -528,6 +429,12 @@ static void perform_68k_call(const uint32_t retAddr, const uint32_t callAddr)
 	bigpemu_jag_m68k_set_pc(callAddr);
 }
 
+static uint32_t pvp_scaled_damage(const uint32_t dmg)
+{
+	const uint32_t shiftAmount = (spGS->mVersion == AVP_PROTOCOL_VERSION) ? ((spGS->mGameFlags & AVP_GAMEFLAG_PVPDMGEXP_MASK) >> AVP_GAMEFLAG_PVPDMGEXP_OFFSET) : 0;
+	return dmg * (AVP_DAMAGE_TO_PLAYER_ENERGY_SCALE << shiftAmount);
+}
+
 static void relinquish_client_controller_and_redirect_player_damage(const uint32_t ampObjAddr, const uint32_t dmg)
 {
 	//see if the thing being damaged is client-controlled, and if so, steal control back
@@ -548,21 +455,12 @@ static void relinquish_client_controller_and_redirect_player_damage(const uint32
 				if (sClientStates[clientIndex].mAMPIndex == ampIndex)
 				{
 					//printf("set hurt: cl:%i dmg:%i\n", clientIndex, dmg);
-					sClientHurt[clientIndex] += (dmg * AVP_DAMAGE_TO_PLAYER_ENERGY_SCALE);
+					sClientHurt[clientIndex] += pvp_scaled_damage(dmg);
 					break;
 				}
 			}			
 		}
 	}
-}
-
-static uint32_t client_is_active(TAVPPlayerState *pCS)
-{
-	if (pCS->mClientIndex < 0 || pCS->mSWHash != AVP_SUPPORTED_HASH || pCS->mCurLevel != sCurLevelLocal)
-	{
-		return 0;
-	}
-	return 1;
 }
 
 static uint32_t amp_is_killable(const uint32_t ampObjAddr)
@@ -581,6 +479,61 @@ static void amp_remove_from_collmap(const uint32_t ampObjAddr)
 	iy <<= 7;
 	const int32_t iAddr = iy + ux + AVP_COLLMAP;
 	bigpemu_jag_write16(iAddr, 0);
+}
+
+static void broadcast_sfx_message(const uint32_t msgId, const uint32_t param0, const uint32_t param1, const uint32_t param2)
+{
+	if (sAVPBroadcastSFXOutCount < AVP_MAX_PENDING_ACTIONS && sLocalClientIndex >= 0)
+	{
+		TAVPBroadcastSFX *pSfx = &sAVPBroadcastSFXOut[sAVPBroadcastSFXOutCount++];
+		pSfx->mCurLevel = (uint16_t)sCurLevelLocal;
+		pSfx->mType = SFX_TYPE_MESSAGE;
+		pSfx->mClientIndex = sLocalClientIndex;
+		pSfx->mPos[0] = 0;
+		pSfx->mPos[1] = 0;
+		pSfx->mDRegs[0] = msgId;
+		pSfx->mDRegs[1] = param0;
+		pSfx->mDRegs[2] = param1;
+		pSfx->mDRegs[3] = param2;
+	}	
+}
+
+static void host_process_sfx_message(const uint32_t clientIndex, const uint32_t msgId, const uint32_t param0, const uint32_t param1, const uint32_t param2)
+{
+	switch (msgId)
+	{
+	case SFX_MESSAGE_DEATH:
+		if (bigpemu_net_connection_type() == kSharedNetConn_Host && sAVPHostMsgCount < AVP_MAX_HOST_MESSAGES)
+		{
+			TAVPHostMessage *pMsg = &sAVPHostMessages[sAVPHostMsgCount];
+			uint32_t msgOfs = bigpemu_net_client_name(pMsg->mMsg, AVP_MAX_HOST_MESSAGE_SIZE, clientIndex);
+			if (!msgOfs)
+			{
+				msgOfs = sprintf(pMsg->mMsg, "Client %i", clientIndex);
+			}
+			
+			char *pDeathMsg = &pMsg->mMsg[msgOfs];
+			const uint32_t r = (rand() % 100);
+			switch (param1)
+			{
+			case AVP_PT_HUMAN:
+			default:
+				strcpy(pDeathMsg, (r <= 3) ? " is with Bill Paxton now." : " became another casualty.");
+				break;
+			case AVP_PT_ALIEN:
+				strcpy(pDeathMsg, " returned to the mothership.");
+				break;
+			case AVP_PT_PREDATOR:
+				strcpy(pDeathMsg, (r <= 3) ? " has been Terminated." : " lost another mandible.");
+				break;
+			}
+			++sAVPHostMsgCount;
+		}
+		break;
+	default:
+		assert(0);
+		break;
+	}
 }
 
 static void avp_player_dmg(const uint32_t addr)
@@ -639,7 +592,7 @@ static void avp_sleep_test(const uint32_t addr)
 	
 	TLocalAMPState *pLAMP = &sLocalAMP[ampIndex];	
 	const int32_t clientControllerIndex = pLAMP->mClientController;
-	
+
 	const uint32_t isKillable = amp_is_killable(ampObjAddr);
 	if (connType == kSharedNetConn_Client)
 	{		
@@ -647,7 +600,7 @@ static void avp_sleep_test(const uint32_t addr)
 		if (clientControllerIndex < 0 && isKillable)
 		{			
 			const uint32_t awakeDist = bigpemu_jag_m68k_get_dreg(1);
-			if (awakeDist <= AVP_CLIENTDRIVEN_DIST)
+			if (awakeDist <= AVP_CLIENTDRIVEN_CHECK_DIST)
 			{
 				TAVPGameState *pGS = spGS;
 				TAVPPlayerState *pFirstCS = sClientStates;
@@ -656,7 +609,7 @@ static void avp_sleep_test(const uint32_t addr)
 					const int32_t xy[2] = { (int32_t)bigpemu_jag_read32(ampObjAddr + AVP_AMPOFS_XPOS), (int32_t)bigpemu_jag_read32(ampObjAddr + AVP_AMPOFS_YPOS) };
 					const float lHost = calc_squared_distance((int32_t *)pGS->mHostPos, xy);
 					const float lCl = calc_squared_distance((int32_t *)pFirstCS->mPos, xy);
-					if (lCl < lHost)
+					if (lCl < lHost && lCl <= AVP_CLIENTDRIVEN_REAL_DIST_SQ)
 					{
 						//for now, only make one drive request per net update
 						if (sAVPAMPDriveRequestCount == 0)
@@ -678,8 +631,33 @@ static void avp_sleep_test(const uint32_t addr)
 	}
 	else if (clientControllerIndex >= 0)
 	{
-		//otherwise, on the server, force it to sleep if it's client-driven
-		if (isKillable && client_is_active(&sClientStates[clientControllerIndex]))
+		TAVPPlayerState *pDriverCS = &sClientStates[clientControllerIndex];
+		uint32_t keepDriver = 0;
+		if (isKillable && client_is_active(pDriverCS))
+		{
+			const int32_t xy[2] = { (int32_t)bigpemu_jag_read32(ampObjAddr + AVP_AMPOFS_XPOS), (int32_t)bigpemu_jag_read32(ampObjAddr + AVP_AMPOFS_YPOS) };
+			const float driverDistSq = calc_squared_distance((int32_t *)pDriverCS->mPos, xy);
+			uint32_t closestIndex = 0;
+			float closestDistSq = calc_squared_distance((int32_t *)sClientStates[0].mPos, xy);
+			for (uint32_t clientIndex = 1; clientIndex < MAX_AVP_CLIENTS; ++clientIndex)
+			{
+				const float checkDistSq = calc_squared_distance((int32_t *)sClientStates[clientIndex].mPos, xy);
+				if (checkDistSq < closestDistSq)
+				{
+					closestIndex = clientIndex;
+					closestDistSq = checkDistSq;
+				}
+			}
+			
+			//kill the driver if someone else is at least twice as close, sending control back to the host and giving another client a chance to drive
+			if (closestDistSq >= (driverDistSq * 0.5f))
+			{
+				keepDriver = 1;
+			}
+		}
+		
+		//otherwise, on the server, force it to sleep if it's client-driven and within distance to that client
+		if (keepDriver)
 		{
 			bigpemu_jag_write16(AVP_AMP_PROXFLAG, 0);
 		}
@@ -764,7 +742,7 @@ static void avp_projectile_test(const uint32_t addr)
 				if (otherClAmpIndex == launchAmp)
 				{
 					//it's from another player
-					dmg *= AVP_DAMAGE_TO_PLAYER_ENERGY_SCALE;
+					dmg = pvp_scaled_damage(dmg);
 					break;
 				}
 			}
@@ -781,11 +759,25 @@ static void avp_projectile_test(const uint32_t addr)
 
 static void avp_death(const uint32_t addr)
 {
-	if (bigpemu_net_current_device() != kSharedNetDev_Script || bigpemu_net_connection_type() == kSharedNetConn_None)
+	const ESharedNetConnectionType connType = bigpemu_net_connection_type();
+	if (bigpemu_net_current_device() != kSharedNetDev_Script || connType == kSharedNetConn_None)
 	{
 		return;
 	}
 
+	//possible todo - could set flags on various events to have some extra fun with cause-of-death-based messages.
+	//for now, just send a generic message.
+	const uint32_t deathFlags = 0;
+	const uint32_t deathType = bigpemu_jag_read16(AVP_PLAYER_TYPE);
+	if (connType == kSharedNetConn_Client)
+	{
+		broadcast_sfx_message(SFX_MESSAGE_DEATH, deathFlags, deathType, 0);
+	}
+	else
+	{
+		host_process_sfx_message(0, SFX_MESSAGE_DEATH, deathFlags, deathType, 0);
+	}
+	
 	//respawn them instead of going to game over
 	//possible todo - leave a corpse amp for fun
 	bigpemu_jag_write32(AVP_NEW_MESSAGE, 0);
@@ -839,7 +831,8 @@ static void avp_playerlocal_sfx(const uint32_t addr)
 	if (sAVPBroadcastSFXOutCount < AVP_MAX_PENDING_ACTIONS && sLocalClientIndex >= 0)
 	{
 		TAVPBroadcastSFX *pSfx = &sAVPBroadcastSFXOut[sAVPBroadcastSFXOutCount++];
-		pSfx->mCurLevel = sCurLevelLocal;
+		pSfx->mCurLevel = (uint16_t)sCurLevelLocal;
+		pSfx->mType = SFX_TYPE_STANDARD;
 		pSfx->mClientIndex = sLocalClientIndex;
 		pSfx->mPos[0] = (int32_t)bigpemu_jag_read32(AVP_X_POS);
 		pSfx->mPos[1] = (int32_t)bigpemu_jag_read32(AVP_Y_POS);
@@ -860,7 +853,8 @@ static void avp_global_sfx(const uint32_t addr)
 	if (sAVPBroadcastSFXOutCount < AVP_MAX_PENDING_ACTIONS && sLocalClientIndex >= 0)
 	{
 		TAVPBroadcastSFX *pSfx = &sAVPBroadcastSFXOut[sAVPBroadcastSFXOutCount++];
-		pSfx->mCurLevel = sCurLevelLocal;
+		pSfx->mCurLevel = (uint16_t)sCurLevelLocal;
+		pSfx->mType = SFX_TYPE_STANDARD;
 		pSfx->mClientIndex = sLocalClientIndex;
 		pSfx->mPos[0] = 0;
 		pSfx->mPos[1] = 0;
@@ -888,6 +882,7 @@ static void avp_collect_killamp(const uint32_t addr)
 static void fill_client_state_from_local_data(TAVPPlayerState *pCS)
 {
 	pCS->mVersion = AVP_PROTOCOL_VERSION;
+	pCS->mAccessLevel = (uint16_t)bigpemu_jag_read8(AVP_ACCESS_LEVEL);
 	pCS->mClientIndex = sLocalClientIndex;
 	pCS->mSWHash = (sAVPLoaded) ? AVP_SUPPORTED_HASH : 0;
 	pCS->mOldPos[0] = pCS->mPos[0];
@@ -974,6 +969,10 @@ static void avp_check_newlevel(const uint32_t addr)
 			fill_client_state_from_local_data(pFirstCS);
 			
 			pGS->mVersion = AVP_PROTOCOL_VERSION;
+			//options are always accessed through game flags.
+			//this way we don't have to care about whether something is running on the client or the server, the server always decides policy.
+			pGS->mGameFlags = AVPMP_OPTVAL(kAVPMPOption_InfiniteShotgun) ? AVP_GAMEFLAG_INFINITE_SHOTGUN : 0;
+			pGS->mGameFlags |= ((AVPMP_OPTVAL(kAVPMPOption_PVPDamageExp) - 1) << AVP_GAMEFLAG_PVPDMGEXP_OFFSET);
 			pGS->mHostPos[0] = bigpemu_jag_read32(AVP_X_POS);
 			pGS->mHostPos[1] = bigpemu_jag_read32(AVP_Y_POS);
 			pGS->mFrameCount = sLocalFrameCount;
@@ -1152,9 +1151,13 @@ static void avp_check_newlevel(const uint32_t addr)
 					
 					//conveniently, we can call right in from here, return and hit this breakpoint, then restore the registers before proceeding
 					bigpemu_jag_m68k_set_areg(0, pOpen->mA0);
+					bigpemu_jag_m68k_set_areg(4, 0); //intentionally zero it out to special-case things like airlocks
 					bigpemu_jag_m68k_set_dreg(4, pOpen->mD4 | (bigpemu_jag_m68k_get_dreg(4) & 0xFFFF0000));
 					bigpemu_jag_m68k_set_dreg(5, pOpen->mD5 | (bigpemu_jag_m68k_get_dreg(5) & 0xFFFF0000));
 					bigpemu_jag_m68k_set_dreg(1, pOpen->mD1 | (bigpemu_jag_m68k_get_dreg(1) & 0xFFFF0000));
+					
+					sLastDoorClientIndex = pOpen->mClientIndex;
+					sLastDoorPanelAddress = pOpen->mA4;
 					
 					perform_68k_call(addr, AVP_PCADDR_LIFT_DOOR);
 				}					
@@ -1265,6 +1268,21 @@ static void avp_check_newlevel(const uint32_t addr)
 				}
 			}
 			
+			//continuously verify client-driven AMPs are in a valid driving state
+			for (uint32_t ampIndex = 0; ampIndex < AVP_MAX_AMP_COUNT; ++ampIndex)
+			{
+				TLocalAMPState *pLAMP = &sLocalAMP[ampIndex];
+				if (pLAMP->mClientController >= 0)
+				{
+					const uint32_t ampObjAddr = ampBaseAddr + ampIndex * AVP_AMPSIZE;
+					TAVPPlayerState *pDriverCS = &sClientStates[pLAMP->mClientController];
+					if (!amp_is_killable(ampObjAddr) || !client_is_active(pDriverCS))
+					{
+						pLAMP->mClientController = -1;
+					}
+				}
+			}
+
 			//make sure it's toggled on for the dataset that'll go to everyone else
 			if (sLocalClientIndex >= 0)
 			{
@@ -1368,14 +1386,27 @@ static void avp_check_newlevel(const uint32_t addr)
 	
 	if (connType != kSharedNetConn_None)
 	{
-		if (pFirstCS->mType == AVP_PT_HUMAN && sCurLevelLocal != 3)
+		if (pFirstCS->mType == AVP_PT_HUMAN)
 		{
-			//if human and the host has left the first level, make sure they've at least got a shotgun
 			const uint8_t weaps = bigpemu_jag_read8(AVP_NEW_WEAPS);
-			if (!(weaps & AVP_HUWEAP_SG) && !bigpemu_jag_read16(AVP_NEW_LEVEL))
+			if (sCurLevelLocal != 3)
 			{
-				bigpemu_jag_write8(AVP_NEW_WEAPS, weaps | AVP_HUWEAP_SG);
-				if (bigpemu_jag_read16(AVP_AMMO_SG) == 0)
+				//if human and the host has left the first level, make sure they've at least got a shotgun
+				if (!(weaps & AVP_HUWEAP_SG) && !bigpemu_jag_read16(AVP_NEW_LEVEL))
+				{
+					bigpemu_jag_write8(AVP_NEW_WEAPS, weaps | AVP_HUWEAP_SG);
+					bigpemu_jag_write16(AVP_NEW_WEAPNO, 1); //immediately select the new weapon
+					if (bigpemu_jag_read16(AVP_AMMO_SG) == 0)
+					{
+						bigpemu_jag_write16(AVP_AMMO_SG, 0x0B);
+					}
+				}
+			}
+			
+			if (pGS->mVersion == AVP_PROTOCOL_VERSION)
+			{
+				//if the infinite shotgun flag is set by the host, keep the ammo fixed
+				if ((pGS->mGameFlags & AVP_GAMEFLAG_INFINITE_SHOTGUN) && (weaps & AVP_HUWEAP_SG))
 				{
 					bigpemu_jag_write16(AVP_AMMO_SG, 0x0B);
 				}
@@ -1385,50 +1416,61 @@ static void avp_check_newlevel(const uint32_t addr)
 		if (sAVPBroadcastSFXInCount && !sRestore68KRegs)
 		{
 			TAVPBroadcastSFX *pSfx = &sAVPBroadcastSFXIn[sAVPBroadcastSFXInCount - 1];
-			if (pSfx->mCurLevel == sCurLevelLocal && pSfx->mClientIndex != sLocalClientIndex)
+			switch (pSfx->mType)
 			{
-				if (pSfx->mDRegs[3] == SFX_R3_NO_LOCALIZE)
+			case SFX_TYPE_STANDARD:
+				if (pSfx->mCurLevel == sCurLevelLocal && pSfx->mClientIndex != sLocalClientIndex)
 				{
-					full_68k_reg_backup();
-					bigpemu_jag_m68k_set_dreg(0, pSfx->mDRegs[0]);
-					bigpemu_jag_m68k_set_dreg(1, pSfx->mDRegs[1]);
-					bigpemu_jag_m68k_set_dreg(2, pSfx->mDRegs[2]);					
-					perform_68k_call(addr, AVP_PCADDR_SFX);
-				}
-				else
-				{
-					const int32_t xy[2] = { (int32_t)bigpemu_jag_read32(AVP_X_POS), (int32_t)bigpemu_jag_read32(AVP_Y_POS) };
-					const float sfxDistSq = calc_squared_distance(pSfx->mPos, xy);
-					if (sfxDistSq <= AVP_MAX_DISTANCE_FOR_BROADCAST_SFX_SQ)
+					if (pSfx->mDRegs[3] == SFX_R3_NO_LOCALIZE)
 					{
-						//since the game doesn't normally attenuate, let's do a crappy form of it here.
-						//not sure if we have panning control or not, need to dig deeper.
-						const float sfxDist = sqrtf(sfxDistSq);
-						float frac = 1.0f - (sfxDist / AVP_MAX_DISTANCE_FOR_BROADCAST_SFX);
-						frac *= frac; //whatever, really, but sounds a bit better with a sharper-than-linear falloff
-						const int32_t vol = (int32_t)(10000.0f * frac);
 						full_68k_reg_backup();
-						
-						//super-cheesy hack, we aren't handling stopping sounds correctly.
-						//so if it's a looping sound, temporarily kill the loop flag.
-						const uint32_t sfxAddr = pSfx->mDRegs[0];
-						uint32_t sfxCtrl = bigpemu_jag_read16(sfxAddr + 4);
-						if (sfxCtrl & 0x8000)
-						{
-							sRestoreSfxAddr = sfxAddr;
-							sRestoreSfxCtrl = sfxCtrl;
-							sfxCtrl &= ~0x8000;
-							bigpemu_jag_write16(sfxAddr + 4, (uint16_t)sfxCtrl);
-						}
-						
-						bigpemu_jag_m68k_set_dreg(0, sfxAddr);
-						bigpemu_jag_m68k_set_dreg(1, vol); //pSfx->mDRegs[1]
-						bigpemu_jag_m68k_set_dreg(2, pSfx->mDRegs[2]);
-						bigpemu_jag_m68k_set_dreg(3, pSfx->mDRegs[3]);
-						
+						bigpemu_jag_m68k_set_dreg(0, pSfx->mDRegs[0]);
+						bigpemu_jag_m68k_set_dreg(1, pSfx->mDRegs[1]);
+						bigpemu_jag_m68k_set_dreg(2, pSfx->mDRegs[2]);					
 						perform_68k_call(addr, AVP_PCADDR_SFX);
 					}
+					else
+					{
+						const int32_t xy[2] = { (int32_t)bigpemu_jag_read32(AVP_X_POS), (int32_t)bigpemu_jag_read32(AVP_Y_POS) };
+						const float sfxDistSq = calc_squared_distance(pSfx->mPos, xy);
+						if (sfxDistSq <= AVP_MAX_DISTANCE_FOR_BROADCAST_SFX_SQ)
+						{
+							//since the game doesn't normally attenuate, let's do a crappy form of it here.
+							//not sure if we have panning control or not, need to dig deeper.
+							const float sfxDist = sqrtf(sfxDistSq);
+							float frac = 1.0f - (sfxDist / AVP_MAX_DISTANCE_FOR_BROADCAST_SFX);
+							frac *= frac; //whatever, really, but sounds a bit better with a sharper-than-linear falloff
+							const int32_t vol = (int32_t)(10000.0f * frac);
+							full_68k_reg_backup();
+							
+							//super-cheesy hack, we aren't handling stopping sounds correctly.
+							//so if it's a looping sound, temporarily kill the loop flag.
+							const uint32_t sfxAddr = pSfx->mDRegs[0];
+							uint32_t sfxCtrl = bigpemu_jag_read16(sfxAddr + 4);
+							if (sfxCtrl & 0x8000)
+							{
+								sRestoreSfxAddr = sfxAddr;
+								sRestoreSfxCtrl = sfxCtrl;
+								sfxCtrl &= ~0x8000;
+								bigpemu_jag_write16(sfxAddr + 4, (uint16_t)sfxCtrl);
+							}
+							
+							bigpemu_jag_m68k_set_dreg(0, sfxAddr);
+							bigpemu_jag_m68k_set_dreg(1, vol); //pSfx->mDRegs[1]
+							bigpemu_jag_m68k_set_dreg(2, pSfx->mDRegs[2]);
+							bigpemu_jag_m68k_set_dreg(3, pSfx->mDRegs[3]);
+							
+							perform_68k_call(addr, AVP_PCADDR_SFX);
+						}
+					}
 				}
+				break;
+			case SFX_TYPE_MESSAGE:
+				host_process_sfx_message(pSfx->mClientIndex, pSfx->mDRegs[0], pSfx->mDRegs[1], pSfx->mDRegs[2], pSfx->mDRegs[3]);
+				break;
+			default:
+				assert(0);
+				break;
 			}
 			--sAVPBroadcastSFXInCount;
 		}
@@ -1460,6 +1502,9 @@ static uint32_t on_sw_loaded(const int32_t eventHandle, void *pEventData)
 		sCurMazeWidth = 0;
 		sCurMazeHeight = 0;
 		sCurLevelLocal = -1;
+		sAirlockLevel = 0;
+		sLastDoorClientIndex = -1;
+		sLastDoorPanelAddress = 0;
 		sSafeSpotLevel = -1;
 		sSendGameStateData = 0;
 		sSendClientStateData = 0;
@@ -1473,6 +1518,8 @@ static uint32_t on_sw_loaded(const int32_t eventHandle, void *pEventData)
 
 		bigpemu_jag_m68k_bp_add(AVP_PCADDR_CHECK_NEWLEVEL, avp_check_newlevel);
 		bigpemu_jag_m68k_bp_add(AVP_PCADDR_LIFT_DOOR, avp_lift_door);
+		bigpemu_jag_m68k_bp_add(AVP_PCADDR_AIRLOCK_PRE_FIND_EXIT, avp_airlock_pre_find_exit);
+		bigpemu_jag_m68k_bp_add(AVP_PCADDR_AIRLOCK_POST_FIND_EXIT, avp_airlock_post_find_exit);
 		bigpemu_jag_m68k_bp_add(AVP_PCADDR_PLAYER_DAMAGE, avp_player_dmg);
 		bigpemu_jag_m68k_bp_add(AVP_PCADDR_AMP_SLEEP_TEST, avp_sleep_test);
 		bigpemu_jag_m68k_bp_add(AVP_PCADDR_AMP_WEAPON_HIT, avp_projectile_test);
@@ -1550,12 +1597,15 @@ static uint32_t on_net_update(const int32_t eventHandle, void *pEventData)
 				sSendGameStateData = 0;
 			}
 			
+			const uint32_t curAccess = (uint32_t)bigpemu_jag_read8(AVP_ACCESS_LEVEL);
+			uint32_t maxAccess = curAccess;
 			//shitty hack, overriding the hash locally for now, using data that's been propagated to the server internally.
 			//this happens to handle the disconnected case a bit better. we're wasting bandwidth by syncing the hash, but usually delta compression culls it.
 			for (uint32_t clientIndex = 0; clientIndex < MAX_AVP_CLIENTS; ++clientIndex)
 			{
 				TAVPPlayerState *pCS = &sClientStates[clientIndex];
 				pCS->mSWHash = bigpemu_net_client_sw_hash(clientIndex);
+				maxAccess = BIGPEMU_MAX(maxAccess, (uint32_t)pCS->mAccessLevel);
 				if (sClientHurt[clientIndex])
 				{
 					if (clientIndex != sLocalClientIndex)
@@ -1565,6 +1615,19 @@ static uint32_t on_net_update(const int32_t eventHandle, void *pEventData)
 					}
 				}
 			}
+			
+			if (maxAccess > curAccess)
+			{
+				//take the maximum access level across the whole client list for the host
+				bigpemu_jag_write8(AVP_ACCESS_LEVEL, (uint8_t)maxAccess);
+			}
+			
+			for (uint32_t msgIndex = 0; msgIndex < sAVPHostMsgCount; ++msgIndex)
+			{
+				TAVPHostMessage *pMsg = &sAVPHostMessages[msgIndex];
+				bigpemu_net_hostmsg("%s", pMsg->mMsg);
+			}
+			sAVPHostMsgCount = 0;
 			
 			net_update_commmon();
 		}
@@ -1685,7 +1748,7 @@ static uint32_t on_net_receive(const int32_t eventHandle, void *pEventData)
 				else
 				{
 					const int32_t recvFromClient = bigpemu_net_lastclient();
-					printf("Bad client state (%i vs %i) from client %i\n", cs.mVersion, AVP_PROTOCOL_VERSION, recvFromClient);
+					printf("Bad client state (%i vs %i) from client %i\n", (int32_t)cs.mVersion, AVP_PROTOCOL_VERSION, recvFromClient);
 					bigpemu_net_disconnect(recvFromClient);
 				}
 			}
@@ -1779,7 +1842,7 @@ static uint32_t on_net_receive(const int32_t eventHandle, void *pEventData)
 				}
 				else
 				{
-					printf("Bad game state (%i vs %i)\n", spGS->mVersion, AVP_PROTOCOL_VERSION);
+					printf("Bad game state (%i vs %i)\n", (int32_t)spGS->mVersion, AVP_PROTOCOL_VERSION);
 					bigpemu_net_disconnect(BIGPEMU_CLIENT_DEST_ALL);
 				}				
 			}
@@ -1835,13 +1898,37 @@ static uint32_t on_net_receive(const int32_t eventHandle, void *pEventData)
 	return 0;
 }
 
+static uint32_t on_video_frame(const int eventHandle, void *pEventData)
+{
+	if (sAVPLoaded)
+	{
+		for (uint32_t optIndex = 0; optIndex < kAVPMPOption_Count; ++optIndex)
+		{
+			TAVPMPOption *pOpt = &sAVPMPOptions[optIndex];
+			bigpemu_get_setting_value(&pOpt->mValue, pOpt->mHandle);
+		}
+	}
+	return 0;
+}
+
 void bigp_init()
 {
 	void *pMod = bigpemu_get_module_handle();
+
+	bigpemu_set_module_usage_flags(pMod, BIGPEMU_MODUSAGE_CLIENTREQUIRED | BIGPEMU_MODUSAGE_NOMOVIES);
 	
 	sOnLoadEvent = bigpemu_register_event_sw_loaded(pMod, on_sw_loaded);
 	sOnNetUpdateEvent = bigpemu_register_event_net_update(pMod, on_net_update);
 	sOnNetReceiveEvent = bigpemu_register_event_net_receive(pMod, on_net_receive);
+	sOnVideoEvent = bigpemu_register_event_video_thread_frame(pMod, on_video_frame);
+
+	const int catHandle = bigpemu_register_setting_category(pMod, "AvP MP");
+	assert(BIGPEMU_ARRAY_LENGTH(sAVPMPOptions) == kAVPMPOption_Count);
+	for (uint32_t optIndex = 0; optIndex < kAVPMPOption_Count; ++optIndex)
+	{
+		TAVPMPOption *pOpt = &sAVPMPOptions[optIndex];
+		pOpt->mHandle = bigpemu_register_setting(pMod, catHandle, pOpt->mpName, pOpt->mType, &pOpt->mDefaultValue, &pOpt->mMinValue, &pOpt->mMaxValue, &pOpt->mStepValue);
+	}
 	
 	memset(sClientStates, 0, sizeof(sClientStates));
 	set_default_client_states();
@@ -1861,7 +1948,15 @@ void bigp_shutdown()
 	bigpemu_unregister_event(pMod, sOnLoadEvent);
 	bigpemu_unregister_event(pMod, sOnNetUpdateEvent);
 	bigpemu_unregister_event(pMod, sOnNetReceiveEvent);
+	bigpemu_unregister_event(pMod, sOnVideoEvent);
 	sOnLoadEvent = -1;
 	sOnNetUpdateEvent = -1;
 	sOnNetReceiveEvent = -1;
+	sOnVideoEvent - 1;
+	for (uint32_t optIndex = 0; optIndex < kAVPMPOption_Count; ++optIndex)
+	{
+		TAVPMPOption *pOpt = &sAVPMPOptions[optIndex];
+		pOpt->mHandle = -1;
+		pOpt->mValue = pOpt->mDefaultValue;
+	}	
 }

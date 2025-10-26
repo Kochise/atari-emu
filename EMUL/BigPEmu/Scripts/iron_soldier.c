@@ -128,6 +128,8 @@ void bigp_init()
 {
 	void *pMod = bigpemu_get_module_handle();
 	
+	bigpemu_set_module_usage_flags(pMod, BIGPEMU_MODUSAGE_DETERMINISMWARNING);
+	
 	const int catHandle = bigpemu_register_setting_category(pMod, "Iron Soldier");
 	sEnableMouseLookHandle = bigpemu_register_setting_bool(catHandle, "Mouselook", IS_DEFAULT_MOUSELOOK);
 	sMouseLookSensHandle = bigpemu_register_setting_int_full(catHandle, "H Sensitivity", IS_DEFAULT_MOUSESENS, 1, 128, 1);

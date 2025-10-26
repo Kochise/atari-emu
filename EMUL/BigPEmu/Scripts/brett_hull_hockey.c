@@ -57,6 +57,8 @@ void bigp_init()
 {
 	void *pMod = bigpemu_get_module_handle();
 	
+	bigpemu_set_module_usage_flags(pMod, BIGPEMU_MODUSAGE_DETERMINISMWARNING);
+	
 	const int catHandle = bigpemu_register_setting_category(pMod, "Brett Hull Hockey");
 	sSyncFixSettingHandle = bigpemu_register_setting_bool(catHandle, "Sync Fix", 1);
 	

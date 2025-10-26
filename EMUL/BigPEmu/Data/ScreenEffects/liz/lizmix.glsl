@@ -9,6 +9,7 @@ uniform float sDesaturateAmount2;
 uniform float sLizBias;
 uniform float sLizScale;
 uniform float sLizExponent;
+uniform float sLizScriptBasedBias;
 
 layout(binding = 0) uniform sampler2D sBloomTex;
 layout(binding = 1) uniform sampler2D sScreenTex;
@@ -21,7 +22,7 @@ layout(location = 0) out vec4 outColor0;
 void main()
 {
 	vec4 bloomSample = texture2D(sBloomTex, ilUV);
-	bloomSample.rgb = max(bloomSample.rgb - vec3(sLizBias), vec3(0.0f));
+	bloomSample.rgb = max(bloomSample.rgb - vec3(sLizBias + sLizScriptBasedBias), vec3(0.0f));
 	bloomSample.rgb = pow(bloomSample.rgb, vec3(sLizExponent));
 	bloomSample.rgb *= vec3(sLizScale);
 	

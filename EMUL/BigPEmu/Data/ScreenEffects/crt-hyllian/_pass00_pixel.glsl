@@ -57,7 +57,6 @@ layout(binding = 2) uniform sampler2D Source;
 
 layout(location = 0) in vec2 vTexCoord;
 layout(location = 0) out vec4 FragColor;
-layout(location = 1) in vec2 FragCoord;
 float B;
 float C;
 mat4 invX;

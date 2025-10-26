@@ -43,7 +43,11 @@
 					}
 				],				
 				"PixelGLSL": "util/copypass_tolin_ps.glsl",
-				"VertexGLSL": "util/copypass_vs.glsl"
+				"VertexGLSL": "util/copypass_vs.glsl",
+				"PixelESSL": "util/copypass_tolin_ps.essl",
+				"VertexESSL": "util/copypass_vs.essl",
+				"PixelDXBC": "util/copypass_tolin_ps.dxbc",
+				"VertexDXBC": "util/copypass_vs.dxbc"
 			},
 			{
 				"RTFormat": "R16G16B16A16_FLOAT",
@@ -69,7 +73,11 @@
 					}
 				],			
 				"PixelGLSL": "util/copypass_ps.glsl",
-				"VertexGLSL": "oh_my_gauss/scale_up_vs.glsl"
+				"VertexGLSL": "oh_my_gauss/scale_up_vs.glsl",
+				"PixelESSL": "util/copypass_ps.essl",
+				"VertexESSL": "oh_my_gauss/scale_up_vs.essl",
+				"PixelDXBC": "util/copypass_ps.dxbc",
+				"VertexDXBC": "oh_my_gauss/scale_up_vs.dxbc"
 			},
 			{
 				"Name": "BlurBase",
@@ -96,27 +104,41 @@
 					}
 				],
 				"PixelGLSL": "oh_my_gauss/blur_h_ps.glsl",
-				"VertexGLSL": "util/copypass_vs.glsl"
+				"VertexGLSL": "util/copypass_vs.glsl",
+				"PixelESSL": "oh_my_gauss/blur_h_ps.essl",
+				"VertexESSL": "util/copypass_vs.essl",
+				"PixelDXBC": "oh_my_gauss/blur_h_ps.dxbc",
+				"VertexDXBC": "util/copypass_vs.dxbc"
 			},
 			{
 				"InheritPass": "BlurBase",
-				"PixelGLSL": "oh_my_gauss/blur_v_ps.glsl"
+				"PixelGLSL": "oh_my_gauss/blur_v_ps.glsl",
+				"PixelESSL": "oh_my_gauss/blur_v_ps.essl",
+				"PixelDXBC": "oh_my_gauss/blur_v_ps.dxbc"
 			},
 			{
 				"InheritPass": "BlurBase",
-				"PixelGLSL": "oh_my_gauss/blur_h_ps.glsl"
+				"PixelGLSL": "oh_my_gauss/blur_h_ps.glsl",
+				"PixelESSL": "oh_my_gauss/blur_h_ps.essl",
+				"PixelDXBC": "oh_my_gauss/blur_h_ps.dxbc"
 			},
 			{
 				"InheritPass": "BlurBase",
-				"PixelGLSL": "oh_my_gauss/blur_v_ps.glsl"
+				"PixelGLSL": "oh_my_gauss/blur_v_ps.glsl",
+				"PixelESSL": "oh_my_gauss/blur_v_ps.essl",
+				"PixelDXBC": "oh_my_gauss/blur_v_ps.dxbc"
 			},
 			{
 				"InheritPass": "BlurBase",
-				"PixelGLSL": "oh_my_gauss/blur_h_ps.glsl"
+				"PixelGLSL": "oh_my_gauss/blur_h_ps.glsl",
+				"PixelESSL": "oh_my_gauss/blur_h_ps.essl",
+				"PixelDXBC": "oh_my_gauss/blur_h_ps.dxbc"
 			},
 			{
 				"InheritPass": "BlurBase",
-				"PixelGLSL": "oh_my_gauss/blur_v_ps.glsl"
+				"PixelGLSL": "oh_my_gauss/blur_v_ps.glsl",
+				"PixelESSL": "oh_my_gauss/blur_v_ps.essl",
+				"PixelDXBC": "oh_my_gauss/blur_v_ps.dxbc"
 			},
 			{
 				"Name": "Canvas",
@@ -131,7 +153,11 @@
 					}
 				],
 				"PixelGLSL": "util/copypass_togamma_ps.glsl",
-				"VertexGLSL": "util/copypass_vs.glsl"
+				"VertexGLSL": "util/copypass_vs.glsl",
+				"PixelESSL": "util/copypass_togamma_ps.essl",
+				"VertexESSL": "util/copypass_vs.essl",
+				"PixelDXBC": "util/copypass_togamma_ps.dxbc",
+				"VertexDXBC": "util/copypass_vs.dxbc"
 			},
 			{
 				"Name": "TerribleWarpedScreen",
@@ -183,7 +209,11 @@
 					}
 				],
 				"PixelGLSL": "warping/warping_ps.glsl",
-				"VertexGLSL": "util/copypass_vs.glsl"
+				"VertexGLSL": "util/copypass_vs.glsl",
+				"PixelESSL": "warping/warping_ps.essl",
+				"VertexESSL": "util/copypass_vs.essl",
+				"PixelDXBC": "warping/warping_ps.dxbc",
+				"VertexDXBC": "util/copypass_vs.dxbc"
 			},
 			{
 				"BlendMode": "Alpha",
@@ -210,7 +240,11 @@
 					}
 				],
 				"PixelGLSL": "oh_my_gauss/ol_ps.glsl",
-				"VertexGLSL": "oh_my_gauss/ol_vs.glsl"
+				"VertexGLSL": "oh_my_gauss/ol_vs.glsl",
+				"PixelESSL": "oh_my_gauss/ol_ps.essl",
+				"VertexESSL": "oh_my_gauss/ol_vs.essl",
+				"PixelDXBC": "oh_my_gauss/ol_ps.dxbc",
+				"VertexDXBC": "oh_my_gauss/ol_vs.dxbc"
 			},
 			{
 				"RTFormat": "R8G8B8A8_UNORM",
@@ -225,7 +259,11 @@
 					}
 				],
 				"PixelGLSL": "util/copypass_ps.glsl",
-				"VertexGLSL": "util/copypass_vs.glsl"
+				"VertexGLSL": "util/copypass_vs.glsl",
+				"PixelESSL": "util/copypass_ps.essl",
+				"VertexESSL": "util/copypass_vs.essl",
+				"PixelDXBC": "util/copypass_ps.dxbc",
+				"VertexDXBC": "util/copypass_vs.dxbc"
 			}
 		]
 	}

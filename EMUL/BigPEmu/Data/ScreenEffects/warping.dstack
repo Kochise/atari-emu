@@ -109,7 +109,11 @@
 					}
 				],
 				"PixelGLSL": "warping/warping_ps.glsl",
-				"VertexGLSL": "util/copypass_vs.glsl"
+				"VertexGLSL": "util/copypass_vs.glsl",
+				"PixelESSL": "warping/warping_ps.essl",
+				"VertexESSL": "util/copypass_vs.essl",
+				"PixelDXBC": "warping/warping_ps.dxbc",
+				"VertexDXBC": "util/copypass_vs.dxbc"
 			}
 		]
 	}

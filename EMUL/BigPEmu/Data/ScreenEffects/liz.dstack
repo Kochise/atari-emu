@@ -107,7 +107,11 @@
 					}
 				],				
 				"PixelGLSL": "util/copypass_tolin_ps.glsl",
-				"VertexGLSL": "util/copypass_vs.glsl"
+				"VertexGLSL": "util/copypass_vs.glsl",
+				"PixelESSL": "util/copypass_tolin_ps.essl",
+				"VertexESSL": "util/copypass_vs.essl",
+				"PixelDXBC": "util/copypass_tolin_ps.dxbc",
+				"VertexDXBC": "util/copypass_vs.dxbc"
 			},
 			{
 				"Name": "BlurBase",
@@ -140,7 +144,11 @@
 					}
 				],
 				"PixelGLSL": "util/desaturate_ps.glsl",
-				"VertexGLSL": "util/copypass_vs.glsl"
+				"VertexGLSL": "util/copypass_vs.glsl",
+				"PixelESSL": "util/desaturate_ps.essl",
+				"VertexESSL": "util/copypass_vs.essl",
+				"PixelDXBC": "util/desaturate_ps.dxbc",
+				"VertexDXBC": "util/copypass_vs.dxbc"
 			},			
 			{
 				"Name": "BlurBase",
@@ -168,19 +176,29 @@
 					}
 				],
 				"PixelGLSL": "oh_my_gauss/blur_h_ps.glsl",
-				"VertexGLSL": "util/copypass_vs.glsl"
+				"VertexGLSL": "util/copypass_vs.glsl",
+				"PixelESSL": "oh_my_gauss/blur_h_ps.essl",
+				"VertexESSL": "util/copypass_vs.essl",
+				"PixelDXBC": "oh_my_gauss/blur_h_ps.dxbc",
+				"VertexDXBC": "util/copypass_vs.dxbc"
 			},
 			{
 				"InheritPass": "BlurBase",
-				"PixelGLSL": "oh_my_gauss/blur_v_ps.glsl"
+				"PixelGLSL": "oh_my_gauss/blur_v_ps.glsl",
+				"PixelESSL": "oh_my_gauss/blur_v_ps.essl",
+				"PixelDXBC": "oh_my_gauss/blur_v_ps.dxbc"
 			},
 			{
 				"InheritPass": "BlurBase",
-				"PixelGLSL": "oh_my_gauss/blur_h_ps.glsl"
+				"PixelGLSL": "oh_my_gauss/blur_h_ps.glsl",
+				"PixelESSL": "oh_my_gauss/blur_h_ps.essl",
+				"PixelDXBC": "oh_my_gauss/blur_h_ps.dxbc"
 			},
 			{
 				"InheritPass": "BlurBase",
-				"PixelGLSL": "oh_my_gauss/blur_v_ps.glsl"
+				"PixelGLSL": "oh_my_gauss/blur_v_ps.glsl",
+				"PixelESSL": "oh_my_gauss/blur_v_ps.essl",
+				"PixelDXBC": "oh_my_gauss/blur_v_ps.dxbc"
 			},
 			{
 				"RTFormat": "R8G8B8A8_UNORM",
@@ -232,12 +250,21 @@
 								"Name": "sLizExponent",
 								"Type": "float",
 								"SourceType": "UserOption"
+							},
+							{
+								"Name": "sLizScriptBasedBias",
+								"Type": "float",
+								"SourceType": "ScriptOption"
 							}
 						]
 					}
 				],
 				"PixelGLSL": "liz/lizmix.glsl",
-				"VertexGLSL": "util/copypass_vs.glsl"
+				"VertexGLSL": "util/copypass_vs.glsl",
+				"PixelESSL": "liz/lizmix.essl",
+				"VertexESSL": "util/copypass_vs.essl",
+				"PixelDXBC": "liz/lizmix.dxbc",
+				"VertexDXBC": "util/copypass_vs.dxbc"
 			}
 		]
 	}

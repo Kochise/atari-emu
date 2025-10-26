@@ -273,14 +273,104 @@ typedef enum
 	
 	kBPE_Jag_OP_RenderBitmapObjectToBuffer,
 	
-	kBPE_TestData,
+	kBPE_NativeWindowHandle,
 	
+	kBPE_RegisterEvent_AudioFrame,
+	kBPE_Audio_Resample,
+	kBPE_Audio_StereoDeinterleaveAndExpand,
+	kBPE_Audio_StereoInterleaveAndCompress,
+	kBPE_DFT,
+	kBPE_IDFT,
+	kBPE_ScaleSignal,
+	kBPE_BiasSignal,
+	kBPE_ClampSignal,
+	kBPE_ReplaceSignal,
+	kBPE_RotateSignalBuffer,
+	kBPE_GetSignalMean,
+	kBPE_GetSignalMin,
+	kBPE_GetSignalMax,
+	kBPE_QuantizeDFTAmplitudes,
+	kBPE_RenderSignalRGBA32,
+	
+	kBPE_SetNamedVarData,
+	kBPE_GetNamedVarData,
+	
+	kBPE_FindNativeWindowHandle,
+	kBPE_NativeWindowParent,
+	kBPE_SendNativeWindowMessage,
+	kBPE_NativeWindowTitle,
+	
+	kBPE_Input_GetInputDataVersion,
+	
+	kBPE_Audio_MixInt16,
+	
+	kBPE_RegisterEvent_InputFrame,
+	
+	kBPE_GetLocalizedString,
+	
+	kBPE_GetLocalizedEmuButtonName,
+	
+	kBPE_SetSettingValue,
+	
+	kBPE_MenuIsActive,
+	kBPE_IsPortraitMode,
+	
+	kBPE_InputDeviceCount,
+	
+	kBPE_GetCfgDataBlob,
+	kBPE_SetCfgDataBlob,
+	
+	kBPE_ClaimUserOLElem,
+	kBPE_SetUserOLElemData,
+	
+	kBPE_Jag_GetRWHandlerAlignment,
+	kBPE_Jag_SetRWHandler,
+	
+	kBPE_Jag_GetDisplayRegion,
+	kBPE_Jag_GetVModeDivisor,
+
+	kBPE_DrawUI_GetVirtualDisplayRect,
+	
+	kBPE_Touch_Count,
+	kBPE_Touch_Info,
+	kBPE_Touch_IndexForId,
+	
+	kBPE_Touch_IntersectingOverlay,
+	kBPE_Touch_SetPreferHiddenElems,
+	
+	kBPE_SetModuleUsageFlags,
+	
+	kBPE_Jag_ForceDisplayBounds,
+	kBPE_Jag_ForceDisplayRatio,
+	
+	kBPE_SetRichPresence,
+	
+	kBPE_Net_ClientName,
+	
+	kBPE_SetPlatformAPI,
+	kBPE_GetPlatformAPI,
+	
+	kBPE_MachineGlobalCall,
+	kBPE_MachineObjectCall,
+
+	kBPE_Res_SoundFromMOD,
+	kBPE_Res_SoundFromMP3,
+	kBPE_Audio_LoadIR,
+	kBPE_Audio_UpdateListener,
+	kBPE_Audio_PlaySoundEx,
+	kBPE_Audio_SoundUpdateSpatial,
+	kBPE_Audio_SoundStop,
+	kBPE_Audio_SoundFinished,
+
+	kBPE_TestData,
+
 	kBPESys_Count
 } EBigPEmuSysCall;
 
 typedef enum
 {
 	kBPE_Platform_Win64 = 0,
+	kBPE_Platform_WinArm64,
 	kBPE_Platform_Linux64,
 	kBPE_Platform_LinuxArm32,
 	kBPE_Platform_LinuxArm64,
@@ -293,6 +383,20 @@ typedef enum
 	
 	kBPE_Platform_Count
 } EBigPEmuPlatform;
+
+typedef enum
+{
+	kBPE_WindowPlatform_Other = 0,
+	kBPE_WindowPlatform_Windows,
+	kBPE_WindowPlatform_WinRT,
+	kBPE_WindowPlatform_X11,
+	kBPE_WindowPlatform_Cocoa,
+	kBPE_WindowPlatform_UIKit,
+	kBPE_WindowPlatform_Wayland,
+	kBPE_WindowPlatform_Android,
+
+	kBPE_WindowPlatform_Count
+} EBigPEmuWindowPlatform;
 
 typedef enum
 {
@@ -511,6 +615,67 @@ typedef struct
 	uint32_t mResv1;
 } TDrawUILinesParams;
 
+typedef struct
+{
+	uint32_t mSampleCount; //member is mutable, you may perform your own resampling (sample buffer is only provided for equivalent samples up to 48kHz)
+	uint32_t mSampleRate;
+	uint32_t mResv0;
+	uint32_t mResv1;
+	int16_t *mpSamples; //this data is explicitly mutable (may be used for script-based audio filters)
+} TBigPEmuAudioFrameParams;
+
+typedef struct
+{
+	uint32_t mType; //ESharedEmulatorDeviceType
+	uint32_t mButtons; //emulated platform button bits
+	uint32_t mExButtons;
+	int32_t mAnalogs[4];
+	uint32_t mResv[4]; //make sure these values remain set to 0 for forward-compatibility
+} TBigPEmuInput;
+
+typedef struct
+{
+	uint32_t mInputCount; //member is mutable, you may change the number of active inputs (up to max count)
+	uint32_t mMaxInputCount; //not mutable
+	uint32_t mResv[4]; //make sure these values remain set to 0 for forward-compatibility
+	TBigPEmuInput *mpInputs;
+} TBigPEmuInputFrameParams;
+
+typedef struct
+{
+	uint64_t mId;
+	float mPos[2];
+	float mInitialPos[2];
+	float mSize[2];
+	uint32_t mResv[4];
+} TBigPEmuTouchInfo;
+
+#define BIGPEMU_TOUCHOL_ELEM_DPAD			0ULL
+#define BIGPEMU_TOUCHOL_ELEM_BUTTONA		1ULL
+#define BIGPEMU_TOUCHOL_ELEM_BUTTONB		2ULL
+#define BIGPEMU_TOUCHOL_ELEM_BUTTONC		3ULL
+#define BIGPEMU_TOUCHOL_ELEM_BUTTONPAUSE	4ULL
+#define BIGPEMU_TOUCHOL_ELEM_BUTTONOPTION	5ULL
+#define BIGPEMU_TOUCHOL_ELEM_PAD1			6ULL
+#define BIGPEMU_TOUCHOL_ELEM_PAD2			7ULL
+#define BIGPEMU_TOUCHOL_ELEM_PAD3			8ULL
+#define BIGPEMU_TOUCHOL_ELEM_PAD4			9ULL
+#define BIGPEMU_TOUCHOL_ELEM_PAD5			10ULL
+#define BIGPEMU_TOUCHOL_ELEM_PAD6			11ULL
+#define BIGPEMU_TOUCHOL_ELEM_PAD7			12ULL
+#define BIGPEMU_TOUCHOL_ELEM_PAD8			13ULL
+#define BIGPEMU_TOUCHOL_ELEM_PAD9			14ULL
+#define BIGPEMU_TOUCHOL_ELEM_PADAST			15ULL
+#define BIGPEMU_TOUCHOL_ELEM_PAD0			16ULL
+#define BIGPEMU_TOUCHOL_ELEM_PADPND			17ULL
+#define BIGPEMU_TOUCHOL_ELEM_MENU			18ULL
+#define BIGPEMU_TOUCHOL_ELEM_USER0			19ULL
+#define BIGPEMU_TOUCHOL_ELEM_USER1			20ULL
+#define BIGPEMU_TOUCHOL_ELEM_USER2			21ULL
+#define BIGPEMU_TOUCHOL_ELEM_USER3			22ULL
+#define BIGPEMU_TOUCHOL_ELEM_TOTAL_COUNT	31ULL //includes internally reserved values
+#define BIGPEMU_TOUCHOL_MASK_ALL			0xFFFFFFFFFFFFFFFFULL
+	
 #define BIGPEMU_TEXFLAG_NONE				0
 #define BIGPEMU_TEXFLAG_BILINEAR			(1 << 0)
 #define BIGPEMU_TEXFLAG_REPEAT				(1 << 1)
@@ -519,6 +684,26 @@ typedef struct
 
 #define BIGPEMU_OPRFLAG_OUTPUTRGBA			(1 << 0)
 #define BIGPEMU_OPRFLAG_CLEARBUFFER			(1 << 1)
+
+#define BIGPEMU_SOUNDFLAG_NONE				0
+#define BIGPEMU_SOUNDFLAG_LOOPING			(1 << 0)
+#define BIGPEMU_SOUNDFLAG_MOD_NOSTEREO		(1 << 1)
+
+#define BIGPEMU_SPATIALFLAG_NONE			0
+#define BIGPEMU_SPATIALFLAG_ATTN_LINEAR		(1 << 0)
+typedef struct
+{
+	float mPos[3];
+	float mMaxDist;
+	float mVolume;
+	uint32_t mFlags;
+	int32_t mHrir;
+	int32_t mSecHrir;
+	float mHrirLerp;
+	uint32_t mResvA;
+	uint32_t mResvB;
+	uint32_t mResvC;
+} TBigPEmuSpatialAudio;
 
 typedef enum
 {
@@ -538,11 +723,59 @@ typedef enum
 
 #define BIGPEMU_CLIENT_DEST_ALL				-1
 
+#define BIGPEMU_MIN_EMULATED_FRAMERATE		10
+#define BIGPEMU_MAX_AUDIO_CALLBACK_SAMPLES	((48000 / BIGPEMU_MIN_EMULATED_FRAMERATE) * 2 + 512)
+#define BIGPEMU_MAX_AUDIO_CALLBACK_NP2		16384
+
+#define BIGPEMU_DFTQ_NO_SCALING				(1 << 0)
+#define BIGPEMU_DFTQ_NO_CLAMPING			(1 << 1)
+#define BIGPEMU_DFTQ_CONTRIBNORM			(1 << 2)
+#define BIGPEMU_DFTQ_SCALE_SQRT				(1 << 3)
+#define BIGPEMU_DFTQ_CLAMP_RENORM			(1 << 4)
+
+#define BIGPEMU_INPUT_DATA_VERSION_INVALID	0xFFFFFFFF
+
+#define BIGPEMU_MAX_STRING_DEFAULT			4096
+
 //events should generally return 0 unless a special return value is called for based on the event type
 typedef uint32_t (*TBigPEmuEventCallback)(const int eventHandle, void *pEventData);
 
 typedef void (*TBigPEmuBPCallbackM68K)(const uint32_t addr);
 typedef TBigPEmuBPCallbackM68K TBigPEmuBPCallbackRISC;
+
+#define JAG_BUTTON_PAUSE			0
+#define JAG_BUTTON_A				1
+#define JAG_BUTTON_U				2
+#define JAG_BUTTON_D				3
+#define JAG_BUTTON_L				4
+#define JAG_BUTTON_R				5
+#define JAG_BUTTON_B				6
+#define JAG_BUTTON_AST				7
+#define JAG_BUTTON_7				8
+#define JAG_BUTTON_4				9
+#define JAG_BUTTON_1				10
+#define JAG_BUTTON_C				11
+#define JAG_BUTTON_0				12
+#define JAG_BUTTON_8				13
+#define JAG_BUTTON_5				14
+#define JAG_BUTTON_2				15
+#define JAG_BUTTON_OPTION			16
+#define JAG_BUTTON_POUND			17
+#define JAG_BUTTON_9				18
+#define JAG_BUTTON_6				19
+#define JAG_BUTTON_3				20
+
+#define BIGPEMU_MODUSAGE_DETERMINISMWARNING	(1ULL << 0)
+#define BIGPEMU_MODUSAGE_CLIENTREQUIRED		(1ULL << 1)
+#define BIGPEMU_MODUSAGE_NOMOVIES			(1ULL << 2)
+
+#define BIGPEMU_HANDLER_MASK_READ			(1 << 0)
+#define BIGPEMU_HANDLER_MASK_WRITE			(1 << 1)
+//memory callbacks should return 0 to pass through to the standard access handler, or 1 to handle the read/write yourself.
+//in the case of writes, pData will already be set. in the case of reads, you must set pData if you're returning 1.
+//rwMask will be set according to whether this is a read or write access, but you're free to use separate functions for
+//read and write callbacks.
+typedef uint32_t (*TBigPEmuReadWriteCallback)(uint32_t *pData, const uint32_t dataAddr, const uint32_t dataSize, const uint32_t rwMask);
 
 #ifdef __BIGPVM__
 typedef uint32_t (*TBigPEmuSysCall)(const EBigPEmuSysCall callType, void *pData, void *pParamA, void *pParamB);
