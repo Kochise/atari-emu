@@ -1,0 +1,55 @@
+FIKEY14 (16) by Claus J. Pedersen
+Copyright 1990, Atari DK.
+================================
+
+Installation of Norwegian keyboard:
+
+  To get Finnish keyboard copy the program FIKEY14 (16) to the autofolder.
+  Use FIKEY14 for TOS 1.4 and FIKEY16 for TOS 1.6.
+
+Error statements:
+
+  FINNISH KEYBOARD DESIGNED FOR TOS 1.4
+
+    The program you have executed only works with TOS 1.4
+    
+  FINNISH KEYBOARD DESIGNED FOR TOS 1.6
+
+    The program you have executed only works with TOS 1.6
+
+  FINNISH KEYBOARD MUST BE IN AUTOFOLDER
+
+    This program must be in the autofolder to work. Make a folder with the name
+    AUTO and copy the program into this folder. Restart the computer and the 
+    program will be executed automatic.
+
+  FINNISH KEYBOARD INSTALLED TOO LATE
+
+    This program is a replacement of the keyboard driver in the computer. To 
+    make shure that it works with all other programs it demands to be executed
+    before other programs that changes then same system vectors. To be shure of
+    that you must first clear the autofolder of the programs which changes the
+    same system vectors and then copy FIKEY14 (16) into the autofolder. Then 
+    copy the progams back into the autofolder. If you don't know which programs
+    that changes the same system vectors then just clear the autofolder totally
+    and copy FIKEY14 (16) into the autofolder and the copy the programs back.
+    All this sounds more complicated than it really is ! You just have to know
+    that the programs in the autofolder is executed in the order which they are
+    copied into the folder.
+    
+
+
+Technical details:
+  
+  The program installs a new keyboard driver, by altering the systemvektor
+  ikbdsys. The new vector is installed by means of the XBRA standart. The 
+  identification is SCKE (Scandinavian keyboard). The reason for demanding
+  to be installed at first is that unfortunately not all programs stick to
+  the XBRA standart. One such program is Atari USA's program maccel2.prg 
+  (mouse accelerator). By demanding to be installed first it makes shure that
+  it works with 99.99% of all other programs. Of course it can't work when
+  other programs installs their own keyboard driver but then again the keyboard
+  driver in the rom would not either. The program is written in assembler and
+  occupies 2 kb of memory.
+
+

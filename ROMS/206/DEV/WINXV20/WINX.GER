@@ -1,0 +1,199 @@
+PROGRAMM
+     WINX 2.0 [3.7.1992] - Patchprogramm fÅr die GEM-Fensterverwaltung
+
+BESCHREIBUNG
+     WINX Ñndert die Fensterverwaltung des GEM in folgenden Punkten:
+
+     1) Anzahl der Fenster:
+          GEM erlaubt in den bisherigen GEM-Versionen nur 8 Fenster.
+          Von diesen ist eines fÅr den Hintergrund der Programme
+          reserviert. Unter WINX stehen 40 Fenster zur VerfÅgung.
+
+     2) Kontrollelemente an hinteren Fenster:
+          Bisher ist nur das vorderste Fenster mit Kontrollelementen,
+          wie Schlieûbox oder Slider, ausgestattet. Um ein hinteres
+          bedienen zu kînnen, muû es zunÑchst mit einem Mausklick auf
+          die FensterflÑche nach vorne gebracht werden. Unter WINX ist
+          dies nicht mehr notwendig, da alle Fenster Kontrollelemente
+          besitzen und der Screen-Manager, der die Bedienung der
+          Kontrollelemente Åberwacht, umgestellt wurde.
+
+     3) Minimierung der Anzahl der Rahmenelemente:
+          Fenster mit einem Grîûenfeld haben bisher immer auch einen
+          horizontalen und einen vertikalen Balken. Unter WINX werden
+          nur noch die absolut notwendigen Elemente erzeugt.
+
+     4) Definierte Wartezeit bei Mausklick:
+          In den bisherigen GEM-Versionen ist die Zeitspanne zwischen
+          dem Mausklick des Anwenders und der Verarbeitung durch den
+          Screen-Manager nicht einheitlich (konkret hÑngt die Zeit-
+          spanne davon ab, ob mindestens eine Applikation bzw. ein
+          Accessory auf einen Doppelklick wartet oder nicht). Unter
+          WINX wird immer die Doppelklick-Zeitspanne gewartet. Dies
+          ist notwendig, da sonst, beim Klick auf das Titelelement
+          eines hinteren Fensters, nicht immer zwischen Verschieben
+          und Toppen unterschieden werden kann.
+
+     5) Selektion der Kontrollelemente bei der Bedienung:
+          Die optische RÅckmeldung des Screen-Managers bei der Be-
+          dienung eines Kontrollelements beschrÑnkte sich bisher auf
+          die Darstellung von 'Geisterrahmen' beim Verschieben. Unter
+          WINX wird das jeweilige Kontrollelement selektiert.
+          
+     6) Slider mit 3D-Effekt:
+          In den bisherigen GEM-Versionen wirkt der Slider relativ
+          platt. Durch die Verbreiterung des Rahmens der Box in der
+          der Slider bewegt wird, entsteht ein rÑumlicher Eindruck.
+
+     Neben diesen direkten énderungen gibt es auch einige indirekte.
+     So wird z.B. die Grîûe des Nachrichtenpuffers einer Applikation
+     von bisher 8 Standard-Nachrichten auf 40 erhîht. Dies hilft in
+     einigen FÑllen Verklemmungen des GEM beim Verschicken von
+     Nachrichten zu vermeiden. 
+     
+     Theoretisch sollten alle 'sauberen' GEM-Programme mit den 
+     énderungen der Fensterverwaltung zurecht kommen, die Praxis sieht
+     allerdings anders aus. So muûte z.B. auch das integrierte Desktop
+     in einigen Punkten Åberarbeitet werden.
+
+     Um all diese énderungen vornehmen zu kînnen, muû WINX tief in den
+     Programmcode des GEM eingreifen. Der Eingriff kann auf dreierlei
+     Weise erfolgen:
+
+     a) Patchen einer Kopie des GEM im RAM
+          Man installiert beim Booten des Rechners eine Kopie des GEM
+          im RAM, die dann vor dem Start des GEM durch WINX modifiziert
+          wird. Dies ist mit einem der folgenden Programme mîglich:
+
+          ROMRAM   TOS Beschleuniger fÅr TTs, >256 KB,
+                   Mailbox Maus HH2, Freeware, A. Herzlinger, PTOS
+          VRAM     Virtuelle Speicherverwaltung fÅr TTs, >256 KB,
+                   OverScan GbR, Berlin, Alexander Herzlinger, VRAM
+          ROMSPEED TOS Beschleuniger fÅr TTs (Bestandteil von OUTSIDE
+                   einer virtuelle Speicherverwaltung fÅr TTs), >256 KB,
+                   MAXON Verlag, Uwe Seimet, USRS
+          GEMRAM   GEM im RAM installieren (STs und TTs), 80-120 KB,
+                   Mailbox Maus MZ, Freeware, Martin Osieka, MOGR
+          (Beschreibung, Speicherbedarf, Bezugsquelle, Autor, Cookie)
+
+          WINX gehîrt in diesem Fall nach diesen Programmen in den
+          Ordner \AUTO auf dem Bootlaufwerk und wird somit beim Booten
+          automatisch gestartet.
+          Die Programme werden nur erkannt, wenn sie das entsprechende
+          Cookie im Cookiejar eingetragen haben.
+
+     b) Patchen einer TOS-Datei
+          Man benutzt WINX um sich eine modifizierte Kopie des TOS zu 
+          erstellen, die anschlieûend auf Eproms gebrannt und in den
+          Rechner eingesetzt wird. Hierzu ruft man WINX vom Desktop
+          auf und erhÑlt dann die Mîglichkeit, das TOS aus den ROMs 
+          oder einer bereits bestehenden TOS-Datei zu laden. Nachdem
+          WINX das TOS modifiziert hat, kann es abgespeichert werden.
+
+     c) Patchen einzelner GEM-Routinen      
+          Auf Rechnern mit Original-TOS 1.0, 1.2 bzw. 1.4 kann man
+          WINX ohne RAM-Kopie des GEM benutzen. Auch in diesem Fall
+          gehîrt WINX in den AUTO-Ordner. Beim Start des GEM werden
+          dann nur die von WINX modifizierten Routinen ins RAM kopiert.
+          Diese Methode ist bei spÑteren TOS-Versionen nicht mîglich.
+          Die kopierten GEM-Routinen belegen ca. 10 KByte.
+
+     ZusÑtzlich zum Speicher fÅr eine Kopie des GEM bzw. der kopierten
+     GEM-Funktionen fordert WINX beim Start des GEM weiteren Speicher
+     fÅr die Fensterstrukturen an (ca. 15 KByte).
+
+     WINX unterstÅtzt die folgenden offiziellen GEM Versionen:
+     1.2 (TOS 1.00/1.02), 1.4 (TOS 1.04/1.06/1.62),
+     3.0 (TOS 3.01), 3.1 (TOS 2.05/3.05), 3.2 (TOS 2.06/3.06)
+
+KONFIGURATION
+     Die énderungen, die WINX am GEM vornimmt, kînnen weitgehend Åber
+     'Schalter' ein- bzw. ausgeschaltet werden. Die Einstellung der
+     Schalter kann Åber den Dateinamen bzw. Åber ein CPX-Modul erfolgen.
+
+     Zur Einstellung Åber den Dateinamen muû zunÑchst der Konfigurations-
+     wert bestimmt werden. Hierzu addiert man die Werte aller Schalter
+     die man einschalten will.
+
+     Schalter  énderung                                   Wert
+        0      Anzahl der Fenster auf 40 erhîhen            1
+        1      Kontrollelemente an hinteren Fenstern        2
+        2      Minimierung der Anzahl der Rahmenelemente    4
+        3      Feste Wartezeit bei Mausklick                8
+        4      Selektion beim Anklicken der Pfeile         16
+        5      Selektion beim Verschieben/Vergrîûern       32
+        6      Sliderrahmen mit 3D-Effekt                  64
+             
+     Will man z.B. die Schalter 0, 1 und 4 einschalten, ergibt sich
+     aus 1 + 2 + 16 der Konfigurationswert 19 und man muû WINX.PRG
+     nach WINXC19.PRG umbenennen (man beachte das C im Namen). 
+     Gibt man keinen Konfigurationswert im Namen an, gilt als Default-
+     wert 127, d.h. 'alle Schalter eingeschaltet'.
+     
+     Benutzt man das XCONTROL-Accessory von ATARI, kann man die Schalter
+     auch Åber das beiligende CPX-Modul WINX.CPX einstellen. Dieses
+     muû dazu vorher in den CPX-Ordner kopiert worden sein. Leider
+     kînnen die Schalter nur beim Start des GEM eingestellt werden,
+     daher muû der Rechner, nach der Einstellung der Schalter und dem
+     Sichern der Einstellungen, neu gestartet werden (aus diesem Grund
+     fehlt auch der OK-Knopf im CPX). Ansonsten entspricht die Be-
+     dienung des CPX dem Åblichen Vorgehen. ErwÑhnen sollte man viel-
+     leicht noch, daû man durch Anklicken der Textzeile eines Schalters
+     direkt zur zugehîrigen Info-Seite gelangt und das folgende Tasten
+     unterstÅtzt werden:
+       HELP    zur Anzeige der Infoseiten
+       UNDO    zum RÅcksetzen verÑnderter Schalter
+       ALT-S   zum Sichern der Einstellungen
+     Benutzt man das CPX haben die Einstellungen im Dateinamen keine
+     Bedeutung mehr.
+
+TERMINATE AND KEEP RESIDENT
+     WINX ist ein TKR-Programm und besteht aus einem TKR-Lader in den
+     das TKR-Modul 'WINX.TKR' eingefÅgt ist. Das TKR-Konzept sieht
+     vor, daû Programme (TKR-Module), die residenten Speicher benîtigen,
+     diesen von einem anderen Programm (dem TKR-Lader) bereitgestellt
+     bekommen. Dadurch kann sich das TKR-Modul auf seine eigentliche
+     Aufgabe konzentrieren und belegt nur minimal Speicher. Der hier
+     benutzte TKR-Lader kann beliebig viele TKR-Module und andere
+     Programme enthalten. Ist beim Start des TKR-Laders eine SHIFT-
+     Taste gedrÅckt, wird fÅr jedes TKR-Modul nachgefragt, ob es
+     gestartet werden soll. Der TKR-Lader gibt bei Programmende die
+     Gesamtgrîûe des resident gehaltenen Speichers aus.
+     
+BEKANNTE PROBLEME
+     Einige Ñltere Programme verwenden die Fensterkennung zur
+     Indizierung eigener Tabellen, dies fÅhrt in der Regel bei vielen
+     offenen Fenstern zum Absturz.
+     Einige Programme beschrÑnken ohne zwingenden Grund die Anzahl
+     ihrer Fenster (z.B. das Original-Desktop).
+     WINX Versionen vor 2.0 stÅrzten ab, wenn Programme die fehler-
+     hafte Fensterkennung -1 (NOWINDOW) benutzten. Dies wird jetzt
+     abgefangen.
+     TOS14FIX darf nur nach WINX aufgerufen werden.
+     TEMPLMON Versionen < 2.0 mÅssen vor WINX aufgerufen werden.
+     Viele Programme kommen mit der Bearbeitung von hinteren Fenstern
+     nicht zurecht, vorallem das Scrollen in teilweise verdeckten
+     Fenstern bereitet Probleme.
+
+VEKTOREN, COOKIES, ETC.
+     Im Fall c) wird der LineF-Vektor verbogen (XBRA-Kennung AESF).
+
+ENVIRONMENT
+     WINX benutzt deutschsprachige Meldungen, falls die Environment-
+     variable 'LANG' auf 'german' gesetzt oder eine deutschsprachige
+     TOS-Version installiert ist (sonst englischsprachige).
+
+AUTOR
+     (\/) Martin Osieka
+     Anschrift: Martin Osieka, Erbacherstr. 2, D-6100 Darmstadt
+     Internet: Martin_Osieka@mz.maus.de
+
+COPYRIGHT & HAFTUNG
+     Das Programm WINX.PRG darf auf beliebige Art und Weise weiter-
+     verbreitet werden, solange alle Dateien des Programmpakets
+     beiliegen. Dazu gehîren:
+       WINX.PRG, WINX.CPX    Patchprogramm und Konfigurationsmodul
+       WINX.GER, WINX.UPL    Dokumentation und Upload-Beschreibung
+       WINNI.PRG, WINNI.RSC  Ereignistestprogramm mit Resource
+       WINNI.TXT             Kurzbeschreibung
+     Die Benutzung des Programms erfolgt auf eigene Gefahr.

@@ -1,0 +1,104 @@
+Allgemeines:
+------------
+
+Ich habe das Desktop dem TT- Betriebssystem TOS 3.01 Deutsche-Version
+entnommen. Da es das Desktop darstellt muû es als letztes in den Auto-
+Ordner. Der Autoordner wird nach Laden des DESK3_01.PRG nicht weiter
+abgearbeitet.
+
+Das 'DESKTOP.INF' heiût jetzt 'NEWDESK.INF'. Ist beim Start ein
+'NEWDESK.INF' nicht vorhanden, wird das 'DESKTOP.INF' verwendet. 
+
+
+Was funktioniert nicht:
+-----------------------
+Programme wie z.b. UIS_III laufen leider noch nicht. (Trap #2 und LineF
+werden verbogen). QuickST beschleunigt GEM-Ausgaben nicht mehr (Trap #2 !). 
+Ich bin aber mit TRACKER dabei, das Problem zu lîsen.
+
+Weiterhin wird der Text bei der Funktion 'Anzeigen' per Maus - wie auch
+schon beim Desktop 2.0 - zu weit gescrollt.
+ 
+Funktionen
+----------
+Auf dem Desktop kînnen Datei- und Programmsymbole abgelegt werden.
+Dabei kann fÅr jede Datei ein eigenes Icon gewÑhlt werden (Fenster
+und/oder Desktop !).
+
+Es kînnen auch andere Icon's verwendet werden. DafÅr muû eine Datei
+mit dem Namen 'DESKICON.RSC'auf dem Laufwerk vorhanden sein. Diese 
+wird beim Start eingelesen. Dadurch gehen aber die im DESK3_01.PRG
+enthaltenen Icon's verloren. Das Format der RSC-Datei ist identisch mit
+der Datei vom Desktop 2.0 (TOS 2.0).
+
+FUNKTIONSTASTEN: öber Funktionstasten kînnen jetzt Progamme aufgerufen
+                 werden.
+Wie?             1)PRG anklicken 
+                 2)Auf 'Anwendung anmelden' klicken.
+                 3)Bei 'Anmelden als' die Funktonstaste eintragen.
+                   (F1-20)
+                 4)Auf 'Anmelden' und danach Arbeit sichern.
+Die Funktionstasten F11-F20 werden Åber die 'Shift' Taste erreicht.
+
+Dateioperationen kînnen mit der Taste 'Undo' unterbrochen werden.
+
+Mit 'Help' werden die Funktionen erklÑrt, die nicht so offensichtlich 
+sind.
+
+Bei Fragen oder Problemen bitte Nachricht an SCHWARZ.
+
+                                                  Viel Spaû
+
+
+
+
+General:  
+------------  
+  
+I have that desktop the TT - operating system TOS 3.01 German-readings  
+taken. Since it represents that desktop muû it as last in him/it car -  
+Stewards. The car-steward doesn't become more after stores of the DESK3_01.PRG  
+worked off.  
+  
+That ' DESKTOP.INF' heiût now ' NEWDESK.INF'. with the start one  
+' NEWDESK.INF' not existing, that becomes ' DESKTOP.INF' uses.   
+  
+  
+What worked not:  
+-----------------------  
+Programs like z.b. UIS_III not yet runs unfortunately. (Trap #2 and LineF  
+is bent). QuickST accelerates GEM-Ausgaben no longer (Trap #2!).   
+I am with TRACKER with it however, the problem to lîsen.  
+  
+Still, the text becomes with the function ' Anzeigen' per mouse - like also  
+already with the desktop 2.0 - too far gescrollt.  
+   
+Functions  
+----------  
+On the desktop kînnen file - and program-symbols is set aside.  
+FÅr can become each file an own Icon gewÑhlt with it (windows  
+und/oder desktop!).  
+  
+It kînnen also other Icon's uses becomes. DafÅr muû a file  
+with the name ' DESKICON.RSC'auf the drive existing is. These   
+one reads with the start. That go through it in the DESK3_01.PRG however  
+enthaltenen Icon's lost. The format of the RSC-Datei is identically with  
+the file of the desktop 2.0 (TOS 2.0).  
+  
+FUNCTION-FEELS: öber function-feel kînnen now Progamme called  
+                 becomes.  
+How?             1)PRG click   
+                 2)Auf ' application anmelden' clicks.  
+                 3)Bei ' declares als' the Funktonstaste writes down.  
+                   (F1-20)  
+                 4)Auf ' Anmelden' and after it work secures.  
+The function-feeling F11-F20 becomes Åbers that ' Shift' button reaches.  
+  
+File-operations kînnen with the button ' Undo' is interrupted.  
+  
+With ' Help' becomes the functions erklÑrt, that not so obviously   
+is.  
+  
+With questions or problems please message at BLACK.  
+  
+                                                  Much Spaû  

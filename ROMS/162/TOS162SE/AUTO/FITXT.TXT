@@ -1,0 +1,31 @@
+FITXT14 (16) af Claus J. Pedersen
+Copyright 1990, Atari DK.
+================================
+
+Installation of finnish text:
+
+  To get finnish text install the program FITXT14 (16) as
+  autostart from Desktop.
+  Use FITXT14 for TOS 1.4 and FITXT16 for TOS 1.6.
+
+Error statements:
+
+  FINNISH TEXT DESIGNED FOR TOS 1.4
+
+    The program you have executed only works with TOS 1.4
+
+  FINNISH TEXT DESIGNED FOR TOS 1.6
+
+    The program you have executed only works with TOS 1.6
+
+  FINNISH TEXT MUST NOT BE IN AUTOFOLDER
+
+    This program must not be in the autofolder.
+
+  FINNISH TEXT MUST BE INSTALLED
+  AS AUTOSTART FORM DESKTOP
+
+    To make this program work, you must install it as autostart from the 
+    desktop. Look in your manual to see how to install.
+
+

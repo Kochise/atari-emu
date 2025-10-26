@@ -1,0 +1,44 @@
+Einige Bemerkungen und Hinweise zu WINNI     (Stand 3.7.1992)
+
+- WINNI ist ein Experimentalprogramm zum Test der Ereignisverarbeitung
+  des GEM. Es erhebt keinesfalls einen Anspruch auf VollstÑndigkeit
+  und Korrektheit. Es will auch keine Trendsetter zur Gestaltung von
+  Dialogboxen und Ñhnlichem sein. Es liegt eigentlich nur noch aus
+  historischen GrÅnden dem Patchprogramm WINX bei, da zur Zeit der
+  ersten WINX Version nur wenige Programme viele Fenster îffnen konnten.
+
+- Durch VerÑnderung der Grundeinstellungen kann man das System zum
+  Stehen bringen. (z.B. durch Ausschalten aller Ereignisanforderungen).
+  Also Vorsicht.
+
+- Ist beim Verlassen des Programms eine SHIFT-Taste gedrÅckt, werden
+  die offenen Fenster nicht explizit geschlossen (es wird wind_new()
+  aufgerufen)
+
+- WINNI kann sowohl als Applikation als auch als Accessory gestartet
+  werden.
+  
+- Die Fenstervaltung von WINNI fordert dynamisch Speicher an. Dies
+  gibt Probleme, wenn WINNI als Accessory benutzt wird. Bei der
+  Terminierung einer Hauptapplikation erhalten Accessories die
+  Nachricht, daû sich das AES neu initialisiert. Erst ab GEM 3.xx
+  (TOS 2.xx/3.xx) garantiert ATARI, daû diese Nachricht rechtzeitig
+  eintrifft. Nur im letzten Fall kann Speicher freigegeben werden.
+  FÅr WINNI bedeutet dies in den problematischen TOS-Versionen, daû
+  der Anwender vor dem Terminieren der Applikation alle WINNI Fenster
+  schlieûen sollte um Speicherfragmentierung zu vermeiden.
+
+- Das WINNI FenstermenÅ kann mit der Taste F10 geîffnet bzw. nach
+  vorne gebracht werden (natÅrlich nur, wenn GEM die Tastatur WINNI
+  zugeordnet hat. Mit F9 kann man das FenstermenÅ wieder entfernen.
+
+- F6 gibt einen öberblick Åber die verschiedenen Kombinationen von
+  vertikalen und horizontalen Rahmenelementen.
+
+- WINNI-Formulare kînnen an einer bestimmten Bildschirmposition
+  fixiert werden. Verschieben Sie das Formular hierzu an die
+  gewÅnschte Position, nachdem Sie es mit der Maus am Verschiebe-
+  symbol (rechts oben) aufgenommen haben. Ein Doppelklick auf das
+  Symbol fixiert das Formular, ein weiterer gibt es wieder frei.
+  
+MfG, Martin Osieka (\/)
