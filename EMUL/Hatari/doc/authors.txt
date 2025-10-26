@@ -10,8 +10,7 @@ Contents:
 - Nicolas Pomarede <npomarede at corp.free.fr> : Project admin,
   improving CPU, video, sound, blitter, IKBD and floppy emulation.
 
-- Thomas Huth <huth at tuxfamily.org> : Project initiator and
-  admin, currently more or less in hibernation mode.
+- Thomas Huth <th.huth at posteo.eu> : Project initiator and backup admin.
 
 - Eero Tamminen <oak at helsinkinet fi> : Speedups, small parts of the
   STE, TT & Falcon emulation, Python CLI & GUI, TOS tester + Hatari
@@ -129,9 +128,10 @@ random order - and if someone is missing here, please remind us!):
   and MacOS screenshot dir handling.
 
 - Thorsten Otto: improvements to the code that patches the TOS ROMs,
-  Pure-C long symbol names, a.out symbol table & absolute symbols support,
-  few debugger & tracing usability improvements, fixed (sin, mulaw & a-law)
-  DSP ROM tables, fmovem test program, key mapping improvement.
+  support for Pure-C long symbol names, a.out symbol table, MINT+ELF
+  symbols, and absolute symbols, few debugger & tracing usability
+  improvements, fixed (sin, mulaw & a-law) DSP ROM tables, fmovem test
+  program, key mapping improvement.
 
 - Andreas Grabher : FPU improvements using the SoftFloat library,
   most of the 030 MMU implementation and few bug reports & patches
@@ -170,6 +170,19 @@ random order - and if someone is missing here, please remind us!):
 
 - Chris Jenkins : patch to compile the macOS version when PortMidi is not 
   available.
+
+- Robin Sergeant <robin.sergeant at gmail.com> : support for remapping
+  joystick buttons
+
+- Brad Smith <rainwarrior at gmail.com> : Ported Hatari 2.4 to the Libretro
+  emulation system as 'HatariB' and contributed several patches to Hatari :
+  missing variables in memory snapshot, keyboard/joystick fixes, saving
+  screen content as .neo and .ximg file.
+
+- Alex Hornby : Patch to add analog/paddle support to the joypad emulation
+
+- Frederic Poeydomenge <fpoeydo64100 at gmail.com> : add support to specify
+  a directory to save screenshots and AVI files
 
 See also "thanks.txt" for people who've helped Hatari development in
 other ways than code contributions.

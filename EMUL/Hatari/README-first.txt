@@ -2,9 +2,9 @@
 
                            Hatari binary for Windows
 
-                                 Version 2.4.1
+                                 Version 2.6.1
 
-                          http://hatari.tuxfamily.org/
+                          https://hatari-emu.org
 
 
 This is a binary release of Hatari for Windows. Hatari is an Atari ST,

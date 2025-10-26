@@ -9,8 +9,8 @@
 
 | **EMUL**			| [ARAnyM]						| [Gemulator]	| [Hatari]		| [SainT]		| [Steem.SSE]	| [BigPEmu]		| [VirtualJaguar]	|
 | :--				| :-:							| :-:			| :-:			| :-:			| :-:			| :-:			| :-:				|
-| **Version**		| 1.1.0							| 9.00 CE		| 2.4.1			| 2.40			| 4.2.0 R4		| 1.19			| 2.1.2				|
-| **Date**			| 2019/04/14					| 2008/11/30	| 2022/08/03	| 2015/12/12	| 2025/09/21	| 2025/06/02	| 2014/10/10		|
+| **Version**		| 1.1.0							| 9.00 CE		| 2.6.1			| 2.40			| 4.2.0 R4		| 1.19			| 2.1.2				|
+| **Date**			| 2019/04/14					| 2008/11/30	| 2025/08/15	| 2015/12/12	| 2025/09/21	| 2025/06/02	| 2014/10/10		|
 | **Release mouse**	| LShift + LCtrl + LAlt + Esc	| F11			| (borders)		| 				| F11			| 				| 					|
 | **Screenshot**	| PrintScreen					| 				| 				| 				| 				| 				| 					|
 | **Fullscreen**	| ScrollLock					| Alt + Enter	| F11			| 				| 				| 				| 					|
@@ -26,7 +26,7 @@
 
 [ARAnyM]: https://github.com/aranym/aranym/releases
 [Gemulator]: http://www.emulators.com/download.htm#ATARIST
-[Hatari]: https://download.tuxfamily.org/hatari/
+[Hatari]: https://www.hatari-emu.org/
 [SainT]: http://leonard.oxg.free.fr/SainT/saint.html
 [Steem.SSE]: https://sourceforge.net/projects/steemsse/files/
 [BigPEmu]: http://richwhitehouse.com/jaguar/
