@@ -1,0 +1,12 @@
+# gem.cnf
+# Last Modified on 12/15/2025 11:57
+# =================================================================
+setenv PATH=.,C:\MULTITOS
+setenv ACCPATH=C:\ACCS
+setenv ACCEXT=ACC,ACX
+setenv GEMEXT=PRG,APP,GTP
+setenv TOSEXT=TOS,TTP
+setenv SHSHOW=C:\MULTITOS\VIEWER.APP
+setenv SHPRINT=C:\MULTITOS\LPR.APP
+setenv TOSRUN=C:\MULTITOS\MINIWIN.APP
+

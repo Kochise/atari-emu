@@ -1,0 +1,40 @@
+Here's a beta release of MultiTOS 1.08. The pieces should replace
+your existing MultiTOS executables, except for the new program
+(DOCK.PRG) which you can put anywhere you keep executables.
+
+The following changes have been made:
+
+(1) The GEM.SYS file now runs on 68000 machines.
+
+(2) The SMALLER gadget has been moved from 0x1000 to 0x4000, for
+    compatibility with PC-GEM and some 3rd party products for the
+    Atari.
+
+(3) There is a new file selector. This is still very much experimental,
+    and we will no doubt make changes in the interface before the
+    final release to the public.
+
+(4) The iconify code now tiles windows along the bottom of the screen.
+
+(5) MINT.PRG now allows device drivers to be loaded at boot time,
+    in the form of *.XDD files (just like *.XFS).
+
+(6) File systems may be installed and removed at run time. See the
+    Dcntl manual page for details.
+
+(7) MINIWIN.APP now allows you to save preferences on a per-application
+    basis, as well as establishing global defaults.
+
+(8) Speedo GDOS fonts have been moved so that their font id's start
+    at position 5000; i.e. if a Speedo font has id #2, its font id as
+    seen by applications will be 5002. This is to avoid conflict with
+    existing bitmap font ids.
+
+(9) Several bugs have been fixed.
+
+
+The DOCK program is like the "dock" on the NeXT; it's a window where you
+can put frequently used applications. You run it by double-clicking
+on it, and you can then drag applications (or files) from desktop windows
+into DOCK's window.
+

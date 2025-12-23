@@ -1,0 +1,132 @@
+; Last modified on 12/23/2025 16:05
+; first path for the fonts (Should always be there)
+PATH = C:\SPEEDO\FONTS
+; path for character caches
+CPATH=C:\SPDTMP\CHR
+; automatically loading of the character cache files
+; AUTOCACHE = 0 -> no automatically loading of the character cache files
+AUTOCACHE=1
+;       The line PATH= defines your primary font folder and is set in Outline Fonts. The line XPATH allows you to
+;       have many more (extended) font folders, all active at the same time. All you have to do is tell SpeedoGDOS
+;       5.7 where the fonts are, and it takes care of the rest---you don't have to copy all of your fonts to a single
+;       folder. Outline Fonts lets you install up to two extended font folders, but you can manually install more by
+;       adding paths to the XPATH= line. 
+;       There can be only one XPATH line, and each path should be listed on it, separated by commas, without any
+;       spaces. There is one restriction---no one path can be longer than 127 characters, and the entire XPATH= line
+;       cannot be longer than 512 characters. 
+;XPATH = C:\TTF\,D:\PFB
+;       path for the temporary files
+TMPPATH=C:\SPDTMP
+;       folder/Name of the cache file (will be placed in PATH\CACHEFILE)
+CACHEFILE=#ECACHE2#
+;       checks by loading of the cache file if the font exist 
+;       this takes normally a few moment more as only reading the cache file, but it is saver
+;       if you always use the same fonts, you can set the value CACHECHECK = 1
+CACHECHECK=1
+;       a change cache file will be save after testing it, if CACHECHECK = 1 and CACHESAVE = 0.
+;       the start of the system will take longer, but in this way it is possible to load fonts from CD or cartridges
+;       without changing your default values. Normally it should be CACHECK = 0 and CACHESAVE =1
+CACHESAVE=1
+;       path for GDOS error messages
+ERRORS=!C:\SPDTMP\ERROR.TXT
+;       append error message an the file ERRORS
+;       normally this file will be deleted by a new start of SpeedoGDOS 5.7, but not when APPERRORS = 1
+APPERRORS=0
+;       siize of the Bitmap caches. SpeedoGDOS 5.7 still can use the old Bitmap fonts, you can set here the size
+;       of RAM that will be use for this kind of fonts
+BITCACHE=32000
+;       size of the FSM cache (means n/10 for the font cache)
+;       this value is very important, while it defines the RAM use of Speedo in the system
+;       as higher as the first value is, as more fonts Speedo can keep in memory
+;       the following value means 250 Kbyte memory reserved by Speedo
+;       5/10 = 125 Kbyte will be used as fontcache
+FSMCACHE=250000,4
+;       widthtables activeor not. This value should always be 0!
+WIDTHTABLES=0
+;       OUTMODE defines the rasterisation quality
+;       1 - Screen              middle quality
+;       2 - 2D          best quality
+;       3 - Quick               fast and good quality           
+;       4 - White               middle quality
+;       5 - Black               middle quality
+OUTMODE=2 
+;       the LOWMEM variable defines how font data is loaded into memory. LOWMEM can accept values of 0 or 1.
+;       the default is 1 and lets SpeedoGDOS 5.7 load only the necessary font data to display and print the characters
+;       you need. A value of 0 has SpeedoGDOS 5.7 load the entire font into memory. Unless you're working with
+;       lots of different characters (ie - extended characters, foreign languages, etc) you'll maximise performance and
+;       conserve memory by leaving LOWMEM at the default, 1
+LOWMEM=0 
+;       draw in the back mode and show all the characters at one time on the screen
+;       normally value should be BACKMAP = 1, so the output to the screen will be faster
+BACKMAP=1
+;       By default, SpeedoGDOS 5.7 initialises itself when the first application asks it to load fonts (vst_loadfonts).
+;       this means you'll see a delay when you load your first GDOS-aware application while the fonts are loaded. If
+;       you'd prefer to incur this delay during bootup rather than when you're launching an application, you can tell
+;       SpeedoGDOS 5.7 to initialise when it installs itself by adding the AUTOINIT=1 line to your EXTEND.SYS. 
+AUTOINIT=1
+;       until which size (points) Speedo should draw in back mode. If you have more then 8 MB on your system
+;       should should set this on 999. Otherwise a value between 32 and 100 is useful
+BACKPOINT=64
+;       When SpeedoGDOS 5 installs itself during bootup, it prints identification information to the screen, including
+;       installation status, cache sizes, version number and date, and other information. If you'd like to view this
+;       information but find it disappearing before you have a chance, insert the STOP=1 line in your EXTEND.SYS
+;       file. This tells SpeedoGDOS 5.7 to stop and wait after printing the status information on your screen. You
+;       may press any key to exit and continue the boot sequence.
+;STOP=1
+;       search in sub paths. With this set it is possible to manage the sub paths. Only for this reason you should not
+;       use the old configuration programs
+SUBPATH=1
+;       Compares the date and the time of the EXTEND.SYS and the cache file. If this value is 0, the cache file will
+;       be deleted when you want to change  the list of fonts.
+;       After important changes on the EXTEND.SYS this should be done always
+CACHESTAMP=0
+;       Size of the internal temporary Memory. This is used for instance  for the background Bitmaps and to
+;       draw the polygons
+TEMPSIZE=40000
+;       Search in all folders for fonts. In older versions of Speedo there was only looked for fonts in paths, when
+;       no special font was selected. With LOADALL = 1, Speedo will look for all available fonts in the folders
+LOADALL=1
+;       Debugging message by booting
+;       0 - default (none)
+;       1 - Shows the start address  of GDOS
+AUTODEBUG=0
+;       Extra information by boot
+;       You can set several flags and you can combine them by addition
+;       00 - Default (no info)
+;       01 - Show counter by initialization
+;       02 - Show the defined and in the paths found fonts
+;       04 - Shows the name of the fonts that actually load
+;       08 - Shows the maximum cache for characters and fonts
+AUTOINFO=0
+;       Name of the font path to ignore
+;       „HIDE" will ignore all folders which match with the same characters, so also „SPD!HIDE" or „X!HIDE2"
+;       and a text as „!HIDE\" or „\HIDE\" is also possible. The last one only looks for a complete name of the folder
+;       A practical way to hide folders for Speedo is to give these folders the extension .HID (HIDEPATH=.HID)
+HIDEPATH=!HIDE
+;       Default point size for all fonts. This is only for fonts which are found automatically
+DEFPOINTS=8,10,12,14,16,18,24,36,48,72,144
+;       This programs will not get Vector fonts. But be careful: Speedo goes into the Gemdos Trap, and let ignore the 
+;       program call. Here should only stand programs, which do by the start of the program immediately a
+;       vst_load_fonts
+;PRGFONTS="GEMINI.APP"=1
+;       To install fonts. You can set complete paths or names of fonts or names with relative paths.
+;       To set „POINTS" is not necessary, but may be used. If not available the default point size will be used and
+;       when this also is not available the size of 10 points will be used
+;FONT=C\BTFONTS\SPD\!HIDE\FONT0648.SPD
+;FONT=C\BTFONTS\SPD\!HIDE\BX329836.SPD
+;       There is a workaround for ATARI Works. On some computers it prints the first page completela black.
+;       We could not locate his error until now, which only appears by Works. To get not a black page as first page,
+;        every v_bar with the coordinates of the complete page after a v-clear_disp will be ignored. To get not
+;       incompatible you can switch of this workaround in the EXTEND.SYS:
+;BLACKPAGE=1
+;       In the EXTEND.SYS you can set the caches for the outlines. With OUTMALLOC=0 the Memory for the
+;       caches is declared wit Malloc. OUTMALLOC=1 use the internal cache of Speedo. The maximum number
+;       of coordinates for one outline can be set with OUTPTSMAX=n (Default = 2048). The form of a
+;       Bezier outline can be set. In Speedo 4.2 every Bezier polygon in an outline has 4 segments of points,
+;       also when the last point was the start point of the next. VDI however can also work with combined
+;       Bezier polygons. From Speedo 5.0 and higher double coordinates will be matched together.
+;       With OUTADDEND = 1 you can switch to the old methode.
+;OUTMALLOC=1
+;OUTPTSMAX=2048
+;OUTADDEND=0
+

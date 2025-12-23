@@ -1,0 +1,146 @@
+
+               ProCalc¿
+        Scientific Calculator
+
+          by John K. Brochu
+        for Advanced Software
+
+     Copyright ½ 1991 Atari Corp.
+
+             Version 1.30
+          November 29, 1991
+
+---------------------------------------
+
+ABOUT PROCALC
+
+ProCalc is a full-featured Scientific Calculator with log, exponential, power, root, and trigonometric calculations in degrees and radians, as well as a Computer Math Calculator with calculations and display in any common base (2/8/10/16), selectable number sign and size (signed/unsigned, byte/word/long), and full bitwise operators with CPU condition codes display.  There is also a time display mode for fast hour/minute/second calculations, a 10+1 number memory, an automatic constant, and 50-levels of nested parenthesis.
+
+ProCalc can also be configured as a basic 4-function calculator if that's all you need.  Press the window 'fuller' button at the upper right of the ProCalc window to toggle between basic and expanded configurations.
+
+The current configuration can be saved by pressing the [PREF] (preferences) button at the bottom right of the calculator.  This saves the current mode (SCI/BIN/OCT/DEC/HEX/HMS) and configuration (basic/expanded) so that ProCalc always comes up with your preferred settings.  You can also save the memory registers along with the settings by holding down a shift key or the right mouse button while pressing the [PREF] button.  The configuration file is saved to the root directory of the boot drive under the name "PROCALC.INF".
+
+Note that when ProCalc is in the basic configuration, it automatically switches to SCIentific mode.
+
+
+KEYCAPS
+
+All buttons can be activated with either the mouse or keyboard.  For key assignments, press the [?] button on the upper right of the calculator, or press the '?' key.  This will temporarily change the labels on each of the buttons to their keyboard equivalents.  Shifted keys are shown with a lower-case 's' before the key, while control keys have a caret ('^') before the key (ie. ^S means Control-S, sF1 means Shift-F1).  The keypad, of course, works as you would expect, with the 'Enter' key, as well as the 'Return' key, equivalent to the [=] button on the calculator.
+
+Some of the buttons also have a secondary function that can be activated by holding down either a keyboard 'Shift' key or the right mouse button while pressing the button.  Such keys are the degree/radian [D/R] button, the percent [%] button, all the memory buttons, and the [SIZE] button in computer math modes.  All functions are explained below.
+
+
+NUMERIC DISPLAY AND ENTRY
+
+The display in Scientific mode has a 10-digit mantissa with 2-digit exponent.  The Computer Math mode display is 16 digits maximum, or no larger than necessary to display a number in the current word size.  In BINary mode, if the number is larger than 16 digits, you can view 16 digits at a time, and flip the display left or right using the arrow button just under the left side of the display.  A small arrow will show at the bottom left or right of the display to indicate a display overflow.
+
+During number entry, you can do some simple editting using the 'Backspace' key or button under the right side of the display.  This erases the last digit entered.
+
+You also have the option of displaying numeric guides under the number, commas in SCI and DEC modes, and carets in BIN and HEX modes.  To toggle the guides on or off, shift click the 'Backspace' button.
+
+The [CEC] (Clear Entry/Clear) button can be used to clear the current display if numeric entry is in progress, or to clear the calculator if a calculation has been completed.
+
+At any time, the currently displayed entry can be copied to the system clipboard by pressing the [COPY] button just under the display, for later pasting into another application.
+
+In all modes, there are 50 levels of nested parenthesis available, with the current nesting level shown at the bottom center of the display area.
+
+
+ERROR STATUS INDICATOR
+
+There are several possible error conditions that can occur.  Each of the following error conditions are shown in the display towards the upper right...
+
+ DIV0   Attempted division by zero
+ NUM¯   Abs(result) > 9.999999999E99
+ NUM®   Abs(result) < 1E-99
+ OVFLW  Floating point overflow
+ UNFLW  Floating point underflow
+ INT¯   Result too large to fit in
+        current word size
+
+The last error occurs only in the integer math modes, and is a warning only.  You can still continue with the calculation, but be warned that the result may not be accurate.  For all other errors you must press the [CEC] key to clear the error condition.
+
+
+PHOTOGRAPHIC MEMORY
+
+ProCalc has five memory functions available.  These are MC (Memory Clear, store a 0 in memory), MX (Memory eXchange, exchange display contents with memory), MR (Memory Recall, show memory contents in display), MS (Memory Store, store display contents in memory), and M+ (add display contents to memory).
+
+In addition to the obvious single-number memory, ProCalc also has an additional 10-number memory available.  These are accessed by holding down the 'Shift' key, or right mouse button, while pressing one of the memory buttons.  The memory button will then 'lock' (stay highlighted), and you may then press a number key [0]-[9] to access one of the memories.  If you shift-select the number key, the memory button will remain locked, so that you can perform the same memory function on several memories at a time.  If you shift-select a memory button while it is locked, instead of a number button, you can perform the function on ALL supplemental memories at once (the MX and MR buttons do not apply here, since, of course, you cannot display more than one number at a time).  Pressing any other button while a memory button is locked will have no effect on the intended function.
+
+There are 11 memory status indicators (M for the main memory, and 0-9 for the supplemental memories) in the upper left of the display area that light when a memory has non-zero contents.
+
+All memories can be saved along with the current configuration by shift-selecting the [PREF] button.  The memories will then be restored whenever the system is rebooted.
+
+
+AUTOMATIC CONSTANT
+
+The automatic constant allows you to do repetive calculations with a common number and operator.  The constant is set whenever a two-number operation is completed with the [=] button.  When the equals button is pressed after such an operation, the operator and the last entered number or result are stored as the automatic constant.  You can then enter a new number and press the equals button, and the calculator will automatically complete the operation with the stored operator and constant.  You can also repeatedly execute the automatic constant on the current display by simply pressing the equals button.  The automatic constant is cleared when the [CEC] button is pressed, or the calculation mode is changed.
+
+
+MULTIPLE PERSONALITIES
+
+ProCalc can be operated in one of three modes, scientific, computer math, or time calculation.  The top row of buttons above the calculator display is used to change modes.  As you change between modes, the calculator buttons also change to indicate the different functions available.  The number in the display is retained between modes, so that you can easily do mixed calculations, as well as number conversions between bases.  Values stored in the memories are also retained, and will always be displayed in the proper format.
+
+
+SCIENTIFIC MODE
+
+Scientific calculations are available only when in SCI mode, and are as follows...
+
+ ln      natural log
+ eü      inverse natural log
+ log     base 10 log
+ 10ü     inverse base 10 log
+ ný      square
+ ûn      square root
+ Yü      universal power
+ 1/n     inverse
+ %       percent, delta percent
+
+The percent function works with the +, -, x, and ö keys, or by itself, to perform the following functions...
+
+ X+Y%=   Mark-up  (X plus Y% of X)
+ X-Y%=   Discount (X minus Y% of X)
+ XxY%=   Percentage (Y% of X)
+ XöY%=   Ratio (X is what % of Y)
+ X%      Percent to decimal conversion
+ X%Y=    Delta percent ((X/Y-1)x100%)
+
+The delta percent function is activated by shift-selecting the percent button, and calculates the change in percentage that occurs between two values as a percentage of the second value.
+
+The group of six buttons above the numeric keys are the trig functions.  The [HYP] and [ARC] buttons are 'locking' buttons used to invoke the HYPerbolic and ARC (inverse) trig functions.  For instance, if you want the hyperbolic arcsin of a number in the display, depress the [HYP] and [ARC] buttons before pressing the [sin] button.  These buttons work only in conjunction with the [sin], [cos] and [tan] buttons.  Pressing any other button while [HYP] or [ARC] are locked will have no effect.
+
+You can enter, display, and convert angles to and from degrees and radians by using the [D/R] button under the left side of the display.  There is also an indicator in the display just above the button.  All trig calculations, both inputs and results, use the current angle mode as shown in the display.  To change the angle mode without affecting the displayed number, hold down the shift key or right mouse button while pressing the [D/R] button.
+
+Numbers can be entered in scientific notation by entering the mantissa first, pressing the [EE] (Enter Exponent) button, then the exponent (-99...99).  ProCalc has a very smart display processor.  Scientific notation will be used to display calculation results only if it results in better display accuracy.  If a result fits in the display in decimal notation with no loss of accuracy, that is how it will be displayed.
+
+
+COMPUTER MATH MODES
+
+In any of the Computer Math modes, the number type (signed or unsigned) can be changed using the [SIGN] button, and the word size (byte - 8 bits, word - 16 bits, or long - 32 bits) can be changed using the [SIZE] button.  The size changes from B->W->L as you press the [SIZE] button, or from L->W->B if you hold down the shift key while pressing [SIZE].  The current word size and sign is shown in the display to the lower left.  A displayed number may be truncated or sign-extended, depending on the sign and size.  If it is truncated, an error message will appear in the top of the display, but you can still continue with the calculation if you wish.
+
+Computer math functions are available in BIN/OCT/DEC/HEX modes only and are as follows...
+
+ ROL     Rotate Left
+ ROR     Rotate Right
+ ASL/LSL Arithmetic/Logical Shift Left
+ ASR/LSR Arithmetic/Logical Shift Right
+ NOT     One's complement
+ NEG     Two's complement
+ AND     Bitwise AND
+ OR      Bitwise OR
+ XOR     Bitwise Exclusive OR
+ MOD     Modulus (division remainder)
+
+Note that the ASL/ASR operations are available only in signed arithmetic mode, and LSL/LSR only in unsigned arithmetic mode.
+
+All operations in this mode (except as noted below) execute the corresponding CPU instruction directly and then check the CPU condition codes and display the codes in the display to the upper right.  For multiplication, division, and modulus operations, the operation is carried out using floating point arithmetic, then the result is moved into a data register, and the condition codes checked and displayed.  The condition codes displayed are...
+
+ C  Carry
+ V  oVerflow (result overflow)
+ Z  Zero (result is zero)
+ N  Negative (high-order bit is set)
+
+
+TIME FOR A BREAK
+
+Ever make a tape of some of your favorite songs, and need to know the total playing time of all the songs?  ProCalc to the rescue!  Simply select the [HMS] mode button, and enter the playing time of each song in minutes & seconds (MM:SS).  ProCalc automatically calculates the result and displays it in the same format.  You can enter the times in any format you wish, just separate hours, minutes, and seconds by a colon or period.  For instance, entering "185:" is interpreted as "185 minutes, 0 seconds", or 3:05:00.  The time is stored internally in seconds, so switching to another mode, such as SCIentific, will display the value in seconds.
+

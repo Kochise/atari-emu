@@ -1,0 +1,29 @@
+		***********************************
+		***         Accessory v1.2	***
+		***				***
+		***		  by		***
+		***	  |\/|			***
+		***	  |  |urray Levine	***
+		***********************************
+
+	Accessory (ACC.PRG) is a program that will let you load all of your
+accessories out of a folder called ACCS on the boot drive instead of loading
+them out of the root directory of the boot drive.  This helps to keep your
+main directory less cluttered especially for hard drive owners.  Version 1.2
+now adds the ability for any resource files used by the accessories to be
+also loaded from the ACCS folder or they can still be loaded from the main
+driectory as before.
+	Just place ACC.PRG in your AUTO folder or add it to your STARTUP.INF
+script file for STARTUP.PRG.  All accessories will now be loaded from the
+ACCS folder on the boot drive.  They will also get re-loaded the same way
+after changing resolutions from the desktop with a color monitor.
+	Chances are that this program will not work with any of the accessory
+loader programs, but if there is any interest in having it do so just send
+me Email to either of the following ID's and I will try to enhance to program
+to work with these other programs.
+
+	|\/|
+	|  |urray Levine
+
+Compuserve ID - 74435,1015
+GEnie ID - MURRAY

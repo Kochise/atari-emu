@@ -1,0 +1,6 @@
+# multitos.cnf
+# Last Modified on 12/15/2025 11:57
+# ====================================================================
+# Start up the GEM Desktop
+GEM=C:\MULTITOS\GEM_410.SYS
+

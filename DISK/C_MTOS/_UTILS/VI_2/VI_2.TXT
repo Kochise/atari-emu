@@ -1,0 +1,296 @@
+
+**********************************************************************
+                           Videl Inside 2.01
+                     (c)1996 Trisomic Development
+**********************************************************************
+
+Version fran‡aise
+
+Auteur : Zerkman (Fran‡ois GALEA)
+Distribution : Freeware
+Fonction : Extension des r‚solutions graphiques du Falcon.
+
+
+1. Introduction.
+
+   a. Mise au point.
+      L'utilisation de   ce   programme   n'‚tant   soumise   …   aucune
+      restriction, son auteur se saurait ˆtre tenu pour  responsable  de
+      dommages ‚ventuels subis par le mat‚riel.
+
+   b. Pr‚sentation du programme.
+      Videl Inside (VI) est un programme pour Atari Falcon030,  dont  la
+      fonction est d'‚tendre les r‚solutions graphiques de celui-ci, les
+      nouveaux  modes  graphiques  ‚tant  utilisables  sous  le  systŠme
+      standard (GEM), mais aussi sous d'autres systŠmes de  substitution
+      (MultiTOS, Magic ...).
+
+      Il ne consomme que  trŠs  peu  de  m‚moire  (de  l'ordre  de  1500
+      octets), et est pourvu d'une fiabilit‚ … toute ‚preuve.
+
+
+2. Distribution.
+
+      VI 2.01 est librement diffusable, … la condition que les  fichiers
+      suivants ne soient ni modifi‚s, ni supprim‚s:
+
+      AUTO\VI2.PRG            => Noyau principal de VI 2
+      AUTO\VI2_CNF.PRG        => Module de configuration de VI 2
+		ED_MODE\ED_MODE.PRG		=> diteur de modes vid‚o
+		ED_MODE\ED_MODE.RSC		=> Fichier ressource de l'‚diteur
+      VI2.DAT                 => Fichier contenant les modes vid‚o
+                                 ‚tendus de VI
+      DOCS\VI_2.TXT           => Documentation fran‡aise
+
+3. Installation.
+
+      Copiez les programmes se trouvant dans le dossier  AUTO  de  cette
+      archive dans votre dossier AUTO, ainsi que le fichier VI2.DAT dans
+      le r‚pertoire racine de  votre  disque  de  d‚marrage.  Red‚marrez
+      votre machine, aprŠs vous ˆtre assur‚(e), si vous  poss‚dez  NVDI,
+      que ce dernier soit plac‚ AVANT VI2.  Vous  pouvez  v‚rifier  cela
+      depuis le bureau GEM, en s‚lectionnant l'option 'Pas de Tri'  dans
+      le menu de s‚lection du mode de tri des fichiers. Pour placer  VI2
+      aprŠs NVDI, vous devez copier VI2.PRG dans ce mˆme  r‚pertoire  en
+      le renommant (copie  en  pressant  la  touche  Alternate),  et  ce
+      jusqu'… ce que l'une de vos copies renomm‚es soit  situ‚e  derrŠre
+      NVDI. Effacez les autres  exemplaires,  renommez  votre  copie  en
+      VI2.PRG, et red‚marrez votre Falcon.
+
+
+4. Fonctionnement.
+
+   a. Diff‚rences VI 1.x / VI 2.x
+      Ceux qui connaissaient d‚j… les versions 1.x de VI vont se trouver
+      un peu d‚pays‚s, (si ce n'est pas ‚merveill‚s ;-) ) par VI 2.
+
+      Ces anciennes  versions  n'‚taient  constitu‚es  que  d'un  unique
+      programme ex‚cutable, … placer dans le dossier AUTO, qui servait …
+      la fois de gestionnaire de r‚solutions ‚tendues, et  de  programme
+      de configuration. Par souci  de  modularit‚,  et  aussi  pour  des
+      raisons d'occupation m‚moire, ces deux fonctions ont ‚t‚ s‚par‚es.
+
+   b. Utilisation de VI 2 sous TOS/GEM.
+      Une fois arriv‚ sous le bureau GEM, rien d'apparent ne se produit.
+      Pour tester la pr‚sence de VI 2 en m‚moire, il vous suffit d'aller
+      s‚lectionner l'option 'Modes vid‚o' du menu Options du bureau GEM,
+      pour voir apparaŒtre un panneau de s‚lection de  modes  vid‚o  peu
+      habituel. Une fenˆtre laisse apparaŒtre une liste de  modes  vid‚o
+      pr‚d‚finis. Cette liste peut ˆtre plus grande que la hauteur de la
+      fenˆtre, dans ce cas, l'ascenseur situ‚ … la  droite  de  celle-ci
+      vous permettra de faire d‚filer les modes vid‚o.
+
+      Pour utiliser un mode vid‚o, cliquez simplement sur  le  mode  qui
+      vous int‚resse et ensuite sur le bouton OK.  Vous  vous  retrouvez
+      alors sous la r‚solution souhait‚e en deux clics de souris!  C'est
+      beau le progrŠs non ? Notez qu'un double clic sur un mode produira
+      le mˆme effet.
+
+      Vous pouvez ‚galement choisir un mode  virtuel  (‚cran  de  taille
+      sup‚rieure au mode choisi,  et   donc   n'‚tant   jamais   visible
+      int‚gralement : la  partie  visible  d‚file  sur  votre  ‚cran  en
+      suivant les mouvements de la souris) en  cliquant  sur  le  bouton
+      '‚cran virtuel', et en choisissant la taille ‚cran d‚sir‚e.
+
+      Les boutons de modes compatibles Falcon et ST vous  permettent  de
+      retourner dans les modes vid‚o habituels du Falcon.
+
+      Enfin, le  bouton  'Sauver'  vous  permettra,  une  fois  un  mode
+      s‚lectionn‚, de le prendre  comme  mode  par  d‚faut  au  prochain
+      d‚marrage de la machine.  Il  y  a  alors  cr‚ation  d'un  fichier
+      VI2.INF dans la racine de votre disque de d‚marrage, contanant les
+      informations n‚cessaires pour le noyau principal.
+
+   c. Utilisation de VI 2 sous MiNT/MultiTOS ou Magic.
+      Les systŠmes multitƒches se prˆtant mois facilement … la bidouille
+      (mais rien n'est impossible !), il n'y  a  pas  la  mˆme  facilit‚
+      d'utilisation de VI  2  sous  ces  systŠmes  que  sous  TOS.  Pour
+      utiliser au mieux VI, vous devrez renommer le fichier  VI2_CNF.PRG
+      du dossier AUTO en VI2_CNF.PRX, pour d‚sactiver  son  installation
+      en m‚moire au d‚marrage, aprŠs avoir pris soin de le recopier … un
+      autre endroit de votre disque. Pour s‚lectionner le mode vid‚o  de
+      votre choix,  vous  devrez  ex‚cuter  cette  copie  du  s‚lecteur,
+      choisir votre mode et sortir par un double clic ou un clic sur OK.
+      Une boŒte d'alerte apparaŒtra alors,  vous  demandant  de  changer
+      manuellement de r‚solution a partir du bureau, en s‚lectionnant un
+      mode vid‚o `ordinaire' particulier. Au  lieu  de  vous  retrouver,
+      comme normalement, sous la r‚solution standard s‚lectionn‚e,  vous
+      vous retrouverez sous le mode vid‚o ‚tendu que  vous  avez  choisi
+      auparavant.
+      Astuce : pour simplifier cette op‚ration,  vous  pouvez  installer
+      VI2_CNF.PRG en ic“ne sur votre bureau, ou bien  lui  assigner  une
+      touche de fonction.
+
+	d. Infos compl‚mentaires
+		Il est possible de ne  pas  d‚marrer  VI  2  au  d‚marrage  de  la
+		machine, en maintenant la touche Shift gauche press‚e  pendant  la
+		phase de boot.
+
+
+5. L'‚diteur de modes vid‚o.
+		VI 2   est   fourni   avec   un   utilitaire   d'‚dition   et   de
+		personnalisation de modes vid‚o,  afin  que  chacun  puisse  tirer
+		profit du maximum  des  capacit‚s  de  son  propre  moniteur.  Son
+		utilisation est assez simple,  mˆme  s'il  peut  paraŒtre  un  peu
+		difficile d'accŠs au d‚butant.
+		Le fonctionnement est relativement simplifi‚. Il n'utilise que  le
+		fichier VI2.DAT se trouvant dans la  racine  de  votre  disque  de
+		d‚marrage, et accŠde directement aux modes  vid‚o  se  trouvant  …
+		l'int‚rieur. Lorsque vous quittez le programme, les  modifications
+		effectu‚es sont automatiquement sauvegard‚es dans ce  fichier.  Il
+		est donc conseill‚ d'effectuer une copie de  sauvegarde  pr‚alable
+		de ce fichier, dans le cas o— vous n'ˆtes pas s–r de ce  que  vous
+		faites. (Remarque: Pour une  raison  inconnue,  la  sauvegarde  du
+		fichier ne s'effectue pas correctement sous Magic, si  le  fichier
+		VI2.DAT existait avant le  lancement  de  l'‚diteur.  La  solution
+		(provisoire, je l'espŠre) est   d'effacer   ce   fichier   pendant
+		l'ex‚cution du programme. Il sera  recr‚‚  au  moment  de  quitter
+		l'‚diteur.)
+		Pour quitter le programme, il suffit de cliquer sur le  bouton  de
+		fermeture de la fenˆtre
+
+		Dans le programme, 4  menus  sont  propos‚s  :  Prefs,  S‚lection,
+		dition et Infos
+
+	a. Le menu Prefs.
+		Ce menu vous permet  de  s‚lectionner  les  gammes  de  fr‚quences
+		tol‚r‚es par votre moniteur. En effet, plus  un  moniteur  possŠde
+		des gammes de fr‚quences horizontales et verticales ‚tendues, plus
+		nombreux et diff‚rents pourront ˆtre les modes  vid‚o  cr‚‚s.  Les
+		gammes de fr‚quences sp‚cifiques de votre moniteur devraient  ˆtre
+		inscrites dans le manuel de celui-ci.
+		Pour permettre l'‚dition  manuelle  des  fr‚quences  minimales  et
+		maximales, vous devrez activer le bouton  'Moniteur  Multisynchro'
+		en cliquent dessus. Ceci n'est possible qu'en mode  VGA,  donc  si
+		vous poss‚dez un moniteur multisynchrone, vous devrez le passer en
+		mode VGA pr‚alablement.
+		Par d‚faut, les paramŠtres sont ceux d'un ‚cran VGA  standard,  ou
+		d'un RGB standard, selon le type de votre moniteur. Les  moniteurs
+		monochromes ne sont pas  encore  g‚r‚s  pour  l'instant,  dans  la
+		version actuelle du programme.
+
+	b. Le menu S‚lection.
+		Ce menu vous permet de s‚lectionner un mode … ‚diter, ou une liste
+		de modes … copier, effacer, etc. Pour ce faire vous disposez d'une
+		boŒte contenant une liste des modes vid‚o disponibles,  ainsi  que
+		d'un ascenseur lat‚ral, … la maniŠre du s‚lecteur de  fichiers  du
+		GEM.
+		Le bouton 'Nouveau Mode' vous permet d'ajouter un mode vid‚o …  la
+		liste. Si un mode ‚tait s‚lectionn‚ auparavant,  le  nouveau  sera
+		une copie de celui-ci.
+		Le bouton 'Couper' permet d'effacer  les  modes  s‚lectionn‚s,  en
+		ayant pris soin de les placer en m‚moire temporaire auparavant.
+		Le bouton 'Copier'  ne  fait  que  copier  les  modes  en  m‚moire
+		temporaire.
+		Le bouton 'Coller' permet de   copier   les   modes   en   m‚moire
+		temporaire vers la liste. Une position  de  destination  vous  est
+		demand‚e (le curseur de la souris change de forme), il vous suffit
+		de cliquer sur le mode aprŠs lequel seront  ins‚r‚s  le  modes  en
+		m‚moire temporaire.
+		Note … propos des fonctions 'Couper' et 'Copier' :  Si  des  modes
+		‚taient d‚j… en m‚moire temporaire, ceux-ci seront effac‚s  de  la
+		m‚moire, et seront remplac‚s par ceux qui ont ‚t‚ s‚lectionn‚s.
+
+	c. le menu dition
+		Ce menu vous permet d'‚diter un mode s‚lectionn‚ dans le  menu  de
+		s‚lection.
+		Les paramŠtres d'un mode sont :
+		- le nombre de pixels par ligne
+		- la r‚solution horizontale ( = nb. de pix/ligne - les bordures )
+		- le centrage horizontal
+		- le nombre de lignes par balayage ‚cran
+		- la r‚solution verticale
+		- le centrage vertical
+		- le nombre de couleurs … l'‚cran
+		- la largeur des pixels (simple, double ou quadruple)
+		- la fr‚quence videl
+		- le mode vertical (normal/double ligne/entrelac‚)
+
+		Le bouton 'test' vous permet d'afficher  une  mire  dans  le  mode
+		vid‚o ‚dit‚, afin de constater si l'image tient  dans  l'‚cran  ou
+		non. Un appui sur  une  touche  vous  permettra  de  revenir  sous
+		l'‚diteur.
+		La fr‚quence videl, le nombre de pixels par ligne et le nombre  de
+		lignes par balayage ‚cran d‚terminent les fr‚quences  horizontales
+		et verticales du mode, si celles-ci sont incluses dans les  gammes
+		de fr‚quences de votre moniteur,  le  mode  sera  consid‚r‚  comme
+		valide et apparaŒtra alors dans la boŒte de s‚lection des modes du
+		bureau. Sinon, un test ne sera possible que sous confirmation,  et
+		le mode ne pourra pas ˆtre s‚lectionn‚ depuis le bureau.
+
+	d. le menu Infos.
+		Ce menu affiche des informations concerant le logiciel.
+
+
+6. Infos programmeur.
+
+      VI 2 Installe un Cookie dans le cookie jar, sa valeur est  'VI-2'.
+      Le paramŠtre de ce cookie est un pointeur sur une  structure  dont
+      le format est le suivant :
+
+ck_ver     rs.w   1     ; Num‚ro de version du prog
+ck_size    rs.w   1     ; Taille du bloc
+...							; Diverses infos internes … VI 2
+
+      VI 2 d‚tourne ‚galement  les  vecteurs  trap  nø  2  (GEM)  et  14
+      (Xbios). Les routines sont … la norme XBRA, leurs  identificateurs
+      sont le mˆme que celui du cookie.
+
+
+7. Contacter l'auteur.
+
+      L'auteur de ce programme (moi !) s'appelle  Fran‡ois  GALEA  et  a
+      pour pseudo ridicule Zerkman. Comme je n'aime pas parler de moi  a
+      la troisiŠme personne, j'utilise   la   premiŠre   …   partir   de
+      maintenant.
+
+      Donc vous pouvez me contacter a l'adresse suivante:
+      Fran‡ois GALEA
+      19 rue du Moulinet
+      F-78610 Le Perray-en-Yvelines
+
+		Minitel : 36 15 RTEL1, bal ZERKMAN
+		E-mail : e5172@iut-orsay.fr (jusqu'au 31 avril 1997 !)
+		Page Web : http://www.iut-orsay.fr/~e5172
+
+      Je fais partie du  groupe  Trisomic  Development,
+      qui comporte les membres suivants :
+
+      - Alriad
+      - Kor
+      - Melkor
+      - Pozzi
+      - SoniX
+      - Soyuz (?)
+      - Zerkman (moi !!!)
+
+      Tous d‚veloppaient plus ou moins  dans  leur  coin,  alors  on  va
+      bient“t montrer au monde incr‚dule que  nous  sommes  capables  de
+      bosser ensemble, en r‚alisant une d‚mo, une superproduction  faite
+      rien que par nous. Alors surveillez vos sites ftp pr‚f‚r‚s !
+
+      J'aimerais passer un petit bonjour aux personnes suivantes:
+      - Celeborn : Jette ton ST et achete un Falcon !
+      - Cr‚ateur : R‚uniooooon !
+      - Deufr : X-Men rullzz !
+      - Dumbo : Y'a le XM qui marche mal dans le Graoumf ! C'est koi ce
+                bordel ???
+      - Gordh : Napalm Death rullz !
+      - HCL : Magic is BAD for you
+      - Kor : Kronenbourg is GOOD for you !
+      - Mangue : A quand le crash du disque du ftp du cnam ?
+      - Melkor : A quand Dirty 2 ???
+      - Pozzi : Army suxxx !
+      - Roudoudou : a‹lala‹‹‹....
+      - Scrap & Mickmouse : Linux rullzez !
+      - SGT Slayer : TB-303 rules !!!
+      - Silver Eagle : Tu m'emmŠnes … la Saturne ?
+      - Zanak : Comment tu fais pour supporter SGT Slayer ?
+
+      - Tous les utilisateurs de VI : un grand merci pour votre soutien!
+
+
+Fran‡ois GALEA, 3/10/1996.
+
+
+

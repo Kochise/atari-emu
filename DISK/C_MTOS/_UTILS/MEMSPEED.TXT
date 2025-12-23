@@ -1,0 +1,75 @@
+MEMSPEED V1.0 ½ 1994 by Torsten Lang
+
+MEMSPEED mit den maximal erreichbaren Datendurchsatz fr folgende F„lle:
+CPU->L1 Cache, CPU->L2 Cache, CPU->MEM, L1 Cache->CPU, L2 Cache->CPU, MEM->CPU
+Dabei wird je nach Prozessor nicht die tats„chliche Bandbreite des Speichers
+erreicht. Man k”nnte diese mit einigen Tricks zwar ebenfalls ermitteln, der
+Test w„re dann aber nicht mehr allzu praxisnah. So sollte theoretisch ein mit
+50MHz getakteter 68030 im Burstmode innerhalb des L1 Cache mit 100MB/s lesen
+(Langwortzugriffe), die Praxis ergibt allerdings gerade einmal die H„lfte.
+Vermutlich kommt es auch beim šbertragen von Registerlisten (z.B.
+MOVEM.L (SP)+,A0-A6/D0-D7) zu Totzeiten (je 2 Takte zwischen zwei Speicher-
+zugriffen) bei der Abarbeitung der Registerliste. Selbst wenn der 68030 im
+Burstmode seinen internen (=L1) Cache mit 100MB/s fllt, kann diese Geschwin-
+digkeit in der Praxis nicht dauerhaft, sondern bestenfalls kurzfristig in
+bestimmten Grenzsituationen erreicht werden.
+
+Dieser Test soll ein wenig helfen, die Gte von Turbo-/Fast-RAM-Karten zu
+berprfen. Bisher gibt es meines Wissens ein solches Programm nicht fr
+Atari Rechner. Benchmarks liefern meist viel zu hohe Fantasie-Werte, da sie
+meist im Cache (L1 bzw. L2) ablaufen.
+
+Noch ein paar Worte zu den Begriffen L1 Cache und L2 Cache:
+L1 Cache (oder auch 1st Level Cache) ist der prozessorinterne Zwischenspeicher
+(was Cache Memory an sich ist, sollten Sie schon wissen). Beim 68020
+existiert nur ein Instruction Cache (daher wird dieses Programm hier keinen
+L1 Cache finden), ab dem 68030 zus„tzlich Daten Cache. Dieser
+schnelle Zwischenspeicher ist bei 68020 und 68030 in sogenannte Cache-Lines
+zu 4 Langworten (insgesamt 256 Byte beim 020er, 2*256 Byte beim 030er, zum
+040er bzw. 060er habe ich derzeit keine Daten, der Cache ist dort jedoch
+deutlich gr”er) organisiert.
+L2 Cache (oder 2nd Level Cache) ist auf der Turbo-Karte oder dem Mainboard
+des Rechners untergebracht, jedenfalls nicht innerhalb des Prozessors. Die
+Geschwindigkeit liegt meist zwischen der des Hauptspeichers und des L1 Cache.
+
+Die Gr”e der Caches wird z.Z. noch nicht vermessen, stattdessen geht das
+Programm von folgenden Gr”en aus:
+L1 <  16KB
+L2 < 512KB
+Sollte es einmal Prozessoren oder Turbos geben, fr die diese Werte
+berschritten werden, liefert MEMSPEED natrlich falsche Werte. Weiterhin
+gehe ich davon aus, da es so schnell keine Karten mit mehr als 999MB/s
+Bandbreite gibt. Um das Programm n„mlich kompakt zu halten, ist es vollst„ndig
+in Assembler geschrieben. Ich habe bis jetzt auf Sicherheits- bzw.
+Plausibilit„tsabfragen weitestgehend verzichtet. Da las Timer der
+_hz_200-Z„hler dient, mssen die IRQs natrlich w„hrend der Messung aktiviert
+bleiben, so da gerade bei hohen Werten die gemessenen Daten etwas
+niedriger sein k”nnen als die realen. Die ermittelten Werte sollten aber
+einigermaen stimmen. Mein Tip: Testen Sie den Rechner m”glichst roh,
+also ohne Multitoasting etc.
+
+Das Programm MEMSPEED darf nur in Verbindung mit diesem Text weitergegeben
+werden. Weiterhin ist der Vertrieb ber PD-Versender und sonstige kommerzielle
+Anbieter untersagt! Soll das Programm in Verbindung mit einem kommerziellen
+Produkt weitergegeben werden, so bedarf dies meiner schriftlichen Zustimmung,
+ansonsten wird gegen geltendes Recht verstoen. Folgende Firmen haben zur
+Zeit meine Genehmigung zur Weitergabe dieses Programms:
+
+MW electronic, K”nigswinter
+MESA electronic, Lindhorst
+
+Sollten Sie dieses Programm aus anderer Quelle zusammen mit einem kommerziel-
+len Produkt erhalten haben oder auf einer PD-Diskette o.„. gefunden haben, so
+melden Sie sich bitte umgehend bei mir. Weiterhin freue ich mich natrlich
+ber jede Rckmeldung (Postkarte) mit Angaben zu den Ergebnissen und Ihrer
+Rechnerkonfiguration.
+
+Zum Schlu noch das Wichtigste: Ich bernehme keine Haftung fr wie auch immer
+geartete Sch„den, die Ihnen durch die Benutzung dieses Programms entstehen.
+
+Bad Nauheim, November 1994
+
+Torsten Lang
+Pestalozzistr. 9A
+61231 Bad Nauheim
+E-Mail: torsten.lang@physik.uni-giessen.de

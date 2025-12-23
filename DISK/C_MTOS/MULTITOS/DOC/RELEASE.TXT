@@ -1,0 +1,2579 @@
+TOS Release Notes (Preliminary Version)
+24 June 1993
+
+
+Introduction
+These release notes are divided into two main sections: Changes to TOS and 
+Related Products, and Supplemental Documentation.
+
+Changes to TOS and Related Products
+
+Desktop
+1.	The DESKTOP has been separated from the AES and can now be soft-loaded.  This will 
+allow alternative desktops to be loaded when 'shell drive:\path\filename' is inserted into 
+the GEM.CNF file.
+2.	The system no longer hangs when you move the mouse cursor into the Desk menu while 
+launching a new application.
+3.	The busy bee is now visible during a copy, move and delete from the desktop. Previously, 
+the mouse would remain an arrow when these functions took place.
+4.	Show File to the Desktop ( w/o VIEWER ), will no longer use the mouse buttons to scroll 
+with.  This feature was removed when the desktop was separated from the AES.
+5.	It is now possible to select the font and size to be used when showing files as text.
+6.	After launching an application under MultiTOS the icon now gets deselected.
+7.	The TOS version is now displayed in the "Desktop info..." dialog box.
+8.	The Help menus have been updated.
+9.	Under MultiTOS, it is now possible to set a limit on the amount of memory which an 
+application can allocate; this is done via "Install Application..."
+10.	It is now possible to run accessories from the Desktop. There is no longer a fixed limit on 
+the number of accessories.
+11.	Arbitrary objects (e.g. text fragments) may be dragged onto the desktop from 
+applications which support the new drag and drop protocol.
+12.	The Desktop now forces the mouse to be on, and in an arrow shape, whenever one of its 
+windows is topped.
+13.	The Desktop now uses the XBIOS keyboard tables for doing control and alternate key 
+detection.
+14.	When the user selects icons or text lines in desktop windows using the rubber band and 
+the rubber band exceeds the window's work area, the window will start to scroll. 
+
+
+
+AES
+1.	The ABOUT menu item can now be disabled.  When the new hierarchical menu routines 
+first came out, 'menu_ienable()' would not work on the ABOUT menu item.  
+2.	The ABOUT menu item text can now be changed.  When the new hierarchical menu  
+routines first came out, 'menu_text()' would not work on the ABOUT menu item.
+3.	The bug with menu_attach() not removing or changing submenus has been fixed.
+4.	The maximum height of a pop-up menu is now two characters less than the height of the  
+screen.
+5.	The problem of moving the mouse into the menubar while a popup is displayed has been  
+fixed.
+6.	The memory used by the True Color icons are now allocated in one large block, instead  
+of a Malloc() per icon.  This change will increase the memory allocation efficiency  under 
+MultiTOS.
+7.	Drop-Down List menus are now supported ( AES versions > 4.1 ).  These menus are  
+pop-up menus with up, down and slider buttons to the right of the menu.  Please see the  
+updated menu document about these and other menu manager os functions.
+8.	MultiTOS makes sure now that after a menu_bar(tree, 0) the menu stays disabled even 
+after an application was swapped out and in.
+9.	Popup menus are no longer blocked when the mouse enters the menu bar while a popup 
+menu is displayed.
+10.	objc_edit: A FBOXTEXT object or BOXTEXT object with outlined flag set and right or left 
+aligned text will now always draw the cursor properly. Right aligned text works correctly 
+now.
+11.	The file selector parts (slider, arrows, etc.) now use the window part colors set by the 
+window color CPX.
+12.	Changing default window colors by doing a wind_set(...,WF_DCOLOR,...) (as the window 
+color CPX does) now causes all existing windows which use the default colors to change 
+to the new colors also. If a part of a window does *not* have a default color set for it 
+(e.g. if an application does an explicit wind_set(...,WF_COLOR,...) ) then it will not 
+change when the default color is modified.
+13.	In video modes with 16 or more colors, the default window part colors are all solid. Of 
+course this can be modified by the user.
+14.	Alert box icons are now in color.
+15.	Two new alert icons are now available: [4] is an "info" icon, and [5] is a "floppy disk" 
+icon.
+16.	The appl_getinfo system call has been extended to return a variety of additional 
+information. See the detailed description of appl_getinfo later in these notes.
+17.	All alert boxes have been arranged so that the "OK" or "Retry" button is on the left, and 
+the "Cancel" button is on the right. (Some critical error alerts used to have these 
+reversed.)
+18.	There are several new messages: WM_BOTTOM, WM_ICONIFY, WM_UNICONIFY, and 
+WM_ALLICONIFY.
+19.	A new gadget (the "SMALLER") is provided to allow for iconification of windows and/or 
+applications.
+20.	It is now possible to select an application from the Desk menu even if it is not responding 
+to WM_TOPPED messages.
+21.	Color icons are now selected correctly in all resolutions.
+22.	All parts of alert boxes may be used to move the boxes now.
+23.	objc_find() has been modified to work the way it did in older versions of TOS (i.e. it no 
+longer looks at the borders of objects).
+24.	Icon height and width in alert boxes is now calculated accurately (previously it was 
+hard-coded to "4").
+25.	The resolution change code now handles failure gracefully (it used to get "stuck" and 
+cause problems for future resolution changes).
+26.	Various aesthetic fixes have been applied to window parts.
+27.	Single-clicking on the move bar of a topped window now sends a WM_BOTTOMED 
+message (33) to the application which owns the window. The application should 
+normally respond to this message by doing a wind_set(WF_BOTTOM) call for the 
+window.
+28.	Double clicking on a window's move bar now sends a WM_FULLED message for the 
+window, if the window has a full box and is not iconified.
+29.	Under MultiTOS, the AES now redirects BIOS device 2 so that Bconin calls will actually 
+get their data from the AES (like evnt_keybd).
+30.	The MultiTOS AES no longer busy waits for events.
+31.	The default height at which menus will begin to scroll has been set to two characters less 
+than the height of the screen.  The previous default was 16 menu items.  
+32.	The Desk Accessory menu, when scrollable, will scroll starting from the first desk 
+accessory.  The DA menu will be scrollable when the height of the menu exceeds the 
+maximum height.  Previously, the DA menu would begin scrolling from the first 
+application.  This was changed when it was discovered that if there are an inordinate 
+number of DAs and the scrolling height is reached, the scrolling routine would break.
+33.	The concept of a TOOLBAR is now supported ( AES versions > 4.1 ).  The Toolbar must 
+be the width of the window and is positioned below the INFO line.  For more 
+information, please see the TOOLBAR document.
+34.	Submenus that are scrollable no longer need to have their parent be at the ROOT.
+35.	Drop-down list menus no longer need to have their parent be at the ROOT.
+36.	Submenus that are scrollable can be scrolled using the UP and DOWN arrow keys.
+37.	Drop-down list menus can be scrolled using the UP, DOWN, SHIFT-UP and SHIFT-DOWN 
+arrow keys.
+
+
+
+
+VDI
+1.	Multi-plane fill patterns now work.
+2.	 The mode where VDI seedfills the current color in true color is fixed.
+3.	Pixel-packed transform form no longer reverses the bit ordering of each pixel, which is 
+compatible with existing video board screen drivers.
+4.	Minor code optimization.  This included the removal of unnecessary loading of some 
+Line-A variables.  Therefore, applications that relied on Line-A variables being initialized 
+after certain calls can no longer expect those variables to have accurate information. Of 
+course, applications should not be using Line-A, as a general rule.
+
+
+
+Viewer
+1.	The VIEWER program can now display characters using the upper byte.  Previously, the 
+VIEWER program was unable to display such characters. (ie: umlauts etc ). 
+2.	The VIEWER program now supports iconifying of its windows.
+
+
+
+XControl/CPXs
+1.	XCONTROL now uses malloc() instead of Malloc() thereby increasing memory allocation  
+efficiency under MultiTOS.
+2.	XCONTROL will now always dynamically allocate CPXs, except for resident CPXs.
+3.	XCONTROL will now allocate enough CPX headers for 1-1/2 times the number of CPXs  
+actually loaded.  This means that if 10 CPXs were loaded at boot time, 5 more CPXs may  
+be placed into the CPX directory and reloaded also, without having to reboot the system. 
+Previously, XCONTROL allowed the user to set the minimum number of slots. (a.k.a. CPX 
+headers).  This has been removed.
+4.	XCONTROL will now default to the 12 hour clock for the USA version only.
+5.	XCONTROL now correctly uses wind_calc() to calculate its window size.
+6.	XCONTROL no longer returns a pointer to a local GRECT for its custom GetFirstRect and 
+GetNextRect calls.
+7.	Because of these changes, XCONTROL is now up to version 1.31.
+
+8.	SOUNDTT.CPX has been updated to utilize the 3D effects.  This CPX is only for the TT 
+and MegaSTE.  It is not intended for the Falcon. 
+9.	OUTLINE now recognizes the keyword 'Fonts' as well as 'Font'.
+10.	OUTLINE now recognizes 'Atari Wingbats' fonts.
+11.	OUTLINE will no longer lockup if it can't parse the keyword.
+12.	OUTLINE now correctly uses wind_calc() to calculate its window size.
+13.	PRINTER now correctly uses wind_calc() to calculate it window size.
+
+
+
+Supplemental Documentation
+
+APPL_GETINFO Revised Documentation
+
+3.4.10	APPL_GETINFO
+	
+Purpose:
+	This function is to allow application to get general information about the
+	AES and the system environment.
+
+ Parameters:
+     control[0] = 130
+     control[1] = 1
+     control[2] = 5
+     control[3] = 0
+     control[4] = 0
+
+     int_in[0]     = ap_gtype
+     int_out[0]    = ap_greturn
+     int_out[1]    = ap_gout1
+     int_out[2]    = ap_gout2
+     int_out[3]    = ap_gout3
+     int_out[4]    = ap_gout4
+
+     ap_gtype - Get information type:
+
+                0 - Get AES regular font information:
+		   ap_gout1 - font height
+		   ap_gout2 - font id 
+		   ap_gout3 - font type: 0 - system font
+					 1 - FSM font
+					 2 and on to be defined in the future
+ 	
+                1 - Get AES small font information:
+		   ap_gout1 - font height
+		   ap_gout2 - font id 
+		   ap_gout3 - font type: 0 - system font
+					 1 - FSM font
+					 2 and on to be defined in the future
+
+		2 - Get AES current resolution number and the number of color is
+		    being supported by the object library.
+
+		   ap_gout1 - resolution number
+		   ap_gout2 - number of color supported by AES object library
+		   ap_gout3 - color icons: 0 - Not supported
+					   1 - Supported
+		   ap_gout4 - new resource file format:	0 - Not supported
+							1 - Supported
+                3 - Get AES language.
+
+                   ap_gout1 - currently used language: 0 - English
+                                                       1 - German
+						       2 - French
+						       3 - reserved
+						       4 - Spanish
+						       5 - Italian
+						       6 - Swedish (not implemented)
+
+NEW FOR
+   V4.1
+
+                4 - Get general AES environment info #1
+
+                   ap_gout1 - 0 - non-pre-emptive multitasking
+                              1 - pre-emptive multitasking
+		   ap_gout2 - 0 - appl_find cannot convert from MiNT to AES ids
+			      1 - extended appl_find modes supported
+		   ap_gout3 - 0 - appl_search not implemented
+			      1 - appl_search implemented
+		   ap_gout4 - 0 - rsrc_rcfix not implemented
+			      1 - rsrc_rcfix implemented
+
+
+		5 - General AES environment info #2
+
+                   ap_gout1 - 0 - objc_xfind not implemented
+                              1 - objc_xfind implemented
+		   ap_gout2 - 0 - reserved, always 0
+		   ap_gout3 - 0 - GEM/3 menu_click not implemented
+			      1 - menu_click implemented
+		   ap_gout4 - 0 - GEM/3 shel_r/wdef not implemented
+			      1 - shel_r/wdef implemented
+
+		6 - General AES environment info #2
+
+                   ap_gout1 - 0 - appl_read(-1) not implemented
+                              1 - appl_read(-1) implemented
+		   ap_gout2 - 0 - shel_get(-1) not implemented
+			      1 - shel_get(-1) implemented
+		   ap_gout3 - 0 - menu_bar(-1) not implemented
+			      1 - menu_bar(-1) implemented
+		   ap_gout4 - 0 - menu_bar(MENU_INSTL) not implemented
+			      1 - menu_bar(MENU_INSTL) implemented
+
+		7 - Reserved for OS extensions. MultiTOS sets
+		    ap_gout1,2,3,4 to 0.
+
+		8 - Mouse support
+
+                   ap_gout1 - 0 - graf_mouse modes 258-260 not supported
+                              1 - graf_mouse modes 258-260 supported
+		   ap_gout2 - 0 - application must maintain mouse form
+			      1 - mouse form maintained by OS on a per-application
+				  basis
+		9 - Menu support
+
+                   ap_gout1 - 0 - submenus not supported
+                              1 - MultiTOS style submenus
+		   ap_gout2 - 0 - popup menus not supported
+			      1 - MultiTOS style popup menus
+		   ap_gout3 - 0 - scrollable menus not supported
+			      1 - MultiTOS style scrollable menus
+		   ap_gout4 - 0 - extended MN_SELECTED not supported
+			      1 - words 5/6/7 in MN_SELECTED message give extra info
+
+		10 - shel_write info
+
+                   ap_gout1 - shel_write modes supported:
+				bit 0-7: indicates highest legal value for
+					(sh_wdoex & 0x00ff)
+				bit 8-15: indicates which bits in (sh_wdoex & 0xFF00)
+					 are supported as in MultiTOS
+		   ap_gout2 - 0 - shel_write(0) launches an application
+			      1 - shel_write(0) cancels previous shel_write
+		   ap_gout3 - 0 - shel_write(1) launches an application immediately
+			      1 - shel_write(1) takes effect after current application
+				  exits (like TOS 1.4)
+		   ap_gout4 - 0 - ARGV parameter passing not possible
+			      1 - sh_wiscr controls ARGV parameter passing
+
+		11 - window support
+
+                   ap_gout1 - extended WF_ functions available in wind_get/set
+			      (0=not available, 1=available)
+				bit 0: WF_TOP returns window below current one
+				bit 1: wind_get(WF_NEWDESK) supported
+				bit 2: WF_COLOR get/set supported
+				bit 3: WF_DCOLOR get/set supported
+				bit 4: WF_OWNER supported in wind_get
+				bit 5: WF_BEVENT get/set supported
+				bit 6: WF_BOTTOM supported
+				bit 7: WF_ICONIFY supported
+				bit 8: WF_UNICONIFY supported
+				bits 9-15 reserved, 0
+		   ap_gout2 - reserved, 0
+		   ap_gout3 - new gadgets supported:
+			      (0=supported, 1=not supported)
+			        bit 0: iconifier
+				bit 1: explicit "bottomer" gadget
+				bit 2: shift+click to send window to bottom
+				bit 3: "hot" close box
+				all other bits: reserved, 0
+		   ap_gout4 - 0 - wind_update check and set not allowed
+			      1 - wind_update check and set allowed
+
+		12 - messages sent to applications
+
+                   ap_gout1 - bit field of extra messages supported (1)
+			      (0=no,1=yes)
+				bit 0: WM_NEWTOP message meaningful
+				bit 1: WM_UNTOPPED message sent
+				bit 2: WM_ONTOP message sent
+				bit 3: AP_TERM message sent
+				bit 4: MultiTOS shutdown and resolution change
+				       messages supported
+				bit 5: AES sends CH_EXIT
+				bit 6: WM_BOTTOM message sent
+				bit 7: WM_ICONIFY message sent
+				bit 8: WM_UNICONIFY message sent
+				bit 9: WM_ALLICONIFY message sent
+		   ap_gout2 - bit field of extra messages supported (2)
+		   		(currently all bits are reserved and 0)
+		   ap_gout3 - message behaviour
+				bit 0: WM_ICONIFY message gives coordinates (0=no,1=yes)
+
+		13 - object information
+
+                   ap_gout1 - 0 - no 3D objects
+			      1 - 3D objects supported via objc_flags
+		   ap_gout2 - 0 - objc_sysvar supported
+			      1 - MultiTOS 1.01 objc_sysvar
+			      2 - extended objc_sysvar
+		   ap_gout3 - 0 - only system font for TEDINFO structures
+			      1 - SPEEDO and GDOS fonts allowed in TEDINFO
+		   ap_gout4 - reserved for OS extensions (MultiTOS always
+				sets this to 0)
+			      suggestion: use this to indicate presence
+				of new object types like radio buttons
+
+		14 - form library information
+
+                   ap_gout1 - 0 - no flying dialogs
+			      1 - flying dialogs supported
+		   ap_gout2 - 0 - keyboard tables not supported
+			      1 - Mag!X style keyboard tables
+		   ap_gout3 - 0 - last cursor position not returned
+			      1 - last cursor position returned
+		   ap_gout4 - reserved, 0
+
+
+   ap_greturn - a coded return message
+
+                1 - No error
+                0 - Error
+
+Sample call to C language binding:
+
+ ap_greturn = appl_getinfo( ap_gtype, &ap_gout1, &ap_gout2, &ap_gout3, &ap_gout4 );
+
+
+
+Window Library Enhancements - Toolbar Support
+
+11.1  Introduction
+
+This section describes the additional features of the Window Library.  All enhancements are 
+backwards compatible with previous versions of the AES, so existing applications will continue 
+to work.  The new feature will work on all machines with an AES version greater than 4.1.
+
+
+The enhancements to the Window Library are:
+
+o 	Toolbar support has been added to the AES.
+o 	wind_set() may be used to attach, change or remove a Toolbar from a window.
+o	wind_get() may be used to see which Toolbar, if any, is attached to a window.  In 
+addition, wind_get() may be used to get the the Toolbar rectangle list for custom 
+redraws.
+o	Mouse clicks on objects within the Toolbar generate Message Events.
+o	GEM AES will handle the Toolbar when a window needs to be moved, sized or redrawn.
+
+
+11.2.1  Toolbar Introduction
+
+A Toolbar is an OBJECT tree that is located below the INFO line of a window but above the 
+work area.  Toolbars are a convenient way for applications to display button and status 
+information.
+
+
+11.2.2  Division of Labor
+
+GEM AES and the application divide responsibility for proper TOOLBAR management.  GEM 
+AES's responsibilities include the following:
+
+o	Updating the x and y position of the Toolbar when the window is moved, sized and/or 
+fulled.
+o	Ensuring that the  window is configured to the size required for the window parts and 
+Toolbar.
+o	Setting the width of the Toolbar ( ROOT )  to be the width of the window.
+o	Redrawing the Toolbar when a WM_REDRAW message is received.
+o	Sending a Message Event to the application whenever the user clicks on a TOUCHEXIT 
+object within the Toolbar.  The state of the SHIFT, ALT and CTRL keys and the number of 
+button clicks that occurred are also sent.
+
+
+The application is responsible for the following:
+
+o	Building an object tree with any buttons designated as TOUCHEXITs.
+o	If the Toolbar contains any child objects that are meant to be the width of the window, 
+the application is responsible for changing the ob_width of that object.  The width would 
+normally have to be changed whenever the application receives a FULLER and/or a 
+SIZER message.
+o	Handling user-defined objects within the Toolbar.
+o	Redrawing any objects that changes their visual appearance.  The application must take 
+care that the redraw is properly clipped to the window.  This is done by walking the 
+rectangle list of the Toolbar and redrawing accordingly.
+o	Screen resolution differences are up to the application to resolve.  For example, the 
+height of an icon in ST Medium is different than in TT Medium.
+o	The colors used by the Toolbar are the responsibility of the application.
+
+
+
+11.2.3  Window Management Calls
+
+An application will use the calls below to manage the Toolbar.
+
+o	To attach a Toolbar to a window, the application should call wind_set( wid, 
+WF_TOOLBAR, ... ); with the address of the Toolbar.  If the call is made while the 
+window is open, the window will adjust itself  to take into account the height of the 
+Toolbar.
+
+o	To change the Toolbar from one Toolbar to another, the application should call 
+wind_set( wid, WF_TOOLBAR, ... ); with the address of the new Toolbar.  If the call is 
+made while the window is open, the window will adjust itself to take into account the 
+height of the new Toolbar.
+
+o	To remove the Toolbar from the window, the application need only call wind_set( wid, 
+WF_TOOLBAR, ... ); with NULL parameters.  If the call is made while the window is 
+open, the window will adjust itself to take into account the lack of a Toolbar.
+
+o	Closing a window with wind_close() does not remove the Toolbar from the window  In 
+this way, the application may reopen the window with the Toolbar still present. 
+
+o	Deleting a window with wind_delete() will remove any attached Toolbar.
+
+o	To receive mouse clicks on Toolbar objects, all button objects should be set to 
+TOUCHEXIT.  When the user clicks on a TOUCHEXIT, GEM AES generates a Message 
+Event.  The message WM_TOOLBAR has a maximum length of 16 bytes and is defined as:
+
+	o	word 0	-	WM_TOOLBAR
+	o	word 1	-	ap_id of the application that sent the message.
+	o	word 2	-	0
+	o	word 3	-	the handle of the window
+	o	word 4	-	the object click on
+	o	word 5	-	the number of clicks
+	o	word 6	-	the state of the SHIFT, ALT and CTRL keys
+	o	word 7	-	0
+
+
+
+11.2.4  Support of Overlapping Windows
+
+GEM AES can handle the redraws for the Toolbar when windows overlap.  However, a window 
+with a Toolbar will not generate any Message Events unless it is the TOP window.  
+
+
+
+11.2.5  Redrawing and Updating
+
+To redraw the Toolbar, the application should walk the rectangle list.  The current way to get 
+the rectangle list is to call wind_get() with WF_FIRSTXYWH and WF_NEXTXYWH.  However, 
+these parameters will only return the rectangles for the work area of the window.  Therefore, in 
+order to get the rectangle list for the Toolbar area, the application should call wind_get() with 
+WF_FTOOLBAR and WF_NTOOLBAR, which will return the first Toolbar rectangle and the next 
+Toolbar rectangle respectively.
+
+
+The application will need to redraw the Toolbar for the following:
+
+o	If the Toolbar contains a user-defined object, the redraw must be done by the support 
+code for that object.  Since the window will not necessarily be the top window, redrawing 
+via the rectangle list is crucial.
+
+o	If the application changes the state of an object within the Toolbar, the object will need 
+to be redrawn.  For example, the application changes the ob_state of a button to 
+SELECTED.  The dirty area will consist of the object's rectangle plus the effects of any 3D, 
+Shadowing, outline etc..  Again, since the window will not necessarily be the top window, 
+redrawing via the rectangle list is crucial.
+
+
+The application may have to update the Toolbar for the following:
+
+o	If the Toolbar contains an object that is meant to be the width of the window AND is not 
+the ROOT object, the application will need to set the width of the object in response to 
+several Message Events.  These messages include FULLER and SIZER events.  Simply set 
+the width of the object before calling wind_set( wid, WF_CURRXYWH, ... );  to set the 
+new current size of the window.
+
+o	If the window is iconified, the application need not handle the Toolbar until the window 
+is no longer iconified.
+
+o	If the window is sized and/or fulled such that the width of the window is smaller than 
+the Toolbar, the Toolbar will merely be clipped.  Buttons that are clipped are obviously 
+not accessible.  In these situations, the application may elect to change the height of the 
+Toolbar and reposition the buttons at its discretion.  When the applications calls 
+wind_set( wid, WF_CURRXYWH, ... ) to set the new current size of the window, GEM 
+AES will rebuild the window based upon the new height of the Toolbar.
+
+o	If the application wishes to merely switch one Toolbar with another, the application 
+should call wind_set( wid, WF_TOOLBAR, ... ) with the new OBJECT tree.
+
+o	In the same instance, if the application wishes to remove the Toolbar, the application 
+should call wind_set( wid, WF_TOOLBAR, ... ) with NULL parameters.
+
+
+
+11.3  Window Library Routines - Toolbar Support Addendum
+
+The Toolbar code affect the following routines.  For more information about these and other 
+routines, please see the GEM AES documentation.
+
+11.3.5  WIND_GET() - Gets information on a particular window
+
+	#include	<aes.h>
+
+	result=wind_get( handle, field, x,y,w,h );
+
+	WORD	result	error result
+	WORD	handle;	window handle
+	WORD	field;	information wanted
+	WORD	*x;	value depends upon information requested
+	WORD	*y;	value depends upon information requested
+	WORD	*w;	value depends upon information requested
+	WORD	*h;	value depends upon information requested
+
+The Toolbar field values are:
+
+	WF_TOOLBAR	-	30
+		-	x and y give the address of the Toolbar object tree.
+		-	x is the high word of the address
+		-	y is the low word of the address
+
+	WF_FTOOLBAR	-	31
+		-	the coordinates of the first rectangle in the Toolbar's rectangle list.
+		-	x ( X - coordinate )
+		-	y ( Y - coordinate )
+		-	w ( width )
+		-	h	( height )
+
+	WF_NTOOLBAR	-	32
+		-	the coordinates of the next rectangle in the Toolbar's rectangle list.
+		-	x ( X - coordinate )
+		-	y ( Y - coordinate )
+		-	w ( width )
+		-	h ( height )
+
+
+11.3.6  WIND_SET() -	Sets new values for the fields that determine how a 
+window is displayed.
+
+	#include	<aes.h>
+
+	result=wind_set( handle, field, x,y,w,h );
+
+	WORD	result	error result
+	WORD	handle;	window handle
+	WORD	field;	information to set
+	WORD	x;	value depends upon field
+	WORD	y;	value depends upon field
+	WORD	w;	value depends upon field
+	WORD	h;	value depends upon field
+
+The Toolbar field values are:
+
+	WF_TOOLBAR	-	30
+		-	Used to attach, change or remove a Toolbar.  To remove a Toolbar, set (x,y) 
+to NULL.
+		-	x is the high word of the address
+		-	y is the low word of the address
+
+
+
+11.3.9  WIND_CALC() -	Calculates the X- and Y-coordinates and the width and 
+height of a window's work area or border area.
+
+This routine calculates the X and Y coordinates and the width and height of a window's work 
+area or border area.  wind_calc() does this by adding up the widths and heights of the window 
+parts passed in via 'kind'.  Since no window handle is involved, wind_calc() cannot calculate the 
+work area or border area of a window that has an attached Toolbar.
+
+However, it is possible to adjust the values returned since the application knows about the 
+height of the Toolbar.  The height of the Toolbar should include the area occupied by any 3D 
+effects, shadowing, border thickness etc..
+
+To compensate for the Toolbar, simply increase the height of the border area by the height of 
+the Toolbar.  In addition, since the work area is below the Toolbar, increase the y - coordinate of 
+the work area by the same amount.  The height of the work area remains the same.
+
+
+
+
+
+
+11.4	DEFINES
+
+Please be sure to include these defines in your AES.H include file for your compiler.
+
+	#define	WF_TOOLBAR	30	Toolbar parameter for wind_get/set
+	#define	WF_FTOOLBAR	31	Get the First Toolbar rectangle
+	#define	WF_NTOOLBAR	32	Get the Next Toolbar rectangle
+	#define	WM_TOOLBAR	37	Toolbar Button Event Message
+
+
+
+Event Library Enhancements - Toolbar Support
+
+4.2.5.1 Predefined GEM AES Messages
+
+The Toolbar adds a new Message Event to the existing list of AES Messages.  For additional 
+information on the Event Library, please see the AES Documentation.
+
+GEM AES provides several predefined message types.  Each type has a maximum length of 16 
+bytes.  All the predefined message types define the first three words in the same way:
+
+o	WORD	0	-	A number identifying the message type.
+o	WORD	1	-	The ap_id of the application that sent the message.
+o	WORD	2	-	The length of the message, not counting the predefined 16 bytes.
+
+
+4.2.5.14	WM_TOOLBAR
+
+GEM AES uses this message to tell the application which Toolbar object the mouse clicked on.  
+The object must be a TOUCHEXIT and not disabled.  In addition, the window must be the TOP 
+window.
+
+	o	WORD	0	37
+	o	WORD	3	the handle of the application's window
+	o	WORD	4	the Toolbar object clicked on
+	o	WORD	5	the number of mouse button clicks
+	o	WORD	6	the state of the SHIFT, ALT and CTRL keys
+
+
+
+Menu Library Enhancements
+
+5.1 Introduction
+
+This section describes the additional features of the Menu Library.  All enhancements are 
+backwards compatible with previous versions of the AES, so existing applications will continue 
+to work.  The new features will work on all machines with an AES version number of 3.3 and 
+up.
+
+The enhancements to the Menu Library are:
+
+o   Hierarchical menus are now supported.
+o   Pop-Up Menus are now supported.
+o   Scrolling menus are supported for pop-up menus and submenus.
+    Scrolling for the first level menus of a menu bar are not supported.
+o   Drop-Down List menus are now supported.  ( AES versions > 4.1 )
+
+Hierarchical Menus
+
+Hierarchical menus allow a menu item to be the title of a submenu.  Menu items with a right 
+arrow signify that a submenu is attached.  Hierarchical menu items must be of the type 
+G_STRING.  As a rule, the Desk Menu of a menu bar is not allowed to have submenus.
+
+Two delay values are used to prevent the rapid appearance and disappearance of submenus:
+
+o   Submenu Display Delay
+
+    This delay is used to prevent the rapid flashing of submenus as the mouse
+    pointer is dragged thru a menu item with an attached submenu.  The mouse
+    pointer must remain within the menu item for the delay period before the
+    submenu is displayed.  The default Submenu Display Delay is 1/5 of a
+    second.  menu_settings can be used to inquire the current delay value,
+    or to set a new delay.
+
+o   Submenu Drag Delay
+    
+    This delay is used to prevent the disappearance of the submenu as the
+    mouse pointer is dragged toward the submenu from a menu item.  The default
+    Submenu Drag Delay is 10 seconds.  menu_settings can be used to inquire
+    the current delay value, or to set a new delay.
+
+There are several actions that will cancel the Submenu Drag Delay prematurely:
+
+1)  If the mouse pointer is dragged away from the direction of the submenu,
+    the submenu will disappear.
+
+2)  If the mouse pointer remains in the same position after the drag has
+    begun, the submenu will also disappear.
+
+3)  If the user clicks on the left mouse button before the mouse pointer has
+    entered the submenu, the system will return to the application the menu
+    item that started the drag.
+
+4)  If the mouse pointer is dragged vertically into another menu item, the
+    submenu will disappear.
+
+As a rule, only one level of hierarchical menus should be used.  The actual
+number of recursions possible is currently set to 4.
+
+
+Pop-Up Menus
+
+Pop-up menus are menus that are not in the menu bar.  They can be placed anywhere on the 
+screen and once displayed, act like any other menu.
+
+
+Scrolling Menus
+
+When the number of menu items exceeds the menu scroll height, a scroll indicator appears at 
+the bottom of the menu.  The scroll indicators are displayed as UP or DOWN ARROWS.  Clicking  
+on the bottom arrow will scroll the menu items.  When the last item is shown, the DOWN 
+ARROW indicator disappears.  Note that as soon as the menu started scrolling, the UP ARROW
+indicator appeared at the top of the menu.  This is to show that there are now menu items in 
+that direction.  The default menu scroll height is 16. menu_settings can be used to inquire the 
+current menu scroll height, or to set a new menu scroll height.
+
+When the user clicks and holds down the left mouse button, there is a 1/4 of a second delay 
+after one menu item has scrolled.  After the delay, scrolling continues uninterrupted.  This delay 
+is used to prevent rapid scrolling for those just clicking on the scroll indicators.  menu_settings 
+can be used to inquire the current delay, or to set a new delay.
+
+Another delay value is used to slow down the scrolling speed.  This prevents the menu items 
+from scrolling by too fast.  menu_settings can be used to inquire the current delay, or to set a 
+new delay.
+
+Pop-up menus and submenus might consist of objects other than G_STRINGS. Such a menu 
+might consist of user-defined objects that display the system's fill patterns.  The system cannot 
+scroll non-G_STRING object types.  Scrolling non-G_STRING object types will crash the system.  
+Pop-up menus and submenus containing non-G_STRING object types should have its scroll_flag 
+field set to FALSE.
+
+The first-level menus of a menu bar are set to be non-scrollable.  This is due to the parent-child 
+relationships between the menu titles, menus and menu items.  Therefore, scrolling is applicable 
+only to pop-up menus and submenus.
+
+
+Drop-Down List Menus
+
+Drop-down list menus are pop-up menus with up, down and vertical slider buttons attached to 
+the right of the menu.  The height of the Drop-Down Menu is fixed to eight ( 8 ) menu items.  
+Menus with greater than eight menu items will be truncated and the slider will be scaled
+accordingly.
+
+Menus with fewer than eight menu items have two choices.  The first choice is to display the 
+menu as is.  The menu will be displayed as a pop-up menu without the attached slider buttons.  
+The second choice is to pad the menu with disabled blank strings to ensure at lease eight menu 
+items.
+
+The size of the slider is based upon the number of children in the tree and the number of menu 
+items displayed.  Therefore, the application should not pad the menu with blank disabled menu 
+items if there are more than eight enabled menu items.
+
+For example, the application has allocated an object tree for 50 menu items. However, only the 
+first 30 menu items are actually used.  The application should 'objc_delete' the unused menu 
+items.
+
+Since the slider structure is to the right of the menu, the menu should not have any submenu 
+attachments.  Any attached submenus will not be displayed.
+
+A drop-down list is displayed the same way as a pop-up menu by calling 'menu_popup()'.  The 
+only difference is that the field 'mn_scroll' should be set to negative one ( -1 ).
+
+
+
+5.2	Using the Extended Menu Library
+
+The existing Menu Library functions are still applicable to pop-up menus and submenus.  The 
+Menu Library will continue to have the following responsibilities:
+
+o   displaying the appropriate menu bar for each active application
+o   enabling and disabling menu items
+o   displaying check marks in menus
+o   returning a highlighted menu title to its normal state
+o   displaying context-sensitive menu text
+o   displaying a desk accessory's name on the Desk Menu
+
+To use pop-up menus and submenus in one's application:
+
+Create an object tree consisting of a G_BOX and as many G_STRINGS within the G_BOX as 
+required.  The G_BOX is the menu and the G_STRINGS are the menu items.  An object tree is 
+not limited to just one menu and can contain one, two or more menus.  If a menu item is 
+expected to have a submenu attachment, the G_STRING must be padded with blanks to the 
+width of the menu.  
+
+The object tree does not need to be created with the Resource Construction Set.  It can be 
+created  during runtime by the application.  However, the programmer is responsible for this 
+procedure.
+
+Attaching a submenu to a menu item is done by calling menu attach.  A submenu is associated 
+to a menu item by placing a right arrow two characters in from the right edge.  Any characters 
+at that location will be overwritten.
+
+The high-byte of the object's type field is used to store an internal Menu ID.  The values between 
+128 and 192 are used by the new menu sytem.
+
+In addition, bit 11 of the object's ObFlag field will be set.  Bit 11 is defined as:  '#define 
+SUBMENU  0x800'.  Applications using the Extended Object Type AND SUBMENUS should first 
+check the object's ObFlag field to see if the value in the Extended Object Type is a submenu 
+attachment.
+
+Each process can have up to 64 unique submenu attachments. Attaching the same submenu to 
+multiple menu items counts as one attachment.
+
+In addition to attaching a submenu, menu_attach can be used to change or remove a submenu. 
+Menu_attach can also be used to find out what submenu, if any, is attached to a menu item. 
+Menu_istart can be used to set and get the starting menu item of a submenu.
+
+menu_settings can be used to set the menu delay values and to set the height at which pop-up 
+menus and submenus will start to scroll.
+
+
+5.2.1	Using a Menu Bar
+
+Supplement to 5.2  Using the Menu Library 
+
+When the user chooses an item, the Screen Manager writes a message to the
+pipe.  Control then returns to the application, which must read the pipe.
+
+The pipe message contains the following:
+
+o   a code indicating that it is a menu message ( MN_SELECTED )
+o   the object index of the menu title selected
+o   the object index of the menu item chosen
+o   the object tree of the menu item chosen ( NEW )
+o   the object index of the parent of the menu item ( NEW )
+
+( If the user does not choose an item, or if the user selects a disabled
+menu item,  the Screen Manager does not write a message to the pipe. )
+
+After processing the chosen item, the application makes a Menu Library call
+to dehighlight the menu title and waits for the next message to come through
+the message pipe.
+
+
+5.3-b	Extended Menu Library Routines
+
+The additions to the Menu Library routines are:
+
+o   menu_popup:    Displays a pop-up menu or drop-down list anywhere on
+		   the screen.  Clipping is performed for a standard menu.
+		   Menus with user-defined objects will have to perform
+		   their own clipping.
+
+o   menu_attach:   Lets an application attach, change, remove or inquire
+                   about a submenu associated with a menu item.
+
+o   menu_istart:   Lets an application set and inquire the starting menu
+                   item of a pop-up menu or submenu
+
+o   menu_settings: Lets an application set and inquire the delay and height
+                   parameters of the submenus.
+
+
+menu_popup and menu_attach use a new structure for passing and receiving
+submenu data.  The MENU structure is defined as follows:
+
+   typedef struct _menu
+   {
+      OBJECT *mn_tree;   - the object tree of the menu 
+      WORD    mn_menu;   - the parent object of the menu items
+      WORD    mn_item;   - the starting menu item
+      WORD    mn_scroll; - the scroll field status of the menu
+                           0  - The menu will not scroll
+                           >0 - The menu will scroll if the number of menu
+                                items exceed the menu scroll height. The 
+				non-zero value is the object at which 
+				scrolling will begin.  This will allow one
+				to have a menu in which the scrollable region
+				is only a part of the whole menu.  The value
+				must be a menu item in the menu.
+				
+                                menu_settings can be used to change the menu
+                                scroll height. 
+
+                         NOTE: If the scroll field status is >0, the menu
+                               items must consist entirely of G_STRINGS.
+
+			 <0  - The menu will be displayed as a Drop-Down List.
+
+      WORD   mn_keystate; - The CTRL, ALT, SHIFT Key state at the time the
+			    mouse button was pressed.
+   }MENU;
+
+menu_settings uses a new structure for setting and inquiring the submenu
+delay values and the menu scroll height.  The delay values are measured in
+milliseconds and the height is based upon the number of menu items.
+
+    typedef struct _mn_set
+    {
+       LONG  Display; - the submenu display delay
+       LONG  Drag;    - the submenu drag delay
+       LONG  Delay;   - the single-click scroll delay
+       LONG  Speed;   - the continuous scroll delay
+       WORD  Height;  - the menu scroll height
+    }MN_SET;
+
+o  Submenu Display Delay:
+
+   The delay is used to prevent the rapid flashing of submenus as the mouse
+   pointer is dragged thru a menu item with an attach submenu.  The default
+   value is 200 milliseconds ( 1/5th of a second ).
+
+o  Submenu Drag Delay:
+
+   The delay is used to prevent the disappearance of the submenu as the mouse
+   pointer is dragged toward the submenu from a menu item.  The default value
+   is 10000 milliseconds ( 10 seconds ).
+
+o  Single-Click Scroll Delay:
+  
+   This is the delay period after one menu item has initiallly scrolled.
+   After the delay, scrolling continues at the rate specified by the
+   Continuous Scroll Delay.  The delay is used to prevent rapid scrolling for
+   those just clicking on the scroll indicators.  The default value is
+   250 milliseconds ( 1/4th of a second ).
+
+o  Continuous Scroll Delay:
+
+   This is the delay period after each menu item has scrolled.  The delay is
+   used to slow down the scrolling speed.  The default value is 0 milliseconds.
+
+o  Menu Scroll Height:
+
+   This value is the height at which a pop-up menu or a submenu will start to
+   scroll if its scroll field is TRUE.  The default value is 16 menu items.
+
+The following sections describe these routines.
+
+
+
+5.3.7	MENU_POPUP
+
+Purpose:
+
+Allows an application to display a popup menu anywhere on the screen.  The
+popup menu may also have submenus.  If the number of menu items exceed the
+menu scroll height, the menu may also be set to scroll.  menu_settings can
+be used to set the height at which all menus will start to scroll.
+
+This call will also display a drop-down list anywhere on the screen.  The
+drop-down list may NOT have submenus.  The height of the drop-down list
+is set to eight (8) menu items.  If the number of menu items is greater
+than eight, the menu will be set to scroll.  If the menu has fewer than
+eight menu items, the menu will be displayed as a popup menu.  Set the
+field 'mn_scroll' to negative one (-1) to display a drop-down list.
+
+Parameters:
+
+     control(0)  =  36
+     control(1)  =  2
+     control(2)  =  1
+     control(3)  =  2
+     control(4)  =  0
+
+     int_in(0)   =  me_xpos
+     int_in(1)   =  me_ypos
+
+     int_out(0)  =  me_return
+
+     addr_in(0)  =  me_menu
+     addr_in(1)  =  me_mdata
+
+o    me_xpos - the left edge of where the starting menu item will be displayed
+
+o    me_ypos - the top edge of where the starting menu item will be displayed
+
+o    me_return - a coded return message
+	
+                 0 - FAILURE: The data returned by me_mdata is invalid
+                 1 - SUCCESS: The data returned by me_data is valid
+
+     FAILURE is returned if the user did not click on an enabled menu item
+
+o    me_menu  -	pointer to the pop-up MENU structure.  The structure must be
+                initialized with the object tree of the pop-up menu, the menu
+                object, the starting menu item and the scroll field status.
+
+o    me_mdata -	pointer to the data MENU structure.  If menu_popup returns
+                TRUE,  me_mdata will contain information about the submenu
+                that the user selected.  This includes the object tree of the
+                submenu, the menu object, the menu item selected and the
+                scroll field status for this submenu.
+
+	------------------------------------------------
+
+        Sample call to C language binding:
+
+        me_return = menu_popup( MENU *me_menu, word me_xpos, word me_ypos,
+                                MENU *me_mdata);
+
+
+
+
+5.3.8	MENU_ATTACH
+
+Purpose:
+
+Allows an application to attach, change, remove or inquire about a submenu
+associated with a menu item.
+
+Parameters:
+
+     control(0)  =  37
+     control(1)  =  2
+     control(2)  =  1
+     control(3)  =  2
+     control(4)  =  0
+
+     int_in(0)   =  me_flag	
+     int_in(1)   =  me_item
+
+     int_out(0)  =  me_return
+
+     addr_in(0)  =  me_tree
+     addr_in(1)  =  me_mdata
+
+o  me_flag - the action to be performed by menu_attach.
+		
+   The options for me_flag are:
+
+   0  Inquire data about the submenu that is associated with the menu item.
+      The data concerning the submenu is returned in me_mdata.
+
+   1  Attach or change a submenu associated with a menu item.  me_mdata must
+      be initialized by the application.  The data must consist of the object
+      tree of the submenu, the menu object, the starting menu item and the
+      scroll field status.  Attaching a NULLPTR structure will remove the
+      submenu associated with the menu item.  There can be a maximum of 64
+      associations per process.  Bit 11 of the object's ObFlag will be
+      set if a submenu is actually attached.
+
+   2  Remove a submenu associated with a menu item.  me_mdata should be set
+      to NULLPTR. Bit 11 of the object's ObFlag will be cleared.
+	
+o  me_item - the menu item that the submenu will be attached to
+
+o  me_return - a coded return message
+	
+   0 - FAILURE: the submenu was not attached for whatever reasons
+   1 - SUCCESS: the submenu was attached, changed or removed successfully
+
+o  me_tree - the object tree of the menu item that will have a submenu
+             attach to
+
+o  me_mdata - pointer to the MENU structure. The contents of me_mdata are
+              dependant upon the value of me_flag:
+
+   0  Upon return from menu_attach, me_mdata will contain the MENU data
+      regarding the submenu associated with the menu item.
+
+   1  me_mdata must be initialized with the new submenu MENU data.
+      The submenu will be attached to the menu item - me_item.
+
+   2  me_mdata should be set to NULLPTR.  The submenu associated with the
+      menu item will be removed.
+
+   ------------------------------------------------
+
+   Sample call to C language binding:
+
+   me_return = menu_attach( word me_flag, object *me_tree, word me_item,
+                            MENU *me_mdata );
+
+
+
+
+5.3.9	MENU_ISTART
+
+Purpose:
+
+Allows an application to set or inquire the starting menu item of a submenu
+that is associated with a menu item.  The submenu is shifted vertically so
+that the starting menu item is aligned with the menu item that is associated
+with this submenu.  
+
+Parameters:
+
+     control(0)  =  38
+     control(1)  =  3
+     control(2)  =  1
+     control(3)  =  1
+     control(4)  =  0
+
+     int_in(0)   =  me_flag
+     int_in(1)   =  me_imenu
+     int_in(2)   =  me_item
+
+     int_out(0)  =  me_return
+
+     addr_in(0)  =  me_tree
+
+o    me_flag - the action to be performed by menu_istart 
+
+     0  Inquire the starting menu item for the submenu
+
+     1  Set the starting menu item for the submenu to be me_item
+
+o    me_imenu - the menu object of the submenu that is either to be set
+                or inquired
+
+o    me_item - the starting menu item that is either to be set or inquired
+
+o    me_return - a coded return message
+	
+     0 - FAILURE: the submenu is not associated with a menu item.  The
+                  submenu must be attached via menu_attach before this
+                  call can be made. 
+
+     >0 - SUCCESS: the starting menu item is currently set to this value.
+
+o    me_tree - the object tree of the menu item that we are setting or
+               inquiring about
+
+     ------------------------------------------------
+
+     Sample call to C language binding:
+
+     me_return = menu_istart( word me_flag, object *me_tree, word me_imenu,
+                              word me_item );
+
+
+
+
+5.3.10	MENU_SETTINGS
+
+Purpose:
+
+Allows an application to set or inquire the submenu delay values and the
+menu scroll height value. 
+
+Parameters:
+
+     control(0)   =  39
+     control(1)   =  1
+     control(2)   =  1
+     control(3)   =  1
+     control(4)   =  0
+
+     int_in(0)    =  me_flag
+
+     int_out(0)   =  me_return
+
+     addr_in(0)   =  me_values
+
+
+o    me_flag - the action to be taken by menu_settings
+
+     0  Inquire the current delay and menu scroll height values.
+     1  Set the delay and menu scroll height values
+
+o    me_return - always returns 1 ( one )
+	
+o    me_values - pointer to the MN_SET structure.  me_values is dependant
+                 upon the value of me_flag:
+
+     0   Upon the return of menu_settings, me_values will contain the
+         current delay and menu scroll height values.
+
+     1   me_values must be initialized.  The delay and menu scroll height
+         values will be set to those values found in me_values.  A value
+         set to NIL will be ignored.
+
+     ------------------------------------------------
+
+     Sample call to C language binding:
+
+     me_return = menu_settings( word me_flag, MN_SET *me_values );
+
+
+
+
+AES Supplemental Documentation
+The following section contains documentation supplemental to the existing AES manual, and 
+clarifications of existing documentation related to hierarchical submenus and the menubar.
+
+
+Supplement to: 4.2.5.2 MN_SELECTED
+
+GEM AES uses this message to notify an application that a user has selected
+a menu item.
+
+o   word 0   = 10
+o   word 3   = the object index of the menu title selected
+o   word 4   = the object index of the menu item selected
+o   word 5,6 = the object tree of the menu item selected
+o   word 7   = the parent object of the menu item selected
+
+
+
+
+5.4.1	Pop-Up Menus
+
+o   The button on a dialog box that brings up a pop-up menu should be shadowed.
+
+o   It would be nice if the pop-up menu was shadowed also.
+
+o   While the pop-up menu is displayed, if it has a title, the title should
+    be inverted.
+
+o   The pop-up menu should be aligned on a byte boundary.  This speeds up
+    the drawing of the menu considerably.
+
+o   The pop-up menu will be shifted vertically in order to line up the start
+    object with the given coordinates.
+
+o   If the menu exceeds the top of the screen, it will be shifted down.
+
+o   No horizontal adjustments will be done to the menu.
+
+
+
+
+5.4.2	Submenus
+
+o   Menu items expecting a submenu attachment must be of type G_STRING.
+
+o   Menu items should be padded with blanks to the width of the menu.
+
+o   Menu items expecting a submenu attachment should not have any keyboard
+    short-cut characters.
+
+o   Submenus will automatically be displayed on a byte boundary.
+
+o   The menu will be shifted vertically to align the start object with the
+    menu item.  In addition, the menu will be shifted to remain entirely on
+    the screen in the vertical plane.
+
+o   The submenu will be displayed at the right edge of the menu item.  If the
+    menu extends off the edge of the screen, the menu will be displayed to
+    the left of the menu item.  If it exceeds the left edge of the screen,
+    the menu will be shifted right a character at a time, until it fits.
+
+o   There can be a maximum of 64 submenu attachments per process.
+
+o   A menu item with an attached submenu uses the high-byte of its object
+    type field.  Values 128 thru 192 are used by the submenu menu system.
+
+o   A menu item with an attached submenu will have Bit 11 of its 
+    object flag field SET.  
+
+    The bit is defined as:   #define SUBMENU 0x800
+
+o   Applications using the Extended Object Type should check the
+    object's ObFlag field to see if Bit 11 is SET.  If the bit is SET,
+    the menu item has a submenu attached.
+   
+o   A submenu should not be attached to itself.
+
+o   Attaching a submenu	to different menu items counts as one attachment.
+    There will only be one scroll flag and one start object.
+
+o   As a user interface guideline, there should only be one level of
+    hierarchical menus.  The system currently allows up to four levels
+    of recursion.
+
+o   menu_istart works only on submenus attached with menu_attach.  
+
+o   Menu items with attached submenus cannot have keyboard shortcuts.
+
+
+5.4.3	Scrolling Menus
+
+o   In order to scroll properly, all menu items must be G_STRINGS.  Menus
+    that contain objects other than G_STRINGS should set the scroll flag
+    to 0.
+
+o   The first-level menus of a menu bar are not scrollable.
+
+o   Pop-up menus and submenus with greater than sixteen items can be
+    scrolled if their scroll flag is set.  The number of items to scroll at
+    can be adjusted with menu_settings.
+
+o   If the pop-up menu or submenu is designed to be a toolbox,
+    (ie: fill patterns ), set the scroll flag to FALSE.
+
+o   Setting the scroll flag to one of the menu items will initiate
+    scrolling from that menu item if the number of items exceeds the
+    menu height limit.
+
+o   One should NOT set the scroll object to the last menu item of a menu.
+
+o   Setting the scroll object to a value less than the first menu item
+    defaults to the first menu item.
+
+o   Setting the scroll object to a value greater than or equal to
+    the last menu item defaults to the first menu item.
+
+
+5.4.4	Drop-Down List Menus
+
+o   The button on a dialog box that brings up a drop-down list should
+    be shadowed.
+
+o   The menu items of a drop-down list must consist entirely of G_STRINGS.	
+
+o   The button should be inverted when the drop-down list is displayed.
+
+o   The drop-down list menu should be shadowed also.
+
+o   To the right of the button should be a boxchar containing
+    a character of '0x0f'.  This character consists of three
+    horizontal lines.  The boxchar should be treated just like
+    the button.
+
+o   While the drop-down list is displayed, if it has a title, the
+    title should be inverted also.
+
+o   The drop-down list should be displayed below the button.
+
+o   The width of the button should match the width of the menu.
+
+o   The boxchar should be aligned with the slider structure
+    that will appear to the right of the menu.
+
+o   No horizontal or vertical adjustments will be made to the
+    position of the menu.
+
+o   It is advantageous to align the menu on a byte boundary.  This
+    speeds up the drawing of the menu considerably.
+
+o   Submenus should not be attached to any menu items.  Any
+    submenus that are attached will not be displayed.
+
+o   The height of the drop-down list is fixed to eight (8) items.
+
+o   Menus with greater than eight (8) menu items will be 
+    scrolled via the slider structure.
+
+o   Menus with fewer than eight (8) menu items will be displayed
+    as a pop-up.  No slider structure will be displayed.  The
+    alternative is to pad the menu with disabled blank strings
+    up to eight menu items.
+
+o   The function 'menu_popup()' is used to display pop-up menus
+    as well as drop-down lists.  Set the field 'mn_scroll' to
+    negative one (-1) to display the menu as a drop-down list.
+
+
+
+5.4.5	Addendum  - Keyboard Scrolling
+
+Minimal keyboard support has been added to the menu manager.  Menus that are scrollable can 
+be scrolled using the UP and DOWN arrow keys.  Drop-down list menus can also be scrolled 
+using the UP and DOWN arrow keys.  In addition, Drop-down list menus can be paged using 
+SHIFT-UP and SHIFT-DOWN arrow keys.  These features are available on AES versions > 4.1.
+
+
+
+Softloaded Resources
+It is now possible to load the TOS resource files. At boot time, TOS looks for the following files 
+in the MULTITOS directory of the boot drive:
+	GEM.RSC		- AES resource file
+	DESKTOP.RSC	- Desktop's resource file
+	KEYBD.TBL		- XBIOS Keyboard table
+
+The resource files are ordinary GEM resource files but with version number checking. The first 
+byte in the resource header of the resource file contains the version number.
+
+The format of the KEYBD.TBL file is:
+
+	[ unshifted keyboard table (128 Bytes)     ]
+	[ shifted keyboard table (128 Bytes)       ]
+	[ caps lock keyboard table (128 Bytes)     ]
+	{ alternate unshifted keyboard table **    }
+	{ alternate shifted keyboard table **      }
+	{ alternate caps lock keyboard table **    }
+ 
+ 	**: An alternate keyboard table is a list of two bytes pairs. The list is NUL terminated.
+ 
+Use an assembler (madmac), aln and fixrom to create the tables. You can get the data for the 
+tables from bios.s.
+  
+This works only a 100% on machines with the AKP code (since 5/92) in the bios. Older versions 
+have the alternate key handling hard coded while the bios with AKP uses tables for the alternate 
+key handling.
+
+Example: The German keyboard table:
+
+;
+;	Keyboard Table for ATARI ST/TT/FALCON030
+;	Keyboard: German
+;	02/12/92 (from bios.s)
+;	Used for loadable keyboard tables
+;
+;	Makefile lines:
+;	--------------
+;	keybd.tbl: kbtblgrm.s
+;	mac kbtblgrm.s
+;	aln -o keybdgrm.tbl -a 0 x x kbtblgrm.o
+;	fixrom keybdgrm.tbl
+;
+;
+;	NOTE:	Alternate keyboard table will only work on machines with
+;		_AKP cookie set. This was introduced in 05/92.
+
+	.even
+	.data
+
+	dc.w	$2771				; magic word for keybd table
+
+	dc.b	$00,$1b,'1','2','3','4','5','6' ; unshifted
+	dc.b	'7','8','9','0',$9e,$27,$08,$09
+	dc.b	'q','w','e','r','t','z','u','i'
+	dc.b	'o','p',$81,'+',$0D,$00,'a','s'
+	dc.b	'd','f','g','h','j','k','l',$94
+	dc.b	$84,'#',$00,'~','y','x','c','v'
+	dc.b	'b','n','m',',','.','-',$00,$00
+	dc.b	$00,$20,$00,$00,$00,$00,$00,$00
+
+	dc.b	$00,$00,$00,$00,$00,$00,$00,$00 
+	dc.b	$00,$00,'-',$00,$00,$00,'+',$00
+	dc.b	$00,$00,$00,$7f,$00,$00,$00,$00
+	dc.b	$00,$00,$00,$00,$00,$00,$00,$00
+	dc.b	'<',$00,$00,'(',')','/','*','7'
+	dc.b	'8','9','4','5','6','1','2','3'
+	dc.b	'0','.',$0D,$00,$00,$00,$00,$00
+	dc.b	$00,$00,$00,$00,$00,$00,$00,$00
+
+grmshif:
+	dc.b	$00,$1b,'!','"',$dd,'$','%','&'	; shifted
+	dc.b	'/','(',')','=','?','`',$08,$09
+	dc.b	'Q','W','E','R','T','Z','U','I'
+	dc.b	'O','P',$9a,'*',$0D,$00,'A','S'
+	dc.b	'D','F','G','H','J','K','L',$99
+	dc.b	$8e,'^',$00,'|','Y','X','C','V'
+	dc.b	'B','N','M',';',':','_',$00,$00
+	dc.b	$00,$20,$00,$00,$00,$00,$00,$00
+
+	dc.b	$00,$00,$00,$00,$00,$00,$00,$37
+	dc.b	$38,$00,'-',$34,$00,$36,'+',$00
+	dc.b	$32,$00,$30,$7f,$00,$00,$00,$00
+	dc.b	$00,$00,$00,$00,$00,$00,$00,$00
+	dc.b	'>',$00,$00,'(',')','/','*','7'
+	dc.b	'8','9','4','5','6','1','2','3'
+	dc.b	'0','.',$0D,$00,$00,$00,$00,$00
+	dc.b	$00,$00,$00,$00,$00,$00,$00,$00
+
+grmcl:
+	dc.b	$00,$1b,'1','2','3','4','5','6' ; caps lock
+	dc.b	'7','8','9','0',$9e,$27,$08,$09
+	dc.b	'Q','W','E','R','T','Z','U','I'
+	dc.b	'O','P',$9a,'+',$0D,$00,'A','S'
+	dc.b	'D','F','G','H','J','K','L',$99
+	dc.b	$8e,'#',$00,'~','Y','X','C','V'
+	dc.b	'B','N','M',',','.','-',$00,$00
+	dc.b	$00,$20,$00,$00,$00,$00,$00,$00
+
+	dc.b	$00,$00,$00,$00,$00,$00,$00,$00
+	dc.b	$00,$00,'-',$00,$00,$00,'+',$00
+	dc.b	$00,$00,$00,$7f,$00,$00,$00,$00
+	dc.b	$00,$00,$00,$00,$00,$00,$00,$00
+	dc.b	'<',$00,$00,'(',')','/','*','7'
+	dc.b	'8','9','4','5','6','1','2','3'
+	dc.b	'0','.',$0D,$00,$00,$00,$00,$00
+	dc.b	$00,$00,$00,$00,$00,$00,$00,$00
+
+	; alternate keyboard tables
+
+grmatran:
+	dc.b	$1a,'@',  $27,'[',  $28,']',  0	; alternate unshifted
+grmashif:
+	dc.b	$1a,$5c,  $27,'{',  $28,'}',  0	; 5c is '\', alt shift
+grmacl:
+	dc.b	$1a,'@',  $27,'[',  $28,']',  0 ; alt caps lock
+
+
+
+Window Iconifying
+How to use the AES Window Iconify Feature
+
+1.) The SMALLER Gadget
+
+To create a window which can be iconified the application has to specify the SMALLER gadget in 
+the window "kind" parameter of a wind_create() call.
+
+Example:
+    wind_create(NAME|SIZER|MOVER|CLOSER|FULLER|SMALLER, x, y, w, h);
+
+Binding:
+#define SMALLER	0x1000
+
+    
+2.) New Messages
+
+There are three new messages for the iconify feature: WM_ICONIFY, WM_UNICONIFY, and 
+WM_ALLICONIFY.
+
+When the user clicks on the SMALLER gadget of a window, the AES will send a WM_ICONIFY 
+message to the application. The application should then iconify its window.
+
+Double clicking on the work area of an iconified window will cause the AES to send a 
+WM_UNICONIFY message to the application. The application should respond to that message by 
+bringing the window back to its original state.
+
+When the user holds down the CONTROL key while selecting the SMALLER gadget of a window, 
+the AES will send a WM_ALLICONIFY message. The application should then close all its 
+windows and open a new, iconified window. This iconified window represents all of the 
+application's windows. The application has to keep track itself that all its windows are closed 
+and the "All Iconified" window is open. A double click on the work area of this iconified window 
+will cause the AES to send a WM_UNICONIFY message. The application should then reopen its 
+windows and close the "All Iconified" window. 
+
+WM_ICONIFY:
+	msgbuff[0] = WM_ICONIFY (34)
+	msgbuff[3] = window handle
+	msgbuff[4] = x coordinate of icon window
+	msgbuff[5] = y coordinate of icon window
+	msgbuff[6] = width of icon window
+	msgbuff[7] = height of icon window
+
+WM_UNICONIFY:
+	msgbuff[0] = WM_UNICONIFY (35)
+	msgbuff[3] = window handle
+	msgbuff[4] = x coordinate of original window
+	msgbuff[5] = y coordinate of original window
+	msgbuff[6] = width of original window
+	msgbuff[7] = height of original window
+	
+
+WM_ALLICONIFY:
+	msgbuff[0] = WM_ALLICONIFY (36)
+	msgbuff[3] = window handle
+	msgbuff[4] = x coordinate of icon window
+	msgbuff[5] = y coordinate of icon window
+	msgbuff[6] = width of icon window
+	msgbuff[7] = height of icon window
+
+Binding:
+#define WM_ICONIFY	34
+#define WM_UNICONIFY	35
+#define WM_ALLICONIFY	36
+
+3.) New wind_set() Calls
+
+There are three new calls to wind_set():
+
+	WORD wind_set(handle, WF_ICONIFY, x, y, w, h)
+	WORD handle;
+	WORD x, y, w, h;
+	
+This call will iconify a window to the given width and height and place it at the given 
+coordinates. All window gadgets but the move and title bar will be removed by this call. The 
+font in the title bar will be set to SMALL (6 point). A WM_REDRAW message will be send to the 
+application to redraw the work area of the iconified window. It is recommended to draw an icon 
+inside the work area. The standard size of an iconified window is 72 by 72.
+
+The AES will now look for double clicks inside the work area to send a WM_UNICONIFY 
+message to the application.
+
+If an application closes an iconified window and then opens it again, it will still be in the 
+iconified state. Before closing a window an application should check if the window is iconified 
+and if so, bring it back to its original state before closing it.
+
+
+	WORD wind_set(handle, WF_UNICONIFY, x, y, w, h)
+	WORD handle;
+	WORD x, y, w, h;
+	
+This call will uniconify a window to the given width and height and place it at the given 
+coordinates, meaning the window will go back to its originalstate. All of the window's gadgets 
+will again be added by this call. The font in the title bar will be reset to IBM. A WM_REDRAW 
+message will be send to the application to redraw its work area.
+
+
+	WORD wind_set(handle, WF_UNICONIFYXYWH, x, y, w, h)
+	WORD handle;
+	WORD x, y, w, h;
+
+This call will set the coordinates and size which will be send to a window when it gets the 
+WM_UNICONIFY message. Normally the AES sends the coordinates and size of the window 
+which it had before it got iconified. This call is needed if a window is opened in iconified state.
+
+Binding:
+#define WF_ICONIFY		26
+#define WF_UNICONIFY		27
+#define WF_UNICONIFYXYWH	28
+
+
+4.) New wind_get() Calls
+
+There are two new calls to wind_get():
+
+	WORD wind_get(handle, WF_ICONIFY, iconified, icn_w, icn_h, dummy)
+	WORD handle;
+	WORD *iconified, *icn_w, *icn_h, *dummy;
+
+This call will return the state of a window. A value of TRUE states that the window is iconified.
+
+	iconified == TRUE	--> window is iconified
+	iconified == FALSE	--> window is not iconified
+
+It also returns the width and height the AES sends to windows when they get iconified.
+
+
+	WORD wind_get(handle, WF_UNICONIFY, x, y, w, h)
+	WORD handle;
+	WORD *x, *y, *w, *h;
+
+This call will return the x and y coordinates as well as the width and height of an iconified 
+window's orignal coordinates and size. That are the coordinates and size of the window before it 
+was iconified.
+
+
+5.) Example Code
+
+	.
+	WINDOW	*win;
+	.
+	.
+	win->handle = wind_create(NAME|SIZER|MOVER|CLOSER|FULLER|SMALLER,
+			full.g_x, full.g_y, full.g_w, full.g_h);
+	.
+	.
+
+	event = evnt_multi( MU_MESAG|MU_BUTTON|MU_KEYBD, 2, 1, 1,
+			      0, 0, 0, 0, 0,
+			      0, 0, 0, 0, 0,
+			      (LONG) msgbuff,	/* message buffer	*/
+			      0, 0,		/* timer counter	*/
+			      &mx, &my, &button, &kstat, &kreturn, &clicks
+			  );
+	.
+	.
+	if (event & MU_MESAG) {
+		switch (msgbuff[0]) {
+			.
+			.
+		case WM_ICONIFY:
+		    if ((win = get_win(msgbuff[3])) == NULL)
+		    	break;
+		    form_dial(FMD_SHRINK,
+			msgbuff[4], msgbuff[5], msgbuff[6], msgbuff[7],
+			win->work.g_x, win->work.g_y,
+			win->work.g_w, win->work.g_h);
+				
+		    wind_set(msgbuff[3], WF_ICONIFY,
+		    	msgbuff[4], msgbuff[5], msgbuff[6], msgbuff[7]);
+
+		    wind_get(msgbuff[3], WF_WORKXYWH,
+		    	&win->work.g_x, &win->work.g_y,
+			&win->work.g_w, &win->work.g_h);
+		    break;
+		    
+		case WM_UNICONIFY:
+		    if ((win = get_win(msgbuff[3])) == NULL)
+		    	break;
+		    form_dial(FMD_GROW,
+		    	win->work.g_x, win->work.g_y,
+			win->work.g_w, win->work.g_h,
+			msgbuff[4], msgbuff[5], msgbuff[6], msgbuff[7]);
+				
+		    wind_set(msgbuff[3], WF_UNICONIFY,
+		    	msgbuff[4], msgbuff[5], msgbuff[6], msgbuff[7]);
+
+		    wind_get(msgbuff[3], WF_WORKXYWH,
+		    	&win->work.g_x, &win->work.g_y,
+			&win->work.g_w, &win->work.g_h);
+		    break;
+
+		case WM_REDRAW:
+		    if ((win = get_win(msgbuff[3])) == NULL)
+		    	break;
+		    wind_get(msgbuff[3], WF_ICONIFY, &iconified,
+		    	&dummy, &dummy &dummy);
+		    if (iconified)
+		    	redraw_iconWindow(win, msgbuff[4], msgbuff[5],
+		    	    msgbuff[6], msgbuff[7]);
+		    else
+			redraw_normalWindow(win, msgbuff[4], msgbuff[5],
+		    	    msgbuff[6], msgbuff[7]);
+		    break;	    		
+		.
+		.
+		.
+
+
+Replacing the System Font
+By using the AE_FONTID and AE_PNTSIZE variables in the GEM.CNF file, the user can now 
+replace the system font and or change its size. NOTE: The replacement font has to be a Speedo 
+GDOS font.
+
+Sample GEM.CNF lines:
+
+AE_FONTID=5		# use Speedo GDOS font with Font ID 5
+AE_PNTSIZE=18		# Use a point size 18
+ 
+or:
+
+AE_PNTSIZE=24		# change the size of the system font to 24 points
+
+
+Changing the font the desktop uses in its windows
+Using the "Set Color & Style..." dialog box the user is able to change the font as well as the size 
+of the font which the GEM desktop uses in its windows.
+
+
+TEDINFO objects supporting Speedo GDOS fonts
+It is possible now to specify not only IBM and SMALL as the font used by a TEDINFO object. The 
+available options for te_font are:
+
+#define GDOS_PROP       0	/* Speedo GDOS font			    */
+#define GDOS_MONO       1	/* Speedo GDOS font, force monospace output */ 
+#define GDOS_BITM       2	/* GDOS bit map font			    */
+#define IBM             3 	/* System font 				    */
+#define SMALL           5 	/* Small system font		  	    */
+
+Also, the TEDINFO structure has changed. The old structure looked like this:
+
+TEDINFO
+{
+        LONG            te_ptext;       /* ptr to text (must be 1st)    */
+        LONG            te_ptmplt;      /* ptr to template              */
+        LONG            te_pvalid;      /* ptr to validation chrs.      */
+        WORD            te_font;        /* font                         */
+        WORD            te_resrvd1;     /* reserved			*/
+        WORD            te_just;        /* justification- left, right...*/
+        WORD            te_color;       /* color information word       */
+        WORD            te_resrvd2;     /* reserved			*/
+        WORD            te_thickness;   /* border thickness             */
+        WORD            te_txtlen;      /* length of text string        */
+        WORD            te_tmplen;      /* length of template string    */
+};
+
+The reserved fields are used now and the strucure has changed to:
+
+TEDINFO
+{
+        LONG            te_ptext;       /* ptr to text (must be 1st)    */
+        LONG            te_ptmplt;      /* ptr to template              */
+        LONG            te_pvalid;      /* ptr to validation chrs.      */
+        WORD            te_font;        /* font                         */
+        WORD            te_fontid;      /* GDOS font id			*/
+        WORD            te_just;        /* justification- left, right...*/
+        WORD            te_color;       /* color information word       */
+        WORD            te_fontsize;    /* GDOS font size in points	*/
+        WORD            te_thickness;   /* border thickness             */
+        WORD            te_txtlen;      /* length of text string        */
+        WORD            te_tmplen;      /* length of template string    */
+};
+
+If the te_font field contains GDOS_PROP, GDOS_MONO, GDOS_BITM the application specifies 
+in te_fontid which GDOS font the AES uses to draw this TEDINFO field. The AES sets the font 
+size to the number of points according to the te_fontsize field.
+
+GDOS_MONO will force the output of a Speedo GDOS font to be monospaced. 
+
+All the above works fine with editable text fields (FTEXT objects), too. Also, you are now able to 
+specify SMALL as the font (te_font field) in FTEXT objects.
+
+NOTE: ATARI SPEEDO GDOS VERSION 4.11 (OR GREATER) IS REQUIRED.
+
+
+Sample Code:
+
+	.
+	.
+	init_vdi();
+	init_aes();
+	.
+	.
+	rsrc_gaddr(R_TREE, BOX, &tree);
+
+	ted = (TEDINFO*) tree[TEXT1].ob_spec;
+	ted->te_font = GDOS_PROP;  /* use Speedo GDOS font */
+	ted->te_just = TE_LEFT;	   /* left justified 	   */	
+ 	ted->te_fontid = 5;	   /* use font with ID 5   */
+	ted->te_fontsize = 18;	   /* 18 points 	   */
+
+	ted = (TEDINFO*) tree[FTEXT1].ob_spec;
+	ted->te_font = GDOS_MONO;  /* use Speedo GDOS font, force monospaced */
+	ted->te_just = TE_RIGHT;   /* right justified 	   */	
+ 	ted->te_fontid = 6;	   /* use font with ID 5   */
+	ted->te_fontsize = 8;	   /* 8 points 	   	   */
+
+	ted = (TEDINFO*) tree[FBOXTEXT2].ob_spec;
+	ted->te_font = GDOS_MONO;  /* use Speedo GDOS font, force monospaced */
+	ted->te_just = TE_CNTR;    /* centered	 	   */	
+ 	ted->te_fontid = 5;	   /* use font with ID 5   */
+	ted->te_fontsize = 10;	   /* 10 points 	   */
+
+	form_dial(FMD_START, ...);
+	objc_draw(tree, ...);
+
+	form_do(tree, FTEXT1);
+	.
+	.
+
+
+Drag and Drop protocol, revision 1.1
+
+Here is a protocol applications can use to communicate "drag & drop" operations, i.e. to allow 
+the user to drag an object from an application's window to the window of a different 
+application. This is somewhat likecutting and pasting to/from the clipboard, but without the 
+necessity for explicit cut and paste operations. Moreover, this protocol ensures that the data is 
+actually transferred to the correct process (whereas clipboard data is globally shared, and can be 
+modified or deleted by any process).
+
+In the following, the "originator" is the application that owns the window the object was 
+originally located in, and the "recipient" is the application that owns the window into which the 
+object is dropped. It is assumed that these are two *different* applications.
+
+Originator's side
+
+When the user drags and releases an object, the application should make the appropriate 
+wind_get() call to find out the window id and window owner of the window under the mouse at 
+the time the button was released. If the window owner is not the current application, then the 
+current application becomes the originator of a drag & drop sequence.
+
+The originator of the drag & drop creates a (bidirectional) pipe named DRAGDROP.xx, where 
+'xx' is some unique 2 character combination (this could be formed from the process id, or the 
+application could just try Fcreate() until it finds a combination that works; Fcreate will fail if a 
+pipe with the same name already exists). 2 letters allows for 626 simultaneous drag and drop 
+operations to be in progress at once, which should be plenty.
+
+It then constructs and sends an AES message to the window owner, as follows:
+
+word 0:	AP_DRAGDROP
+word 1:	originator's application id
+word 2:	0 (number of extra bytes in message)
+word 3:	id of the window that was dropped onto
+word 4:	mouse X position at the time of the drop
+word 5:	mouse Y position at the time of the drop
+word 6:	keyboard shift key status at the time of the drop
+word 7:	2 byte pipe identifier (see above)
+
+If word 3 is -1, then there is no specific window which is the target of the drag and drop 
+message. Usually this will be used with "ARGS" data to indicate that a new window should be 
+opened for the indicated file(s).
+
+The originator then waits (with Fselect) for data to arrive on the pipe. If the Fselect times out 
+(probably a 3 or 4 second time out would be sufficient) then the recipient doesn't understand 
+drag & drop. Otherwise, the sender reads 1 byte from the pipe, which will be one of the 
+following values:
+
+DD_OK		meaning "go ahead, send data"
+DD_NAK		meaning "I don't want any data on that window"
+
+If DD_OK is received, the originator should then read 32 bytes from the pipe. These 32 bytes 
+consist of 8 data types, each 4 bytes long, which are a list of the data types that the receiving 
+application can understand, in order of preference. This list is not binding, nor is it exhaustive; it 
+is intended only as a guideline. The originator should not abort the transfer if it can't send any 
+of the types on the list; it should go throught the normal exchange with any types that it can 
+send, and leave it up to the recipient to abort if necessary. If the recipient has fewer than 8 
+"preferred" data types, it will pad the 32 bytes with zeros .
+
+Data types are always 4 bytes long, and consist either of a period followed by a 3 byte file 
+extension, or a 4 byte "special" type. Extensions are the same as the file name extensions used 
+for normal files or scrap files; for example, ".TXT" would be an ASCII text file with lines 
+terminated by cr/lf sequences. "Special" types are other kind of data. For example, the data type 
+"ARGS" denotes a command line with arguments seaparated by spaces. The desktop sends a 
+drag & drop message with type "ARGS" when you drag a group of files or folders to an 
+application window; the file and folder names, separated by spaces, form the data for this 
+message. Note that if any of the file names in the command lines contains a space, then it will be 
+surrounded by single quotes. Inside of single quotes, two consecutive single quotes stand for a 
+single quote. For example, if a file named Eric's File would be passed to an application as 'Eric''s 
+File'. This obviously is of concern only for non-DOS file systems, but applications should be 
+aware of this.
+
+The data type "PATH" is a request by the originator for the GEMDOS path or file name 
+associated with the target window, and is handled specially. See below for complete details.
+
+After the originator has consulted the recipient's list of preferred data types, it then constructs a 
+header consisting of: (the length of each field is given in parentheses after its description)
+
+(1) The type of data (e.g. ".TXT" or ".IMG") as a 4 byte file extension. Some special types are 
+reserved: "ARGS" means that the data is a command line with arguments separated by spaces. 
+For example, if you drag a group of icons from the desktop to a window, the receiving 
+application will get a drag & drop message with type "ARGS" containing the file names of all 
+files dragged and dropped. Application data types must begin with a "." and should form a valid 
+file extension (similar to the extensions used for data exchange on the clipboard). (4 bytes)
+
+(2) The length of the data in bytes. (4 bytes)
+
+(3) The data's name. This is arbitrary (and can be empty); typically this would be a brief 
+description of the type of data and the application that created it (e.g. "TOSWIN text"). Typically 
+this field will be used to label an icon. (variable length, terminated by 0)
+
+(4) A file name associated with the data. This may be related to (3), obviously, but need not be. 
+It should be just the root of the name, and should not include any path or drive letter. Example: 
+"TOSWIN.TXT". (variable length, terminated by 0).
+
+There may be extra bytes in the header following the file name; for now applications should 
+ignore any such following data, but in the future we could add new header fields.
+
+The originator writes to the pipe 2 bytes representing the length of the header, and then writes 
+the header itself. It then reads a 1 byte reply. This reply can be any one of the following:
+
+   DD_OK: go ahead, send the actual data to the pipe
+   DD_NAK: abort the drag & drop
+   DD_EXT: I don't understand the file type, try something else
+   DD_LEN: I don't want so much data all at once
+   DD_TRASH: the data was dropped on a trash can
+   DD_PRINTER: the data was dropped on a printer icon
+   DD_CLIPBOARD: the data was dropped on a clipboard icon
+
+   all other values: reserved for future use
+
+If DD_TRASH, DD_PRINTER, or DD_CLIPBOARD is returned, the originating application should 
+terminate the drag and drop exchange by Fclosing the pipe, and should take whatever action it 
+considers appropriate (e.g. printing the data).
+
+If the reply is DD_EXT, the drag & drop originator either builds another header with a different 
+data type, or closes the pipe (causing the recipient to get EOF on the pipe) to abort. Either the 
+originator and recipient eventually agree on a data type, or else one or the other aborts the 
+transfer.
+
+If and when DD_OK is received, the originator writes its data to the pipe. It must be sure to 
+write the number of bytes it specified. It then closes the pipe with Fclose(). Exception: if the 
+agreed upon data type is "PATH", then the originator *reads* the specified number of bytes from 
+the pipe.
+
+The "PATH" data type is a way for applications to request a file or path name from recipients. If 
+the recipient agrees to "accept" a PATH data type, then it will in fact write the path name
+(terminated by a \) or the full file name of the file associated with the target window. If no file 
+name or path name is logically associated with the window, then the recipient must not accept 
+the PATH data type for that window.
+
+
+Recipient's Side
+
+When an application receives an AP_DRAGDROP message, it should immediately open the pipe 
+U:\PIPE\DRAGDROP.xx, where 'xx' is the 2 character identifier in the last word of the message. 
+It then does the following:
+
+(1) Write a 1 byte DD_OK message to the pipe.
+
+(2) Write a 32 byte list of 8 preferred data types (see above). This list can be used by the 
+originator as a guideline, but is not binding. The list should be padded with 0 bytes; in the 
+extreme case (if the application has no preferences) it may be entirely zeros.
+
+(3) Read a 2 byte message header length (n) from the pipe.
+
+(4) Read n bytes from the pipe. This header is described above, and contains the data type, data 
+size, and a user defined name for the data (the name may be empty).
+
+(5) Check the data type. If the data type is NOT one that the application can understand, it 
+should write a 1 byte DD_EXT message to the pipe and wait for another header, i.e. go back to 
+step (3).
+
+(6) Check the data size. If the recipient can't handle so much data, it should write a 1 byte 
+DD_LEN message to the pipe and go back to step (2).
+
+(7) Write a 1 byte DD_OK message to the pipe to tell the originator to start sending data.
+
+(8) Read S bytes from the pipe, where S is the size of the data as specified in the message 
+header. EXCEPTION: if the data type is "PATH" and the recipient wishes to respond, it should 
+actually *write* S (or fewer) bytes to the pipe. Those bytes should specify the full GEMDOS path 
+name associated with the window (terminated by a backslash, \) or the full GEMDOS path+file 
+name associated with the window.
+
+(9) Fclose the pipe.
+
+When both originator and recipient have closed the pipe, it will automatically be deleted by the 
+kernel (this is MiNT's normal action for pipes).
+
+The recipient must always check each read for an error condition or end of file; if either of these 
+is detected, the originator of the drag and drop has aborted the transaction. If the recipient 
+wishes to abort the transaction, it should send DD_NAK as a reply in place of DD_OK.
+
+
+
+Caveats
+
+Applications involved in a drag and drop exchange should take care to avoid deadlocks or fatal 
+signals. To this end, the following actions are recommended:
+
+(1) The drag & drop pipe should be created with the "hidden" bit set. This causes reads to return 
+end of file when the other end of the pipe is closed.
+
+(2) The applications should ignore the SIGPIPE signal (number 13) during the exchange. 
+SIGPIPE is generated when an application writes to a pipe with no readers, and the default 
+action for this signal is to terminate the application.
+
+(3) Neither application should do a wind_update() call during the exchange.
+
+
+
+/*
+ * Header file for using the drag & drop
+ * protocol.
+ * Copyright 1992,1993 Atari Corporation.
+ */
+
+#define AP_DRAGDROP	63
+
+#define	DD_OK		0
+#define DD_NAK		1
+#define DD_EXT		2
+#define DD_LEN		3
+#define DD_TRASH	4
+#define DD_PRINTER	5
+#define DD_CLIPBOARD	6
+
+/* timeout in milliseconds */
+#define DD_TIMEOUT	4000
+
+/* number of bytes of "preferred
+ * extensions" sent by receipient during
+ * open
+ */
+#define DD_NUMEXTS	8
+#define DD_EXTSIZE	32L
+
+/* max size of a drag&drop item name */
+#define DD_NAMEMAX	128
+
+/* max length of a drag&drop header */
+#define DD_HDRMAX	(8+DD_NAMEMAX)
+
+#ifndef Word
+#define Word short
+#define Long long
+#endif
+
+
+/*
+ * Drag & drop sample code.
+ * Copyright 1992 Atari Corporation
+ *
+ * global variables used:
+ * gl_apid: our AES application id
+ *
+ * BUGS/CAVEATS:
+ * This code is not re-entrant (it uses a static
+ * variable for the pipe name and for saving the
+ * SIGPIPE signal handler).
+ *
+ * While doing the drag and drop, the SIGPIPE
+ * signal (write on an empty pipe) is ignored
+ */
+
+#include <osbind.h>
+#include <mintbind.h>
+#include <string.h>
+#include <gemdefs.h>
+#include <aesbind.h>
+#include <vdibind.h>
+#include "dragdrop.h"
+
+#ifndef EACCDN
+#define EACCDN -36
+#endif
+
+#ifndef SIGPIPE
+#define SIGPIPE 13
+#endif
+
+#ifndef SIG_IGN
+#define SIG_IGN 1L
+#endif
+
+#ifndef WF_OWNER
+#define WF_OWNER 20
+#endif
+
+#ifndef FA_HIDDEN
+#define FA_HIDDEN 0x2
+#endif
+
+extern int gl_apid;
+
+static char pipename[] = "U:\\PIPE\\DRAGDROP.AA";
+static long oldpipesig;
+
+#ifdef DEBUGGING
+#define debug_alert(x, y) form_alert(x, y)
+#else
+#define debug_alert(x, y)
+#endif
+
+/* Code for originator */
+
+/*
+ * create a pipe for doing the drag & drop,
+ * and send an AES message to the recipient
+ * application telling it about the drag & drop
+ * operation.
+ *
+ * Input Parameters:
+ * apid:	AES id of the window owner
+ * winid:	target window (0 for background)
+ * msx, msy:	mouse X and Y position
+ *		(or -1, -1 if a fake drag & drop)
+ * kstate:	shift key state at time of event
+ *
+ * Output Parameters:
+ * exts:	A 32 byte buffer into which the
+ *		receipient's 8 favorite
+ *		extensions will be copied.
+ *
+ * Returns:
+ * A positive file descriptor (of the opened
+ * drag & drop pipe) on success.
+ * -1 if the receipient doesn't respond or
+ *    returns DD_NAK
+ * -2 if appl_write fails
+ */
+
+int
+ddcreate(apid, winid, msx, msy, kstate, exts)
+	int apid, winid, msx, msy, kstate;
+	char exts[];
+{
+	int fd, i;
+	int msg[8];
+	long fd_mask;
+	char c;
+
+	pipename[17] = pipename[18] = 'A';
+	fd = -1;
+	do {
+		pipename[18]++;
+		if (pipename[18] > 'Z') {
+			pipename[17]++;
+			if (pipename[17] > 'Z')
+				break;
+		}
+/* FA_HIDDEN means "get EOF if nobody has pipe open for reading" */
+		fd = Fcreate(pipename, FA_HIDDEN);
+	} while (fd == EACCDN);
+
+	if (fd < 0) {
+		debug_alert(1, "[1][Fcreate error][OK]");
+		return fd;
+	}
+
+/* construct and send the AES message */
+	msg[0] = AP_DRAGDROP;
+	msg[1] = gl_apid;
+	msg[2] = 0;
+	msg[3] = winid;
+	msg[4] = msx;
+	msg[5] = msy;
+	msg[6] = kstate;
+	msg[7] = (pipename[17] << 8) | pipename[18];
+	i = appl_write(apid, 16, msg);
+	if (i == 0) {
+		debug_alert(1, "[1][appl_write error][OK]");
+		Fclose(fd);
+		return -2;
+	}
+
+/* now wait for a response */
+	fd_mask = 1L << fd;
+	i = Fselect(DD_TIMEOUT, &fd_mask, 0L, 0L);
+	if (!i || !fd_mask) {	/* timeout happened */
+		debug_alert(1, "[1][ddcreate: Fselect timeout][OK]");
+abort_dd:
+		Fclose(fd);
+		return -1;
+	}
+
+/* read the 1 byte response */
+	i = Fread(fd, 1L, &c);
+	if (i != 1 || c != DD_OK) {
+		if (i != 1)
+			debug_alert(1, "[1][ddcreate: read error][OK]");
+		else
+			debug_alert(1, "[1][ddcreate: DD_NAK][OK]");
+		goto abort_dd;
+	}
+
+/* now read the "preferred extensions" */
+	i = Fread(fd, DD_EXTSIZE, exts);
+	if (i != DD_EXTSIZE) {
+		debug_alert(1, "[1][Error reading extensions][OK]");
+		goto abort_dd;
+	}
+
+	oldpipesig = Psignal(SIGPIPE, SIG_IGN);
+	return fd;
+}
+
+
+/*
+ * see if the recipient is willing to accept a certain
+ * type of data (as indicated by "ext")
+ *
+ * Input parameters:
+ * fd		file descriptor returned from ddcreate()
+ * ext		pointer to the 4 byte file type
+ * name		pointer to the name of the data
+ * size		number of bytes of data that will be sent
+ *
+ * Output parameters: none
+ *
+ * Returns:
+ * DD_OK	if the receiver will accept the data
+ * DD_EXT	if the receiver doesn't like the data type
+ * DD_LEN	if the receiver doesn't like the data size
+ * DD_NAK	if the receiver aborts
+ */
+
+int
+ddstry(fd, ext, name, size)
+	int fd;
+	char *ext, *name;
+	long size;
+{
+	Word hdrlen, i;
+	char c;
+
+/* 4 bytes for extension, 4 bytes for size, 1 byte for
+ * trailing 0
+ */
+	hdrlen = 9 + strlen(name);
+	i = Fwrite(fd, 2L, &hdrlen);
+
+/* now send the header */
+	if (i != 2) return DD_NAK;
+	i = Fwrite(fd, 4L, ext);
+	i += Fwrite(fd, 4L, &size);
+	i += Fwrite(fd, (long)strlen(name)+1, name);
+	if (i != hdrlen) return DD_NAK;
+
+/* wait for a reply */
+	i = Fread(fd, 1L, &c);
+	if (i != 1) return DD_NAK;
+	return c;
+}
+
+
+/* Code for either recipient or originator */
+
+/*
+ * close a drag & drop operation
+ */
+
+void
+ddclose(fd)
+	int fd;
+{
+	(void)Psignal(SIGPIPE, oldpipesig);
+	(void)Fclose(fd);
+}
+
+
+
+/* Code for recipient */
+
+/*
+ * open a drag & drop pipe
+ *
+ * Input Parameters:
+ * ddnam:	the pipe's name (from the last word of
+ *		the AES message)
+ * preferext:	a list of DD_NUMEXTS 4 byte extensions we understand
+ *		these should be listed in order of preference
+ *		if we like fewer than DD_NUMEXTS extensions, the
+ *		list should be padded with 0s
+ *
+ * Output Parameters: none
+ *
+ * Returns:
+ * A (positive) file handle for the drag & drop pipe, on success
+ * -1 if the drag & drop is aborted
+ * A negative error number if an error occurs while opening the
+ * pipe.
+ */
+
+int
+ddopen(ddnam,preferext)
+	int ddnam;
+	char *preferext;
+{
+	int fd;
+	char outbuf[DD_EXTSIZE+1];
+
+	pipename[18] = ddnam & 0x00ff;
+	pipename[17] = (ddnam & 0xff00) >> 8;
+
+	fd = Fopen(pipename, 2);
+	if (fd < 0) return fd;
+
+	outbuf[0] = DD_OK;
+	strncpy(outbuf+1, preferext, DD_EXTSIZE);
+
+	oldpipesig = Psignal(SIGPIPE, SIG_IGN);
+
+	if (Fwrite(fd, (long)DD_EXTSIZE+1, outbuf) != DD_EXTSIZE+1) {
+		ddclose(fd);
+		return -1;
+	}
+
+	return fd;
+}
+
+/*
+ * ddrtry: get the next header from the drag & drop originator
+ *
+ * Input Parameters:
+ * fd:		the pipe handle returned from ddopen()
+ *
+ * Output Parameters:
+ * name:	a pointer to the name of the drag & drop item
+ *		(note: this area must be at least DD_NAMEMAX bytes long)
+ * whichext:	a pointer to the 4 byte extension
+ * size:	a pointer to the size of the data
+ *
+ * Returns:
+ * 0 on success
+ * -1 if the originator aborts the transfer
+ *
+ * Note: it is the caller's responsibility to actually
+ * send the DD_OK byte to start the transfer, or to
+ * send a DD_NAK, DD_EXT, or DD_LEN reply with ddreply().
+ */
+
+int
+ddrtry(fd, name, whichext, size)
+	int fd;
+	char *name;
+	long *size;
+	char *whichext;
+{
+	Word hdrlen;
+	int i;
+	char buf[80];
+
+	i = Fread(fd, 2L, &hdrlen);
+	if (i != 2) {
+		return -1;
+	}
+	if (hdrlen < 9) {	/* this should never happen */
+		return -1;
+	}
+	i = Fread(fd, 4L, whichext);
+	if (i != 4) {
+		return -1;
+	}
+	whichext[4] = 0;
+	i = Fread(fd, 4L, size);
+	if (i != 4) {
+		return -1;
+	}
+	hdrlen -= 8;
+	if (hdrlen > DD_NAMEMAX)
+		i = DD_NAMEMAX;
+	else
+		i = hdrlen;
+	if (Fread(fd, (long)i, name) != i) {
+		return -1;
+	}
+	hdrlen -= i;
+
+/* skip any extra header */
+	while (hdrlen > 80) {
+		Fread(fd, 80L, buf);
+		hdrlen -= 80;
+	}
+	if (hdrlen > 0)
+		Fread(fd, (long)hdrlen, buf);
+
+	return 0;
+}
+
+/*
+ * send a 1 byte reply to the drag & drop originator
+ *
+ * Input Parameters:
+ * fd:		file handle returned from ddopen()
+ * ack:		byte to send (e.g. DD_OK)
+ *
+ * Output Parameters:
+ * none
+ *
+ * Returns: 0 on success, -1 on failure
+ * in the latter case the file descriptor is closed
+ */
+
+int
+ddreply(fd, ack)
+	int fd, ack;
+{
+	char c = ack;
+
+	if (Fwrite(fd, 1L, &c) != 1L) {
+		Fclose(fd);
+	}
+	return 0;
+}
+
+#if 0
+/******************************************************************
+ *	Here are some sample functions that use the		  *
+ *	drag & drop functions above to implement the protocol.	  *
+ *	These are not complete, working functions yet, but are	  *
+ *	intended to serve as a "skeleton" for the actual	  *
+ *	functions that would appear in a drag & drop application. *
+ *								  *
+ *	The following global variables are defined:		  *
+ *	gl_ourexts: the drag & drop data types we understand	  *
+ ******************************************************************/
+
+/* modify this as necessary */
+char gl_ourexts[DD_EXTSIZE] = "ARGS.RTF.TXT";
+
+/*
+ * rec_ddmsg: given a drag & drop message, act as
+ * a recipient and get the data
+ *
+ * Input Parameters:
+ * msg:		Pointer to the 16 byte AES message
+ *		returned by evnt_multi or evnt_mesag
+ *
+ * calls the following functions to actually perform the paste
+ * operation:
+ *
+ * parseargs(char cmdlin[]):
+ *	Given a null terminated string of arguments, separated
+ *	by spaces, parse it and perform whatever actions are
+ *	appropriate on the arguments (usually file and folder
+ *	names)
+ *
+ * paste_rtf(int win, int fd, long size):
+ *	Read "size" bytes from the open file descriptor "fd",
+ *	and paste it into the window whose handle is "win".
+ *	The data is assumed to be in RTF format.
+ *
+ * paste_txt(int win, int fd, long size):
+ *	Read "size" bytes from the open file descriptor "fd",
+ *	and paste it into the window whose handle is "win".
+ *	The data is assumed to be ASCII text.
+ */
+
+void
+rec_ddmsg(msg)
+	int msg[];
+{
+	int winid;
+	int msx, msy, kstate;
+	int fd, pnam;
+	int i;
+	char txtname[DD_NAMEMAX], ext[5];
+	char *cmdline;
+	long size;
+
+	winid = msg[3];
+	msx = msg[4];
+	msy = msg[5];
+	kstate = msg[6];
+	pnam = msg[7];
+
+	fd = ddopen(pnam, ourexts);
+	if (fd < 0) return;
+
+	for(;;) {
+		i = ddrtry(fd, txtname, ext, &size);
+		if (i < 0) {
+			ddclose(fd);
+			return;
+		}
+		if (!strncmp(ext, "ARGS", 4)) {
+			cmdline = malloc((size_t)size+1);
+			if (!cmdline) {
+				ddreply(fd, DD_LEN);
+				continue;
+			}
+			ddreply(fd, DD_OK);
+			Fread(fd, size, cmdline);
+			ddclose(fd);
+			cmdline[size] = 0;
+			parseargs(cmdline);
+			return;
+		}
+		else if (!strncmp(ext, ".RTF", 4) {
+			ddreply(fd, DD_OK);
+			paste_rtf(winid, fd, size);
+			ddclose(fd);
+			return;
+		}
+		else if (!strncmp(ext, ".TXT", 4) {
+			ddreply(fd, DD_OK);
+			paste_txt(winid, fd, size);
+			ddclose(fd);
+			return;
+		}
+		ddreply(fd, DD_EXT);
+#ifdef DEBUGGING
+		{ char foo[40];
+		strcpy(foo, "[1][rec_ddmsg: unknown extension: |");
+		strcat(foo, ext);
+		strcat(foo, "][OK]");
+		debug_alert(1, foo);
+		}
+#endif /* DEBUGGING */
+	}
+}
+
+/*
+ * send_ddmsg: construct and send a drag & drop message;
+ * we only can send the 1 type of data (specified
+ * by ext)
+ *
+ * Input Parameters:
+ * msx, msy:	coordinates where data was dropped
+ * kstate:	keyboard state at time of drop
+ * name:	name of the data
+ * ext:		data type (4 byte extension)
+ * size:	size of data
+ * data:	pointer to data
+ *
+ * Output Parameters: none
+ *
+ * Returns:
+ * 0 on success
+ * 1 if no window was found
+ * 2 if the window belongs to us
+ * 3 if the receipient didn't accept the data
+ * or a negative error code from the functions
+ * above
+ */
+
+int
+send_ddmsg(msx, msy, kstate, name, ext, size, data)
+	int msx, msy, kstate;
+	char *name, *ext;
+	long size;
+	char *data;
+{
+	int fd;
+	int apid, winid;
+	int dummy, i;
+	char recexts[DD_EXTSIZE];
+	extern int gl_apid;
+
+	winid = wind_find(msx, msy);
+	if (!winid) {
+		debug_alert(1, "[1][Window not found][OK]");
+		return 1;
+	}
+	if (!wind_get(winid, WF_OWNER, &apid, &dummy, &dummy, &dummy)) {
+		debug_alert(1, "[1][Owner not found][OK]");
+		return 2;
+	}
+
+	if (apid == gl_apid) {
+		debug_alert(1, "[1][Same owner][OK]");
+		return 1;	/* huh? that shouldn't happen */
+	}
+
+	fd = ddcreate(apid, winid, msx, msy, kstate, recexts);
+	if (fd < 0) {
+		debug_alert(1, "[1][Couldn't open pipe][OK]");
+		return fd;
+	}
+	if ((i = ddstry(fd, ext, name, size)) != DD_OK) {
+		if (i == DD_EXT) {
+			debug_alert(1, "[1][Bad extension][OK]");
+		} else {
+			debug_alert(1, "[1][Receiver canceled][OK]");
+		}
+		ddclose(fd);
+		return 3;
+	}
+	Fwrite(fd, size, data);
+	ddclose(fd);
+	return 0;
+}
+#endif /* 0 */
