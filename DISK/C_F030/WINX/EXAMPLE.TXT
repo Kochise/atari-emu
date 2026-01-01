@@ -1,0 +1,70 @@
+Beispiel einer Umgebung in der WINX eingesetzt wird
+---------------------------------------------------
+
+Voraussetzung: Standard TOS (kein MultiTOS, Mag!C, GENEVA, ...)
+
+AUTO\				; = Bootprogramme =
+	GEMRAM.PRG		; Stellt GEM im RAM zum Patchen bereit
+	GEMRAM.ENV		; Textdatei mit Environmentvariablen fuers GEM
+	WINX.PRG		; GEM-Patches
+	WINX.INF		;    Optionen fÅr GEM-Patches
+	ICFS.PRG		; Iconify-Server
+	DPATTERN.PRG	; Schreibtischhintergrund
+	DPATTERN.RSC	;    Auswahl von SchreibtischhintergrÅnden
+	GDOS.PRG		; Beliebiges GDOS zur Einbindung von Fonts
+
+CPX\				; = Konfigurationsmodule =
+	WINX.CPX		; WINX Eigenschaften
+	ICFS.CPX		; Iconify
+	DPATTERN.CPX	; Schreibtischhintergrund
+	WINCOLOR.CPX	; Fensterfarben und -effekte
+	IDATE.CPX		; Datumsformat
+	ITIME.CPX		; Zeitformat
+	INUMBER.CPX		; Zahlenformat
+
+GUIDES\				; = Dokumentation =
+	WINX.HYP		; WINX
+	WINX.REF		;
+	ICFS.HYP		; Iconify-Server
+	ICFS.REF		;
+	DPATTERN.HYP	; Schreibtischhintergrund
+	DPATTERN.REF	;
+	
+GEMSYS\				; = GDOS-Erweiterungen =
+	SRCP09.FNT		; verschiedene Bitmapfonts
+	SRCR09.FNT
+	SRCR10.FNT
+	WDPR08.FNT
+	WDPR10.FNT
+	
+ASSIGN.SYS			; GDOS-Infos (z.B. Fonts)
+ST-GUIDE.ACC		; Viewer fuer Dokumentation
+XCONTROL.ACC		; Modulares Kontrollfeld
+
+
+Mîgliche Modifikationen:
+
+Statt GEMRAM kînnen auch andere Programme benutzt werden um das GEM im 
+RAM zu installieren (z.B. ROMRAM, VRAM, ROMSPEED, OUTSIDE). Bis ein-
+schlieûlich der TOS-Version 1.04 kann man im Prinzip auch ganz auf 
+GEMRAM verzichten.
+
+ICFS braucht man nur, wenn man die Mîglichkeit haben will seine Fenster 
+zu ikonifizieren (auf Icongrîûe schrumpfen zu kînnen).
+
+DPATTERN wird nur benîtigt, wenn man einen eigenen Schreibtischhinter-
+grund einstellen will.
+
+Ein GDOS wird zum Einstellen eines Fensterrahmenfonts benîtigt. Benutzt 
+man einen Bitmapfont, ist aber auch das nicht notwendig. Zum GDOS ge-
+hîrt aus seine Konfigurationsdatei ASSIGN.SYS.
+
+XCONTROL ist zum Einsatz von WINX und DPATTERN nicht zwingend er-
+forderlich, d.h. nachdem man die Programme Åber ihre CPXe konfiguriert 
+hat, kann man XCONTROL abschalten, wenn man den Speicher benîtigt. 
+Will man WINCOLOR.CPX und die IFormat-CPXe benutzen, dann ist XCONTROL 
+jedoch notwendig.
+
+ST-Guide ist nur notwendig, wenn man die Hypertextdokumente im Guides- 
+Ordner lesen will.
+

@@ -1,0 +1,43 @@
+Programmname:       HYP2TXT
+
+Version:            1.0
+
+Autor:              Martin Osieka  (Martin_Osieka@of2.maus.de)
+
+Copyright:          Freeware
+
+Programmtyp:        Dateikonverter
+
+Download:           Maus OF2
+
+Archiv:             HYP2TXT.LZH
+
+Aufrufsyntax:       HYP2TXT {-option} {file.hyp}
+
+Beschreibung:       Konvertiert den ST-Guide Hypertext <file.hyp> in 
+                    den ASCII-Text <file.txt>. Der Aufruf erfolgt 
+                    entweder aus einer Kommandoshell oder in dem man 
+                    den Hypertext im Desktop auf HYP2TXT zieht.
+
+                    HYP2TXT gibt alle Seiten des Hypertextes fortlaufend 
+                    in den ASCII-Text aus. Jeder Seite wird eine Titel-
+                    zeile vorangestellt in der links der Name der Åber-
+                    geordneten Seite und rechts der Name der aktuellen 
+                    Seite ausgegeben wird. Danach folgt eine Trennzeile 
+                    und schlieûlich der eigentliche Seitentext.
+
+                    Folgende Optionen kînnen angegeben werden:
+                    -t  Titelzeile nicht ausgeben
+                    -d  Trennteile nicht ausgeben
+                    -e  Texteffekte erzeugen (z.B. fÅr 1STGUIDE)
+                    -f  FormFeed zwischen den Seiten ausgeben
+
+                    Bilder und Popupseiten gehen bei der Konvertierung 
+                    verloren.
+                    
+                    HYP2TXT.TTP darf zusammen mit HYP2TXT.TXT jedem 
+                    Programm kostenfrei beigelegt werden.
+                    
+Uploadbeschreibung:
+HYP2TXT v1.0 (c) Martin Osieka
+Dateikonverter: Konvertiert ST-Guide Hypertexte in ASCII-Texte
