@@ -1,0 +1,353 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<title>Installing TOS 2.06 in an STe</title>
+</head>
+<body bgcolor="#BDBDBD" background="../images/backgnd.gif">
+
+<center>
+<a href="../index.htm">main page</a>
+</center>
+<hr>
+<p>
+
+
+<center>
+<h2><b><u>Installation procedure for Atari STe (and Mega STe) computers</u></b></h2>
+</center>
+<br>
+If you're confident about opening up your STe and exchanging the ROM chips 
+and possibly also do some simple soldering you can upgrade your STe with TOS 2.06 by following 
+the steps below (most of it applies for the Mega STe as well, where some early models came 
+with the more buggy TOS 2.05)...
+<ol>
+<li>Be sure power is turned off and the power connector has been unplugged.
+<p>
+
+<li>Turn the computer facing top-down and remove the screws holding the top/bottom parts of the 
+plastic casing as well as the disk drive. 
+<br>
+Carefully turn the computer over again. The top half of the case should detach easily now. 
+You should also be able to move the disk drive aside.
+
+<p>
+<li>Locate the two TOS ROM chips. They're marked 
+&quot;<b>U102</b>&quot; and &quot;<b>U103</b>&quot; on the computer's circuit 
+board and found underneath the floppy disk drive.
+<p>
+<a name="ste_pcb"></a>
+&nbsp;&nbsp;&nbsp;<IMG SRC="../images/ste_pcb.gif" WIDTH=221 HEIGHT=337 alt=" ">
+
+<p>
+<li>If your existing ROM chips are socketed, remove them carefully by prying them out of their 
+sockets with a flat screwdriver.
+
+<p>
+<li>If your ROMs are soldered directly to the STe circuit board you need to desolder them. 
+<p>
+<i>This is <b>NOT</b> an easy task as we're talking about a double-sided circuit board here. 
+If you don't know exactly what you're doing and have no prior experience with this sort of thing 
+it's best left to a qualified engineer as you can easily ruin the circuit board, rendering the 
+computer useless!!</i> 
+<p>
+Once the existing ROM chips have been removed, insert two new 32 pin IC sockets in their places. 
+The old ROMs are most likely of the shorter (28 pin) type, but the STe circuit board has room for 
+ROMs with 32 pins. 
+<br>
+Observe the small notch at one end of the IC sockets and line them up with the silk-screen print 
+on the circuit board to avoid any confusion when installing the new chips.
+
+<p>
+<li>Once you've installed the new sockets you're ready to insert the new TOS 2.06 ROMs. 
+<p>
+You should have received two chips. Look at them closely and you'll find that one is marked 
+&quot;<b>E0</b>&quot; (or &quot;LO&quot;) and
+and the other &quot;<b>EE</b>&quot; (or &quot;HI&quot;). 
+<br>
+You should find similar identifications on the STe circuit board near the ROM sockets. 
+
+<p>
+Insert the ROMs, observing the markings as well as the notch. Inserting them the wrong way will most 
+likely damage both the ROMs and the computer!
+
+<p>
+Various types of ROMs can be used with the STe/Mega STe...
+<br>
+Use the table below as a guide on how to insert the 28 or 32 pin ROMs and how to 
+set the <a href="#jumpers">jumpers</a>.
+
+<p>
+<a name="table"></a>
+<TABLE BORDER=0 CELLSPACING=1>
+
+<TR BGCOLOR="#F6FCB1">
+<TD><B><U>Type</U></B></TD>
+<TD><B><U>Description</U></B></TD>
+<TD><B><U>No. of pins/placement</U></B></TD>
+<TD><B><U>Jumper settings</U></B></TD>
+</TR>
+
+<TR bgcolor="#E9E9E9">
+<TD VALIGN=middle>27010 (<A HREF="#type_1">1</A>)
+<BR>
+27C1001 (<A HREF="#type_1">1</A>)&nbsp;
+<BR>
+571000</TD>
+
+<TD VALIGN=middle>128k x 8 (1 mbit) EPROM&nbsp;
+<BR>
+128k x 8 (1 mbit) EPROM
+<BR>
+128k x 8 (1 mbit) ROM
+</TD>
+
+<TD VALIGN=middle>
+<IMG SRC="../IMAGES/ROM32.GIF" BORDER=0 HEIGHT=81 WIDTH=201 alt=" ">
+</TD>
+<TD VALIGN=TOP><IMG SRC="../IMAGES/27010.GIF" BORDER=0 HEIGHT=106 WIDTH=147>
+</TD>
+</TR>
+
+<TR bgcolor="#E9E9E9">
+<TD VALIGN=middle>27C1000 (<A HREF="#type_2">2</A>)
+<BR>
+571001
+</TD>
+
+<TD VALIGN=middle>128k x 8 (1 mbit) EPROM
+<BR>
+128k x 8 (1 mbit) ROM
+</TD>
+
+<TD VALIGN=middle>
+<BR>
+<IMG SRC="../IMAGES/ROM32.GIF" BORDER=0 HEIGHT=81 WIDTH=201 alt=" ">
+</TD>
+
+<TD VALIGN=middle>
+<IMG SRC="../IMAGES/27c1000.gif" BORDER=0 HEIGHT=106 WIDTH=147 alt=" ">
+</TD>
+</TR>
+
+<TR bgcolor="#E9E9E9">
+<TD>531000</TD>
+
+<TD>128k x 8 (128 kbit) ROM</TD>
+
+<TD VALIGN=middle>
+<IMG SRC="../IMAGES/ROM28.GIF" BORDER=0 HEIGHT=81 WIDTH=201 alt=" ">
+</TD>
+
+<TD VALIGN=middle>
+<IMG SRC="../IMAGES/27c1000.gif" BORDER=0 HEIGHT=106 WIDTH=147 alt=" ">
+</TD>
+</TR>
+
+<TR bgcolor="#E9E9E9">
+<TD VALIGN=middle>27256</TD>
+
+<TD VALIGN=middle>32k x 8 (256 kbit) EPROM</TD>
+
+<TD VALIGN=middle>
+<IMG SRC="../IMAGES/ROM28.GIF" BORDER=0 HEIGHT=81 WIDTH=201 alt=" ">
+</TD>
+
+<TD VALIGN=middle>
+<IMG SRC="../IMAGES/27256.gif" BORDER=0 HEIGHT=106 WIDTH=147 alt=" ">
+</TD>
+</TR>
+
+<TR bgcolor="#E9E9E9">
+<TD VALIGN=middle>27512</TD>
+
+<TD VALIGN=middle>64k x 8 (512 kbit) EPROM</TD>
+
+<TD VALIGN=middle>
+<IMG SRC="../IMAGES/ROM28.GIF" BORDER=0 HEIGHT=81 WIDTH=201 alt=" ">
+</TD>
+
+<TD VALIGN=middle>
+<IMG SRC="../IMAGES/27512.gif" BORDER=0 HEIGHT=106 WIDTH=147 alt=" ">
+</TD>
+</TR>
+
+<TR bgcolor="#E9E9E9">
+<TD VALIGN=middle>
+STe TOS
+<br>
+(unknown ROM type)</TD>
+
+<TD VALIGN=middle>
+TOS 1.6/1.62 ROM
+<br>
+&nbsp;</TD>
+
+<TD VALIGN=middle>
+<IMG SRC="../IMAGES/ROM28.GIF" BORDER=0 HEIGHT=81 WIDTH=201 alt=" ">
+</TD>
+
+<TD VALIGN=middle>
+<IMG SRC="../IMAGES/27c1000.gif" BORDER=0 HEIGHT=106 WIDTH=147 alt=" ">
+</TD>
+</TR>
+</TABLE>
+
+<p>
+
+<a name="type_1"></a>
+<FONT COLOR="#ED181E">1</FONT> = Different manufacturers supply this type of EPROM 
+with two of the pins exchanged.
+<BR>
+Only EPROMs with the following pin assignment can be used with this particular jumper setting:
+<BLOCKQUOTE>
+pin 2="A16"&nbsp; pin 24="OE"
+</BLOCKQUOTE>
+
+Check with relevant datasheets for the particular EPROM in question.
+
+<pre>
+</pre>
+
+<a name="type_2"></a>
+<FONT COLOR="#ED181E">2</FONT> = Different manufacturers supply this type of EPROM 
+with two of the pins exchanged.
+<BR>
+Only EPROMs with the following pin assignment can be used with this particular jumper setting:
+<BLOCKQUOTE>
+pin 2="OE"&nbsp; pin 24="A16"
+</BLOCKQUOTE>
+
+Check with relevant datasheets for the particular EPROM in question.
+
+<pre>
+
+</pre>
+
+
+
+<li><a name="jumpers"></a>
+Depending on what kind of ROMs/EPROMs you received you might also need to set 
+the jumpers in order to recognize the new type of TOS chips. 
+<br>
+The three ROM jumpers are marked &quot;<b>W102</b>&quot;, 
+&quot;<b>W103</b>&quot; and &quot;<b>W104</b>&quot; and are found 
+<a href="#ste_pcb">close to the ROM sockets on the STe circuit board</a>. 
+They might look like resistors (actually 0 Ohm resistors to ease the automated production 
+process at Atari) or wires soldered into position.
+<br>
+Refer to the <a href="#table">table</a> above to see how they should be positioned.
+<p>
+
+You can either cut the existing jumpers and resolder them back in their new positions from 
+the top (component-side) of the circuit board (as the circuit board is double sided), or you 
+can flip it over and solder the jumpers from the solder-side. The latter takes a little more 
+effort as you have to remove more than just the top cover and the disk drive.
+<br>
+You can also turn the STe circuit board over and solder from that side if you like.
+
+<p>
+<li>You're now done installing TOS 2.06, but before applying power you should re-check to see if 
+you've done everything right.
+
+<p>
+If you want to get an additional 
+<a href="file.htm#format_disk">&quot;high-density&quot; option</a> when formatting from the 
+desktop you can solder a wire across the &quot;E6&quot; jumper pad as shown in the following 
+illustration (you'll find the jumper pad field <a href="#ste_pcb">near the ROM jumpers on the 
+STe circuit board</a>).
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="../images/hd_jumpr.gif" WIDTH="225" HEIGHT="94" ALT=" ">
+
+<p>
+(naturally, adding this option only makes sense if you have (or plan to install) a high density 
+disk drive in your machine. STe computers were all supplied with double-density (720 Kbyte) 
+disk drives.
+<p>
+<i>PS: since TOS 2.06 was designed to support High-Density disk drives, the &quot;step-rate&quot; 
+is set to 6ms by TOS which has the side-effect of creating a nasty grinding noise with standard 
+720 Kbyte (DD) drives. If you don't have a HD disk drive you can easily change the step-rate 
+back to 3ms (as with older TOS versions) by using a step-rate changer program such as 
+<a href="software.htm#hd_fdc">HD_FDC</a> or <a href="software.htm#setseek">Setseek</a> 
+which you put in the AUTO folder.
+</i>
+</ol>
+<p>
+
+
+<blockquote>
+After installing TOS 2.06 you must delete the old &quot;DESKTOP.INF&quot; file (if you have one) 
+and reboot. Then you can save the &quot;NEWDESK.INF&quot;. 
+<br>
+(If you save &quot;NEWDESK.INF&quot; while the old DESKTOP.INF is still in memory you'll end 
+up with a corrupt &quot;NEWDESK.INF&quot;. If you reboot after having deleted &quot;DESKTOP.INF&quot; 
+you'll do fine).
+</blockquote>
+
+
+
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+<a name="faulty_dma"></a>
+<b><u>Faulty DMA chip</u></b>
+<br>
+Though not a TOS issue, since you've already opened up your computer you might as 
+well check for something else...
+<p>
+&nbsp;&nbsp;&nbsp;<IMG SRC="../images/dma_err.gif" WIDTH=351 HEIGHT=202 alt=" ">
+<p>
+
+Some of the early STe computers that rolled out of the Atari factory were equipped with 
+a faulty DMA (Direct Memory Access) chip. 
+This chip handles among other things the hard disk, and using one of these 
+computers with a hard disk can result in lost or damaged data.
+<br>
+Apparently this chip wasn't supposed to affect the use of original Atari hard disk drives, but as 
+most people nowadays use third party drives with an SCSI adapter of some sort (Link 96/97, TopLink, 
+ICD Link/Link II etc.) you should definitely check to see if yours is OK or not.
+
+<ul>
+<li>Locate the DMA chip. You'll find it <a href="#ste_pcb">under the disk drive</a>, 
+next to the upmost TOS ROM chip. 
+<br>
+It's marked &quot;<b>U300</b>&quot; on the STe circuit board.
+
+<li>If your DMA chip has the following numbers it's OK and you can go ahead with a hard disk: 
+<b>C398739-001A</b>
+
+<li>If your DMA chip has the following numbers it's <u>faulty</u> and should be replaced (check 
+with an Atari dealer or get hold of another STe as Atari computers are often given away these days!): 
+<b>C025913-38</b> or <b>C025613-38</b>.
+</ul>
+
+
+<pre>
+
+
+</pre>
+
+
+<hr>
+<center>
+<a href="../index.htm">main page</a>
+</center>
+
+
+</body>
+</html>
+

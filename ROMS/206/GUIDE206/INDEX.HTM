@@ -1,0 +1,659 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<title>The TOS 2.06 in-depth user guide</title>
+</head>
+<body bgcolor="#BDBDBD" background="images/backgnd.gif">
+
+&copy; 2002 by Hallvard Tangeraas.
+<br>
+Created between 6-January-2002 and 14-May-2002
+
+<p>
+<hr>
+
+
+<p>
+<center>
+<h2><b><u>The TOS 2.06 in-depth user guide</u></b></h2>
+</center>
+<br>
+This is my attempt to write an easy to understand, in-depth user guide for TOS 2.06 as 
+I so far haven't been able to find any usable documentation anywhere else.
+<br>
+I've tried to cover all its features along with practical examples using plain English as much as 
+possible together with lots of illustrations so that even non-experts can understand. 
+This user-guide is however not a beginner's guide to TOS. You should have some basic understanding 
+of using a computer, and in particular the Atari ST prior to reading this.
+<pre>
+</pre>
+
+<h3><b><u>Table of contents</u></b></h3>
+<p>
+<ul>
+<li><a href="#overview">TOS 2.06 overview</a>
+<li><a href="#bugfixes">Bugs and bug-fixes in TOS 2.06</a>:
+	<ul type="disc">
+	<li><a href="html/bugs.htm">TOS 2.06 bugs, fixes, limitations, workarounds and enhancements</a>
+	</ul>
+
+<li><a href="#starting_up">Starting up</a>:
+	<ul type="disc">
+	<li><a href="html/mem_test.htm">The memory test</a>
+	</ul>
+<li><a href="#menus">The TOS 2.06 desktop drop-down menus</a>:
+	<ul type="disc">
+	<li><a href="html/desk.htm">The &quot;Desk&quot; menu</a>
+	<li><a href="html/file.htm">The &quot;File&quot; menu</a>
+	<li><a href="html/view.htm">The &quot;View&quot; menu</a>
+	<li><a href="html/options.htm">The &quot;Options&quot; menu</a>
+	</ul>
+<li><a href="#shortcuts">Keyboard shortcuts</a>:
+	<ul type="disc">
+	<li><a href="html/shortcts.htm">The TOS 2.06 keyboard shortcuts</a>	
+		<ul type="disc">
+		<li><a href="html/asciitab.htm">The Atari ASCII character set table</a>
+		</ul>		
+	</ul>
+<li><a href="#tips">Installation examples, tips and tricks</a>:
+	<ul type="disc">
+	<li><a href="html/install.htm">Installation and setup examples</a>
+	<li><a href="html/tips.htm">Additional tips &amp; tricks</a>
+	</ul>
+<li><a href="#adding_icons">Adding new icons to TOS 2.06</a>:
+	<ul type="disc">
+	<li><a href="html/icons.htm">Adding, editing and creating icons for TOS 2.06</a>
+	<li><a href="html/new_icns.htm">Installing the enclosed icons</a>
+		<ul type="disc">
+		<li>The <a href="software/">Software</a> folder containing the icons
+		</ul>
+	</ul>
+<li><a href="#xControl">The &quot;XControl&quot; control panel</a>:
+	<ul type="disc">
+	<li><a href="html/xcontr.htm">The &quot;XControl.ACC&quot; Control panel and 
+CPX modules explained</a>
+	</ul>
+<li><a href="#survival_kit">Digging beneath the obvious</a>:
+	<ul type="disc">
+	<li><a href="html/surv_kit.htm">The Atari TOS desktop survival kit</a>
+	</ul>
+<li><a href="#desktops">Desktop replacements</a>
+<li><a href="#software">Additional software</a>:
+	<ul type="disc">
+	<li><a href="html/software.htm">Additional software mentioned in this guide -a complete list</a>
+	</ul>
+<li><a href="#installing_TOS">Installing TOS 2.06</a>:
+	<ul type="disc">
+	<li><a href="html/inst_ste.htm">Installation procedure for Atari STe (and Mega STe) computers</a>
+	<li><a href="html/inst_ima.htm">Installing TOS 2.06 from a disk-file</a>
+	</ul>
+<li><a href="#legalities">Legalities/credits/thanks</a>
+</ul>
+
+<pre>
+
+
+
+</pre>
+
+&nbsp;&nbsp;<IMG SRC="images/desktop1.gif" WIDTH=640 HEIGHT=400 alt=" ">
+
+
+<pre>
+
+
+</pre>
+
+
+<a name="overview"></a>
+<b><u>TOS 2.06 overview</u></b>
+<br>
+TOS 2.06 is the latest (and last) version of &quot;The Operating System&quot; (TOS) for Atari ST computers 
+(Atari ST/STF/STFM/STe/Mega ST/Mega STe/STacy/ST-book) and any of these machines can be upgraded to 
+this version.
+<br>
+(Unlike Windows, Linux, BeOS, MacOS etc. Atari's TOS isn't 
+installed on a hard disk, but comes in the form of ROM chips meaning that the computer is 
+ready for use almost as soon as you switch it on! This also means that it has to be installed by a 
+qualified technician (unless you know exactly what you're doing and have some prior experience with 
+electronics). Instructions on how to install TOS 2.06 in an STe are 
+<a href="html/inst_ste.htm">found here</a>, 
+but for other models of the Atari ST you should contact an Atari dealer or ask around in 
+Atari ST newsgroups on the Internet etc. for more details as I haven't studied the specific 
+details closely enough to give the relevant information here.)
+<p>
+TOS 2.06 has several improvements over previous versions of TOS. 
+<br>
+Here are some of them:
+
+<ul>
+<li>Files/folders or programs can have their own custom icons 
+(icons are contained in the &quot;DESKICON.RSC&quot; file)
+<li>Programs, files or icons can be placed on the desktop for quick access.
+<li>Keyboard shortcuts for most functions (which can also be re-assigned if needed).
+<li>Programs can be assigned to start by pressing a function key. 
+<li>Files can be double-clicked and opened by their respective programs.
+<li>Any character from the Atari character set can be accessed using the &lt;Alternate&gt; key and the numeric keypad.
+<li>Command-line parameters can be pre-defined for .TTP and .GTP programs.
+<li>Upon booting there is a startup delay because of the memory test (which can be bypassed) but 
+allows for the hard disk to spin up and get ready.
+<li>Different desktop configurations can be saved and read (&quot;NEWDESK.INF&quot; files) for 
+different users or situations.
+<li>Desktop and window colours/background-patterns can be changed. 
+<li>When copying or moving files you can choose to use the new (current) date/time, or the date/time 
+the file was created.
+<li>You can have 7 windows open at once.
+<li>Compatible with the new style control panel using CPX modules.
+<li>Support for the &quot;Blitter&quot; (Block Image Transfer) chip accelerating screen updates.
+<li>File-search.
+<li>File-mask function to display files of only certain types.
+<li>Support for 1.44 Mbyte (HD) disk drives.
+</ul>
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+<a name="bugfixes"></a>
+<b><u>Bugs and bug-fixes TOS 2.06</u></b>
+<br>
+In addition to the obvious things you can see there are also several bug-fixes and other 
+improvements. Unfortunately the programmers at Atari didn't remove everything, but fear not 
+as there are solutions to this as well as enhancements bringing out what TOS 2.06 doesn't 
+give you on its own....
+
+<ul>
+<li><a href="html/bugs.htm">TOS 2.06 bugs, fixes, limitations, workarounds and enhancements</a>
+</ul>
+
+
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+<a name="starting_up"></a>
+<b><u>Starting up</u></b>
+<ul>
+<li>When the computer is booting (starting up) for the first time or has been restarted after a 
+&quot;cold boot&quot; you will see the Atari logo in the upper left hand corner of the 
+screen followed by a <a href="html/mem_test.htm">memory test</a>.
+
+<li>Depending on how much memory your computer has, the memory test can take more than a 
+minute to complete. 
+<br>
+Press <b><u>any key to bypass the memory test</u></b> 
+(any key except &lt;Shift&gt;, &lt;Alternate&gt;, &lt;Control&gt; or &lt;Caps-Lock&gt; that is).
+<br>
+(If you have a hard disk you may want to wait a few seconds before bypassing the memory test as 
+it'll give the drive the time needed to get ready).
+
+<li>If your machine has a hard disk:
+	<ul type="disc">
+<li>Press (and keep holding) <b><u>&lt;Control&gt;</u></b> while the computer is booting. 
+<br>
+This will boot the machine without any ACCessories, AUTO programs, the &quot;NEWDESK.INF&quot;, the 
+&quot;DESKICON.RSC&quot; file or anything else. It will however read the hard disk driver, making the 
+hard disk available.
+<p> 
+(Useful if one of your AUTO programs or ACCessories keeps crashing the machine while you 
+start up, making it impossible to disable them).
+<br>
+You will most likely not see all your hard drive partitions, so go to the &quot;Options&quot; 
+menu and select <a href="html/options.htm#install_devices">&quot;Install Devices&quot;</a> 
+as this will mount all available drives/partitions to your desktop.
+
+<li>Press (and keep holding) <b><u>&lt;Alternate&gt;</u></b> while the computer is booting.
+<br>
+This will boot the machine without any ACCessories, AUTO programs, the &quot;NEWDESK.INF&quot;, the 
+&quot;DESKICON.RSC&quot; file or anything else. 
+It will NOT read the hard disk driver file either so you won't be able to access your hard disk. 
+<p>
+(Useful in situations where your hard disk is missing its driver software or it's been 
+messed up somehow. You will need to (manually) run the hard disk driver software from a 
+floppy disk to be able to access the hard disk, then install the driver on the hard disk itself).
+
+<li>To boot from a floppy disk on a machine with a hard disk...
+<br>
+The procedure for this is highly dependant on your hard disk driver software. If you're using 
+Atari's own <a href="html/software.htm#ahdi">AHDI</a> the procedure is as explained below, if you're 
+using <a href="html/software.htm#hddriver">HDdriver</a> you press the drive letter 
+(i.e. <b>&lt;A&gt;</b> in this case) to boot from that drive. 
+Other hard disk drivers (such as <a href="html/software.htm#cbhd">CBHD</a>) 
+might have other ways of booting from a floppy. 
+<br>
+Here's what to do if you're using AHDI as your hard disk driver:
+
+		<ul type="disc">
+		<li>Be sure the floppy disk is inserted in the drive (obviously a floppy disk with 
+AUTO programs and/or ACCessories, a &quot;NEWDESK.INF&quot;, a &quot;DESKICON.RSC&quot; file etc. 
+which you want to load into the computer when you turn it on/reboot).
+		<li>Press (and keep holding) <b><u>&lt;Alternate&gt;</u></b> while the computer is booting. 
+This will boot the AUTO programs, ACCessories etc. from your floppy disk and leave the hard disk alone.
+<p>
+(Useful in situations where your hard disk is missing its driver software or it's been 
+messed up somehow. If you have <a href="html/tips.htm#boot_floppy">a boot floppy disk</a> containing 
+a working hard disk driver in the AUTO folder, the driver will load from the floppy, then 
+mount the hard disk making it available from the desktop. From then on you can continue 
+installing the hard disk driver on the hard disk itself).
+		</ul>
+	</ul>
+
+<li>If your machine only has a floppy disk drive:	
+	<ul type="disc">
+<li>Press (and keep holding) <b><u>&lt;Control&gt;</u></b> while the computer is booting. 
+<br>
+This will skip booting from the floppy disk drive and (after a few seconds) present you 
+with the TOS 2.06 desktop.
+<p> 
+(Useful if you have a disk inserted in the drive, but don't want to load its AUTO programs, 
+ACCessories etc. Booting on a floppy-only system without a disk inserted in the drive 
+takes a lot longer than with a disk inserted).
+	</ul>
+
+<li>
+<a name="steprate"></a>
+One of the first things you'll notice if you've upgraded your TOS from an older version is that 
+the disk drive suddenly starts making loud, irritating noises when used! 
+Don't worry, there's nothing wrong!
+<br>
+...with TOS 2.06 came the support of HD (High Density) disk drives 
+as used now in all PCs, Macs etc. capable of handling 1.44 Mbytes of data each. 
+The HD disk drives require a different &quot;step-rate&quot; which has been set in the hardware at 
+6ms (unlike 3ms as in previous TOS versions supporting only DD (720 Kbyte) disk drives). 
+<br>
+A step-rate of 6ms is essential for HD disk drives, but for DD drives either 3ms or 6ms will 
+work. If you don't have a HD disk drive in your Atari ST and would like to get rid of the noise, 
+put a step-rate changer such as <a href="html/software.htm#hd_fdc">HD_FDC</a> or 
+<a href="html/software.htm#setseek">Setseek</a> in your AUTO-folder to set it back to 3ms as before.
+<p>
+&quot;Setseek&quot; is fully configurable for one or two drive systems and allows you to set the 
+step-rate to what you need. Just run it once to set the step-rate, save the configuration, 
+then put it in your AUTO folder.
+</ul>
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+
+<a name="menus"></a>
+<b><u>The TOS 2.06 desktop drop-down menus</u></b>
+<br>
+Click on the links below to get detailed information of the drop-down menus available 
+from the TOS 2.06 desktop.
+<p>
+&nbsp;<IMG SRC="images/menubar.gif" WIDTH=248 HEIGHT=19 alt=" ">
+<ul>
+<li><a href="html/desk.htm">The &quot;Desk&quot; menu</a>
+<li><a href="html/file.htm">The &quot;File&quot; menu</a>
+<li><a href="html/view.htm">The &quot;View&quot; menu</a>
+<li><a href="html/options.htm">The &quot;Options&quot; menu</a>
+</ul>
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+
+<a name="shortcuts"></a>
+<b><u>Keyboard shortcuts</u></b>
+<br>
+There are lots of keyboard shortcuts in TOS 2.06 which replace having to hunt down that menu 
+using the mouse each time...
+<ul>
+<li><a href="html/shortcts.htm">TOS 2.06 keyboard shortcuts</a>
+</ul>
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+<a name="tips"></a>
+<b><u>Installing programs, tips &amp; tricks</u></b>
+<br>
+With the right programs installed correctly on your machine, taking full advantage of TOS 2.06 
+your everyday tasks can be performed with the greatest of ease!
+<br>
+Let the computer take care of the boring and time-consuming stuff while you concentrate on 
+getting the job done (after all, aren't computers supposed to make things <b>easier</b> for you?).
+
+<ul>
+<li><a href="html/install.htm">Installation and setup examples</a>
+<li><a href="html/tips.htm">Additional tips &amp; tricks</a>
+</ul>
+
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+
+<a name="adding_icons"></a>
+<b><u>Adding new icons to TOS 2.06</u></b>
+<br>
+Unlike previous version of TOS, version 2.06 allows you to customise the icon setup meaning 
+that your programs can have new icons of your own choice. You can even create your own icons 
+(if you have the patience and time!).
+<ul>
+<li><a href="html/icons.htm">Adding, editing and creating icons for TOS 2.06</a>
+<li><a href="html/new_icns.htm">Installing the enclosed icons</a>
+	<ul type="disc">
+		<li>The <a href="software/">Software</a> folder containing the icons
+	</ul>
+</ul>
+
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+<a name="xControl"></a>
+<b><u>The &quot;XControl&quot; control panel</u></b>
+<br>
+The new control panel from Atari (XControl.ACC) was introduced with
+TOS 2.06 (it won't work properly with earlier versions of TOS). XControl gives several benefits over 
+the old style control panel and replaces the functions of many other ACCessories as well!
+<ul>
+<li><a href="html/xcontr.htm">The &quot;XControl.ACC&quot; Control panel and CPX modules explained</a>
+</ul>
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+
+<a name="survival_kit"></a>
+<b><u>Digging beneath the obvious</u></b>
+<br>
+Thomas Hopper has written a comprehensive user-guide on how to take full advantage of the TOS 2.06 
+desktop along with instructions on being able to do things that it shouldn't be able to, but can!
+<ul>
+<li><a href="html/surv_kit.htm">The Atari TOS desktop survival kit</a>
+</ul>
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+<a name="desktops"></a>
+<b><u>Desktop replacements</u></b>
+<br>
+Although TOS 2.06 is a vast improvement over previous TOS versions it still misses a lot of 
+features now available on modern computers.
+<br>
+There are several desktop replacements available which gives you all the features of the TOS 2.06 
+desktop and more. The most popular and best featured ones are:
+<ul>
+<li><a href="html/software.htm#thing">Thing</a>
+<li><a href="html/software.htm#jinnee">Jinnee</a>
+</ul>
+
+Both of these desktops give you added improvements over the TOS 2.06 desktop. You can for example 
+assign external programs to do specific jobs (such as 
+<a href="html/software.htm#kobold">&quot;Kobold&quot;</a> to copy/move/delete files 
+at a very high speed, or use a replacement file-search program of your choice).
+<br>
+However, depending on how heavily you're into your computer you may be perfectly happy with the TOS 
+2.06 desktop. After all, by following this user-guide and all its tips there is quite a lot that 
+can be done with what you already have!
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+<a name="software"></a>
+<b><u>Additional software</u></b>
+<br>
+Throughout this user-guide there have been several references to additional software. 
+<br>
+Here's a complete summary.... 
+<ul>
+<li><a href="html/software.htm">Additional software mentioned in this guide -a complete list</a>
+</ul>
+
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+
+<a name="installing_TOS"></a>
+<b><u>Installing TOS 2.06</u></b>
+<br>
+TOS 2.06 comes as replacement ROM chips which you need to put inside your computer. 
+<br>
+On an STe it's (mostly) just a matter of 
+exchanging the old chips with the new ones and setting a couple of jumpers 
+(early Mega STe computers which came with the buggy TOS 2.05 can also be upgraded to TOS 2.06).
+<p>
+On older models (ST/STF/STFM/Mega) you most likely need to get a TOS upgrade card, such 
+as the TEC (TOS Expansion Card) or similar, or plug in the soldering iron and do some hacking 
+on your own. 
+<br>
+There have been (and some are still available) several types of expansion cards that usually 
+go on top of the 68000 processor, updating the computer with TOS 2.06 as well as giving extra 
+functions (i.e. hardware accelerators or IDE hard disk/CD-ROM drive interfaces). 
+The latter actually lets you put a small 2.5&quot; laptop sized hard disk <b>inside</b> the computer! 
+<br>
+Refer to an Atari dealer or the Atari newsgroups on the Internet for more information 
+about all of this.
+
+<p>
+<blockquote>
+After installing TOS 2.06 you must delete the old &quot;DESKTOP.INF&quot; file and reboot.
+Then you can save the &quot;NEWDESK.INF&quot;. 
+<br>
+(If you save &quot;NEWDESK.INF&quot; while the old DESKTOP.INF is still in memory you'll end 
+up with a corrupt &quot;NEWDESK.INF&quot;. If you reboot after having deleted &quot;DESKTOP.INF&quot; 
+you'll do fine).
+</blockquote>
+
+<ul>
+<li><a href="html/inst_ste.htm">Installation procedure for Atari STe (and Mega STe) computers</a>
+<li><a href="html/inst_ima.htm">Installing TOS 2.06 from a disk-file</a>
+</ul>
+
+
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+
+<a name="legalities"></a>
+<b><u>Legalities/credits/thanks</u></b>
+<br>
+You may freely distribute this document as long as:
+<ul>
+<li>The document is complete. You may not remove any files.
+<li>Nothing is changed (no additional files added, files edited etc.). 
+<li>No money is charged.
+</ul>
+
+<p>
+Numerous individuals have contributed by giving me tips, alerting me of mistakes, 
+giving new suggestions and so on. I would especially like to thank the following 
+(in no specific order, hoping I haven't missed out anyone): 
+<p>
+J&eacute;r&ocirc;me Ginestet, Grzegorz Pawlik, Michael Bartels, Heine Svendsen, Stephen Moss, Harry Sideras, 
+John Perez, Djordje Vukovic .... and countless other Atari ST users around the world. Thanks to all of you!
+<br>
+Enjoy the guide everyone! 
+
+<p>
+Hallvard Tangeraas, Oslo, Norway (14-May-2002)
+
+
+
+
+
+
+
+<pre>
+
+
+
+</pre>
+
+
+
+
+</body>
+</html>

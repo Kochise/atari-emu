@@ -1,0 +1,43 @@
+Welcome to the TOS 2.06 user-guide!
+This guide will try to fully explain how to use and take advantage 
+of TOS 2.06's many features, previously unexplained properly.
+
+
+Getting started
+---------------
+Simple! 
+
+1) Start your graphical web browser ("Lynx" etc. won't do as the guide 
+relies on countless illustrations -consider it an alternative to a paper 
+based guide).
+
+2) Open the file named "INDEX.HTM". You'll find it in the same folder 
+as this text file.
+
+
+Background image problem
+------------------------
+The guide has been designed to work on any computer with a graphical 
+web browser, which is why the file-names all stick to the 8+3 naming 
+standard, making it possible to view on a standard ST with TOS. 
+
+Each page also contains a background image. This was designed for 
+colour systems, so if you're viewing the guide on a standard ST you're 
+most likely to see a messy background. On other computers however it 
+should look good.
+
+If you're experiencing problems you can disable the background image 
+in a few simple steps:
+
+1) Open the "IMAGES" folder within this guide
+2) Locate a file called "BACKGND.GIF".
+3) Rename this file to something else (i.e. "BACKGND.GI_", "BACKGND.GIX" etc.)
+
+From then on you can view the guide without any background image 
+messing up the display.
+
+
+Enjoy the guide! 
+
+
+Hallvard Tangeraas, Oslo, Norway  (14. May, 2002)

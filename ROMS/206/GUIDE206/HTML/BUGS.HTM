@@ -1,0 +1,395 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<title>Bugs, fixes, limitations and enhancements</title>
+</head>
+<body bgcolor="#BDBDBD" background="../images/backgnd.gif">
+
+<center>
+<a href="../index.htm">main page</a>
+</center>
+<hr>
+<p>
+
+
+<center>
+<h2><b><u>TOS 2.06 bugs, fixes, limitations, workarounds and enhancements</u></b></h2>
+</center>
+<br>
+As with just about any complex program, the operating system of a computer will contain its 
+fair share of bugs (mistakes/problems/errors). But don't panic -the bugs in TOS 2.06 are nothing 
+of the sort you're getting with Windows on a PC for example...
+
+<pre>
+
+</pre>
+
+
+<a name="fixed"></a>
+<b><u>Improvements over older TOS versions</u></b>
+<br>
+Previous TOS versions have had lots of bugs which have been taken 
+care of in TOS 2.06. Here are some of them.
+
+<ul>
+<li>OS-pool fixed.
+<li>Cookie-jar implemented and initialized with the correct value.
+<li>CPU test &quot;longframe&quot; fixed.
+<li>rsconf() fixed.
+<li>shel-find() fixed. 
+<li>appl-exit() works correctly with ACCessories.
+<li>The XBIOS function Bconmap() is new and lets incorporate device drivers in
+your own programs.
+<li>Greater compatibility with programs using the timer-A function. 
+Timeouts are not run by processor loops but by the 200 Hz timer. This also works correctly
+with faster processors meaning there is a better chance of compatibility with any CPU accelerator.
+<li>Multiple AES events when scrolling are reduced.
+<li>GEMDOS has been rewritten so that all functions and the I/O-redirection works.
+<li>Through the Mxalloc/Maddalt function extra RAM may be used as with the 
+alternative RAM in the Atari TT.
+<li>Parity/word size SCC bugs fixed.
+<li>RTS/CTS flow control bugs (mostly) fixed.
+<li>IOREC fixed.
+<li>VDI BitBLT improved.
+<li>Floppy disk spin-up delay reduced.
+<li>Media change detection improved.
+<li>Floppy disks with only one FAT supported.
+</ul>
+
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+<a name="bugs_solutions"></a>
+<b><u>New/existing bugs and solutions to them</u></b>
+<br>
+Atari didn't manage to eradicate all those nasty critters from previous TOS versions, and 
+even brought in a few new ones, so even TOS 2.06 (which is the last and latest TOS for standard 
+Atari ST computers) isn't perfect. But even with its bugs you'll have a hard time finding a more 
+stable computer operating system anywhere!
+<br>
+Fortunately, there are solutions available for most of these problems...
+
+<pre>
+</pre>
+
+<a name="shbuf"></a>
+<b><u>The 4 Kbyte limit in NEWDESK.INF</u></b>
+<br>
+The <a href="options.htm#save_desktop">NEWDESK.INF</a> file (where all information about icon 
+assignments, installed programs, window size/positions, desktop window/background colour etc. is 
+stored) can only be 4 Kbytes at most. Although it doesn't sound much, with a little planning it's 
+fine for most people. However, there is a way to increase this up to 32 Kbytes.
+This is how it's done:
+<ul>
+<li>Put <a href="software.htm#gemram">GEMRAM</a> in the AUTO folder.
+<li>Put <a href="software.htm#shbuf">SHbuf</a> (shell buffer) in the AUTO folder.
+<li>Make sure that GEMRAM runs before SHbuf. 
+Use <a href="software.htm#autosort">AUTOsort</a> to check this and resort if necessary.
+<li>The default buffer size is 16 Kbytes, but you can change this by renaming the program 
+(i.e. <b>SHBUF28.PRG</b> will give you a buffer of 28 Kbytes). 
+<br>
+The maximum size is 32 Kbytes.
+<li>Reboot (restart) the computer.
+</ul>
+
+<p>
+What happens is the following:
+<ul>
+<li>When the computer is started, GEMram will read the contents of TOS 2.06 contained in the 
+ROM/EPROM chips inside the machine, then place a copy of this in your user-memory (RAM).
+<li>SHbuf runs next, modifying the buffer size (since the contents of ROM memory can't be 
+changed, this has to be done in RAM memory, which can indeed be changed).
+</ul>
+
+The downside of course is that the copy of TOS takes up extra memory and might 
+even cause problems for some programs.
+
+
+<pre>
+</pre>
+<center>
+<!-- ## separator line in blue ## -->
+<font color="blue">
+____________________________________________
+</font>
+</center>
+<pre>
+</pre>
+
+
+<a name="arrowfix"></a>
+<b><u>Arrow fix</u></b>
+<br>
+A small patch called <a href="software.htm#arrowfix">Arrowfix</a> goes into the AUTO folder and 
+eliminates a problem when clicking the mouse to move the contents of the window up or down. 
+The problem is that although you just click once, the computer sometimes interprets this as 
+two clicks, so you scroll past where you want to go. Pretty irritating. 
+This patch fixes this problem so that one mouse-click is indeed interpreted as a single click.
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="../images/arrfix.gif" WIDTH=278 HEIGHT=197 alt=" ">
+<p>
+
+
+<pre>
+</pre>
+<center>
+<!-- ## separator line in blue ## -->
+<font color="blue">
+____________________________________________
+</font>
+</center>
+<pre>
+</pre>
+
+
+<a name="40_folder"></a>
+<b><u>The 40 folder bug</u></b>
+<br>
+The so-called &quot;40 folder bug&quot; has been more or less present in all TOS versions. 
+It's been more serious in older TOS versions, but there is still a limitation to how many 
+folders can be visited (opened) in one computing session. 
+<br>
+After opening and closing a lot of folders you might all of a sudden get the following message 
+and the computer freezing (which means you have to restart it to be able to continue work, and 
+loosing any unsaved work):
+<p>
+&nbsp;&nbsp;&nbsp;<IMG SRC="../images/fldrcrsh.gif" WIDTH=261 HEIGHT=83 alT=" ">
+<p>
+
+There is no way to completely fix this problem, but by putting a program called 
+<a href="software.htm#foldrxxx">FOLDRXXX.PRG</a> in the AUTO folder you can increase 
+the amount of extra folders (replace the &quot;XXX&quot; in the name with a number, such as 
+<b>FOLDR100.PRG</b> which will give you an additional 100 folders which should be fine 
+for most people. Do remember that adding folders this way takes up a little extra memory 
+(66 bytes per extra folder), so don't make the number unnecessarily high).
+
+<p>
+Note that some hard disk drivers (such as <a href="software.htm#hddriver">HDdriver</a>) have this 
+fix built-in, so the above AUTO program isn't needed (you'll just be wasting memory, by setting 
+aside more folders than you'll ever need). 
+<br>
+Check with your hard disk driver user-guide to see if it has this built-in or not.
+
+<pre>
+
+</pre>
+On the subject of folders....
+<br>
+On a hard disk drive system it's easy to create pretty complex setups with a huge number of 
+files and folders available. However, there is a limit to how many nested folders TOS 2.06 
+allows (a nested folder is a folder within a folder). 
+Large numbers of nested folders are also often the cause of the abovementioned 
+&quot;40 folder bug&quot;.
+
+<p>
+You will start getting problems once a folder at root-level (i.e. <b>D:\</b>) contains more 
+than 12 sub-folders. You will for example get an error message if you try to 
+<a href="file.htm#show_info">&quot;show information&quot;</a> for this folder. 
+<p>
+&nbsp;&nbsp;&nbsp;<IMG SRC="../images/dirtree.gif" WIDTH=278 HEIGHT=126 alt=" ">
+<pre>
+</pre>
+
+.... a directory tree? 
+<br>
+Yes, simply because a tree illustrates perfectly the 
+way a folder structure looks with all its branches (furthermore, files can be illustrated 
+as leaves to make the image complete). 
+Since a picture says more than a thousand words...
+<p>
+&nbsp;&nbsp;&nbsp;<IMG SRC="../images/filetre1.gif" WIDTH=389 HEIGHT=367 alt=" "> 
+<pre>
+</pre>
+....a more common way to illustrate a file-structure/directory tree is as follows:
+<p>
+&nbsp;&nbsp;&nbsp;<IMG SRC="../images/filetre2.gif" WIDTH=270 HEIGHT=331 alt=" ">
+<p>
+As you can see, a folder can contain several folders, which can also contain folders etc. Be 
+sure not to create any folder at root level with more than 12 folders inside 
+(13 folders deep in total) if you want to stay out of trouble.
+
+
+<pre>
+</pre>
+<center>
+<!-- ## separator line in blue ## -->
+<font color="blue">
+____________________________________________
+</font>
+</center>
+<pre>
+</pre>
+
+
+<a name="steprate"></a>
+<b><u>The disk drive step-rate</u></b>
+<br>
+Not exactly a bug, but worth mentioning...
+<br>
+With TOS 2.06 came support for HD (high density) disk drives, capable of handling 1.44 Mbyte 
+floppy disks. The so called &quot;step rate&quot; of the disk drive has to be set to 6ms for 
+this, which is exactly what TOS 2.06 does. But a nasty side-effect is that your disk drive will 
+make a lot more noise than before.
+<p>
+If you don't have a high density disk drive and thus don't need support for HD floppy disks you can 
+set the step rate back to 3ms as it was with your older version of TOS by using either 
+<a href="software.htm#hd_fdc">HD_FDC</a> or <a href="software.htm#setseek">Setseek</a> 
+which you put in the AUTO folder. 
+(when using DD (720 Kbyte) disks, either 3ms or 6ms will work, but when using HD (1.44 Mbyte) disks 
+you have to have the drive set to 6ms).
+<br>
+&quot;Setseek&quot; is fully configurable for one or two drive systems and allows you to set the 
+step-rate to what you need. Just run it once to set the step-rate, save the configuration, 
+then put it in your AUTO folder.
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="../images/setseek.gif" WIDTH="286" HEIGHT="230" alt=" ">
+<p>
+
+
+
+<pre>
+</pre>
+<center>
+<!-- ## separator line in blue ## -->
+<font color="blue">
+____________________________________________
+</font>
+</center>
+<pre>
+</pre>
+
+
+<a name="filetype_bug"></a>
+<b><u>The &quot;Show/print/cancel&quot; bug</u></b>
+<br>
+Sometimes when double clicking on a file which you've already 
+<a href="options.htm#install_app">installed</a> a program to handle 
+you'll still be asked if you want to show or print the file. Nobody knows why this happens 
+now and then, and how to fix it. If you know you've installed a program to handle the type of 
+file you've just double-clicked, try once again and it should work.
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="../images/file2.gif" WIDTH="310" HEIGHT="126" alt=" ">
+<p>
+
+
+
+
+
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+
+<a name="enhancements"></a>
+<b><u>TOS 2.06 enhancements</u></b>
+<br>
+There are lots of system related enhancements available for the Atari ST, but here are a few 
+that are aimed directly at the operating system itself...
+
+<pre>
+</pre>
+
+<a name="gemram"></a>
+<b><u>GEMRAM, Shell-buffer and Winx</u></b>
+<br>
+<a href="software.htm#gemram">GEMRAM</a> is a program which you put in the AUTO folder and is primarily 
+to be used with other programs (also in the AUTO folder, but running after GEMRAM). Its purpose 
+is to &quot;patch&quot; TOS 2.06 with bug-fixes and/or enhancements not normally possible with 
+simple bug-fixes. 
+<br>
+GEMRAM loads all of TOS 2.06 into user-memory (RAM), where it can be modified (unlike in ROM where 
+you can't change anything). GEMRAM doesn't do much good on its own, but here are a few things it 
+can be used with:
+<ul>
+<li><a href="#shbuf">Shbuf</a>: put &quot;Shbuf&quot; (Shell-buffer) after GEMRAM in the AUTO folder 
+(use <a href="software.htm#autosort">AUTOsort</a> to change the order if necessary), and you'll be able to 
+go beyond the <a href="options.htm#save_desktop">4 Kbyte limit of the NEWDESK.INF file</a>.
+
+<li><a href="software.htm#winx">Winx</a>: put &quot;Winx&quot; after GEMRAM in the AUTO folder 
+(use <a href="software.htm#autosort">AUTOsort</a> to change the order if necessary), and you'll get 
+enhancements normally not found in TOS 2.06 like real-time scrollable window sliders and 
+movement of windows among other things. A CPX module is included to customise your settings.
+<br>
+Winx also includes some of the TOS fixes, so you don't need to run them separately. This includes 
+<a href="#arrowfix">arrowfix</a>.
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="../images/winx.gif" WIDTH=350 HEIGHT=252 alt=" ">
+</ul>
+
+
+<pre>
+</pre>
+<center>
+<!-- ## separator line in blue ## -->
+<font color="blue">
+____________________________________________
+</font>
+</center>
+<pre>
+</pre>
+
+
+<a name="NVDI"></a>
+<b><u>NVDI (New Virtual Device Interface)</u></b>
+<br>
+<a href="software.htm#nvdi">NVDI</a> is one of those programs just about any Atari user will 
+benefit from. It replaces the VDI (Virtual Device Interface) routines in TOS with its own 
+routines resulting in a greatly accelerated display, which ultimately makes you feel like the 
+computer is a lot faster than usual.
+
+<p>
+Instead of text/graphics (relatively) slowly appears on the screen you will get a more or less 
+instantaneous appearance of the same thing, meaning you don't have to wait so much for i.e. 
+complicated graphics to redraw each time you scroll the window etc.
+<br>
+Later versions of NVDI also let you change the default screen fonts and has its own, new printer 
+routines. 
+
+
+
+
+
+
+<pre>
+
+
+</pre>
+
+
+<hr>
+<center>
+<a href="../index.htm">main page</a>
+</center>
+
+
+</body>
+</html>

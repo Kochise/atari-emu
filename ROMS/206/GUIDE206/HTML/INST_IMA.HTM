@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<title>Installing TOS 2.06 from a disk-file</title>
+</head>
+<body bgcolor="#BDBDBD" background="../images/backgnd.gif">
+
+<center>
+<a href="../index.htm">main page</a>
+</center>
+<hr>
+<p>
+
+
+<center>
+<h2><b><u>Installing TOS 2.06 from a disk-file</u></b></h2>
+</center>
+Apart from the usual way of having TOS installed in ROM chips inside the computer, making 
+it instantly available you can also load TOS from your floppy disk or a hard disk as you had to 
+do with the very first Atari ST computers.
+<p>
+Naturally this isn't as practical as having it in ROM, but may be useful if you haven't bothered 
+to install your TOS 2.06 chips inside your machine, or for a number of other reasons. 
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+<a name="tos_images"></a>
+<b><u>TOS images and loaders</u></b>
+<br>
+The first thing we have to get hold of is TOS 2.06 as a file, commonly referred to as 
+a &quot;TOS image&quot; file. The TOS image will be an exact copy of the contents inside 
+the ROM chips of a computer containing TOS 2.06. Naturally you will need a computer 
+with TOS 2.06 to do this, and using programs such as  
+<a href="software.htm#romdump">ROM-dump</a> or 
+<a href="software.htm#tosdump">TOS-dump</a> you can extract this data and save it as a 
+file to be used with another computer which doesn't already have TOS 2.06.
+<p>
+
+<blockquote>
+The issue of using TOS images is a sensitive one as there are copyright implications involved. 
+Many people make TOS image files and upload them to various website on the Internet 
+(I'm not going to tell you where), and by downloading and using them 
+you're breaching copyright issues since TOS is still copyrighted (even though Atari is 
+no longer around and it's getting harder to buy real TOS ROM chips). You're only allowed 
+to use a TOS image of TOS chips that you already have. 
+<br>
+Nevertheless the whole issue is 
+a still a confusing one as Atari is no longer around and because of this there are no sales of 
+TOS chips (except any existing old stock from any Atari dealers still around), so the original 
+manufacturer isn't loosing money over this, and what is considered legal when you already have a 
+computer with TOS 2.06? ...are you allowed to use a TOS image of that 
+computer with another Atari ST? Can you use a TOS image with another language if you already have 
+an existing set of TOS 2.06 chips etc?
+</blockquote>
+
+
+<p>
+....the next thing we need to do is load this TOS image into the computer. For this we need a TOS-loader 
+of some sort, such as <a href="software.htm#seltos">SelTOS</a>. 
+<br>
+&quot;SelTOS&quot; doesn't handle all language versions of TOS 2.06, but UK, USA and German 
+versions work fine with it. It works like this:
+<ul>
+<li>Your TOS image files have to have the extension <b>.IMG</b>. The actual name of the TOS images 
+don't matter. Give them a descriptive name so you know what they represent 
+(i.e. &quot;TOS206UK.IMG&quot;, &quot;TOS206US.IMG&quot;, &quot;TOS206DE.IMG&quot; etc.).
+</ul>
+
+<P>
+You can load the TOS image several ways:
+<ul>
+<li>Drag and drop the TOS image file over to SELTOS.PRG. If the TOS image is supported it will 
+reboot the computer and load it into memory.
+<p>
+.....or
+<p>
+<li>Put the TOS image file(s) in the same folder as SELTOS.PRG. 
+	<ul type="disc">
+	<li>Double-click SELTOS.PRG
+	<li>You'll be presented with a list of all available TOS image files, select the one you want 
+to use. The computer will reboot and load this TOS image into memory.
+	</ul>
+<p>
+.....or
+<p>
+<li>Put SELTOS.PRG in the AUTO folder. Preferrably it should be the first program to load 
+(use <a href="software.htm#autosort">AUTOsort</a> to change the order).
+<li>Put the TOS image file(s) in the <u><b>root</b></u> of the boot drive (i.e. not within any 
+folder).
+<li>Reboot the computer. You should be asked which TOS you want to load if supported. Select the 
+one you want which will reboot the computer again and load TOS.
+<li>Since the computer reboots as part of the TOS installation process, SELTOS.PRG will also run 
+once again as it's in the AUTO folder, and you will once again be asked which TOS you want to load. 
+At this stage we don't want to load it again of course, so press <b>&lt;Control&gt;&lt;C&gt;</b> 
+to cancel, and move on with the boot-process.
+</ul>
+
+
+<p>
+TOS 2.06 loaded from disk like this takes around 262 Kbytes of RAM memory. Needless to say, 
+having TOS in ROM inside the machine lets you use this memory for other things.
+
+
+
+
+
+
+
+
+<pre>
+
+
+</pre>
+
+
+<hr>
+<center>
+<a href="../index.htm">main page</a>
+</center>
+
+
+</body>
+</html>

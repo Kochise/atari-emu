@@ -1,0 +1,524 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<title>Keyboard shortcuts</title>
+</head>
+<body bgcolor="#BDBDBD" background="../images/backgnd.gif">
+
+<center>
+<a href="../index.htm">main page</a>
+</center>
+<hr>
+<p>
+
+
+<center>
+<h2><b><u>Keyboard shortcuts</u></b></h2>
+</center>
+TOS 2.06 allows for several keyboard shortcuts.
+<br>
+There are shortcuts for most of the window menu functions (go to the &quot;File&quot;, 
+&quot;View&quot; or &quot;Options&quot; menus and you'll see a letter on the right hand side of 
+any of those drop-down menus, indicating the shortcut letter, which can be changed if you wish, 
+by going to 
+<a href="options.htm#desktop_config">&quot;Desktop Configuration&quot;</a> 
+in the &quot;Options&quot; menu).
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="../images/shortct1.gif" WIDTH=210 HEIGHT=226 alt=" ">
+
+<pre>
+
+</pre>
+Some of the shortcuts are shown when you press the <b>&lt;HELP&gt;</b> key, while 
+others are more or less undocumented, which is why I'll try to list and explain them here... 
+<p>
+<CENTER>
+<TABLE BORDER=0 CELLSPACING=1>
+<TR>
+<TD valign="bottom"><IMG SRC="../images/help1.gif" height="294" width="318" ALT=" "></TD>
+<TD valign="bottom"><IMG SRC="../images/help2.gif" height="246" width="318" ALT=" "></TD>
+</TR>
+</TABLE>
+</center>
+<p>
+In the examples below i.e. <b>&lt;Control&gt;&lt;X&gt;</b> means: 
+&quot;press and keep holding down the <b>Control</b> key while pressing &quot;<b>X</b>&quot;.
+<br>
+<b>&lt;Alternate&gt;</b> and <b>double-click a folder</b> means &quot;press and keep holding 
+down the the <b>Alternate</b> key while double-clicking a folder &quot;.
+
+<pre>
+
+</pre>
+<a name="boot"></a>
+<b><u>While booting (starting up</u></b>
+<br>
+The following shortcuts can be used right after you've switched the computer on, or 
+after a <a href="#restart">cold or warm reboot</a>. 
+<ul>
+<li>Press <b><u>any key</u></b> (except &lt;Shift&gt;, &lt;Alternate&gt;, 
+&lt;Control&gt; or &lt;Caps-Lock&gt;) to skip the 
+<a href="mem_test.htm">memory test</a>.
+<br>
+(if you have a hard disk, wait a few seconds before you do this to allow the drive to 
+spin-up and get ready).
+
+<p>
+<li><u><b>If your machine has a hard disk</b></u>:
+	<ul type="disc">
+<li>Press (and keep holding) <b><u>&lt;Control&gt;</u></b> while the computer is booting. 
+<br>
+(It's important that you press (and hold) this key down as soon as the computer 
+is turned on/has been reset).
+
+<p>
+This will boot the machine without any ACCessories, AUTO programs, the &quot;NEWDESK.INF&quot;, the 
+&quot;DESKICON.RSC&quot; file or anything else. It will however read the hard disk driver, making the 
+hard disk available.
+<br> 
+(Useful if one of your AUTO programs or ACCessories keeps crashing the machine while you 
+start up, making it impossible to disable them).
+<br>
+You will most likely not see all your hard drive partitions, so go to the &quot;Options&quot; 
+menu and select <a href="options.htm#install_devices">&quot;Install Devices&quot;</a> 
+as this will mount all available drives/partitions to your desktop.
+
+<li>Press (and keep holding) <b><u>&lt;Alternate&gt;</u></b> while the computer is booting. 
+<br>
+(It's important that you press (and hold) this key down as soon as the computer 
+is turned on/has been reset).
+<p>
+This will boot the machine without any ACCessories, AUTO programs, the &quot;NEWDESK.INF&quot;, the 
+&quot;DESKICON.RSC&quot; file or anything else. 
+It will NOT read the hard disk driver file either so you won't be able to access your hard disk. 
+<br>
+(Useful in situations where your hard disk is missing its driver software or it's been 
+messed up somehow. You will need to (manually) run the hard disk driver software from a 
+floppy disk to be able to access the hard disk, then install the driver on the hard disk itself).
+<p>
+
+<a name="floppy_boot_harddisk"></a>
+<li><b><u>Booting from a floppy disk on a machine with a hard disk</u></b>:
+<br>
+The procedure for this is dependant on your hard disk driver software. If you're using 
+Atari's own <a href="software.htm#ahdi">AHDI</a> the procedure is as explained below, if you're 
+using <a href="software.htm#hddriver">HDdriver</a> you press the drive letter 
+(i.e. <b>&lt;A&gt;</b> in this case) to boot from that drive. 
+Other hard disk drivers (such as <a href="software.htm#cbhd">CBHD</a>) 
+might have other ways of booting from a floppy. 
+<br>
+Here's what to do if AHDI has been installed on your hard disk (the same key-press usually 
+works with other hard disk drivers as well):
+<p>
+
+		<ul type="disc">
+		<li>Be sure the floppy disk is inserted in the drive (obviously a floppy disk with 
+AUTO programs and/or ACCessories, a &quot;NEWDESK.INF&quot;, a &quot;DESKICON.RSC&quot; file etc. 
+which you want to load into the computer when you turn it on/reboot).
+		<li>Press (and keep holding) <b><u>&lt;Alternate&gt;</u></b> while the computer is booting 
+(you can let go when you see/hear the floppy disk drive start working, loading the software 
+from the floppy disk). 
+<br>
+(It's important that you press (and hold) this key down as soon as the computer 
+is turned on/has been reset).
+
+<p>
+This will boot the AUTO programs, ACCessories etc. from your floppy disk and leave the hard disk alone.
+<br>
+(Useful in situations where your hard disk is missing its driver software or it's been 
+messed up somehow. If you have <a href="tips.htm#boot_floppy">a boot floppy disk</a> containing 
+a working hard disk driver in the AUTO folder, the driver will load from the floppy, then 
+mount the hard disk making it available from the desktop. From then on you can continue 
+installing the hard disk driver on the hard disk itself).
+		</ul>
+<p>
+
+
+<a name="floppy_boot_notes"></a>
+<b><u>Notes about booting from a floppy disk on a hard disk drive system</u></b>
+<br>
+Depending on the presence of a hard disk driver or not on the floppy disk, several things can 
+happen (a hard disk driver in the form of &quot;AHDI.PRG&quot;, &quot;HDDRIVER.PRG etc. can 
+be placed in the AUTO folder or elsewhere on the floppy disk -you should not try to install 
+the hard disk driver on the floppy disk the same way as you would do on a hard disk. 
+Simply placing the hard disk driver programs on the floppy disk will do)...
+<p>
+	<ul type="disc">
+	<li><b><u>If the AUTO folder (on the floppy disk) contains a hard disk driver</u></b>:
+		<ul type="disc">
+		<li>Press (and keep holding) <b><u>&lt;Alternate&gt;</u></b> while the computer is booting 
+(you can let go when you see/hear the floppy disk drive start working, loading the software 
+from the floppy disk). 
+<br>
+(It's important that you press (and hold) this key down as soon as the computer 
+is turned on/has been reset).
+<p>
+
+	<ul type="disc">
+	<li>This will load the following from the <b>floppy disk</b>:
+			<ul type="disc">
+			<li>All AUTO programs (including the hard disk driver)
+			</ul>
+	<li>..and the following from the <b>hard disk</b>:
+			<ul type="disc">
+			<li>All ACCessories (if present)
+			<li>The &quot;NEWDESK.INF&quot; file (if present)
+			<li>The &quot;DESKICON.RSC&quot; file (if present)
+			</ul>	
+		</ul>
+	</ul>	
+<p>
+If you <a href="options.htm#save_desktop">save the desktop</a>, the &quot;NEWDESK.INF&quot; file 
+will be saved on to the <u>hard disk</u> and not the floppy disk! 
+<br>
+A good rule to keep in mind is that this file will be saved to whichever drive it was read 
+from when booting (starting up).
+	</ul>
+
+
+<p>
+	<ul type="disc">
+	<li><b><u>If the AUTO folder (on the floppy disk) <i>does not</i> contain a hard disk driver</u></b>:
+		<ul type="disc">
+		<li>Press (and keep holding) <b><u>&lt;Alternate&gt;</u></b> while the computer is booting 
+(you can let go when you see/hear the floppy disk drive start working, loading the software 
+from the floppy disk). 
+<br>
+(It's important that you press (and hold) this key down as soon as the computer 
+is turned on/has been reset).
+
+<p>
+
+	<ul type="disc">
+	<li>This will load the following from the <b>floppy disk</b>:
+			<ul type="disc">
+			<li>All AUTO programs (if present)
+			<li>All ACCessories (if present)
+			<li>The &quot;NEWDESK.INF&quot; file (if present)
+			<li>The &quot;DESKICON.RSC&quot; file (if present)
+			</ul>
+	<li>..and the following from the <b>hard disk</b>:
+			<ul type="disc">
+			<li>Nothing (no hard disk driver has been used, so the hard disk drive can't be accessed).
+			</ul>	
+		</ul>
+	</ul>
+
+<p>
+If you <a href="options.htm#save_desktop">save the desktop</a>, the &quot;NEWDESK.INF&quot; file 
+will be saved on to the <u>floppy disk</u>. 
+<br>
+A good rule to keep in mind is that this file will be saved to whichever drive it was read 
+from when booting (starting up).
+
+<p>
+At this stage you can't access the hard disk, but if you run a hard disk driver from your floppy 
+disk (present anywhere on the floppy disk except the AUTO folder, meaning you have to double-click 
+that program) ...the hard disk will &quot;mount&quot; and be accessible from the desktop as 
+soon as you add its icon/icons by <a href="options.htm#install_devices">installing devices</a>. 
+
+<p>
+<u><b>No hard disk drive icons on the desktop?</b></u>
+<br>
+Whenever you boot from a floppy disk which has a hard disk driver in its AUTO folder, the 
+hard disk will mount, and the &quot;NEWDESK.INF&quot; file (if present) will be read from the 
+hard disk. It's then quite likely that your desktop already has icons for all your drives.
+
+<p>
+But if you've mounted the hard disk by running the hard disk driver manually from the floppy disk 
+(by double clicking i.e. &quot;AHDI.PRG&quot; or &quot;HDDRIVER.PRG&quot;),  or there's 
+no &quot;NEWDESK.INF&quot; file present on your hard disk which you could otherwise 
+<a href="options.htm#read_desktop">manually read</a>, you won't have any hard disk drive icons 
+available on your desktop. 
+<p>
+An exception to this rule is that a drive &quot;C&quot; icon is automatically added to the desktop 
+if a &quot;NEWDESK.INF&quot; file is unavailable from the hard disk and the hard disk driver has 
+been run from the AUTO folder of the floppy disk.
+<br>
+...still, this only accounts for drive C (which is usually the boot drive on a hard disk system). 
+So what if your hard disk has several partitions (C, D, E, F etc.) or you even have several 
+physical hard drives (or other storage devices such as ZIP drives, CD-ROM drives etc.)? 
+
+<p> 
+	<ul type="disc">
+	<li>Run the hard disk driver from the floppy disk (either by having it placed in the AUTO folder, 
+	or manually). This will make the hard disk (and other storage units if present) 
+	&quot;mounted&quot; and available.
+	<li>Go to the &quot;Options&quot; menu and select 
+	<a href="options.htm#install_devices">&quot;Install Devices&quot;</a>. This will add icons 
+	for all of your drives.
+	<li>At this stage you may also want to 
+	<a href="options.htm#remove_icon">remove icons</a> belonging to certain drives you won't be 
+	using (i.e. floppy disk drive &quot;B&quot;)
+	<li>You can also 
+	<a href="options.htm#icon_device_change">change the name or icon</a> of any current drives on 
+	your desktop.
+	<li>Don't forget to <a href="options.htm#save_desktop">save the desktop</a> after you're done.
+	</ul>
+
+	</ul>
+
+
+
+	</ul>
+</ul>
+
+
+
+<p>
+<ul>
+<li><u><b>If your machine only has a floppy disk drive</b></u>:	
+	<ul type="disc">
+<li>Press (and keep holding) <b><u>&lt;Control&gt;</u></b> while the computer is booting. 
+<br>
+(It's important that you press (and hold) this key down as soon as the computer 
+is turned on/has been reset).
+
+<p>
+This will skip booting from the floppy disk drive and (after a few seconds) present you 
+with the TOS 2.06 desktop.
+<br> 
+(Useful if you have a disk inserted in the drive, but don't want to load its AUTO programs, 
+ACCessories, &quot;NEWDESK.INF&quot; or &quot;DESKICON.RSC&quot; files. 
+Booting on a floppy-only system without a disk inserted in the drive takes a lot longer 
+than with a disk inserted in the drive).
+	</ul>
+</ul>
+
+
+<pre>
+</pre>
+<center>
+<!-- ## separator line in blue ## -->
+<font color="blue">
+____________________________________________
+</font>
+</center>
+<pre>
+</pre>
+
+
+<a name="file"></a>
+<b><u>File and window related shortcuts</u></b>
+<ul>
+<li><b>&lt;Alternate&gt;</b> and <b>&lt;drive letter&gt;</b>: opens a new window with the contents of that drive 
+<br>
+(i.e. &lt;Alternate&gt;&lt;D&gt; opens up a new window with the contents of drive D). 
+
+<li><b>&lt;Control&gt;</b> and <b>&lt;drive letter&gt;</b>: replaces the currently active window with the contents of that 
+drive 
+<br>
+(i.e. &lt;Control&gt;&lt;F&gt; replaces the window with the contents of drive F).
+<br>
+If there are no open windows on the desktop this shortcut will open a new window with the contents of 
+the drive letter you've entered.
+
+<li><b>&lt;Alternate&gt;</b> and <b>&lt;double-click a folder&gt;</b>: 
+the contents of the folder will open into a new window.
+
+<li>Hold down (and keep holding) <b>&lt;Shift&gt;</b> while <b>single-clicking files/folders</b> to select several 
+items at once (i.e. copying/moving/deleting several files at once).
+<p>
+<IMG SRC="../images/shift.gif" WIDTH=425 HEIGHT=163 alt=" ">
+<p>
+
+You can also use the mouse to scroll up/down the window if necessary, without loosing the selected files 
+as long as you keep holding the &lt;Shift&gt; key.
+<br>
+Single-click once again on a file while still holding &lt;Shift&gt; to de-select only that file.
+
+<li>Hold down <b>&lt;Control&gt; while copying files</b>: 
+the files will be moved (the originals will be deleted.)
+
+<li>Hold down <b>&lt;Alternate&gt; while copying files</b>: 
+you can rename the new copies of the files.
+
+<li>Hold down <b>&lt;Alternate&gt;&lt;Control&gt; while copying files</b>: 
+this both moves the files and lets you rename them.
+
+<li>Press <b>&lt;Esc&gt;</b> to refresh (update) the current active window. 
+<br>
+Useful if you've got a window open showing the contents of a floppy disk which you've exchanged with 
+another disk in the meantime (pressing &lt;Esc&gt; will show the contents of that new disk). 
+<li>Press (and keep holding) <b>&lt;Undo&gt;</b> to stop any file-operation 
+(copying, deleting or moving files).
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="../images/file15.gif" WIDTH=229 HEIGHT=126 alt=" ">
+<p>
+</ul>
+
+
+<pre>
+</pre>
+<center>
+<!-- ## separator line in blue ## -->
+<font color="blue">
+____________________________________________
+</font>
+</center>
+<pre>
+</pre>
+
+
+<a name="mouse"></a>
+<b><u>Mouse replacement shortcuts</u></b>
+<br>
+Don't have a mouse? Not a permanent solution, but... 
+<ul>
+<li><b>&lt;Alternate&gt;&lt;arrow keys&gt;</b> to navigate 
+<br>
+(keeping the keys depressed repeats the movements, their speed following the keyboard repeat rate set 
+in the 
+<a href="xcontr.htm#general_cpx">&quot;general&quot; CPX control-panel module</a>.
+<li><b>&lt;Alternate&gt;&lt;arrow keys&gt;&lt;Shift&gt;</b> to navigate more accurately.
+<li><b>&lt;Alternate&gt;</b> and <b>&lt;Insert&gt;</b> to select a file/icon/program (single-mouseclick).
+<li><b>&lt;Alternate&gt;</b> and <b>&lt;Insert&gt; (twice)</b> to open a file/icon/program (double-mouseclick).
+<li><b>&lt;Alternate&gt;</b> and (keep holding) <b>&lt;Insert&gt;</b> 
+while using <b>&lt;arrow keys&gt;</b> to drag a file/folder/program.
+<li><b>&lt;Alternate&gt;</b> and (stop holding) <b>&lt;Insert&gt;</b> 
+while using <b>&lt;arrow keys&gt;</b> to drop a file/folder/program.
+	
+</ul>
+
+
+<pre>
+</pre>
+<center>
+<!-- ## separator line in blue ## -->
+<font color="blue">
+____________________________________________
+</font>
+</center>
+<pre>
+</pre>
+
+
+<a name="restart"></a>
+<b><u>Shortcuts for rebooting (restarting) the computer</u></b>
+<ul>
+<li><b>&lt;Control&gt;&lt;Alternate&gt;&lt;Delete&gt;</b> will perform a &quot;warm-boot&quot; 
+which is basically the same as pressing the &quot;reset&quot; button on the back of the machine. 
+
+<li><b>&lt;Control&gt;&lt;Alternate&gt;&lt;Right-Shift&gt;&lt;Delete&gt;</b> will perform a 
+&quot;cold-boot&quot; which is basically the same as turning the 
+power off, then on again. You might need to do this if the computer has suffered from a bad crash 
+where a &quot;warm-boot&quot; (or pressing the reset-button) won't help. 
+<br>
+In very severe cases you might even have to actually turn the 
+computer off by using the power-switch, wait 15-30 seconds (allowing all memory to clear), then turn it on 
+again. I have personaly experienced several cases where a warm or cold-boot just won't recover properly 
+from a bad crash, but turning it off, waiting several seconds, then on again will.
+</ul>
+
+
+<pre>
+</pre>
+<center>
+<!-- ## separator line in blue ## -->
+<font color="blue">
+____________________________________________
+</font>
+</center>
+<pre>
+</pre>
+
+
+<a name="print_show"></a>
+<b><u>Shortcuts for printing or viewing files</u></b>
+<ul>
+<li>Press the <b>&gt;</b> key to print the file/folder contents of the top (active) window.
+<br>
+(This will be a text-listing as explained in the <a href="tips.htm#printing">printing tips</a> section. 
+<li>Press <b>&lt;Alternate&gt;&lt;Help&gt;</b>.
+<br>
+This will do a graphic printout of the desktop exactly as you see it (with icons, any open windows etc.).
+<br>
+(Note: some screen-grabber type programs if installed (such as <a href="software.htm#n_althelp">N_Althelp</a>) replace 
+this keyboard shortcut with their own functions, so the screen is instead saved as a picture file).
+<p>
+(check out my <a href="tips.htm#printing">printing tips</a> for more detailed information about the subject).
+
+
+<li>When viewing text files... 
+<p>
+<IMG SRC="../images/file2.gif" WIDTH=310 HEIGHT=126 alt=" ">
+<p>
+	<ul type="disc">
+		<li><b>&lt;Space&gt;</b> (or left-mouseclick)to move forward one page.
+		<li><b>&lt;D&gt;</b> (or &lt;Control&gt;&lt;D&gt;) to move forward half a page.
+		<li><b>&lt;Return&gt;</b> (or &lt;Enter&gt; or &lt;Control&gt;&lt;C&gt;) 
+		to move forward one line.
+		<li><b>&lt;Undo&gt;</b> (or &lt;Q&gt; or &lt;Control&gt;&lt;C&gt; or right-mouseclick) 
+		to quit viewing and return to the desktop.
+	</ul>
+</ul>
+
+
+<pre>
+</pre>
+<center>
+<!-- ## separator line in blue ## -->
+<font color="blue">
+____________________________________________
+</font>
+</center>
+<pre>
+</pre>
+
+
+<a name="other"></a>
+<b><u>Other shortcuts</u></b>
+<ul>
+<li><b>&lt;Alternate&gt;&lt;1&gt;</b>: set display to ST low resolution 
+(<a href="options.htm#set_prefs">if available</a>).
+<li><b>&lt;Alternate&gt;&lt;2&gt;</b>: set display to ST medium resolution 
+(<a href="options.htm#set_prefs">if available</a>).
+<li><b>&lt;Alternate&gt;&lt;3&gt;</b>: set display to ST high resolution 
+(<a href="options.htm#set_prefs">if available</a>).
+<li><b>&lt;Alternate&gt;&lt;numeric keypad&gt;</b>: get access to ANY character available in 
+the Atari character set, regardless of which language keyboard your computer has. 
+<br>
+(i.e. hold &lt;Alternate&gt; while typing 142 on the numeric keypad, then release the &lt;Alternate&gt; key which 
+presents you with the letter &Auml;).
+<br>
+Look up the <a href="asciitab.htm">Atari ASCII character set table</a> 
+for the decimal equivelants of each character. You can use this feature if you want to give desktop 
+icons names with non-English characters, or even within programs such as word-processors and so on.
+<li>Most windows with choices have a default option which is highlighted in bold as shown here 
+(the &quot;OK&quot; button):
+<p>
+<IMG SRC="../images/default.gif" WIDTH="222" HEIGHT="126" alt=" ">
+<p>
+If you press <b>&lt;RETURN&gt;</b> (or &lt;ENTER&gt; in most cases) this option will be selected. 
+<br>
+The default option is usually also the &quot;safe&quot; choice, which is good to know if 
+you're in doubt and afraid of messing things up).
+<li>When in a text-input window... if you've written something (or there's already text there) which 
+you want removed; instead of pressing &lt;Backspace&gt; you can press <b>&lt;Esc&gt;</b> once to clear 
+that line!
+<p>
+<IMG SRC="../images/opt6.gif" WIDTH=310 HEIGHT=326 alt=" ">
+<p>
+<li>If there are several text-input lines you can move between them either by using the 
+<b>&lt;Arrow up&gt;</b> and <b>&lt;Arrow down&gt;</b> buttons, or <b>&lt;Tab&gt;</b>. The latter 
+moves forward to the next line.
+</ul>
+
+
+
+
+
+<pre>
+
+
+</pre>
+
+
+<hr>
+<center>
+<a href="../index.htm">main page</a>
+</center>
+
+
+</body>
+</html>

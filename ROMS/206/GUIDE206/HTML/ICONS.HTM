@@ -1,0 +1,432 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<title>Adding, editing and creating icons for TOS 2.06</title>
+</head>
+<body bgcolor="#BDBDBD" background="../images/backgnd.gif">
+
+<center>
+<a href="../index.htm">main page</a>
+</center>
+<hr>
+
+
+<p>
+<center>
+<a name="icons"></a>
+<h2><b><u>Adding, editing and creating icons</u></b></h2>
+</center>
+TOS 2.06, unlike previous version of TOS allows you to add your own icons for files, 
+folders and programs..
+<ul>
+<li>Each program, file or folder can have its own icon (within limits).
+<li>You can assign any icon of your choice to files or programs of a specific type, or 
+files/folders/programs with specific names.
+<li>Information about which icon belongs to which file is stored in the 
+<a href="options.htm#save_desktop">&quot;NEWDESK.INF&quot;</a> file. 
+<li>The &quot;NEWDESK.INF&quot; file can be no bigger than 4 Kbytes (4096 bytes), but according to 
+<a href="surv_kit.htm#editing">the Atari TOS desktop survival kit</a> you start getting problems around 
+3900 bytes. Personally I've managed to save a &quot;NEWDESK.INF&quot; as big as 4188 bytes before 
+getting a "System is out of memory" message. After this I was unable to save the file again, so I had 
+to remove an icon or deinstall a program first, then save again.
+<br>
+(The &quot;NEWDESK.INF&quot; file contains information about installed programs, open windows etc. and of course icons. 
+Keep this in mind when you assign icons to files as each assignment takes up space in this file).
+<p>
+
+...... but there are 
+<a href="bugs.htm#shbuf">ways around this 4 Kbyte limitation</a>.
+
+<li>TOS 2.06 comes with 12 basic icons. Additional icons can be added, or even 
+replace the existing icons if you don't like them.
+<li>The new icons must reside in a resource file named &quot;DESKICON.RSC&quot; and placed in the root 
+(not inside any folders) of the boot (startup) drive (usually drive C on a hard disk system). 
+<li>If a &quot;DESKICON.RSC&quot; file is found in the root directory of the boot drive, the existing 
+12 icons are replaced with whatever this file contains.
+<li>If a &quot;DESKICON.RSC&quot; is available it will be loaded into memory regardless of 
+the &quot;NEWDESK.INF&quot; having information about icon assignments or even being available.
+<br>
+(If you don't want &quot;DESKICON.RSC&quot; to be loaded into memory you have to remove or rename 
+it (i.e. &quot;DESKICON.RSX&quot;). 
+<li>Whenever &quot;DESKICON.RSC&quot; isn't available, the standard 12 icons in TOS 2.06 itself is used. 
+<br>
+If you've previously assigned icons to files/folders, saved the desktop (information about this is stored 
+in &quot;NEWDESK.INF&quot;), then remove (or rename) &quot;DESKICON.RSC&quot;, the files will have wrong 
+icons since there are now only 12 standard icons in TOS to choose from).
+<li>A maximum of 200 icons can be stored in the &quot;DESKICON.RSC&quot;. This file must be no 
+bigger than 64 Kbytes (65536 bytes). If you've been using standard icons and done everything right, 200 
+icons should be just under this limit.
+<li>The desktop can have a maximum of 48 icons.
+<li>Each icon must have the standard size of 32x32 pixels, be of the &quot;black & white&quot; type 
+and have 12 character spaces for the name.
+<li>Use &quot;Icon juggler&quot; to organize icons, creating your own &quot;DESKICON.RSC&quot; file with 
+your favourite icons.
+<li>If you want to edit/create new icons you need to use a resource-editor and have some basic knowledge 
+of using such a program.
+</ul>
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+<a name="organize_icn"></a>
+<b><u>Organizing and creating a new &quot;DESKICON.RSC&quot; file</u></b>
+<br>
+There are literally thousands of icons available for Atari ST users which can be used with TOS 2.06, 
+so you'll probably find most of what you need instead of having to create your own icons.
+<br>
+In order to organize icons we need a handy and easy to use program such as 
+<a href="software.htm#icon_juggler">&quot;Icon juggler&quot;</a>. 
+This little program is made for TOS 2.06 and can read icons from other suitable resource 
+(.RSC) files, then paste them into the &quot;DESKICON.RSC&quot; file you'll be using 
+(or create a new one if you don't already have a file by that name).
+<p>
+&nbsp;<img src="../images/icons2.gif" WIDTH=640 HEIGHT=400 ALT=" ">
+<p> 
+Once you've organized all the icons you need to save the file, then reboot (restart) the computer 
+in order to load the new icons into memory. From then on you are ready to assign the new icons to 
+your files, programs and folders (by going to 
+<a href="options.htm#install_icon">&quot;Install Icon&quot;</a> in the &quot;Options&quot; menu). 
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+<a name="iconjugl_bug"></a>
+<b><u>Bug in Icon Juggler causing lost icons!</u></b>
+<br>
+There's a small, but significant bug that shows up if you...
+<br>
+<ol>
+<li>Organize icons with <a href="#organize_icn">Icon-juggler</a>, saving the 
+DESKICON.RSC file you're working on
+<br>
+and.....
+<li>Load the same DESKICON.RSC file into any resource-editor (i.e. Interface, ORCS etc.) to edit/create 
+new icons, then save the file there.
+</ol>
+
+It seems that Icon-juggler adds an invisible pile of garbage at the end of each RSC file it's working on 
+and for some reason, whenever a previously Icon Juggler-saved file is loaded into a resource editor, the 
+last icon in the file is removed! This means that every time you edit the file with a resource-editor, 
+one more icon at the end of the file is being removed!
+
+<p>
+The solution....
+<br>
+There's a simple solution to this problem:
+<br>
+<ul>
+<li>Whenever you plan to edit the DESKICON.RSC file with a resource-editor (i.e. to edit the existing 
+icons, their names, add new icons etc.), load DESKICON.RSC into Icon juggler first, then add one 
+(or more to be on the safe side) extra copies of an icon (i.e. the last icon) to <b><u>the end</u></b> of 
+that file, then save it.
+<p>
+&nbsp;<IMG SRC="../images/icnerr1.gif" WIDTH=383 HEIGHT=174 alt=" ">
+<p>
+
+<li>Load DESKICON.RSC file into the resource editor. You'll notice that <b><u>the last icon is missing</u></b>, 
+but since we 
+made extra copies of that icon it really doesn't matter. Do whatever editing you may wish, 
+then save the file. 
+<p>
+&nbsp;<IMG SRC="../images/icnerr2.gif" WIDTH=445 HEIGHT=221 alt=" ">
+<p>
+
+<li>Load DESKICON.RSC into Icon-juggler again, then remove any extra icons which may still be at the 
+end of the file, then save it.
+</ul>
+
+<pre>
+</pre>
+The problem does not show up if you...
+<br>
+<ol>
+<li><u>only use Icon-juggler</u> (i.e. you only need to organize icons which other have made as there are lots 
+of ready-made icons out there on the Internet)
+<br>
+or.....
+<li><u>you only use a resource editor</u> for anything involving icons (any resource-editor can of course 
+be used to organize icons as well, but in a more manual way than with a dedicated organizer 
+such as Icon-juggler. If you find yourself editing/creating icons a lot and don't feel the need to reorganize 
+the file you may not ever need to use Icon-juggler in the first place)
+</ol>
+
+
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+
+<a name="default_icn"></a>
+<b><u>The 12 default icons in TOS</u></b>
+<br>
+Atari placed 12 basic icons in the TOS 2.06 ROM/EPROM chips. 
+They represent the basic file/program/folder/device types, but for most files you'll 
+get the same icon which isn't very exciting.
+<p>
+&nbsp;<IMG SRC="../images/icons1.gif" WIDTH=488 HEIGHT=182 alt=" ">
+<p>
+
+As explained <a href="#icons">at the top of this page</a> and in the section 
+about <a href="options.htm#install_icon">installing icons</a>, a file named 
+&quot;DESKICON.RSC&quot; containing additional icons can be used to add any icon you like 
+(up to 200 icons).
+
+<p>
+...however, those 12 standard icons in TOS will be <b><u>replaced</u></b> with 
+whichever 12 icons are located first in the &quot;DESKICON.RSC&quot; file.
+<br>
+This also means that for any files/folder/devices/programs you haven't assigned an icon to, 
+going by the default instead... those icons might end up with something completely different! 
+A folder icon may have the icon of a word-processor, a text file may have the icon of a trash-can 
+etc.
+
+<p>The solution?
+<br>
+Copy the first 12 icons which are standard in TOS to the beginning of the 
+&quot;DESKICON.RSC&quot; file (in the same order). That way the defaults will always work. 
+Then add your new icons after these 12. 
+<br>
+If you really don't care much for the 12 default icons at all, be sure to replace them 
+with equivelant icons (the trash-can icon with a different trash-can, the folder icon with 
+a different folder etc.). It's very important that you keep them 
+<b><u>in the same order</u></b>. The way TOS goes about knowing which icon belongs to which 
+item isn't by its name, but by its order. If you rearrange the order of the icons you'll get the 
+same problem as just mentioned.
+
+<p>
+Conclusion?
+<ul>
+<li>Copy and place the 12 standard TOS icons at <b><u>the beginning</u></b> of the &quot;DESKICON.RSC&quot; 
+file, then place your additional icons after these.
+<li>Keep the order of the icons the same.
+<li>When <b>adding</b> an icon to the file, <b><u>add it to the end of the file</u></b>. 
+<li>When <b>removing</b> an icon from the file, <b><u>put a new icon in its place</u></b>.
+</ul> 
+
+<p>
+The 12 default icons from TOS 2.06 are included in 
+<a href="new_icns.htm">the icon file I've made available</a> which is found in the 
+<a href="../software/">software</a> folder of this user-guide.
+
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+<a name="creating_icn1"></a>
+<b><u>Editing or creating new icons (using resource-editors)</u></b>
+<br>
+Most people will be quite happy with the icons that are already available, made by others. 
+New icons often come with programs, and large icon collections covering all sorts of subjects 
+are available on the Internet. 
+<p>
+If you want to edit existing icons, or create your new ones from scratch you need a resource-editor. 
+These programs are often used by programmers to create graphical menus and dialogs for programs, so they 
+might seem a little complicated to use at first ....practice makes perfect! (be sure to practice on 
+a copy of an icon file in case you mess it up!). 
+<br>
+Resource editors open and save files with the &quot;.RSC&quot; extension 
+(such as our &quot;DESKICON.RSC&quot; file of course).
+<br>
+A few resource editors worth mentioning:
+<ul>
+<li><b>Interface</b> (free, colour and black/white icons, works very well).
+<li><b>ORCS</b> (free, has a few bugs, only black/white icons).
+<li><b>Resource-Master</b> (commercial, excellent features, many not needed for our purpose).
+</ul>
+<p>
+Out of these three I'd recommend you get a hold of 
+<a href="software.htm#interface">&quot;Interface&quot;</a> 
+as seen here...
+
+<pre>
+</pre>
+&nbsp;<img src="../images/intrfce1.gif" WIDTH=545 HEIGHT=390 ALT=" ">
+<br> 
+
+<pre>
+
+</pre>
+&nbsp;<img src="../images/intrfce2.gif" WIDTH=427 HEIGHT=396 ALT=" ">
+<br>
+&nbsp;&quot;Interface&quot; can be used to edit/create icons.
+<p>
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+<a name="creating_icn2"></a>
+<b><u>Editing or creating new icons (icon-editors)</u></b>
+<br>
+In addition to resource-editors there are dedicated icon-editor programs... 
+<p>
+Unfortunately there aren't many of these around. The ones I've found are either buggy, 
+are only available as demo versions (and since the company that sold the software is gone there's no 
+chance of buying the full version either), don't handle .RSC files (but instead other icon formats) 
+or are only available in certain languages (i.e. German)
+<p>
+Out of the few working icon editors I've found there's 
+<a href="software.htm#icon_master">Icom (&quot;Icon-Master&quot;)</a>. But as this is basically the exact same 
+icon editing part of <a href="software.htm#rsc_master">&quot;Resource-Master&quot;</a> you may as well use 
+any full, standard resource editor instead (such as <a href="#creating_icn1">&quot;Interface&quot;</a> 
+which is now free.
+
+
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+<a name="notes"></a>
+<b><u>Notes, limitations and workarounds concerning icons</u></b>
+<br>
+There are many possibilities with icons as described here and in the section of the user-manual 
+about <a href="options.htm#install_icon">installing icons</a>, but there are also a few limitations 
+to keep in mind:
+
+<ul>
+<li>You can have no more than 48 icons on the desktop 
+(You probably want room for some open windows as well!).
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="../images/48icns.gif" WIDTH=262 HEIGHT=126 alt=" ">
+<p>
+<li>The &quot;DESKICON.RSC&quot; can be no bigger than 64 Kbytes (65536 bytes), meaning no more 
+than 200 icons.
+
+
+<li>There is a limitation to how big &quot;NEWDESK.INF&quot; can be. The maximum size is 4 Kbytes (4096 bytes) 
+The <a href="surv_kit.htm#editing">Atari TOS desktop survival kit</a> states that you will start 
+getting into trouble as soon as you pass 3900 bytes. My personal experience however has been that I've 
+been able to save the file at a size of 4188 bytes. 
+<br>
+By adding even more information (additional icons on the desktop etc.) I got an error message 
+preventing me from saving the file...
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="../images/memfull.gif" WIDTH=286 HEIGHT=126 alt=" ">
+<p>
+(To solve the problem I removed an icon or deinstalled a program I didn't need, then tried to save again).
+
+<li>Each time you install a program, add an icon, open a window etc. you will use up some memory. 
+Here are a few tips on how to make the most out of those 4 Kbytes:
+	<ul type="disc">
+	<li>If you run out of memory (and you get an error message as the one shown above, preventing 
+you from saving the desktop), try to remove anything unnecessary (i.e. a desktop icon, deinstall a program 
+you're not using etc.) and try saving again. Repeat if necessary.
+	<li>Don't try to <a href="options.htm#install_app">install</a> every single program you have. 
+It's probably not necessary as you may not even use all those programs and it takes up a lot of memory.
+	<li>Don't <a href="options.htm#install_icon">install a custom icon</a> for every single file/folder. 
+Instead, <a href="options.htm#icon_multi">install icons matching several items in one go</a> (i.e. 
+all .TXT files get the same icon etc.). A nice side-effect is that any new files of the same type will 
+also get an appropriate icon!
+	<li>Don't clutter the desktop with too many icons. Besides taking up memory, too many icons will just 
+look confusing (and you'll probably want some space left for any open windows).
+	<li>If you find yourself using many of the same programs/files residing within the same folder, drag that 
+folder to the desktop! 
+<br>
+This will save the amount of icons on the desktop (and memory), and still give you quick access to those files.
+	</ul>
+<p>
+... if you still find that the allocated space isn't enough for your use, there is 
+<a href="bugs.htm#shbuf">a way to bypass the 4 Kbyte limitation</a>.
+</ul>
+
+
+
+
+
+
+<pre>
+
+
+</pre>
+
+
+<hr>
+<center>
+<a href="../index.htm">main page</a>
+</center>
+
+
+</body>
+</html>

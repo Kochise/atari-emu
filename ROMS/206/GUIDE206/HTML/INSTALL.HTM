@@ -1,0 +1,924 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<title>Installation/setup examples</title>
+</head>
+<body bgcolor="#BDBDBD" background="../images/backgnd.gif">
+
+<center>
+<a href="../index.htm">main page</a>
+</center>
+<p>
+<hr>
+<p>
+
+
+<center>
+<h2><b><u>Installation and setup examples</u></b></h2>
+</center>
+Lots of neat things can be done with TOS 2.06, but some of the installation parameters and 
+other ways of doing it can be a little tricky. I will try to explain a few things here which can 
+be put to practical use in a variety of ways...
+<ul>
+<li>Compressed files (i.e. &quot;.ZIP&quot; or &quot;.LZH&quot;) can be 
+decompressed by simply double-clicking them.
+<li>Picture files (i.e. &quot;.GIF&quot;, &quot;.JPG&quot; or &quot;.IMG&quot; etc.) when double-clicked 
+will have a graphic viewer start, then load the picture for you to see.
+<li>Sound files (i.e. &quot;.WAV&quot;, &quot;.AIF&quot; or &quot;.SND&quot; etc.) when double-clicked 
+will have a sample-file player start, then play the sound file for you to hear.
+<li>A HTML file when double-clicked will have the web-browser start, then show that document.
+<li>A word-processor document (i.e. &quot;.PAP&quot; for the &quot;Papyrus&quot;&quot; word-processor) 
+when double-clicked can start the word-processor, then display the document which you can read or 
+continue working with.
+</ul>
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+<a name="single_files"></a>
+<b><u>Installing an application to handle a single type of file</u></b>
+<br>
+TOS 2.06 allows you to define a single file-type for each program installed (we will later discuss 
+how to modify the setup file to allow for several files to be handled).
+<br>
+Let's say we want all HTML files (named &quot;.HTM&quot; on the Atari ST because of the 
+8+3 filename limitation) to be opened up in the <a href="software.htm#cab">&quot;CAB&quot;</a> 
+(Crystal Atari Browser) web-browser when double-clicked. Just following these simple steps:
+<ul>
+<li>Locate the program which is &quot;CAB.APP&quot; in this case and click it <u>once</u> to select it.
+<li>Go to the <b><u>&quot;Options&quot;</u></b> menu, then select <b><u>&quot;Install Application&quot;</u></b>.
+<li>Enter &quot;HTM&quot; where it says <b><u>&quot;Document type&quot;</u></b>.
+<p>
+<IMG SRC="../images/inst_cab.gif" WIDTH="310" HEIGHT="326" alt=" ">
+<p>
+<li>Press the <b><u>&quot;Install&quot;</u></b> button to complete the installation.
+<li>Save the changes by going to <b><u>&quot;Save Desktop&quot;</u></b> in the &quot;Options&quot; menu.
+</ul>
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+<a name="multiple_files"></a>
+<b><u>Installing an application to handle several file-types</u></b>
+<br>
+The &quot;Install application&quot; menu only allows you to define one file-type for each program 
+which isn't very useful considering that a graphic viewer can handle several formats 
+(such as &quot;.GIF&quot;, &quot;.JPG&quot;, &quot;.IMG&quot;, &quot;.IFF&quot;, &quot;.BMP&quot;, 
+&quot;.PCX&quot;, &quot;.PI3&quot; etc.).
+<br>
+The same goes for audio (sound)-file players and decompression programs as well, to mention a couple more 
+among the many applications that are available out there.
+<br>
+As explained in <a href="surv_kit.htm#multiple_file">the Atari TOS desktop survival kit</a>, you can bypass 
+this limitation in TOS 2.06 by manually (and carefully!) editing the &quot;NEWDESK.INF&quot; file 
+which is where all this information is stored.
+<p>
+Let's follow the steps of making the image-viewer 
+<a href="software.htm#graftool">&quot;GrafTool&quot;</a> handle .IMG, .GIF and .JPG graphic formats. 
+After a successful installation you will be able to simply double-click on an image file of the above 
+formats and GrafTool will display them!
+<p>
+The following examples are shown for GrafTool, but you can apply the same method for any other 
+program which you want to handle multiple file-types....
+
+<pre>
+</pre>
+<center>
+<!-- ## separator line in blue ## -->
+<font color="blue">
+____________________________________________
+</font>
+</center>
+<pre>
+</pre>
+
+
+<a name="multiple_files_1"></a>
+<b><u>Step-1: installing &quot;GrafTool&quot;</u></b>
+<br>
+<ul>
+<li>Install &quot;GrafTool&quot; the usual way... 
+	<ul type="disc">
+	<li>Click on the program <u>once</u> (to select it), then go to the <b><u>&quot;Options&quot;</u></b> 
+menu and choose <a href="options.htm#install_app">&quot;Install application&quot;</a>).
+	<li>Click on the &quot;GrafTool&quot; program once (to select it), then go to 
+<b><u>&quot;Install Application&quot;</u></b> in the &quot;Options&quot; menu, 
+	<li>In the <b><u>Document Type</u></b> area, enter the following: <b>IMG</b> (as we want to make it 
+handle .IMG files to begin with).
+<li>Leave the rest of the settings alone (some programs however need the <b><u>Default Dir</u></b> and 
+<b><u>Parameter</u></b> settings changed in order to work properly)<br>
+(read a more <a href="#dir_param">detailed explanation of the path and parameter settings</a> to find 
+out exactly how they're used). 
+
+	<li>Press the <b><u>&quot;Install&quot;</u></b> button.
+	</ul>
+<p>
+&nbsp;&nbsp;&nbsp;<IMG SRC="../images/graftl1.gif" WIDTH=310 HEIGHT=326 alt=" ">
+<p>
+
+<li>If you have some .IMG files available, try it out by double-clicking one of these files. 
+GrafTool should start up and display the file after a little while. 
+
+<li>If it works like it should, <a href="options.htm#save_desktop">save the desktop</a>.
+</ul>
+
+
+<pre>
+</pre>
+<center>
+<!-- ## separator line in blue ## -->
+<font color="blue">
+____________________________________________
+</font>
+</center>
+<pre>
+</pre>
+
+
+<a name="multiple_files_2"></a>
+<b><u>Step-2: adding multiple file-types</u></b>
+<br>
+Now that we've done the actual installation of the program we can continue by adding several types 
+of files for it to handle.
+<br>
+As you can see, the &quot;Install application&quot; window doesn't allow for any more than one type 
+of file to be handled by each program, so we have to bypass this limitation by manually editing the 
+&quot;NEWDESK.INF&quot; file, which is where all information about program installations, icons, 
+window placements and other things related to TOS are stored.
+
+<p>
+What we're about to do here is a little more complicated than pointing and clicking with the mouse, but 
+by carefully following this guide even novices should be able to handle it.
+<p>
+<ul>
+<li>Locate &quot;NEWDESK.INF&quot;. If you have a hard disk you'll find it in the root 
+(not inside any folder) of the boot (startup) drive (which is most likely drive C). 
+<br>
+If you don't have a hard disk you'll probably find it on your 
+<a href="tips.htm#boot_floppy">boot floppy disk</a>
+
+<li>Make a backup copy of this file. Rename the backup to something like &quot;NEWDESK.BAK&quot; or whatever 
+you like. In case something goes wrong you can always delete the current &quot;NEWDESK.INF&quot; 
+(non-working/messed up) file and replace it with the (working) backup and try to do the editing again.
+
+<li>You will need an ASCII text editor such as 
+<a href="software.htm#everest">&quot;Everest&quot;</a> or 
+<a href="software.htm#7up">&quot;7up&quot;</a> which are two popular text editors among 
+many. You may prefer another editor which is fine as long as it doesn't remove trailing spaces, change 
+line-ending characters, wrap text or otherwise mess up the file in any way.
+
+<li>Open &quot;NEWDESK.INF&quot; with your text editor and scroll down until you find the line 
+we're looking for which concerns GrafTool. It should look a little something like this 
+(don't worry about the file-path as its location on my hard disk is probably different from 
+yours)....
+<p>
+&nbsp;&nbsp;&nbsp;<IMG SRC="../images/graftl2.gif" WIDTH=566 HEIGHT=189 alt=" ">
+<p>
+(Note: if you've placed an icon of GrafTool on the desktop the above file will also include that information. 
+This is not the part we want to change. Look at the end of the line which in this case contains <b>*.IMG</b> 
+to indicate that it handles .IMG files).
+
+<li>Next we're going to copy that whole line two times (since we want to add two new file-types: .JPG and .GIF)
+<br>
+Assuming you know the basics of using a computer and a text editor, copy <b>the whole line</b> which also includes 
+a space at the end. Be sure to drag the mouse at the very end of the line and not just what you see.
+<br>
+Insert the copied line underneath the first one, then again. You should now have 3 identical lines of text. 
+Be careful that you don't edit anything else in the file. Stick to the above.
+<p>
+&nbsp;&nbsp;&nbsp;<IMG SRC="../images/graftl3.gif" WIDTH=566 HEIGHT=189 alt=" ">
+<p>
+
+<li>Now that we have those 3 identical lines defining GrafTool to handle .IMG files we can go ahead and define 
+those 2 extra types of files (.IMG and .JPG)... 
+<br> 
+Leave the first line alone (because we still want it to handle .IMG files), but move on to the second line. 
+Change <b>*.IMG</b> at the end of the line to <b>*.GIF</b>.
+<br>
+Move on to the third line and change <b>*.IMG</b> to <b>*.JPG</b>. The three lines should now look something like 
+this: 
+<p>
+&nbsp;&nbsp;&nbsp;<IMG SRC="../images/graftl4.gif" WIDTH=566 HEIGHT=189 alt=" ">
+<p>
+
+<li>Save the file within your text-editor, making sure that you haven't touched anything else as this will 
+only give you problems unless you know what you're doing. For more information about the 
+&quot;NEWDESK.INF&quot; file and hacks similar to the above, read 
+<a href="surv_kit.htm">the Atari TOS desktop survival kit</a> as this will explain each line of 
+the desktop file in detail.
+
+<li>Reboot (restart) the computer. This will load the new settings you've just made into memory.
+
+<li>Try double-clicking .JPG, .GIF and .IMG files. They should all open up and be displayed by GrafTool.
+</ul>
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+<a name="parameters"></a>
+<b><u>Installation parameters</u></b>
+<br>
+TOS 2.06 allows you to define several useful parameters which are unfortunately a little complicated 
+to figure out as they're not obvious and haven't been very well documented anywhere. 
+<br>
+I've covered all of the settings elsewhere in this user-guide, but three of them are a bit more complicated 
+and need some further explanation. 
+I'll try to shed some light on this and clear up a few details...
+<p>
+Single-click (to select) a program, then go to the &quot;Options&quot; menu and select 
+<a href="options.htm#install_app">&quot;Install Application&quot;</a> which will present 
+you with the following window:
+
+<p>
+&nbsp;&nbsp;&nbsp;<IMG SRC="../images/opt6.gif" WIDTH="310" HEIGHT="326" alt=" ">
+<p>
+
+Any program can of course be run by double-clicking it, but by &quot;installing&quot; programs 
+you will gain certain benefits and extra features, such as:
+<ul>
+<li>Whenever a file of a certain type is double-clicked on the desktop, that program is 
+used to open it (i.e. a graphic viewer is used to display a &quot;.IMG&quot; or &quot;.GIF&quot; image file)
+<li>A program can be started by pressing an F-key (function key).
+<li>Certain types of programs can have additional parameters added to perform user-configurable tasks 
+(i.e. &quot;.TTP&quot; type programs accepting UNIX type command line input) 
+<li>A program can have its default directory changed (i.e. the currently active window is the one 
+which pops up when opening/saving a file using the file-selector).
+<li>A program can be started automatically as soon as the desktop appears. Useful for programs which you 
+<b>always</b> run whenever you turn on the computer (i.e. replacement desktop programs or situations 
+where you end up using the computer only for one specific program). 
+</ul>
+
+Note: it's a common misconception that every program needs to be installed. 
+<br>
+Installation only adds specific parameters which might be needed to instruct certain programs on 
+how to behave. Other programs can be used to their full extent without any prior installation.
+<p>
+In the case of programs not being installed, the 
+<a href="#dir_param">&quot;Default Directory&quot; and &quot;Parameter&quot; settings</a> 
+(as explained in detail below) 
+<br>
+from the <a href="#parameters_non_inst">&quot;Desktop configuration&quot;</a> menu are used. 
+(note that some programs rely on specific settings here in order to work! Read on....).
+
+
+<pre>
+
+</pre>
+<center>
+<!-- ## separator line in blue ## -->
+<font color="blue">
+____________________________________________
+</font>
+</center>
+<pre>
+</pre>
+
+
+<a name="param_arguments"></a>
+<b><u>Arguments</u></b> 
+<br>
+Programs with &quot;.TTP&quot; (or &quot;.GTP&quot;) endings aren't 
+normal Atari ST programs as they don't have graphical menus/windows/mouse control but instead rely 
+on something as old-fashioned as command-line input (remember when you had to type in complicated 
+commands using MSDOS or UNIX?).
+<br>
+Not very user-friendly, and totally a waste of time in this day and age, right? Not necessarily...
+<ul>
+<li>They're compact and effective (adding graphical menus/windows takes up memory and computer resources).
+<li>They're easier to make than normal GEM type programs (a programmer can concentrate fully on the application 
+itself and not the graphical user-interface).
+<li>Cross platform compatibility (many of these programs originate from UNIX environments and wouldn't normally 
+be available for our favourite computer had it not been for the ability to run them in addition to the usual 
+GEM programs!).
+<li>Configurable (using a command-line you can virtually do just about anything with these types of programs. 
+Many of these things can also be done when installed within the TOS 2.06 desktop itself as I will explain here).
+<li>Some programs are only available as .TTP types as there aren't any GEM equivelants available for the specific task.
+</ul> 
+&nbsp;&nbsp;&nbsp;<IMG SRC="../images/zipjr.gif" WIDTH="310" HEIGHT="326" alt=" "> 
+<p>
+In this example we'll be using &quot;ZIPJR.TTP&quot; to decompress any .ZIP file by simply double-clicking 
+them. 
+<br>
+&quot;ZIPJR.TTP&quot; has several parameters/options, and as you can see we've used 3 of them. According 
+to the &quot;STzip&quot; documentation (which also includes &quot;ZIPJR.TTP&quot; among its programs), 
+these parameters do the following: 
+
+<p>
+<ul>
+<li><b>x</b>: expand (decompress) the .ZIP file
+<li><b>r</b>: recursive action (all folders, sub-folders and files contained within will be decompressed).
+<li><b>g</b>: folder (a new folder will be created for the contents of the decompressed file -this is 
+very useful for situations where the file hasn't been compressed within a folder resulting in files 
+scattered all over the place. But in most situations people have been considerate enough to put the files inside 
+a folder which in this case results in a folder surrounded by a folder which you'll probably want to move out of 
+afterwards. You decide what's most useful!).
+</ul>
+
+<p>
+<b>IMPORTANT:</b> Please note that there's an empty space at the end of the arguments! 
+If you forget about this it won't work. Also remember to add a &quot;-&quot; at the beginning as this is 
+the usual way a command line option is given.
+<br>
+Translated into what a command-line text input of this would look like (using a command line shell such 
+as <a href="software.htm#gemini">&quot;Gemini&quot;</a>) with a .ZIP file named &quot;TESTFILE.ZIP&quot;:
+<p>
+<pre>
+       ZIPJR.TTP -xrg TESTFILE.ZIP
+</pre>
+Without the space at the end you'd end up with the following (which of course doesn't make sense and won't work): 
+<p>
+<pre>
+       ZIPJR.TTP -xrgTESTFILE.ZIP
+</pre>
+
+<p>
+Other &quot;.TTP&quot; (or &quot;.GTP&quot;) programs may use other &quot;arguments&quot; and have other minor 
+differences in order to work, but the principle is the same as in the above example. In addition to reading the 
+documentation you might have to spend a little time experimenting to get it right.      
+
+
+<pre>
+</pre>
+<center>
+<!-- ## separator line in blue ## -->
+<font color="blue">
+____________________________________________
+</font>
+</center>
+<pre>
+</pre>
+
+
+<a name="dir_param"></a>
+<b><u>Default directory/Input parameter</u></b> 
+<br>
+Now let's move on to a couple of options determining where files are located (so the program can 
+find its files!). 
+<br>
+In the following example we've <a href="options.htm#install_app">installed</a> the ASCII text-editor 
+<a href="software.htm#7up">&quot;7up&quot;</a>.
+<p>
+&nbsp;&nbsp;&nbsp;<IMG SRC="../images/opt6.gif" WIDTH="310" HEIGHT="326" alt=" ">
+
+
+<pre>
+
+</pre>
+
+
+<a name="default_dir"></a>
+<b><u>Default dir:</u></b> 
+<br>
+This is the directory where the program starts looking for its files 
+(many programs have setup and resource (.RSC) files) and some of these programs are too &quot;stupid&quot; to know 
+where to look for them. Other programs know where they're located regardless of the setting here. 
+So it's hard to set a general rule for all software.
+<br>
+Be prepared to spend a little time experimenting with certain programs until you get it right.
+
+<ul>
+<li><b><u>Application:</u></b> The program will look for files within its own folder, which is 
+usually where it'll find the files to begin with!
+
+<li><b><u>Top Window:</u></b> The program will look for its files in whichever window is &quot;topped&quot; 
+(or currently &quot;active&quot;) on the TOS 2.06 desktop. This is handy if you are working with files from 
+the desktop (i.e. you have an open window with some text files you'd like to work with) as the file-selector 
+within your text-editor will default to this folder every time you &quot;open&quot; or &quot;save as&quot;.
+</ul>
+
+
+<pre>
+</pre>
+<center>
+<!-- ## separator line in blue ## -->
+<font color="blue">
+____________________________________________
+</font>
+</center>
+<pre>
+</pre>
+
+
+<a name="param"></a>
+<b><u>Parameter:</u></b> 
+<br>
+The parameter defines how a file is sent to the program. This applies to 
+the following situations:
+<ul>
+<li>When a file is &quot;dragged and dropped&quot; on to the program's icon.
+<li>When a file is double-clicked (as long as a program is installed to automatically open that 
+<a href="options.htm#install_app">document type</a>).
+</ul>
+<p>
+&nbsp;&nbsp;&nbsp;<IMG SRC="../images/dragdrop.gif" WIDTH="141" HEIGHT="91" alt=" ">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<IMG SRC="../images/d_click.gif" WIDTH="72" HEIGHT="49" alt=" ">
+<p>
+(The parameter setting does not affect setup, resource (.RSC) or other files which the program 
+needs in order to work properly. Their locations are defined by the program itself, or by the 
+<a href="#default_dir">default directory</a> setting).
+
+<p>
+The two possible parameter settings are:
+<ul>
+<li><b><u>Full Path:</u></b> The program is told the full path (i.e. <b>F:\TEXT\README.TXT</b>) of 
+the file, giving the exact location regardless of where the program starts looking.
+
+<li><b><u>File Name:</u></b> The program is only told the name of the file (i.e. <b>README.TXT</b>) 
+and nothing else.
+<br>
+This is fine if we happen to be inside that exact folder where the file is, but what happens if 
+we're inside another folder, or even on a different drive? The program simply won't have any clue as to 
+where the file is and won't find it.
+</ul>
+
+
+<pre>
+</pre>
+<center>
+<!-- ## separator line in blue ## -->
+<font color="blue">
+____________________________________________
+</font>
+</center>
+<pre>
+</pre>
+
+
+<a name="dir_param_examples"></a>
+<b><u>Default directory/Parameter examples</u></b> 
+<br>
+There are 4 possible combinations of the &quot;Default directory&quot; and 
+&quot;Parameter&quot; settings. The different settings give different results for different 
+programs. Some of the more &quot;intelligent&quot; programs don't need to rely that much on these 
+settings while others rely completely on them.
+
+<p>
+We'll take an example of the latter, where we will be using the ASCII text editor 
+<a href="software.htm#7up">&quot;7up&quot;</a> (version 2.09e) to open a text file named &quot;README.TXT&quot;.
+<br>
+The program and the text file are located on two separate drives:
+<ul>
+<li>The 7up folder (<b>D:\TEXTEDIT\7UP\</b>):
+	<ul type="disc">
+	<li><b>7UP_209E.APP</b> (the program itself)
+	<li><b>7UP.RSC</b> (the resource file -essential!)
+	<li><b>7UP.INF</b> (the setup file -will work without it, but contains my favourite settings...)
+	<li><b>7UP.LAY</b> (the layout file -will work without it, but contains my favourite settings...)
+	</ul>
+<li>The text-file folder (<b>F:\TEXT\</b>):
+	<ul type="disc">
+	<li><b>README.TXT</b>
+	</ul>
+</ul>
+
+<p>	
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="../images/example.gif" WIDTH=370 HEIGHT=265 alt=" ">
+<p>
+<ul>
+<li>In the examples below we will drag (and drop) <b>README.TXT</b> over to <b>7UP_209E.APP</b>. 
+<li>The objective of course is to have 7up <b><u>open up the text file</u></b> and 
+<b><u>open (and use) all of its setup files</u></b>, but as we will see, not all settings 
+of &quot;Default directory&quot; and &quot;Parameter&quot; will allow for all of this...
+</ul>
+
+
+
+<pre>
+
+</pre>
+
+<a name="example1"></a>
+<b><u>Example 1</u></b> 
+<br>
+In this example 7up is <a href="options.htm#install_app">installed</a> with 
+the following directory/path settings:
+<p>
+<b>Default directory</b>: <b><u>Top window</u></b> 
+<br>
+<b>Parameter</b>        : <b><u>File name</u></b>
+<p>
+&nbsp;&nbsp;&nbsp;<IMG SRC="../images/dirpar1.gif" WIDTH=310 HEIGHT=326 alt=" ">
+<p>
+
+<ul>
+<li>The default directory is the <b><u>Top Window</u></b> which is the window 
+we have open on the desktop and contains the text file (&quot;README.TXT&quot;). So this file is 
+found and opened.
+
+<li>But 7up won't find its setup files (&quot;7UP.INF&quot; and &quot;7UP.LAY&quot; which are 
+located in the same folder as the program itself) because it only 
+looks inside the <b><u>Top Window</u></b> directory.
+
+<li>The <b><u>File Name</u></b> parameter setting gives sufficient information for 7up to find 
+the text file (&quot;README.TXT&quot;) within the <b><u>Top Window</u></b> where it's told to look.
+<br>
+The setup files (&quot;7UP.INF&quot; and &quot;7UP.LAY&quot;) still can't be found as the parameter 
+settings don't apply for program-dependant files such as these.
+
+<li>Whenever we &quot;Open&quot; or &quot;Save as...&quot; a file within 7up, the file-selector 
+defaults to the active (<b><u>Top Window</u></b>) folder on the desktop.
+</ul>
+
+
+<pre>
+
+</pre>
+<a name="example2"></a>
+<b><u>Example 2</u></b> 
+<br>
+In this example 7up is <a href="options.htm#install_app">installed</a> with 
+the following directory/path settings:
+<p>
+<b>Default directory</b>: <b><u>Top window</u></b> 
+<br>
+<b>Parameter</b>        : <b><u>Full path</u></b>
+<p>
+&nbsp;&nbsp;&nbsp;<IMG SRC="../images/dirpar2.gif" WIDTH=310 HEIGHT=326 alt=" ">
+<p>
+<ul>
+<li>The default directory is the <b><u>Top Window</u></b> which is the window 
+we have open on the desktop and contains the text file (&quot;README.TXT&quot;). So this file is 
+found and opened.
+
+<li>But 7up won't find its setup files (&quot;7UP.INF&quot; and &quot;7UP.LAY&quot; which are 
+located in the same folder as the program itself) because it only 
+looks inside the <b><u>Top Window</u></b> directory.
+
+<li>The <b><u>Full Path</u></b> parameter setting gives sufficient information for 7up to find 
+the text file (&quot;README.TXT&quot;). Actually it gives more information than necessary as 7up starts 
+looking inside the <b><u>Top Window</u></b> folder, and only knowing the name of the file would suffice.
+<br>
+The setup files (&quot;7UP.INF&quot; and &quot;7UP.LAY&quot;) still can't be found as the parameter 
+settings don't apply for program-dependant files such as these.
+
+<li>Whenever we &quot;Open&quot; or &quot;Save as...&quot; a file within 7up, the file-selector 
+defaults to the active (<b><u>Top Window</u></b>) folder on the desktop.
+</ul>
+
+
+<pre>
+
+</pre>
+<a name="example3"></a>
+<b><u>Example 3</u></b> 
+<br>
+In this example 7up is <a href="options.htm#install_app">installed</a> with 
+the following directory/path settings:
+<p>
+<b>Default directory</b>: <b><u>Application</u></b> 
+<br>
+<b>Parameter</b>        : <b><u>File name</u></b>
+<p>
+&nbsp;&nbsp;&nbsp;<IMG SRC="../images/dirpar3.gif" WIDTH=310 HEIGHT=326 alt=" ">
+<p>
+
+<ul>
+<li>7up's default directory is the <b><u>Application</u></b> folder which is where 
+7up itself is located, thus all needed setup files along with the program are found and used.
+
+<li>The text file (&quot;README.TXT&quot;) however isn't found.
+
+<li>The <b><u>File Name</u></b> parameter setting prevents 7up from finding the 
+text file (&quot;README.TXT&quot;) because only the name (&quot;README.TXT&quot;) is provided. 
+<br>
+7up isn't given sufficient information about its location and only looks inside its own folder 
+(<b><u>Application</u></b> directory) for the name of the file (&quot;README.TXT&quot;)
+
+<li>Whenever we &quot;Open&quot; or &quot;Save as...&quot; a file within 7up, the file-selector 
+defaults to the same folder as where 7up is found (<b><u>Application</u></b> directory).
+</ul>
+
+
+<pre>
+
+</pre>
+<a name="example4"></a>
+<b><u>Example 4</u></b> 
+<br>
+In this example 7up is <a href="options.htm#install_app">installed</a> with 
+the following directory/path settings:
+<p>
+<b>Default directory</b>: <b><u>Application</u></b> 
+<br>
+<b>Parameter</b>        : <b><u>Full path</u></b>
+<p>
+&nbsp;&nbsp;&nbsp;<IMG SRC="../images/dirpar4.gif" WIDTH=310 HEIGHT=326 alt=" ">
+<p>
+
+<ul>
+<li>7up's default directory is the <b><u>Application</u></b> folder which is where 
+7up itself is located, thus all needed setup files along with the program are found and used.
+
+<li>The text file (&quot;README.TXT&quot;) is found and opened.
+
+<li>The <b><u>Full Path</u></b> parameter setting makes it possible for 7up to find the text 
+file (&quot;README.TXT&quot;) even though it only looks through its own folder 
+(<b><u>Application</u></b> directory) to begin with. By supplying the entire 
+path (F:\TEXT\README.TXT) 7up will know exactly where to find the file.
+
+<li>Whenever we &quot;Open&quot; or &quot;Save as...&quot; a file within 7up, the file-selector 
+defaults to the same folder as where 7up is found (<b><u>Application</u></b> directory).
+</ul>
+
+
+<pre>
+</pre>
+<center>
+<!-- ## separator line in blue ## -->
+<font color="blue">
+____________________________________________
+</font>
+</center>
+<pre>
+</pre>
+
+
+<a name="example_notes"></a>
+<b><u>Additional notes about default directories and windows</u></b> 
+<br>
+In all of the examples above, the text file (&quot;README.TXT&quot;) is made available by having 
+its directory window opened on the desktop.
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="../images/filewind.gif" WIDTH="226" HEIGHT="168" alt=" ">
+<p>
+
+If you find yourself working on the same file a lot it might be more convenient to make 
+<a href="options.htm#icon_desk">a shortcut of this file on the desktop</a>, which is easily done by 
+dragging the file's icon on to the desktop (nstead of having to open the file's directory window 
+all the time).
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="../images/dskicn5.gif" WIDTH="75" HEIGHT="38" alt=" ">
+<p>
+From then on you can work with it in just the same way as you did before (when you had the file's own 
+directory window open)....
+  
+<ul>
+<li>The file is &quot;dragged and dropped&quot; on to the program's icon.
+<li>The file is double-clicked (as long as a program is installed to automatically open that 
+<a href="options.htm#install_app">document type</a>).
+</ul>
+
+<pre>
+
+</pre>
+As we will see, these same actions will give different results (when 
+<a href="#default_dir">&quot;Default directory&quot;</a> is set to <b><U>Top Window</u></b>) 
+as this <b><U>Top Window</u></b> may now be a completely different one, or there may not 
+even be any window open on the desktop at all!
+
+<p>
+<b><u>When the <b><u>Top Window</u></b> on the desktop is different from 
+where the file (i.e. &quot;README.TXT&quot;) is located:</u></b>
+<ul>
+<li>With <a href="#param">parameter</a> set to <b><u>File Name</u></b>:
+	<ul type="disc">
+	<li>The file (&quot;README.TXT&quot;) isn't found and thus can't be opened by 7up because 
+	it's told to look only inside the current <b><u>Top Window</u></b> which is not where 
+	the text file on the desktop is located. 
+	The <b><u>File Name</u></b> parameter setting doesn't give 7up enough information to be able 
+	to locate it. 
+	<li>Whenever we &quot;Open&quot; or &quot;Save as...&quot; a file within 7up, the file-selector 
+defaults to the currently active (<b><u>Top Window</u></b>) folder on the desktop.
+	</ul>
+<li>With <a href="#param">parameter</a> set to <b><u>Full Path</u></b>:
+	<ul type="disc">
+	<li>The file (&quot;README.TXT&quot;) is found and opened by 7up as it now has sufficient 
+	information about its location (F:\TEXT\README.TXT), given the <b><u>Full Path</u></b> setting, 
+	despite the <b><u>Top Window</u></b> not being where the file is located.
+	<li>Whenever we &quot;Open&quot; or &quot;Save as...&quot; a file within 7up, the file-selector 
+defaults to the currently active (<b><u>Top Window</u></b>) folder on the desktop.
+	</ul>
+</ul>
+
+
+<p>
+<b><u>When there are no open windows on the desktop at all:</u></b>
+<ul>
+<li>With <a href="#param">parameter</a> set to <b><u>File Name</u></b>:
+	<ul type="disc">
+	<li>The file (&quot;README.TXT&quot;) isn't found and thus can't be opened by 7up because 
+	it's told to look only inside the current <b><u>Top Window</u></b> which is not where 
+	the text file on the desktop is located. 
+	The <b><u>File Name</u></b> parameter setting doesn't give 7up enough information to be able 
+	to locate it. 
+	<li>Whenever we &quot;Open&quot; or &quot;Save as...&quot; a file within 7up, the file-selector 
+defaults to the same folder as where 7up is found (<b><u>Application</u></b> directory) as there is 
+no longer any <b><u>Top Window</u></b> available.
+	</ul>
+<li>With <a href="#param">parameter</a> set to <b><u>Full Path</u></b>:
+	<ul type="disc">
+	<li>The file (&quot;README.TXT&quot;) is found and opened by 7up as it now has sufficient 
+	information about its location (F:\TEXT\README.TXT), given the <b><u>Full Path</u></b> setting, 
+	despite the <b><u>Top Window</u></b> not being where the file is located.
+	<li>Whenever we &quot;Open&quot; or &quot;Save as...&quot; a file within 7up, the file-selector 
+defaults to the same folder as where 7up is found (<b><u>Application</u></b> directory) as there is 
+no longer any <b><u>Top Window</u></b> available.
+	</ul>
+</ul>
+
+
+
+
+
+<pre>
+
+
+</pre>
+<center>
+<!-- ## separator line in red ## -->
+<font color="red">
+____________________________________________
+</font>
+</center>
+<pre>
+
+
+</pre>
+
+
+<a name="parameters_non_inst"></a>
+<b><u>Installation parameters (for non-installed applications)</u></b>
+<br>
+Go to the &quot;Options&quot; menu, then select 
+<a href="options.htm#desktop_config">&quot;Desktop Configuration&quot;</a> which gives you the ability 
+to configure certain global settings.
+<p>
+&nbsp;&nbsp;&nbsp;<IMG SRC="../images/opt1.gif" WIDTH="318" HEIGHT="348" alt=" ">
+<p>
+The settings in this window have been explained earlier in the sections about 
+<a href="options.htm#desktop_config">the &quot;Options&quot; menu</a>, but we will now take 
+a closer look at the following:
+<p>
+<b><u>Set default directory as:</u></b>
+<br>
+... and
+<br>
+<b><u>Set input parameter:</u></b>
+<p>
+These are the same two settings you'll find when 
+<a href="options.htm#install_app">installing an application</a> (the &quot;Options&quot; menu). 
+There are however a couple of differences and things to keep in mind:
+
+<ul>
+<li>The settings here apply for any program which is <b>NOT</b> already installed.
+<li>The settings here become the default settings whenever you install 
+<a href="options.htm#install_app">install a program</a> (these can of course be changed 
+for that program if you wish).
+</ul>
+
+<p>
+...... keeping this in mind, read the detailed explanation on 
+<a href="#dir_param">how these parameters are used</a>.
+
+
+
+<pre>
+</pre>
+<center>
+<!-- ## separator line in blue ## -->
+<font color="blue">
+____________________________________________
+</font>
+</center>
+<pre>
+</pre>
+
+
+<a name="config_ok"></a>
+<b><u>A configuration that works with all programs</u></b> 
+<br>
+The default settings (if you haven't changed anything yourself, or don't have a <b>NEWDESK.INF</b> file 
+available) in <a href="options.htm#install_app">Desktop Configuration</a> concerning 
+default director and parameter are as follows:
+<p>
+<b>Default directory</b>: <b><u>Top window</u></b> 
+<br>
+<b>Parameter</b>        : <b><u>File name</u></b>
+<p>
+....which works with most programs, but not everything.
+
+<blockquote> 
+Remember... the settings in 
+&quot;Desktop Configuration&quot; found in the &quot;Options&quot; menu apply to any programs 
+previously NOT <a href="options.htm#install_app">installed</a>, which in other words probably means 
+the majority of all your software. 
+</blockquote>
+
+<pre>
+</pre>
+However, the following setting are guaranteed to work with any program:
+<p>
+<b>Default directory</b>: <b><u>Application</u></b> 
+<br>
+<b>Parameter</b>        : <b><u>Full path</u></b>
+<p>
+&nbsp;&nbsp;&nbsp;<IMG SRC="../images/conf_ok.gif" WIDTH=318 HEIGHT=348 alt=" ">
+<p>
+... so why didn't Atari use this setting as default in the first place?
+<br> 
+An estimated guess is that by using &quot;Top window&quot; as the default directory, whenever you open 
+the file-selector in a program (to open or save a file) it'll default to the same window you opened the 
+file from on the desktop. Very practical for the user, but completely useless if the program won't 
+find its files! 
+<br>
+So to rectify any such problems you end up with two choices, depending on how the majority of 
+your software prefers these settings to be and your choice in the matter:
+<ul>
+<li>Go to <a href="options.htm#desktop_config">Desktop Configuration</a> and set it as follows:
+<br>
+
+<b>Default directory</b>: <b><u>Application</u></b> 
+<br>
+<b>Parameter</b>        : <b><u>Full path</u></b>
+<p>
+
+This'll ensure that all programs will find its needed files, but also that you'll loose the luxery of 
+having the file-selector default to your active/top window contents each time you load/save a file.
+<br>
+Use this setting if the majority of your software doesn't work with the default settings, then for 
+software that needs (or can work with) other settings (giving the mentioned advantage of the top/active 
+window's default path) you just <a href="options.htm#install_app">install</a> those programs. 
+</ul>
+...or
+<ul>
+<li>Leave the <a href="options.htm#desktop_config">Desktop Configuration</a> as it's set by default:
+<br>
+<b>Default directory</b>: <b><u>Top window</u></b> 
+<br>
+<b>Parameter</b>        : <b><u>File name</u></b>
+<p>
+Most modern software will work fine with these settings, and in addition give you the advantage of 
+having the file-selector default to your top/active window whenever you try to open/save a file. 
+<br>
+If the majority of your software works with these options then stick with it, and 
+just <a href="options.htm#install_app">install</a> the few additional programs which don't. This is probably 
+the overall best solution for most people. 
+<p>
+Also remember that each <a href="options.htm#install_app">installation</a> of a program takes up 
+<a href="options.htm#save_desktop">additional memory</a> (especially related to saving the desktop), 
+so you really don't want to install more programs than necessary, which is why you should choose the option 
+which applies for the majority of your software.
+</ul>
+
+
+
+
+
+
+<pre>
+
+
+</pre>
+
+<hr>
+<center>
+<a href="../index.htm">main page</a>
+</center>
+
+
+
+</body>
+</html>
