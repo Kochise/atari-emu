@@ -8,24 +8,25 @@
 **EMUL** : various emulators, listed below<br>
 **ROMS** : bios images to run the emulators<br>
 
-| **EMUL**			| [ARAnyM]						| [Gemulator]	| [Hatari]		| [SainT]		| [Steem.SSE]	|
-| :--				| :-:							| :-:			| :-:			| :-:			| :-:			|
-| **Version**		| 1.1.0							| 9.00 CE		| 2.6.1			| 2.40			| 4.2.0 R4		|
-| **Date**			| 2019/04/14					| 2008/11/30	| 2025/08/15	| 2015/12/12	| 2025/09/21	|
-| **Release mouse**	| LShift + LCtrl + LAlt + Esc	| F11			| (borders)		| 				| F11			|
-| **Screenshot**	| PrintScreen					| 				| 				| 				| 				|
-| **Fullscreen**	| ScrollLock					| Alt + Enter	| F11			| 				| 				|
-| **Main menu**		| Pause							| Ctrl + F11	| F12			| F12			| (button)		|
-| **Pause**			| (Main menu)					| 				| Pause			| (Main menu)	| F12			|
-| **Debug**			| LAlt + Pause					| F12			| AltGr + Pause	| (Main menu)	| 				|
-| **(Cold) Reset**	| (LShift +) LCtrl + Pause		| Ctrl+F12		| AltGr + (c)/r	| (Shift +) F11	| 				|
-| **Help**			| 								| 				| PrintSc		| PrintSc		| PageUp		|
-| **Undo**			| 								| 				| ScrollBrk		| ScrollBrk		| PageDown		|
-| **Border**		| 								| 				| AltGr + b		| 				| 				|
-| **Sound**			| AltGr + s						| 				| AltGr + s		| 				| 				|
-| **Quit**			| LShift + Pause				| 				| AltGr + q		| 				| 				|
+| **EMUL**			| [ARAnyM]						| [FalconXP]	| [Gemulator]	| [Hatari]		| [SainT]		| [Steem.SSE]	|
+| :--				| :-:							| :-:			| :-:			| :-:			| :-:			| :-:			|
+| **Version**		| 1.1.0							| 4.04			| 9.00 CE		| 2.6.1			| 2.40			| 4.2.0 R4		|
+| **Date**			| 2019/04/14					| 2023/03/08	| 2008/11/30	| 2025/08/15	| 2015/12/12	| 2025/09/21	|
+| **Release mouse**	| LShift + LCtrl + LAlt + Esc	| (borders)		| F11			| (borders)		| 				| F11			|
+| **Screenshot**	| PrintScreen					| (host)		| 				| 				| 				| 				|
+| **Fullscreen**	| ScrollLock					| (host)		| Alt + Enter	| F11			| 				| 				|
+| **Main menu**		| Pause							| (Tray menu)	| Ctrl + F11	| F12			| F12			| (button)		|
+| **Pause**			| (Main menu)					| 				| 				| Pause			| (Main menu)	| F12			|
+| **Debug**			| LAlt + Pause					| 				| F12			| AltGr + Pause	| (Main menu)	| 				|
+| **(Cold) Reset**	| (LShift +) LCtrl + Pause		| 				| Ctrl+F12		| AltGr + (c)/r	| (Shift +) F11	| 				|
+| **Help**			| 								| F11			| 				| PrintSc		| PrintSc		| PageUp		|
+| **Undo**			| 								| F12			| 				| ScrollBrk		| ScrollBrk		| PageDown		|
+| **Border**		| 								| 				| 				| AltGr + b		| 				| 				|
+| **Sound**			| AltGr + s						| 				| 				| AltGr + s		| 				| 				|
+| **Quit**			| LShift + Pause				| (Tray menu)	| 				| AltGr + q		| 				| 				|
 
 [ARAnyM]: https://github.com/aranym/aranym/releases
+[FalconXP]: https://falcon.xp
 [Gemulator]: http://www.emulators.com/download.htm#ATARIST
 [Hatari]: https://www.hatari-emu.org/
 [SainT]: http://leonard.oxg.free.fr/SainT/saint.html
@@ -42,6 +43,40 @@ Mostly a desktop emulator to run `GEM` application and newer replacement desktop
 * Launch
 
 * Configure each section (could be long)
+
+## FalconXP Player
+
+Atari application interpreter that runs in the background. Allow to execute them like native applications.
+
+Applications are run as fast as the host can, emulating different CPU (68000 to 68060, FPU and DSP) yet with no cycle accuracy at all.
+
+Drive letters are mapped to host drives or folders. Drag and drop, copy and paste work between host system and interpreted applications.
+
+Hardware accesses may cause the interpreter to crash, don't try running drivers and ST games.
+
+**INST** :
+
+* Launch
+
+* A tray icon allows to access parameters and loaded accessories
+* Standard Atari application extensions (see below) are registered
+
+Application extensions: ACC, APP, CPX, PRG, GTP, TOS, TTP
+
+* A few desktop icons are created as shortcuts to screen resolution (see below)
+
+Screen resolution shortcuts: ST LOW, ST MED, ST HIGH, 256, 65K, 16M, 32B
+
+* Double click on an Atari application to run it through the interpreter using default settings
+
+ACC and CPX are added to the tray icon
+
+* Drag an Atari application to a screen resolution shortcut to run it in the desired colour mode
+* Drag a disk image (see below) to a screen resolution shortcut to open it in the desired colour mode
+
+Disk image format: ST/IMA/IMG/DSK, MSA, DIM, STX, IPF/CTR, RAW/HFE/SCP, STT/STG/STW, XFD/SD/DD
+
+The `Player` version cannot create disk image and debug application.
 
 ## Gemulator
 
