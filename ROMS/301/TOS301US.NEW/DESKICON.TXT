@@ -1,0 +1,43 @@
+Dieses Archiv enthÑlt Icons fÅr den DESKTOP 3.01
+
+1.) 32*64 groûe Icons. Diese sind eigentlich zu groû, aber sehen
+    auf dem Desktop gut aus (oder?): DESKICON.GRS (vor Benutzung umbennen !)
+2.) Die von mir auf 32*32 aufgeblasenen Icons: DESKICON.RSC (so muû die
+    Datei fÅr DESK3_01.PRG heiûen.)
+
+Beide Grîûen habe ich den RSC-Dateien von GEMINI entnommen.
+
+
+Wer selber Icons hat, kann folgendermassen vorgehen:
+
+- Ein Formular im RSC-Editor îffnen (Der DESKTOP erlaubt nur ein
+  Formular. Bei mehreren wird nur das erste beachtet. Auûerdem werden
+  die Grîûen der Icons von dem ersten Icon bestimmt. Deswegen habe ich die
+  beiden Dateien nicht zusammengeworfen.).
+
+- Anschlieûend ein Icon in das Formular 'legen/ziehen'. Wenn der RSC-Editor
+  ein Laden eines anderen RSC-Files erlaubt, kînnen Icons aus anderen RSC-
+  Dateien 'entliehen' werden (Ich bin leider zeichnerisch total unbegabt.
+  Daher muss ich zu dieser Mîglichkeit greifen. Man mîge mir verzeihen...).
+  Wenn der RSC-Editor ein Laden eines Icons (DATA/MASK oder umgekehrt??), also
+  reine Bitinformationen zulÑût (Ich empfehle 32*32 Bitimages. Dies ist die
+  normale Grîûe.) kînnen auch andere Dateiformate z.B. ICONDESK eingebunden
+  werden (Wer so ein RSC-Editor hat der dieses ermîglicht: BITTE UPLOAD !!!).
+
+- Maske (z.B. DESKTOP.INF darstellen als ...) ist egal, wird erst im NEWDESK.INF
+  gespeichert.
+
+- Anschlieûend das Speichern nicht vergessen (Ach ne!) und die Datei als
+  DESKICON.RSC in der ROOT des BOOT-Laufwerks ablegen und neu booten (natÅrlich
+  mit DESK3_01.PRG im AUTO-ORDNER ...). Jetzt stehen die neuen Icons zur
+  VerfÅgung.
+
+- Die groûen Icons (32*64) kînnen in der dafÅr vorgesehenen Dialogbox vom
+  Desktop nicht korrekt dargestellt werden. Aber auf dem DESKTOP stimmen sie
+  wieder.
+
+
+Wer zeichnen kann wird sich sowieso seine eigenen 'Bildchen' malen.
+
+Gruû, Tracker
+
