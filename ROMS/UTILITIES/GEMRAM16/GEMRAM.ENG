@@ -1,0 +1,162 @@
+NAME
+     GEMRAM 1.6 [10/15/1993] - Installs GEM in RAM 
+
+DESCRIPTION
+     GEMRAM installs a copy of GEM in RAM. This is necessary if you
+     use patch programs like WINX, ARROWFIX or SHBUF. GEMRAM supports
+     the following official GEM versions:
+     
+        GEM(AES)   TOS
+          1.20     GER 1.00/1.02
+          1.40     GER 1.04/1.06/1.62
+          3.00     GER 3.01
+          3.10     GER 2.05/3.05
+          3.20     GER 2.06/3.06
+          3.31     4.01
+          3.40     4.02-4.04
+
+     GEMRAM identifies GEM by the length of the GEM-TEXT-Segment.
+     GEM Versions of foreign/unknown countries are accepted if the
+     length is identical.
+
+     You can use GEMRAM to set the environment of GEM. To do this
+     put the single environment lines in a file GEMRAM.ENV. GEMRAM
+     looks for this file in the folder \AUTO on the boot drive.
+
+INSTALLATION
+     GEMRAM lives in the \AUTO folder of the boot drive and is called
+     automatically on every re-boot of the system. You should sort
+     the files in the \AUTO folder in a way that GEMRAM runs before
+     programs like WINX, ARROWFIX or SHBUF. The best place for 
+     GEMRAM.ENV is the \AUTO folder too.
+     It's possible to use GEMRAM together with MiNT.
+
+DESCRIPTION OF RESIDENT MEMORY
+
+     vectors                     memory         comment
+
+                           -----------------
+                           | PD  128 Bytes |
+     GEMRAM-Cookie ------> -----------------    -
+                           |    gemramS    |    GEMRAM structure
+                           |               |     (undocumented)
+     _exec_os --- ... ---> |- - - - - - - -| --- ... -----> GEM-TEXT
+                           |               |    installs OSHEADER
+                           | exec_os code  |     in RAM and inserts
+                           |               |     environment
+     _sysbase -----------> |- - - - - - - -|    -
+      (after exec_os)      |   OSHEADER    |    TOS structure
+                           -----------------    -
+                           |               |
+                           |   GEM-TEXT    |
+                           |               |
+     _sysbase->os_magic -> |- - - - - - - -|	in case GEMRAM
+                           |   GEM-MAGIC   |     copies GEM from ROM
+                           |- - - - - - - -|     or loads GEMRAMSYS
+                           |               |
+                           |   GEM-DATA    |
+                           |               | 
+                           -----------------    -
+                           |               |    in case GEMRAM
+                           |    GEM-BSS    |     loads GEMRAMSYS
+                           |               |
+     _gemenvptr ---------> -----------------    -
+      (after exec_os)      |    GEM-ENV    |    in case GEMRAM
+                           |               |     finds GEMRAM.ENV
+     _cookies -----------> -----------------    -
+                           |   cookie jar  |    in case the old
+                           |               |     jar is too small
+                           -----------------
+
+TERMINATE AND KEEP RESIDENT
+     GEMRAM is a TKR-program and made of a TKR-loader, in which the
+     TKR-module 'GEMRAM.TKR' has been inserted. The concept of TKR is
+     that programs, which need resident memory (TKR-modules), get this
+     amount of memory given from another program (the TKR-loader).
+     Following this concept, the TKR-module can be concentrated to its
+     real work and only uses a minimum of memory. The used TKR-Loader
+     can contain an unlimited amount of TKR-modules and other programs.
+     If you press the SHIFT-key while the TKR-Laoder is started, the
+     loader asks for each TKR module if it should be started. The TKR-
+     loader displays the amount of memory that will be kept resident
+     after end of installation.
+
+VEKTORS, COOKIES, ETC.
+     GEMRAM modifies the vector _exec_os. The XBRA id is 'MOGR'.
+     The _sysbase vector points to a copy of the OSHEADER. The os_magic
+     entry of the copy points into the GEM in RAM.
+     GEMRAM generates the cookie 'MOGR'. This cookie holds a pointer
+     to the GEMRAM structure. If the old cookie jar is too small GEMRAM
+     install a bigger one (XBRA 'MOGR').
+
+     Because GEM now runs in RAM all vectors modified by GEM also point
+     into RAM.
+
+     GEMRAM tries to find out the language for its messages looking at
+     the OSHEADER, after this, the _AKP cookie is checked (if existing).
+     On start from Desktop, the environment variable AE_LANG is
+     additionally checked. If the returned language is different from
+     german, english messages are used. The display format for the
+     date is derived from the _IDT cookie and if this cookie does not
+     exist, from the language setting.
+     
+CHANGES
+     v1.6: Additional derelocation infos for more TOS versions
+     v1.5: Second try to support Falcons...
+     v1.4: Small problem with environment fixed
+     v1.3: TOS 4.01-4.04 support; GEMRAM now looks for the ROM GEM 
+           first at the end of the _exec_os XBRA chain and then
+           in OSHEADER; It's possible to install a GEM.SYS file
+           via GEMRAM.SYS
+     v1.2: Support of USA/UK TOS versions; GEM environment;
+     v1.1: Fixed Bug in relocation infos of TOS 1.62
+
+KNOWN PROBLEMS
+     Some programs (TSRs), which try to add themselves into the GEM
+     trap 2, may have problems to do this because the pointer now
+     points into RAM.
+     The environment of GEM 1.20 can't become bigger than 50 bytes.
+     Sometimes it's necessary to switch of the processor cache until
+     the installation of GEMRAM has finished.
+     
+COPYRIGHT
+     Author:     (\/) Martin Osieka
+     Adress:     Martin Osieka, Erbacherstr. 2,
+                 D-64283 Darmstadt, Bundesrepublik Deutschland
+     Internet:   Martin_Osieka@mtk.maus.de
+
+     If you write letters and would like to get an answer, please do
+     not forget to submit a self-adressed envelope with enough
+     international answer coupons or german stamps.
+
+     GEMRAM is freeware and may be distributed in ANY form as long as
+     program and all texts are distributed in a complete, unmodified
+     form. The files are:
+
+         GEMRAM.PRG              program
+         GEMRAM.ENG, GEMRAM.GER  documentation (english, german)
+         GEMRAM.UPL              upload-description (german)
+         GEMRAM.ENV              example of an environment
+
+WARNING
+     This program worked stable and normal behaved for some time in
+     my own programming environment. Besides all tries to avoid bugs
+     in development and testing you have to be aware, that this is
+     based on the analysis of internal GEM Code. GEM has parts, but
+     I wouldn't claim that, what I saw 'structured'. For this reason
+     it easily may happen, that someone misses a point somewhere.
+     And this is in fact VERY easy. For this reason, I include the
+     following message:
+
+     *********************************************************************
+     * THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY AGAINST MISUSE,    *
+     * DATA LOSS, BRAIN DAMAGE, EARTHQUAKE AND WHATEVER MAY HAPPEN       *
+     * BEFORE/AFTER OR WHILE USING IT. IT IS ABSOLUTELY *YOUR OWN* RISK. *
+     *********************************************************************
+
+     This cannot be emphazised enough, if you indeed use this program
+     together with dirty programming trick software.
+
+MANY THANKS TO
+     Normen B. Kowalewski for translation of main parts of this document
+

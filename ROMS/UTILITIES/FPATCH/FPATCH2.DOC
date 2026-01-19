@@ -1,0 +1,13 @@
+This little patch fixes two problems in the Falcon BIOS (TOS 4.00-4.04)
+
+(1) Sound is not initialized properly.
+(2) Bconmap() doesn't work.
+
+To use it, copy FPATCH2.PRG to your AUTO folder.
+
+This patch supersedes FPATCH1.PRG. The former worked by hooking into
+the BIOS trap and intercepting Bconxxx calls. This patch fixes the
+Bconmap problem directly (by setting the Bconmap table size to its
+correct value) and hence requires no resident code. It also has
+the benefit of allowing the Falcon LAN port to be accessed via
+the BIOS.

@@ -1,0 +1,7 @@
+GEMRAM 1.7a BETA [6.6.1994]
+
+Diese GEMRAM Version wurde mit neueren PureC-Libraries gebunden,
+die das Register A2 beim Aufruf eines Traps retten. Es ist zwar
+relativ unwahrscheinlich, dass es deswegen zu Problemen kam, aber
+man kann ja nie wissen (reported by Henry Rolofs).
+

@@ -1,0 +1,37 @@
+  HD_FDC.PRG
+  ----------
+What it does:	changes the disk drive step rate of TOS 2.06 to 3ms.
+
+Where to put it: inside the AUTO folder of your boot disk or boot partition
+of your harddisk.
+
+Why/when do you need it: TOS 2.06 was designed with HD (1.44MB disk drives)
+in mind- these run at a 'step rate' of 6ms, which this TOS version defaults
+to upon booting. If you're not using a HD disk drive or HD disks an
+irritating 'grinding' noise can be heard from the drive. Fortunately this
+can be quitened down by using this program- and that's the purpose of it.
+
+The program has been found several places, but with no 'readme' file of it's
+own. The German text below has been copied from part of a compilation of
+programs.
+
+Hallvard Tangeraas (hallvart@sn.no)
+
+
+-----------------------------------------------------------------------
+ HD_FDC.PRG von H. HOFFMANN
+
+Diese  Programm  gehîrt  in  den  Autoordner.  Es	beseitigt  die  fÅr
+Normallaufwerke  nicht	geeignete  Steprate	von  6  ms	und stellt die
+Steprate  auf	 3  ms  ein. Hierdurch wird unter anderem das auffÑllige
+laute Floppy-GerÑusch beseitigt.
+
+Wie	es   scheint,	 ist	 dieses	Programm mîglicherweise von Artifex
+selbst  in	Umlauf  gebracht worden. Wenn dem tatsÑchlich so ist, warum
+befindet es sich dann nicht auf der dem TOS 2.06 beigefÅgten  Diskette?
+Bloû gut, daû ich das alles nicht verstehen muû.
+
+Der einzige Lichtblick: fÅr dieses Programm muû nichts bezahlt werden.
+
+Und: Kurzanleitung lesen nicht vergessen.
+

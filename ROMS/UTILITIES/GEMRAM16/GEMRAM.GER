@@ -1,0 +1,203 @@
+NAME
+     GEMRAM 1.6 [15.10.1993] - GEM im Speicher installieren
+
+BESCHREIBUNG
+     GEMRAM installiert eine Kopie des GEM im RAM, so daû das GEM von
+     anderen Programmen verÑndert werden kann. GEMRAM gehîrt zur
+     Gruppe  der TOS-abhÑngigen Programme, daher muû es auch an jede
+     neue GEM-Version explizit angepaût werden. Momentan werden
+     folgende offizielle GEM-Versionen unterstÅtzt:
+     
+          GEM    TOS
+          1.20   GER 1.00/1.02
+          1.40   GER 1.04/1.06/1.62
+          3.00   GER 3.01
+          3.10   GER 2.05/3.05
+          3.20   GER 2.06/3.06
+          3.31   4.01
+          3.40   4.02-4.04
+
+     GEMRAM identifiziert das GEM Åber die LÑnge des GEM-TEXT-Segments.
+     GEM Versionen anderer LÑnder werden bei korrekter LÑnge akzeptiert.
+
+     Ist beim Start von GEMRAM die linke SHIFT-Taste gedrÅckt, wird
+     beim Anwender nachgefragt, ob GEMRAM installiert werden soll.
+     GEMRAM meldet bei erfolgreicher Installation die Grîûe des
+     resident gehaltenen Speichers.
+
+     GEMRAM erlaubt es auch das Environment des GEM zu setzen. Das
+     VerÑndern des Environment ist eine Methode, wie der Anwender
+     Informationen an bestimmte Programme Åbergeben kann. Z.B. kann
+     man Åber das Environment definieren, wo das GEM die Resourcen-
+     datei eines Programms suchen soll.
+     
+     GEMRAM sucht beim Aufruf zunÑchst im aktuellen Ordner und dann
+     im Ordner \AUTO nach der Textdatei GEMRAM.ENV. Wird die Datei
+     gefunden, werden die einzelnen Textzeilen in das Environment des
+     GEM Åbernommen. Eine Zeile muû folgendermaûen aufgebaut sein:
+     
+          Variablenname=Variableninhalt
+     
+     Leerzeichen und TABs am Anfang einer Zeile werden ignoriert. 
+     Zeilen, die mit dem Zeichen '#' beginnen, werden nicht Åbernommen.
+     Benutzt man das Zeichen '#' innerhalb einer Zeile, wird es durch
+     die Kennung des Bootlaufwerks ersetzt.
+
+     FÅr Entwickler bietet GEMRAM zusÑtzlich die Mîglichkeit ladbare
+     GEM-Versionen im Speicher zu installieren. Dazu definiert man in
+     GEM.ENV die Environmentvariable "GEMRAMSYS=path". <path> muû dem
+     Pfadnamen des zu ladenden GEM entsprechen (z.B.: "c:\gem.sys").
+     Der Vorteil gegenÅber dem direkten Starten eines GEM.SYS liegt
+     in der saubereren Systemeinbindung und der Patchbarkeit.
+     HINWEIS: Nachfragen beim Autor wegen ladbarer GEM-Versionen sind
+     zwecklos!
+     
+     ErwÑhnen sollte man noch, daû sich die Arbeitsgeschwindigkeit des
+     GEM, durch die Verlagerung vom ROM ins RAM, erhîhen bzw. senken
+     kann. Dies ist davon abhÑngig, wie schnell der Prozessor auf das
+     ROM bzw. das RAM zugreift (diese Daten sollten im Handbuch des
+     Rechners stehen).
+  
+INSTALLATION
+     GEMRAM muû in den Ordner \AUTO auf dem Bootlaufwerk kopiert
+     werden und wird dann automatisch bei jedem Neustart des 
+     Rechners aufgerufen. Die Programme im AUTO-Ordner sollten so
+     sortiert sein, daû GEMRAM spÑtestens vor dem ersten Programm 
+     ausgefÅhrt wird, das GEMRAM benîtigt (wer hÑtte das gedacht :-).
+     GEMRAM.ENV kopiert man am besten ebenfalls in den Ordner \AUTO.
+     GEMRAM arbeitet auch in Verbindung mit MiNT.
+     
+IMPLEMENTIERUNG
+     ZunÑchst versucht GEMRAM das GEM zu identifizieren, das vom System
+     gestartet wird, nachdem der AUTO-Ordner abgearbeitet wurde. Dies
+     kann nur dann gelingen, wenn keines der AUTO-Ordner Programme, die
+     nach GEMRAM gestartet werden, die Vektoren, die auf das GEM zeigen,
+     noch verÑndert.
+     
+     GEMRAM sucht das zu startende GEM zuerst am Ende der XBRA-Ver-
+     kettung des _exec_os-Vektors, dann unter dem Eintrag 'os_magic'
+     im TOS-Deskriptor (OSHEADER). Zur Identifikation des GEM wird die
+     LÑnge des GEM-TEXT-Segments und die GEM-Versionsnummer innerhalb
+     von GEM-TEXT ÅberprÅft.
+     
+     Gelingt die Identifikation, wird geprÅft, ob ein Schreibzugriff
+     auf die GEM-Segmente mîglich ist. Trifft dies zu, befindet sich
+     das GEM bereits im RAM und es wird nur eine Beschreibung des GEM
+     angelegt. Ansonsten werden zusÑtzlich TEXT- und DATA-Segment des
+     GEM in einen residenten Speicherbereich kopiert und an die neue 
+     Adreûlage angepasst. Das BSS-Segment und die Resourcen des GEM
+     werden nicht kopiert. 
+     
+     GEMRAM legt auûerdem eine Kopie des TOS-Deskriptors im RAM an und
+     trÑgt dort in 'os_magic' die Position der GEM-MAGIC Struktur des
+     GEM im RAM ein. 
+
+     Aufbau des residenten Speichers:
+
+     Vektoren                  Speicher         Kommentar
+
+                           -----------------
+                           | PD  128 Bytes |
+     GEMRAM-Cookie ------> -----------------
+                           |    gemramS    |    GEMRAM-Deskriptor
+                           |               |     (undokumentiert)
+     _exec_os --- ... ---> |- - - - - - - -| --- ... -----> GEM-TEXT
+                           |               |    installiert OSHEADER
+                           | exec_os Code  |     im RAM und Åbergibt
+                           |               |     Environment ans GEM
+     _sysbase -----------> |- - - - - - - -|
+      (nach exec_os)       |   OSHEADER    |    TOS-Deskriptor
+                           -----------------
+                           |               |
+                           |   GEM-TEXT    |
+                           |               |    nur falls das GEM aus
+     _sysbase->os_magic -> |- - - - - - - -|     dem ROM kopiert bzw.
+                           |   GEM-MAGIC   |     GEMRAMSYS geladen wurde
+                           |- - - - - - - -|
+                           |               |
+                           |   GEM-DATA    |
+                           |               | 
+                           -----------------
+                           |               |    nur falls GEMRAMSYS
+                           |    GEM-BSS    |     geladen wurde
+                           |               |
+     _gemenvptr ---------> -----------------
+      (nach exec_os)       |    GEM-ENV    |    nur falls GEMRAM.ENV
+                           |               |     gefunden wurde
+     _cookies -----------> -----------------
+                           |   CookieJar   |    nur falls im alten Jar
+                           |               |     kein Platz mehr war
+                           -----------------
+
+     GEMRAM ist ein TKR-Modul, d.h. es wird von einem anderen Programm
+     gestartet, das GEMRAM einen residenten Speicherbereich zur
+     VerfÅgung stellt. Der TKR-Starter meldet die Grîûe des resident
+     gehaltenen Speichers.
+     
+VEKTOREN, XBRAS, COOKIES, ENVIRONMENT, ...
+     Das Programm manipuliert den Systemvektor _exec_os. Die XBRA-
+     Kennung ist 'MOGR'.
+     GEMRAM setzt _sysbase auf eine Kopie des OSHEADERs und Ñndert
+     darin die Variable os_magic.
+     Das Programm erzeugt ein Cookie mit der Kennung 'MOGR'.
+     Der Cookie enthÑlt einen Zeiger auf den GEMRAM-Deskriptor.
+     Ist kein Cookiejar vorhanden, wird ein neuer angelegt. 
+     Ist der Cookiejar zu klein, wird er vergrîûert.
+     Muû ein neuer Cookiejar angelegt werden, wird ein Resetroutine 
+     installiert, die den Jar beim Reset lîscht (XBRA-Kennung 'MOGR').
+     GEMRAM bestimmt die Ausgabesprache zunÑchst aus den OSHEADER,
+     dann Åber den _AKP-Cookie (falls er existiert) und im GEM Åber
+     die Environmentvariable "AE_LANG" (falls sie existiert). Falls
+     als Sprache etwas anderes als Deutsch ermittelt wird, benutzt
+     GEMRAM Englisch. Das Datumsformat wird aus dem _IDT-Cookie
+     bestimmt, falls dieser nicht existiert Åber die Ausgabesprache.
+     Da das GEM jetzt im RAM arbeitet, zeigen auch alle Vektoren die
+     vom GEM nach dem Start verÑndert werden ins RAM (insbesondere
+     der Trap 2.
+     
+éNDERUNGEN
+     v1.6: ZusÑtzliche Derelozierinfos fÅr weitere TOS Versionen
+     v1.5: Elementaren Bug beseitigt, der erst unter TOS 4.xx
+           zu Problemem fÅhrte
+     v1.4: Die erste Zeile im Environment muû jetzt kein Kommentar
+           mehr sein
+     v1.3: Das GEM wird jetzt zunÑchst am Ende der _exec_os-XBRA-Ver-
+           kettung gesucht und erst dann Åber den OSHEADER. Es kann
+           ein ladbares GEM am Ende von _exec_os installiert werden.
+           UnterstÅtzung der TOS-Versionen 4.01-4.04
+     v1.2: GEMRAM.ENV laden und als Environment des GEM einbinden.
+           GEMRAM wird jetzt am Ende der XBRA-Verkettung des _exec_os-
+           Vektors angefÅgt statt am Anfang. 
+           ROM, das beim Beschreiben keinen Buserror auslîst, wird
+           jetzt nicht mehr als RAM akzeptiert.
+           UnterstÅtzung von TOS Versionen aus UK bzw. USA.
+     v1.1: Fehler in TOS 1.62 Relozierung beseitigt.
+
+BEKANNTE PROBLEME
+     Einige Programme, die sich in den GEM Trap 2 einhÑngen,
+     erkennen die Installation des GEM nicht mehr, da der
+     entsprechende Zeiger nicht mehr ins ROM zeigt.
+     Das Environment des GEM 1.20 kann nur max. 50 Bytes groû sein.
+     Ist das GEM in einem ROM, das keinen Buserror beim Schreibzugriff
+     meldet, dann darf ein eventuell vorhandener Prozessorcache
+     erst nach GEMRAM eingeschaltet werden.
+     
+COPYRIGHT
+     Autor:      (\/) Martin Osieka
+     Anschrift:  Martin Osieka, Erbacherstr. 2, 
+                 64283 Darmstadt, Bundesrepublik Deutschland
+     Internet:   Martin_Osieka@mtk.maus.de
+
+     Schriftlichen Anfragen bitte immer einen frankierten und
+     adressierten RÅckumschlag beilegen.
+     
+     Das Programm GEMRAM darf auf beliebige Art und Weise weiter-
+     verbreitet werden, solange alle Dateien des Programmpakets
+     beiliegen. Dazu gehîren:
+
+       GEMRAM.PRG              Programm
+       GEMRAM.GER, GEMRAM.ENG  Dokumentation (deutsch, englisch)
+       GEMRAM.UPL              Upload-Beschreibung (deutsch)
+       GEMRAM.ENV              Beispiel eines Environments
+
+     Die Benutzung des Programms erfolgt auf eigene Gefahr.

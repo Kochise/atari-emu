@@ -1,0 +1,104 @@
+
+BMAPFIX (c) $7C9 Don Maple
+
+Don Maple
+   PF 10 36 21
+   40027 Dusseldorf
+   Germany
+
+   Don_Maple @ kr.maus.de
+   donmaple @ cix.compulink.co.uk
+
+BMAPFIX Versions
+----------------
+Version 2.0         Adds indirect redirection for Bconmap 6 so that even if
+                    serial port is set to 6 (MFP) it will still work. Bmapfix2
+                    simply indirectly redirects all 6 traffic to Bconmap 7.
+
+Version 1.0         First official release version. Applies the fix only to
+                    TOS 4.00 - 4.04 inclusive.
+
+Version -1.0ž       This is a pre-release version for testing only. Also, the
+                    program was called BCONFIX. Use release version instead!
+
+Bmapfix 2.0 dox
+***************
+
+Preamble            Instead of checking TOS version number Bmapfix2 simply 
+==================  checks the _MCH cookie to determine if the fix is needed.
+When _MCH = $0003xxxx the fix is applied. In this way the program will work on
+all future TOS versions without my having to supply a new program every couple
+of days (the rate at which TOS is upgraded... ;-)).
+
+Even though in TOS 5.0 the maximum number of Bconmaps has been fixed, when
+Bconmap is set to 6 the system still hangs. That's to be expected since
+there is no MFP in the Falcon but it's still a drag. So by using some
+alchemy BMAPFIX2 gets around the inconvenience of MFP gone AWOL.
+
+How Do Dey Do Dat   Simple really. When TOS is initialized a table of default
+==================  routines for the 3 Bconmaps is copied to RAM at boot time.
+This table is composed of 18 long words, six entries (Ls) for each of the 3
+Bconmaps. When a Bconmap is changed this table is accessed to load the
+relevant values into the system Bconmap structure. Bmapfix2 simply copies all
+values for Bconmap 7 on top of the values for Bconmap 6. This fools the system
+into using Bconmap 7 routines although it "thinks" it's using Bconmap 6.
+In other words, instead of using MFP routines it uses SCC B routines. The
+proverbial: "Bingo!". No memory resident routines, no XBRAs, no vector wedges,
+no chaff... Like I said, simple!
+
+Bmapfix 1.0 dox
+***************
+
+Who needs this fix  Anybody who runs TOS 4.00 - 4.04 (which at the time of
+==================  writing means the Falcon) and wishes to be able to change
+Bconmap mapping. In plain speak, if you have problems with the Falcon serial
+port this might be the solution.
+
+NOTE: If the problem persists in the future versions of TOS 4.0x the patch
+will be updated to reflect this.
+
+Shake before use    The program can be run either from the Desktop or from
+==================  the AUTO folder. The latter is naturally more convenient.
+Running the program repeatedly does not do any harm as the fix is applied
+only on the first run. If the fix installs OK the program tells you so
+and if not it 'plinks' at you. You get the plink if (in this order):
+1) the TOS version is other than what is tested for,
+2) the TOS does'n even have a Bconmap,
+3) the number of devices in Bconmap is already greater than or equal to 3
+   (i.e., it's already fixed).
+
+What's the problem  Falcon Bconmap table contains 3 devices but the maximum
+==================  number of mappable devices is mistakenly set to 1. To
+make matters worse the default preset in this table is the second entry.
+Confused? Read on. The three Falcon Bconmap devices are 6, 7 and 8. They
+are stored in a table and accessed using indices 1 (for 6), 2 (for 7) and
+3 (for 8). Device 6, however, is MFP which on the Falcon is NOT connected
+to the serial port. Devices 7 and 8 are SCC channels B and A respectivelly.
+
+After booting the default Bconmap device is set to 7 and the number of
+devices in table to 1. This is already inconsistent since 7 is the 2nd
+entry in table and so already greater than the maximum number of devices.
+Therefore, any attempt to change Bconmap ends up setting it to 6 which
+effectively shuts the serial port down. The only Bconmap that can be changed
+to is 6 (first entry) which on the Falcon does not exits. An attempt to
+restore Bconmap to 7 also fails as that is the second entry and therefore
+out of bounds.
+
+The solution        Change number of devices in table to 3. This will make
+==================  all devices available and the problem is solved. The
+user can now map the serial device at will.
+
+Caveat              It is up to the application program to realize that
+==================  device 6 (MFP) on the Falcon no longer services the
+serial port (by using _MCH/TOS version #/premonition/Tarot... etc). It is
+beyond the scope of this patch to deal with that. For the user this means
+that if the serial port is dead even after this fix is applied make sure
+you select the appropriate device i.e., 7 or 8 in your application program.
+Some application programs may blindly use 6 without checking and this patch
+will at least make it possible to change back without rebooting!
+
+Who and how much    Me and nothing! This program is freeware for personal
+==================  use but not for commercial use. In other words OK
+to copy but not to sell, or as I like to put it:
+OK to sell but not to copy... ;-)
+

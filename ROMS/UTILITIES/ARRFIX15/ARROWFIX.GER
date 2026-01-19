@@ -1,0 +1,232 @@
+PROGRAMM
+     ARROWFIX v1.5 [18.10.1993] - 
+     Patches rund um die Scrollroutinen von GEM-AES und GEM-Desktop
+
+BESCHREIBUNG
+     Die Scrollroutinen im GEM wurde im Laufe der TOS-Versionen einigen
+     énderungen unterzogen um das System sicherer und schneller zu
+     machen. Leider haben sich dabei immer wieder Fehler eingeschlichen,
+     die mit ARROWFIX behoben werden kînnen.
+
+     Die einfachste Scrollimplementierung findet sich, wen wundert es,
+     im TOS 1.00. In diesem TOS hatten die Scrollpfeile der Fenster 
+     noch keinen AUTO-Repeat und es war sehr mÅhselig zu scrollen.
+     Dies wurde im TOS 1.02 geÑndert, dabei jedoch ein konzeptionelles
+     Problem im GEM Åbersehen, was dazu fÅhrt, daû in einigen Programmen,
+     bei einem Einzelklick auf einen Scrollpfeil, zweimal gescrollt 
+     wird (1). Dieser Fall tritt genau dann ein, wenn weder die Haupt-
+     applikation noch eines der installierten Accessories auf einen
+     Doppelklick wartet. In der Praxis fÑllt das Problem in TOS 1.02 
+     jedoch nicht auf, da ein anderer 'echter' Fehler seine Wirkung
+     aufhebt. Als dieser Fehler in TOS 1.04 korrigiert wurde, schlug
+     das Problem voll durch und es wurde eine Verzîgerungsschleife ein-
+     gebaut, die auch in den meisten Situationen Abhilfe schafft, aber
+     leider nicht immer. Bis zur aktuellen GEM Version 3.40 in TOS 4.04
+     hat sich daran nichts mehr geÑndert.
+
+     In TOS 2.x/3.x wurde das alte GEM-Desktop durch NEWDESK ersetzt.
+     Da den Entwicklern die Scrollgeschwindigkeit in den Fenstern des
+     Desktops wohl zu langsam war, benutzten sie einen 'schmutzigen'
+     Trick zur Beschleunigung (dabei wird so lange gescrollt, wie eine
+     beliebige Maustaste gedrÅckt ist)(2). Durch diesen Trick wird der
+     Bildschirmmanager kalt gestellt und es lÑuft immer eine Scroll-
+     meldung nach (auch so manches Programm geht leider so vor). 
+     Ab GEM 3.20 (TOS 2.06/3.06) wurde das Versenden der Scrollmeldungen
+     im Bildschirmmanager beschleunigt. Dies wurde erreicht, in dem ein
+     'Bypass' zwischen Bildschirmmanager und der Applikation gelegt
+     wurde. Scrollmeldungen kînnen somit teilweise den langen Weg durch
+     den Nachrichtenmanager des GEM vermeiden. Diese énderung bescherte
+     leider auch eine Reihe von Fehlern. Nachrichten, die den Bypass
+     benutzen, haben eine falsche NachrichtenlÑnge (3) und Åberholen
+     andere Nachrichten (4), die an die Applikation geschickt werden.
+     Auûerdem verschickt der Bildschirmmanager manchmal Nachrichten
+     Åber den Bypass, obwohl er die alte Methode hÑtte benutzen mÅssen.
+     Das fÅhrt dazu, daû die Nachricht hÑngen bleibt (5) und erst nach
+     einer anderen Aktion durch den Anwender ausgefÅhrt wird.
+     
+     In den TOS Versionen 4.00 bis 4.04 wurden die Fehler (3) und (4)
+     behoben und der Scrolltrick (2) entfernt (leider ohne ihn durch
+     eine saubere Lîsung zu ersetzen, wodurch das Scrollen in Desktop-
+     Fenstern bis zu 50% langsamer ist).
+
+     Ein weiterer Fehler, der eigentlich nichts mit dem Scrollen zu tun
+     hat, aber von ARROWFIX behoben wird, hat bisher alle TOS Versionen
+     Åberlebt. In bestimmten Situation kann es passieren, daû einer
+     Applikation ein Mausklick bzw. ein Rechteckereignis gemeldet wird,
+     obwohl dem Bildschirmmanager die Maus zugeordnet ist (6) (z.B. 
+     wenn die Applikation einen Timerevent erhÑlt, wÑhrend man ein
+     Fenster verschiebt).
+
+     Nach der Beschreibung der TOS-Probleme jetzt die Mîglichkeiten  
+     sie mit ARROWFIX los zu werden:
+     
+     Die erste Mîglichkeit erlaubt es leider nur die Probleme (1) und
+     (3) (Doppelereignis und öberlÑnge) zu lîsen. ARROWFIX.PRG muû
+     dazu in den Ordner \AUTO ihres Bootlaufwerks kopiert werden. Beim
+     Start des Rechners installiert sich ARROWFIX dann in den Aufrufen
+     einiger Systemfunktionen.
+
+     FÅr die zweite Mîglichkeit ist ein direkter Eingriff in den
+     Programmcode des GEM notwendig. ARROWFIX beseitigt dann die
+     obigen Fehler, implementiert eine sauberere und schnelle Scroll-
+     routine im GEM-Desktop und erlaubt es schlieûlich die Ansprech-
+     zeit bis zur ersten Wiederholung einer Scrollmeldung einzustellen.
+     
+     Die Unterschiede in der Implementierung des AUTO-Repeats der
+     Scrollpfeile soll das folgende Diagramm beschreiben:
+     
+          normales TOS                    ARROWFIX modifiziertes TOS
+        
+          Klick                           Klick
+            |  Doppelklickwartezeit         | 
+            |  bzw. 0, falls keine App.     |  Doppelklickwartezeit
+            v  auf Doppelklick wartet       v
+           ---                            1. Scrollmeldung
+            |  Doppelklickwartezeit         |
+            |  (erst ab TOS 1.04)           |  *1*
+            v                               v
+          1. Scrollmeldung                2. Scrollmeldung
+            |  Verarbeitungszeit des        |  Verarbeitungszeit des
+            |  Programms                    |  Programms
+            v                               v
+          2. Scrollmeldung                3. Scrollmeldung
+
+          *1* Maximum aus der Ansprechzeit (einstellbar von 0 ab in
+              0.125 Sekunden Schritten, siehe KONFIGURATION) und der
+              Verarbeitungszeit des Programms 
+          Die Doppelklickwartezeit kann Åber das Kontrollfeld ein-
+          gestellt werden. Mîglich sind hier Werte von 0 bis 4, die den
+          folgenden Zeiten entsprechen: 450, 330, 275, 220 und 165 ms.
+                      
+     Der Programmcode des GEM kann folgendermaûen verÑndert werden:
+
+     a) Man installiert beim Booten des Rechners eine Kopie des GEM im
+        RAM, die dann vor dem Start des GEM durch ARROWFIX modifiziert
+        wird. Dies ist mit einem der folgenden Programme mîglich:
+
+        ROMRAM   TOS Beschleuniger fÅr TTs, >256 KB,
+                 Mailbox Maus HH2, Freeware, A. Herzlinger, PTOS
+        VRAM     Virtuelle Speicherverwaltung fÅr TTs, >256 KB,
+                 OverScan GbR, Berlin, Alexander Herzlinger, VRAM
+        ROMSPEED TOS Beschleuniger fÅr TTs (Bestandteil von OUTSIDE
+                 einer virtuelle Speicherverwaltung fÅr TTs), >256 KB,
+                 MAXON Verlag, Uwe Seimet, USRS
+        GEMRAM   GEM im RAM installieren (STs und TTs), 80-120 KB,
+                 Mailbox Maus MZ, Freeware, Martin Osieka, MOGR
+        (Beschreibung, Speicherbedarf, Bezugsquelle, Autor, Cookie)
+
+        ARROWFIX gehîrt in diesem Fall nach diesen Programmen in den
+        Ordner \AUTO auf dem Bootlaufwerk und wird somit beim Booten
+        automatisch gestartet.
+        Die Programme werden nur erkannt, wenn sie das entsprechende
+        Cookie im Cookiejar eingetragen haben.
+        
+     b) Man benutzt ARROWFIX um sich eine modifizierte Kopie des TOS
+        zu erstellen, die anschlieûend in Eproms gebrannt und in den
+        Rechner eingesetzt wird. Hierzu ruft man ARROWFIX vom Desktop
+        auf und erhÑlt dann die Mîglichkeit, das TOS aus den ROMs oder
+        einer bereits bestehenden TOS-Datei von Disk zu laden. Nachdem
+        ARROWFIX das TOS modifiziert hat, kann es abgespeichert werden.
+
+     ARROWFIX unterstÅtzt die folgenden GEM Versionen:
+
+          GEM      TOS
+          1.40     GER 1.04/1.06/1.62
+          3.00     GER 3.01
+          3.10     GER 2.05/3.05
+          3.20     GER 2.06/3.06
+          3.31     4.01
+          3.40     4.02/4.04
+
+     ARROWFIX identifiziert das GEM Åber die LÑnge des GEM-TEXT-Segments.
+     GEM Versionen anderer LÑnder werden bei identischer LÑnge akzeptiert.
+
+KONFIGURATION
+     Die Voreinstellung fÅr die Ansprechzeit betrÑgt 0.375 Sekunden.
+     Durch Umbennen des Programms kann man diesen Wert Ñndern. Hierzu
+     ersetzt man das X im Programmnamen durch eine der Ziffern 0 bis 9.
+     Dieser Wert multipliziert mit 0.125 Sekunden wird dann von ARROWFIX
+     als Voreinstellung benutzt. Besser ist es jedoch die Ansprechzeit
+     Åber das beiliegende Modul ARROWFIX.CPX fÅr das modulare Kontroll-
+     feld XCONTROL.ACC einzustellen.
+     HÑlt man beim Start von ARROWFIX die linke SHIFT Taste gedrÅckt,
+     wird nachgefragt, ob ARROWFIX ausgefÅhrt werden soll.
+
+HINWEISE FöR PROGRAMMIERER
+     - das Doppelscrollproblem kann man leicht vermeiden, wenn man
+       in seinem evnt_multi()-Aufruf immer auch auf einen Doppel-
+       klick wartet:  z.B. evnt_multi( MU_BUTTON|..., 2, 1, 1, ...);
+     - Programme sollten nicht den Bildschirmmanager kalt stellen,
+       in dem sie nach Erhalt einer Scrollmeldung so lange scrollen,
+       wie eine Maustaste gedrÅckt ist. Es gibt auch saubere Methoden
+       ein schnelles Scrollen zu implementieren. Z.B. kann man mit
+         evnt_multi( MU_TIMER|MU_MESAG, ..., mesag, 0, 0, ...);
+       eine eventuell vorliegende Nachricht lesen. Handelt es sich um
+       eine Scrollnachricht, verarbeitet man sie sofort (ACHTUNG: Die
+       Scrollrichtung kann sich geÑndert haben) ansonsten stellt man
+       sie zurÅck und wertet sie erst spÑter aus. Es gibt Bibliotheken,
+       die hierfÅr passende Funktionen anbieten, so daû man nicht mit
+       globalen Variablen arbeiten muû. Beim Scrollen sollte auch
+       regelmÑûig die Ausgabekontrolle abgegeben werden, damit andere
+       Applikationen zum Zuge kommen.
+     - Es ist unbedingt notwendig, beim Verschicken eigener Nachrichten,
+       die öberlaenge in mesag[ 2] korrekt zu setzen, da das GEM diesen
+       Wert intern zum Kopieren der Nachrichten benutzt.
+     
+VEKTOREN, COOKIES, ETC.
+     Kann das GEM modifiziert werden, integrieren sich die Patches in den
+     bestehenden Programmcode des GEM und Ñndern daher keine Vektoren.
+     Falls das Programm installiert werden muû, werden die Vektoren
+     _v_BIOS und _v_AESVDI manipuliert. Die XBRA-Kennung ist MOAF.
+
+BEKANNTE PROBLEME
+     - ARROWFIX >= v1.4 muû nach WINX v2.0 gestartet werden. Das gilt
+       auch fÅr das Patchen eine TOS-Images.
+     - ARROWFIX >= v1.4 kann nicht mit WINX >= v2.1 eingesetzt werden.
+       Das ist aber auch nicht notwendig, da die ARROWFIX-Patches ab
+       dieser Version in WINX enthalten sind.
+     - Bei Programmen, die nach Erhalt einer Scrollnachricht so lange
+       scrollen, wie die Maustaste gedrÅckt ist (und somit den
+       Bildschirmmanager kalt stellen), hat die Ansprechzeit keine
+       Wirkung. Solche Programme werden auch Schwierigkeiten bekommen,
+       falls der Bildschirmmanager einmal erweiterte Scrollfunktion
+       anbieten sollte.
+     - Bei manchen Kombinationen einer Applikation mit bestimmten
+       Accessories wird einem die Verarbeitung der Mausklicks trÑger
+       vorkommen. TatsÑchlich ist es aber so, daû die Verarbeitung
+       jetzt eine einheitliche Geschwindigkeit hat.
+     - Das Abfangen des AES-Traps ist nicht genormt. Aus diesem Grund
+       kann die Zusammenarbeit mit anderen Programm scheitern, die
+       diesen Vektor ebenfalls Ñndern.
+
+éNDERUNGEN
+     v1.5: Programme kînnen kein Rechteckereignis mehr erhalten,
+           wÑhrend einem anderem Programm die Maus zugeordnet ist.
+     v1.4: ARROWFIX kann jetzt auch zum Patchen eines GEM im RAM bzw.
+           in einem TOS-Image benutzt werden; Die Lîsung fÅr das Doppel-
+           scrollproblem wurde neu implementiert; Die Ansprechzeit fÅr
+           die erste Wiederholung einer Scrollnachricht ist einstellbar;
+           Der Verteiler fÅr die Scrollnachrichten im Desktop wurde
+           Åberarbeitet und dadurch auch im GEM 1.40, 3.31 bzw. 3.40
+           deutlich schneller.
+     v1.3: Fehlerhafte Codeerzeugung des Assemblers korrigiert
+     v1.2: ARROWFIX unterstÅtzt nun auch das Programm ROMSPEED
+           Es ist jetzt mîglich ARROWFIX vom Desktop aufzurufen
+
+COPYRIGHT
+     Autor:      (\/) Martin Osieka
+     Anschrift:  Martin Osieka, Erbacherstr. 2, 
+                 64283 Darmstadt, Bundesrepublik Deutschland
+     Internet:   Martin_Osieka@mtk.maus.de
+
+     Schriftlichen Anfragen bitte immer einen frankierten und
+     adressierten RÅckumschlag beilegen.
+     
+     Das Programm ARROWFIX.PRG darf auf beliebige Art und Weise weiter-
+     verbreitet werden, solange alle Dateien des Programmpakets
+     beiliegen. Zum Paket gehîren:
+       ARROWFIX.PRG              Patchprogramm
+       ARROWFIX.GER              Dokumentation
+       ARROFIX.UPL               Upload-Beschreibung
+       ARROWFIX.CPX              Konfigurationsprogramm
+     Die Benutzung des Programms erfolgt auf eigene Gefahr.

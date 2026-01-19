@@ -1,0 +1,101 @@
+PROGRAMM
+     SHBUFnn v1.0 [17.7.1992] - 
+     Patchprogramm zum Vergrîûern der Puffer, die das GEM zur
+     Verwaltung der NEWDESK.INF Datei benîtigt
+
+BESCHREIBUNG
+     Das GEM und das zugehîrige Desktop erlauben es ihre Konfiguration
+     in der Datei NEWDESK.INF (ehemals DESKTOP.INF) zu sichern. Beim
+     Neustart wird diese Datei geladen und ausgewertet. Zur internen
+     Verwaltung der Datei benutzt das GEM statische Puffer, deren
+     Grîûe mit der gewachsenen LeistungsfÑhigkeit des Desktops (ab 
+     GEM 3.0) nicht mitgehalten hat. So kann es leicht passieren, daû
+     man beim Start eines Programms die folgende Meldung erhÑlt:
+       'Kein Systemspeicher mehr frei!'
+     SHBUF erlaubt es die entsprechenden Puffer des GEM von bisher 4KB
+     auf maximal 32KB zu vergrîûern. Hierzu ist allerdings ein
+     Eingriff in den Programmcode des GEM notwendig. Dieser kann auf
+     zweierlei Weise erfolgen:
+
+     a) Man installiert beim Booten des Rechners eine Kopie des GEM
+        im RAM, die dann vor dem Start des GEM durch SHBUF modifiziert
+        wird. Dies ist mit einem der folgenden Programme mîglich:
+
+        ROMRAM   TOS Beschleuniger fÅr TTs, >256 KB,
+                 Mailbox Maus HH2, Freeware, A. Herzlinger, PTOS
+        VRAM     Virtuelle Speicherverwaltung fÅr TTs, >256 KB,
+                 OverScan GbR, Berlin, Alexander Herzlinger, VRAM
+        ROMSPEED TOS Beschleuniger fÅr TTs (Bestandteil von OUTSIDE
+                 einer virtuelle Speicherverwaltung fÅr TTs), >256 KB,
+                 MAXON Verlag, Uwe Seimet, USRS
+        GEMRAM   GEM im RAM installieren (STs und TTs), 80-120 KB,
+                 Mailbox Maus MZ, Freeware, Martin Osieka, MOGR
+        (Beschreibung, Speicherbedarf, Bezugsquelle, Autor, Cookie)
+
+        SHBUF gehîrt in diesem Fall nach diesen Programmen in den
+        Ordner \AUTO auf dem Bootlaufwerk und wird somit beim Booten
+        automatisch gestartet.
+        Die Programme werden nur erkannt, wenn sie das entsprechende
+        Cookie im Cookiejar eingetragen haben.
+        
+     b) Man benutzt SHBUF um sich eine modifizierte Kopie des TOS
+        zu erstellen, die anschlieûend auf Eproms gebrannt und in den
+        Rechner eingesetzt wird. Hierzu ruft man SHBUF vom Desktop
+        auf und erhÑlt dann die Mîglichkeit, das TOS aus den ROMs oder
+        einer bereits bestehenden TOS-Datei von Disk zu laden. Nachdem
+        SHBUF das TOS modifiziert hat, kann es abgespeichert werden.
+        
+     StandardmÑûig vergrîûert SHBUF die Puffer auf 16KB. Da zwei
+     Puffer beim Start des GEM angelegt werden, verliert man 32KB
+     Hauptspeicher (die anderen Puffer existieren nur temporÑr).
+     Durch Umbennen des Programms kann man diese Werte Ñndern. Hierzu
+     gibt man einfach die gewÅnschte Grîûe in KB nach dem Namen an.
+     Benennt man SHBUF.PRG z.B. nach SHBUF9.PRG um, werden 9KB groûe
+     Puffer angelegt und man verliert 18KB Speicher. 
+
+     SHBUF unterstÅtzt die folgenden GEM Versionen:
+     3.0 (TOS 3.01), 3.1 (TOS 2.05/3.05), 3.2 (TOS 2.06/3.06)
+
+HINWEISE FöR PROGRAMMIERER
+     Die Funktion shel_get() des GEM wurde so modifiziert, daû andere
+     Programme die Grîûe der Puffer ermitteln kînnen. Die Funktion
+     liefert jetzt statt dem Returnwert 1 die Anzahl der gelesenen
+     Zeichen (maximal die Grîûe des Puffers). Diese énderung 
+     entspricht vermutlich zukÅnftigen GEM-Versionen. Ein einfaches
+     Beispiel in C zeigt den Umgang mit der neuen FunktionalitÑt:
+     
+       if ((buf = Malloc( 0x7FFFL)) != NULL) {
+         if (shel_get( buf, 2) == 2) {
+           bufsize = shel_get( buf, 0x7FFF);
+         }
+         else {
+           bufsize = 0x1060;  /* bzw. 0x400 bei GEM 1.2 */
+           shel_get( buf, bufsize);
+         };
+         Mshrink( buf, bufsize);
+       };
+
+     Man kann jetzt die Grîûe des Shell-Puffers mit 
+       bufsize = shel_get( buf, -1);
+     erfragen. Problematisch ist dieser Aufruf bei bisherigen TOS-
+     Versionen, da dort 64KB kopiert werden.
+       
+     Das tatsÑchliche Ende der Daten im Puffer erkennt man Åbrigens
+     am Zeichen CTRL-Z bzw. 0.
+
+VEKTOREN, COOKIES, ETC.
+     Die Patches integrieren sich in den bestehenden Programmcode
+     des GEM und Ñndern daher keine Vektoren.
+
+AUTOR
+     (\/) Martin Osieka
+     Anschrift: Martin Osieka, Erbacherstr. 2, D-6100 Darmstadt
+     Internet: Martin_Osieka@mz.maus.de
+
+COPYRIGHT & HAFTUNG
+     Das Programm SHBUF.PRG darf auf beliebige Art und Weise weiter-
+     verbreitet werden, solange alle Dateien des Programmpakets
+     beiliegen. Zum Paket gehîren:
+       SHBUF.PRG              Patchprogramm
+       SHBUF.GER, SHBUF.UPL   Dokumentation und Upload-Beschreibung
+     Die Benutzung des Programms erfolgt auf eigene Gefahr.

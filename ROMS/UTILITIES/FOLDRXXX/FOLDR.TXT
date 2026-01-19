@@ -1,0 +1,6 @@
+Official Atari patch to fix the 40-folder problem
+
+Just rename the program to indicate number of folders you want to be able to have (i.e. FOLDR100.PRG will increase the limit to 100 folders) and put it in your AUTO folder.
+
+Rich - The Little Green Desktop
+http://www.atari.st

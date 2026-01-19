@@ -1,0 +1,6 @@
+ARROWFIX v1.5 [18.10.1993] - Patches rund um die Scrollroutinen des GEM
+Behebt folgende Probleme in TOS 1.04-4.04: Doppelscrollen; haengende
+und ueberholende Scrollmeldung; Nachrichtenlaenge; Mausklickzuordnung.
+Erlaubt saubereres und teilweise schnelleres Scrollen im GEM-Desktop.
+Neu in v1.5: Zuteilung von Rechteckereignissen an Programme korrigiert
+.

@@ -1,0 +1,38 @@
+SERPTCH2.PRG DOCUMENTATION April 15, 1991 by Allan Pratt, Atari Corp.
+
+All versions of Mega STe TOS and TT TOS up to 2.05/3.05 have code in the
+BIOS to communicate using the MFP and SCC serial ports.  They all share a
+few problems:
+
+     1.	If an SCC port's word size is set to less than 8 bits, the high bit
+	of the byte you read is not correct.  If you are using parity, the
+	high bit is the parity bit as received.  If you are not using
+	parity, it's a one.  It should be masked off (read as zero), as it
+	is when you use the serial port on an ST.
+
+     2.	If you use parity on an SCC port, and there is a parity error, the
+	character will be placed in the input buffer anyway.  This is not
+	the same as when using the ST-compatible serial port, where
+	characters with parity errors are discarded.
+
+     3.	Setting the flow-control modes of some ports does not work.
+
+     4.	The Iorec(0) call does not work correctly on the Mega STe.
+
+The program SERPTCH2.PRG fixes all of these problems.  It is a TSR and can
+be run at any time, but is best run from the AUTO folder.  Newer versions
+of Mega STe TOS (newer than 2.05), and TT TOS (newer than 3.05) have these
+fixes built in, and thus do not need the patch.  The program analyzes what
+machine it is running on, what version of TOS is running, and whether it
+has already been installed, and reports what it finds.  It prints 
+"SERPTCH2 serial patch now installed" when it installs itself, or a message
+explaining that it is not needed and why.  It uses an imperfect method
+(XBRA) to see if it has already been installed, but no harm will come if it
+is accidentally installed twice.
+
+The program ("SERPTCH2.PRG") and this document file ("SERPTCH.DOC") are
+placed in the public domain.  You may copy them, give them to friends,
+upload them to bulletin boards, etc.  We ask that you not modify the code
+or documentation, or that if you do, you name it something other than
+SERPTCH.
+

@@ -1,0 +1,474 @@
+Da das README wohl nicht gelesen wird, hier nochmal der Hinweis:
+
+Die offizielle Support-Mailbox fÅr WINX ist die Maus OF2. Die aktuelle 
+BETA Version ist dort im WINX-Programmteil zu finden. Alle Dateien in 
+diesem Programmteil sind nur fÅr den privaten Test bestimmt und dÅrfen 
+nicht im îffentlichen Programmteil anderer Mailboxen abgelegt werden. 
+Testen darf aber jeder ;-)
+
+Da mich doch auch 1996 noch Leute drÑngen nochmal eine offizielle 
+WINX-Version herauszugeben, hier nochmal eine Beta-Version. Warten wir 
+mal die Resonanz ab. Bitte schaut euch die Version vorallem auf Ñlteren 
+TOS-Version an, da mir einfach Zeit und Mîglichkeit zum ausfÅhrlichen 
+Test fehlt.
+
+11.2.1996: WINX 2.3n BETA
+
+- Die Doku fÅr Entwickler ist jetzt so halb fertig, auch fÅr die anderen
+  gibt es ein paar neue Seiten in WINX.HYP.
+
+- Direkte UnterstÅtzung der DPAT-Schnittstelle zur Ausgabe eines
+  anwenderdefinierten Schreibtischhintergrunds
+
+- Eine erste Version von DPATTERN liegt bei. DPATLINK wird nur benîtigt,
+  wenn man WINX nicht benutzt. Daû DPATTERN.CPX nicht vernÅnftig 
+  funktioniert, weiû ich, deswegen braucht keiner Fehler zu melden ;-)
+  Es ist mehr zum Ansehen, wie die OberflÑche mal sein wird. 
+  DPATTERN.PRG und DPATTERN.RSC gehîren in den AUTO-Ordner.
+
+- Ab jetzt liegt ein Konverter fÅr ST-Guide Hypertexte in ASCII-Texte
+  bei: HYP2TXT
+
+- Alle WINX-spezifischen WF_-Opcodes fuer wind_get/set liegen jetzt
+  hinter WF_WINX (um der Aufhebung des Beta-Status nÑher zu kommen ;-)
+                                  /* get set */
+  #define WF_WINX         22360   /*  0   -  */
+  #define WF_WINXCFG    WF_WINX+1 /*  0   0  */
+  #define WF_DDELAY     WF_WINX+2 /*  0   0  */
+  #define WF_SHADE      WF_WINX+5 /*  w   w  */
+  #define WF_STACK      WF_WINX+6 /*  -   w  */
+  #define WF_TOPALL     WF_WINX+7 /*  -  0/o */
+  #define WF_BOTTOMALL  WF_WINX+8 /*  -  0/o */
+  /* -: nicht vorhanden; w: erzeugtes Fenster; o: offenes Fenster */
+  Alle diese Funktionen liefern bei Erfolg ihren eigenen WF_-Opcode.
+
+- appl_getinfo( 'WX') wird jetzt dokumentiert
+
+- Zwei weitere interne Funktionen werden jetzt Åber wind_set angeboten:
+  wind_set( win, WF_TOPALL, apID, 0, 0, 0)
+    Holt alle Fenster der Applikation <apID> nach vorne (ohne Reihen-
+    folge untereinander zu Ñndern). Ist <win>!=0, dann wird das Fenster 
+    <win> zusÑtzlich ganz nach vorne geholt.
+  wind_set( win, WF_BOTTOMALL, apID, 0, 0, 0)
+    Stellt alle Fenster der Applikation <apID> nach hinten (ohne Reihen-
+    folge untereinander zu Ñndern). Ist <win>!=0, dann wird das Fenster 
+    <win> zusÑtzlich ganz nach hinten gestellt.
+
+- SHIFT wirkt jetzt noch allgemeiner als VerstÑrker von Aktionen:
+  SHIFT-Klick auf Smaller veranlaût Iconify aller Fenster
+  SHIFT-Klick auf Titel bringt alle Fenster einer Applikation
+    automatisch nach vorne/hinten (ohne Reihenfolge untereinander
+    zu Ñndern). Dies ist auch mit CONTROL kombinierbar.
+
+- wind_get( WF_ICONIFY) fÅhrte oft zum Absturz
+  (reported by JÅrgen Holtkamp)
+  
+- WINXCONF hatte Probleme mit der Ausgabe des Sliders unter 3D.
+  (reported by Frank Frommelt)
+
+- ZusÑtzliche Methode im CPX um zu erkennen, ob WINX aktiv ist. WINX 
+  wurde z.B. nicht erkannt, wenn ein anderes Programm den global-
+  Datenbereich des AES-Parameterblocks manipuliert hatte.
+  
+- Rechtsklick auf Scrollbox positionierte nicht mehr auf die gegen-
+  Åberliegende Seite der Scrollbox.
+  (reported by Guido Vollbeding)
+  
+22.01.1996: WINX 2.3m BETA
+
+- Konfiguration alternativ Åber Programm/Acc WINXCONF mîglich
+
+- Rahmenfont jetzt in allen TOS-Versionen einstellbar
+
+- WINX in TOS-Versionen <= 1.04 funktionierte nicht ohne GEMRAM
+
+- WINX im ROM ohne Cookie-Funktion reagierte nicht auf Mausklicks
+  (reported by Max Heinzlmeir)
+
+- AllIconify jetzt auch bei Rechtsklick
+
+- Das Fensterverschieben ohne Echtzeit war verloren gegangen
+
+- BackDrop automatisch ausfÅhren, falls Programm nur ein Fenster
+  geîffnet hat (z.B. fÅr XCONTROL gut geeignet)
+
+- Mit WinColor.cpx 1.6 kann der 3D-Effekt der Kontrollelemente 
+  eingestellt werden
+  
+13.01.1996: WINX 2.3l BETA
+
+- Iconify a la MultiTOS, falls das ICFS-Paket installiert ist. Eine 
+  passende ICFS-Version liegt im WINX-Programmteil.
+
+- Ein neues WINX.CPX zur Konfiguration von WINX-Eigenschaften.
+
+- Hypertext zur Dokumentation von WINX.CPX
+
+- wind_get( win, WF_KIND, &kinds, &ign, &ign, &ign);
+  Liefert die bei wind_create() bzw. wind_set( win, WF_KIND) einge-
+  stellten Fensterelemente.
+
+- wind_set( win, WF_KIND, kinds, 0, 0, 0);
+  Veraendert die Fensterelemente des Fensters. Falls es offen ist,
+  wird es neu ausgegeben, ohne daû sich die Position im Fensterstapel
+  aendert. ACHTUNG: Die Groesse des Fensters kann sich durch diesen 
+  Aufruf aendern, wenn der Schalter fÅr automatische Groessenkorrektur
+  des Fensters aktiv ist. Daher sollte man die Fenstergroesse nach
+  diesem Aufruf immer neu ermitteln. Die Fensterelemente kînnen
+  auch im ikonifizierten Zustand verÑndert werden.
+  
+- Lesbarere AES-Error Alerts
+
+??.??.1994: WINX 2.3i BETA
+
+- Interna:
+  Die Routine zur Bestimmung der Schalter eines Programms hatte ein
+  Problem mit langen Dateinamen. (Martin Kîhling @ UN)
+  
+- Programmierung: wind_calc()-Erweiterung
+  wind_calc( 0x8000|mode, win, ix, iy, iw, ih, &ox, &oy, &ow, &oh);
+  Setzt man Bit 15 im mode-Parameter von wind_calc(), kann man als
+  zweites Argument statt der Fensterattribute eine Fensterkennung
+  Åbergeben. Mit dieser Erweiterung ist es mîglich die Ausmaûe des
+  Fenster exakter zu bestimmen, da die Funktion auch Erweiterungen
+  wie eine Toolbar berÅcksichtigen kann. Auûerdem fÅhrt die Funktion
+  eine Autokorrektur des border-Rechtecks durch, die auch von 
+  Funktionen wie wind_open(), wind_set( WF_CURRXYWH) vorgenommen wird.
+  ACHTUNG: Dies ist bisher eine WINX-spezifische Erweiterung!
+  
+- WINX im ROM:
+  Die WINX 2.2 Doku behauptete dreist, daû man bei einem gepatchten ROM 
+  statt WINXCOOK auch WINX selbst benutzen kînnte. Dem war aber nicht so.
+  (reported by Hendrik Mylius @ PB2)
+ 
+- Interna:
+  Umstellung von TurboC- auf PureC-Libraries (wurde langsam auch Zeit).
+  Wie kann man nur so etwas destruktives wie KILLREGS programmieren,
+  Julian? ;-) (provoked by Henry Rolofs @ KR)
+
+- GEM-AES: AusgabelÑnge von OBJECT-Strings (TOS > 1.04)
+  Das AES gibt jetzt max. 128 Zeichen eines OBJECT-Strings aus. Diese 
+  LÑnge entspricht der des intin-Arrays, welches das GEM-AES zur
+  Ausgabe Åber das VDI benutzt. Bisher wurden bei der Ausgabe lÑngerer
+  Strings globale Datenbereiche des GEM-AES Åberschrieben. In TOS
+  Versionen vor 4.00 fÅhrte dies ab ca. 400 Zeichen zum Absturz, 
+  in 4.xx schon ab ca. 150 Zeichen.
+
+14.5.1994: WINX 2.3h BETA
+
+- Konfiguration: Fensterrahmenfont (momentan nur fÅr TOS >= 2.00)
+
+  .WFONT = face, point
+  Installiert einen vom GEM-AES unabhÑngigen Font <face> in der 
+  Grîûe <point> fÅr die Ausgabe des Fensterrahmens. Der Font
+  sollte alle 255 Zeichen enthalten. Er darf proportional und 
+  freiskalierbar sein.
+  face: Fontid fÅr den Fensterrahmen (=0: AES-Font benutzen)
+  point: Fontgrîûe in Point (=0: AES-Font und Fontgrîûe benutzen)
+  .WFONT = 0,9  # AES-Font in der Grîûee 9 benutzen
+  .WFONT = 5003,10  # Speedofont 3 in der Grîûe 10 benutzen
+  Ein schîner, vollstÑndiger Proportionalfont wird noch gesucht.
+  Meine Favoriten sind momentan:
+  .WFONT = 185,9 # Crystal 9 prop # SRCP09.FNT aus dem CAT-Paket
+  .WFONT = 276,8 # Windows System 8 prop # WDPR08.FNT
+
+  .LOADFONT = fontpathname
+  Zum Installieren eines Fonts benîtigt man normalerweise ein GDOS.
+  WINX kann einen Font aber auch selbst installieren, falls beim
+  Start des GEM-AES kein GDOS aktiv ist. Hierzu wird der Font aus der
+  Datei <fontpathname> geladen und ins VDI eingebunden.
+  In diesem Fall sind jedoch nur Pixelfonts erlaubt.
+  .LOADFONT = c:\gemsys\srcp09.fnt # Crystal 9 prop
+  Ob dieses Feature bleibt, weiû ich noch nicht. Wahrscheinlich Åber-
+  lÑût man diese Aufgabe besser einem externen Tool.
+
+5.4.1994: WINX 2.3g BETA
+
+- Programmierung: WindowShade-Nachrichten
+  WINX verschickt jetzt eine WM_SHADED-Nachricht, wenn ein Fenster ein-
+  geklappt wird, bzw. eine WM_UNSHADED-Nachricht beim Ausklappen.
+  Diese Nachrichten sind zu behandeln wie WM_ONTOP und WM_UNTOPPED, 
+  d.h. sie informieren nur Åber einen Zustand, der sich zum Zeit-
+  punkt des Eintreffens der Nachricht schon wieder geÑndert haben kann.
+  #define WM_SHADED 22360     /* [WM_SHADED apid 0 win 0 0 0 0] */
+  #define WM_UNSHADED 22361   /* [WM_UNSHADED apid 0 win 0 0 0 0] */
+  Sinnvoll wÑre es jetzt noch ein Bit der wind_get/set-Subfunktion
+  WF_BEVENT zum Abfragen und éndern des Shadezustands zu benutzen.
+  Wer unternimmt einen Vorstoû bei ATARI? (Ich bring's nicht mehr :-(
+
+- WINX-Schalter G14: Mauszeiger wÑhrend Echtzeitfunktionen umschalten
+  Da einige VDI-Treiber Probleme mit dem Vorgehen des AES beim
+  Sichern und Restaurieren der Mausform haben, kann man das
+  Umschalten der Mausform jetzt abschalten.
+
+- GEM-Desktop: Negative Fensterkoordinaten
+  Das GEM-Desktop speichert die Fensterkoordinaten als vorzeichenlosen
+  Bytewert im Shellbuffer. Fenster, die links aus dem Bildschirm ge-
+  schoben werden, erschienen daher bisher beim Laden des Shellbuffers
+  am rechten Bildschirmrand. WINX bildet jetzt beim Speichern neg.
+  Koordinaten auf 0 ab. Dies Lîsung ist nicht perfekt, vermeidet
+  jedoch KompatibilitÑtsprobleme.
+  (reported by Henry Rolofs @ KR)
+
+27.03.1994: WINX 2.3f BETA
+
+- Restaurierung der letzten Version
+
+- Interna: WindowShade
+  Das automatische Entshaden beim Klick auf den Fuller fÅhrte in 
+  einigen Situationen dazu, daû der SCRENMGR das Loslassen des
+  Mausknopfs nicht mehr mitbekam.
+
+16.1.1994: WINX 2.3e BETA
+
+- Programmierung: appl_getinfo()-Test
+  Da einige Programmiersprachen bei einer logischen VerknÅpfung immer
+  beide TeilausdrÅcke auswerten, muû der Test dort anders formuliert
+  werden, da appl_find( "?AGI") nur aufgerufen werden darf, wenn das
+  Programm nicht sicher weiû, daû agi() implementiert ist.
+
+    has_appl_getinfo = TRUE;
+    if (aesversion < 0x400) {
+      if (appl_find( "?AGI") != 0) {
+        has_appl_getinfo = FALSE;
+      }
+    }
+    if (has_appl_getinfo) {
+      /* appl_getinfo() kann aufgerufen werden */
+    };
+
+- Interna: Abfangen des GEMDOS-Traps
+  In der 2.3d wurde bei Pexec() vergessen das Register D7 zu retten.
+  Also schnell in die Tonne damit...
+
+- Konfiguration: GEM-Patch
+  Die WINX-Defaultwerte zum Patchen eines GEMs kînnen jetzt aus einer
+  WINX.INF-Datei geladen werden (damit ist es nicht mehr notwendig
+  WINX selbst zu patchen).
+
+10.1.1994: WINX 2.3d BETA
+
+- Konfiguration: Grîûe der Rahmenelemente
+  Die Grîûe eines Kontrollelements, wie dem Closer, entsprach bisher der
+  einer quadratischen Zeichenzelle (entsprechend den wbox-/hbox-RÅck-
+  gabewerten von graf_handle). WINX erlaubt es die Grîûe zu konfigurieren.
+  Hierzu fÅgt man ein Zeile folgenden Formats in WINX.INF ein:
+    .GADGET=addw,addh # mit addw/addh >= 0
+  Die Grîûe eines Kontrollelements bestimmt sich dann aus der Grîûe
+  einer Zeichenzelle (entsprechend den wchar-/hchar-RÅckgabewerten von
+  graf_handle) plus dem angegebenen Breiten- bzw. Hîhenwert. Da die
+  Zeichen in der Regel rechts einen weiûe Pixelspalte haben, benutzt
+  man am besten einen ungeraden Breitenwert. Z.B. benutze ich:
+    .GADGET=3,0
+
+- Interna: WindowShade
+  Wurde ein 'geshadetes' Fenster geschlossen, dann wurden unnîtiger-
+  weise Redraws fÅr den kompletten Fensterbereich versandt
+  (reported by Martin Kîhling @ UN)
+
+- Interna: Bug-Fix 
+  In der Behandlung der Buttonereignisse gab es seit WINX 2.1 einen
+  Bug (warum hat das nur keiner bemerkt?). War ein ACC-Fenster ganz
+  vorne und die Hauptapplikation Åbernahm die Mauskontrolle (weil
+  man z.B. ein Icon auf dem Desktop verschieben wollte), dann bekam
+  das ACC danach temporÑr keine Mausklicks mehr gemeldet.
+  (reported by Annius.Groenink@let.ruu.nl)
+ 
+20.12.1993: WINX 2.3c BETA
+
+- GEM 3.x Bedienung: WindowShade
+  Beim Klick auf den Fuller wird das Fenster automatisch entSHADEt.
+
+- Programmierung: appl_getinfo()-Test
+  Andreas Kromke und ich haben uns auf eine einheitliche Mîglichkeit
+  geeinigt, wie Programme die Anwesenheit von appl_getinfo() bei
+  GEM-Versionen < 4.00 erfragen kînnen. Falls jemand ernsthafte
+  EinwÑnde hat, dann mîge er sie bald Ñuûern.
+  
+    if ((aesversion >= 0x400) || (appl_find( "?AGI") == 0)) {
+      /* appl_getinfo() kann aufgerufen werden */
+    };
+  
+  Jedes Programm, das appl_getinfo() implementiert bzw. erweitert,
+  sollte bei appl_find( "?AGI") den Wert 0 liefern.
+
+- Interna:
+  Das Flag fÅr die zusÑtzliche Zeile von in Desktopfenstern wurde
+  unter bestimmten UmstÑnden nicht korrekt initialisiert.
+
+- GEM 3.x Desktop: Horizontaler Scrollbalken
+  Brachte man ein Dateifenster auf maximale Grîûe, gab es MÅll beim
+  Scrollen. Aus irgendeinem Grund hatte der Autor des Desktops die
+  Ausgabe auf eine bestimmte Hîhe beschnitten.
+  
+- Interna:
+  Der GEMDOS-Vektor wurde in 2.3b nicht umgehÑngt, weil ich vergessen
+  hatte eine Versionsnummer zu Ñndern.
+
+- Interna:
+  WF_WINXCFG lieferte unter TOS 1.x nicht die korrekte Schaltermaske,
+  dadurch waren z.B. die Scrollboxen sichtbar, obwohl sie nicht zu
+  bedienen waren (altes Problem, endlich behoben)
+
+- Interna:
+  Wegen eines Fehlers ... (2.Versuch :-)
+  
+11.12.1993: WINX 2.3b BETA
+
+- Interna:
+  Wegen eines Fehlers in verschiedenen HiSoft-Programme verÑndert WINX
+  bei wind_get( 0, WF_TOP, &topwin, &topowner, &belowwin, &ign) den
+  Wert von <ign> nicht mehr. Eventuell fliegt das aber wieder raus.
+  
+- Programmierung: WF_STACK
+  wind_set( win, WF_STACK, abovewin, 0, 0, 0)
+  Stellt das Fenster <win> im Fensterstapel hinter das Fenster <abovewin>.  
+  Ist <win> geschlossen, wird der Positionierungswunsch gespeichert und
+  beim ôffnen des Fensters mit wind_open() berÅcksichtigt.
+  Diese Funktion ist im Experimentierstadium (in der Hoffnung, daû
+  ATARI soetwas Ñhnliches implementiert). Der Funktionscode von WF_STACK
+  entspricht momentan dem von WF_OWNER (welches keinen set-Modus hat).
+  Kommentare zu WF_STACK sind erwÅnscht.
+  Nebeneffekt der Implementierung: Das Redrawhandling bei BOTTOM wurde
+  besser.
+
+- GEM 3.x Bedienung: WindowShade
+  Klickt man mit der RECHTEN Maustaste in die Titelzeile eines Fensters,
+  dann wird der untere Teil des Fensters unsichtbar. Ein weiterer Klick
+  hebt diesen Modus wieder auf. Dies ist auch ein guter HÑrtetest, ob
+  Programme die Rechteckliste immer korrekt beachten.
+
+- GEM 3.x Bedienung:
+  Ein Doppelklick auf die Titelzeile entspricht einem Klick auf das
+  Maximalgrîûenelement (Fuller). Ich mag es nicht, aber ATARI (oder
+  auch Windows) hat recht :-). Schaltet man die rechte Taste aus,
+  dann wird die Funktion allerdings von der Doppelklickbehandlung
+  von WINX ueberdeckt. Eventuell gibt es fÅr das Doppelklickfullen
+  noch einen globalen Schalter. In diesem Fall hat die Funktion
+  hîherer PrioritÑt.
+
+- GEM 3.x Desktop:
+  Ist der Schalter L2 (minimale Anzahl von Rahmenelementen) fÅr das
+  Desktop eingeschaltet, dann ist der MenÅpunkt 'einpassen' immer aktiv
+  und die Fenster haben keinen horizontalen Scrollbalken mehr (da man
+  ihn dann sowieso nicht benutzen konnte).  Vorteil: Eine Zeile mehr
+  im Fenster.
+
+- GEM 3.x Bedienung: Scrollboxen
+  Der Mauspfeil muû nur noch halbsoweit ausgelenkt werden um eine
+  entsprechenden Erhîhung des Geschwindigkeitsfaktors zu erhalten. 
+
+- Bedienung: Scrollgeschwindigkeit
+  Der Defaultwert fÅr die Wiederholrate beim Scrollen wurde auf 0
+  gesetzt, da ich es leid war immer wieder erklÑren zu mÅssen, warum
+  manche Programme unter WINX langsamer scrollen.
+
+- Interna: Bug in TOS 1.04
+  öbernahm eine Applikation die Mauskontrolle wÑhrend des Scrollens,
+  dann erhielt sie ab der zweiten Scrollnachricht auch den Mausklick
+  gemeldet.
+
+29.10.1993: WINX 2.3a BETA
+
+- Ist bei wind_delete() das Fenster noch offen, dann wird es vorher
+  aus dem Fensterstapel entfernt. Z.B. ist PC abgestÅrzt, wenn es
+  auf diese Weise noch offene Fenster einer aus PC gestarteten
+  Applikation aufrÑumen wollte. ACHTUNG: Das Fenster wird aus
+  GeschwindigkeitsgrÅnden nicht mit wind_close() geschlossen.
+- menu_attach() im Falcon-TOS 4.01-4.04 fÅhrte zum Absturz, falls man
+  ein einmal eingetragenes Submenu abfragen, Ñndern oder lîschen wollte.
+  WINX behebt diesen Fehler.
+  
+17.10.1993: WINX 2.2
+
+- Die .LOCAL-Zeile in WINX.INF wurde abgeschafft. Lokale Schalter
+  eines Programms, die nicht direkt in der Schalterliste des Namens-
+  musters gefunden werden, welches auf den Programmnamen paût, werden
+  jetzt nicht mehr aus der .LOCAL-Zeile, sondern aus der Zeile mit
+  dem Namensmuster "*" gesetzt. Damit ist das ganze zwar nicht mehr
+  so flexibel, dafÅr aber hoffentlich verstÑndlicher (oder auch nicht).
+
+8.10.1993: WINX 2.2e BETA
+
+- Das mit dem Cookie hat wohl nicht funktioniert. Dumm, wenn man
+  etwas nicht selbst testen kann. Hoffen wir, daû es jetzt klappt.
+  
+6.10.1993: WINX 2.2d BETA
+
+- WINX legt den WINX-Cookie jetzt auch an, falls das GEM bereits
+  mit dieser WINX-Version gepatcht wurde (z.B. wenn man mit ROMRAM
+  sein TOS resident im RAM installierte). WINXCOOK wird damit mehr
+  oder weniger ÅberflÅssig, wenn man nicht auf den Speicherplatz
+  auf dem Bootdrive achten muû.
+- Das FULL-Rechteck sollte jetzt wieder korrekt bei wind_create()
+  Åbernommen werden
+
+26.9.1993: WINX 2.2c BETA
+
+- Funktionshandler erweitert um eine Funktion, die es erlaubt die 
+  Bildschirmgrîûe nachtrÑglich zu Ñndern (fÅr den Support von WINX
+  durch AutoSwitch-OverScan und Konsorten)
+    #define WFC_SETSCR 12
+    (winxfunc( WFC_SETSCR, newscrw, newscrh) == 0) => SUCCESS
+- Patch fÅr 'Phantom Typist' Problem (TOS >= 1.06). Da sich der Fehler
+  nicht gezielt reproduzieren lÑût, ist es aber nicht sicher, ob der
+  Patch die Lîsung bringt. Schaden tut er jedenfalls nicht ;-)
+- Fehlte die WINX.INF-Datei erschien eine fehlerhafte Meldung
+
+20.9.1993: WINX 2.2b BETA
+
+- Die Defaultwerte von WINX kînnen Åber die folgenden Patchvariablen
+  direkt in die Datei gepatcht werden.
+  typedef struct {
+    char prefix[ 12];  /* "PATCH HERE:" */
+    short size;        /* sizeof( defaultS) */
+    short global;      /* global switches */
+    short local;       /* local switches */
+    short desk;        /* desktop switches */
+    short isdelay;     /* initial scroll delay */
+    short csdelay;     /* continous scroll delay */
+    short ccdelay;     /* continous close delay */
+    short cfdelay;     /* continous full delay */
+  } defaultS;
+- Es ist jetzt nur noch ein Patchversuch pro WINX-Aufruf mîglich
+- Die verschiedenen Verzîgerungswerte kînnen jetzt auch Åber WINX.INF
+  eingestellt werden (die Werte im CPX haben aber noch PrioritÑt!):
+    .DDELAY=arrow1,arrow2,closer,fuller
+  Beispiel (entspricht der Defaulteinstellung):
+    .DDELAY=460,40,1000,2000
+  (alle Werte in ms; die Auflîsung des Timers betrÑgt 20ms).
+- Im TOS 1.00-1.04 klappte die öberprÅfung, ob einer Applikation ein
+  Mausklick zugeordnet ist, nicht 100%ig (z.B. wenn der SCRENMGR beim
+  Scrollen die Kontrolle hatte)
+- Das Sichern eines gepatchten TOS 1.00-1.04 fÅhrte zu einem bombigen
+  Ergebnis.
+- Nach Fehlermeldungen wartet WINX einen Moment, so daû diese lesbar
+  sind.
+
+13.9.1993: WINX 2.2a BETA
+
+- Der Einbau der appl_getinfo()-Funktion in WINX fÅhrte zu Problemen
+  mit Programmen, die zum einen Userdefs in der MenÅzeile benutzen
+  und zum anderen mit einer Ñlteren TurboC-GEM-Bibliothek gelinkt
+  wurden (GEMINI 1.21, ...) . Dieser Fehler wird jetzt abgefangen.
+- wind_get( WF_WINX) liefert jetzt WF_WINX, falls es die Funktion gibt.
+  Damit kann man darauf verzichten vorher zu prÅfen, ob wind_get()
+  Åberhaupt einen gÅltigen Funktionswert liefert. ErgÑnzend wurde
+  das Beispiel fÅr eine has_appl_getinfo()-Funktion geÑndert.
+
+    #define WF_WINX 22360
+    
+    int has_appl_getinfo( void)
+    /* Liefert TRUE, falls das AES appl_getinfo() bereitstellt */
+    {
+      static int hagi = -1;
+      int ign;
+
+      if (hagi < 0) {      
+        hagi = ((_GemParBlk.global[ 0] >= 0x400) ||
+          (wind_get( 0, WF_WINX, &ign, &ign, &ign, &ign) == WF_WINX));
+      };
+      return( hagi);
+    } /* has_appl_getinfo */
+  
+9.9.1993: WINX 2.1

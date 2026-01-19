@@ -1,4 +1,3 @@
-
 # TOS (The Operating System)
 
 | Version	| Date			| Machine				| Size		| Address	| GEMDOS	| VDI		| AES		| Note				|
@@ -130,34 +129,3 @@ Alternative : Gemini, Geneva, Magic
 | 			|
 
 Alternative : AMC GDOS, G+Plus, FontGDOS, FSM GDOS, TTF-GDOS, SpeedoGDOS, NVDI
-
-# Utilities
-
-Patches have been made by Atari and third parties to correct some TOS flaws.
-
-| Version		| 1.00	| 1.02	| 1.04	| 1.06	| 1.62	| 2.05	| 2.06	| 3.00	| 3.01	| 3.05	| 3.06	| 4.00	| 4.01	| 4.02	| 4.04	| 4.92	|
-| :---			| :---	| :---	| :---	| :---	| :---	| :---	| :---	| :---	| :---	| :---	| :---	| :---	| :---	| :---	| :---	| :---	|
-| AUTOSORT.PRG	| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		|
-| FOLDRXXX.PRG	| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		|
-| CACHEXXX.PRG	| 		| 		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		|
-| POOLFIX3.PRG	| 		| 		| X		| X		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		|
-| TOS14FIX.PRG	| 		| 		| X		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		|
-| TOS14FX5.PRG	| 		| 		| X		| 		| 		| 		| 		| 		| X		| 		| 		| 		| 		| 		| 		| 		|
-| STE_FIX.PRG	| 		| 		| 		| X		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		|
-| SELTOS.PRG	| X		| 		| X		| 		| 		| 		| X		| 		| 		| 		| 		| 		| 		| 		| 		| 		|
-| SERPTCH2.PRG	| 		| 		| 		| 		| 		| X		| 		| 		| 		| X		| 		| 		| 		| 		| 		| 		|
-| COLORTOS.PRG	| 		| 		| 		| 		| 		| 		| X		| 		| 		| 		| X		| 		| 		| 		| 		| 		|
-
-* AUTOSORT.PRG: sorts the programs in the AUTO folder
-* FOLDRXXX.PRG: fixes 40 folders limit (unless using some HD driver that fixes it too)
-* CACHEXXX.PRG: adds cache buffers
-* TOS14FIX.PRG: fixes FOLDRXXX.PRG
-* TOS14FX5.PRG: fixes TOS14FIX.PRG
-* STE_FIX.PRG: fixes booting in Medium resolution
-* SERPTCH2.PRG: fixes MFP and SCC serial ports
-* COLORTOS.PRG: adds support for colour DESKICON.RSC
-* SELTOS.PRG: allows to load a ROM image into RAM and reboot on it
-* GEMRAM.PRG: copies the ROM to RAM to patch TOS directly (used by other patches)
-* ARROWFIX.PRG: fixes the up/down arrow scroll click lock (included in WINX.PRG)
-* SHBUF.PRG: fixes the NEWDESK.INF 4KB limit (after GEMRAM.PRG)
-* WINX.PRG: adds desktop features (after GEMRAM.PRG)

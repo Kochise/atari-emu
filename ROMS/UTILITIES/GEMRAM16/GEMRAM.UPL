@@ -1,0 +1,5 @@
+GEMRAM v1.6 [15.10.1993]: GEM im RAM installieren (TOS 1.00-4.04)
+Erzeugt eine Kopie des GEM im RAM und passt diese an die veraenderte
+Adresslage an. Eine RAM-Kopie wird z.B. von Patchprogrammen benoetigt.
+Neu seit 1.5: Zusaetzliche Derelozierinfos fuer weitere TOS-Versionen
+.

@@ -1,0 +1,17 @@
+>>AUTOSORT<< dient zum umsortieren der Dateien in beliebigen Ordnern. Dies 
+ist besonders beim AUTO-Ordner wichtig, da hier oft eine bestimmte Start-
+Reihenfolge gefragt ist. Bisher war das neusortieren eine aufwendige 
+Prozedur. Unter TOS 1.2 mssen Sie z. B. erst einen neuen Ordner unter 
+anderem Nanen erzeugen, die Dateien des AUTO-Ordners hineinkopieren, die 
+Dateien im Quell-Ordner l”schen und schliežlich die Dateien in der 
+ben”tigten Reihenfolge wieder zuruckkopiern. Unten TOS 1.4 geht's zwar 
+einfacher, da es auch Ordner umbenennen kann, aber es bleibt eine l„stige 
+Sache.
+
+AUTOSORT macht dies alles automatisch: Mit der Maus ordnen Sie die Dateien 
+in der gewnschten Reihenfolge neu und auf Knopfdruck erledigt das Programm 
+den Rest. AUTOSORT funktioniert brigens nicht nur beim defaultm„žig 
+festgelegten Pfad, ein Mausklick in die Pfad-Beschreibung zaubert eine 
+Datei-Auswahlbox auf den Schirm und erlaut hier die Festlegung eies anderen 
+Verzeichnisses bzw. Laufwerks.
+

@@ -1,0 +1,93 @@
+
+                              TOS 4.0x FIX
+
+                     Freeware by Charles F. Johnson
+                      ½ 1994 CodeHead Technologies
+                          All Rights Reserved
+
+                              Version 1.0
+
+
+Introduction
+------------
+
+For reasons known only to them, Atari changed some important things about
+the GEMDOS portion of TOS when they developed TOS 4.0x, the Falcon version
+of TOS.  Specifically, they changed the behavior of five operating system
+functions -- Ddelete(), Fopen(), Frename(), Pexec(), and Fwrite() -- and
+NOT for the better.  These changes caused serious incompatibilities to
+appear in software that had worked flawlessly with every previous version
+of TOS. 
+
+As fate would have it, I wrote two programs that run afoul of Atari's
+capricious GEMDOS changes: MaxiFile (for CodeHead Technologies) and Desk
+Manager (for my own shareware company, LGF Software).  When run on a
+Falcon, MaxiFile can't delete folders (because of the Ddelete() change)
+and Desk Manager can't rename AUTO programs and DAs (because of the
+Frename() change). 
+
+Since Atari apparently has no plans to release a TOS ROM upgrade for the
+Falcon to fix these problems, I decided to write this little patch program
+as a show of support for CodeHead's and my customers.  TOS4_FIX brings
+back the functionality of older TOS versions, and allows MaxiFile and Desk
+Manager to work properly on a Falcon.  It may benefit other software as
+well. 
+
+Although TOS4_FIX is distributed as freeware, if it solves a problem for
+you and you want to show your gratitude by sending $5, $2, 10 cents, or
+even just a postcard, I certainly wouldn't be averse to receiving it! 
+Send correspondence about TOS4_FIX to:
+
+  Charles F. Johnson
+  P.O. Box 1250
+  Pacific Palisades, CA 90272
+
+
+Installation
+------------
+
+Although TOS4_FIX can be run from the desktop like any other program, the
+best way to install it is to copy it to the AUTO folder on your Falcon's
+hard drive.  If you want it to help Desk Manager, make sure that TOS4_FIX
+runs before Desk Manager in the bootup sequence. 
+
+NOTE: programs in the AUTO folder run in the same order they were copied
+into the folder.  One way to ensure that TOS4_FIX runs before Desk Manager
+is to use a utility like AUTO_ORG (from the CodeHead Utilities package),
+which lets you quickly specify the AUTO folder order.  If you don't have
+such a utility, you can reorder the programs by moving them all to a
+temporary folder, then moving them back in the order you want them to run.
+
+
+Technical Info
+--------------
+
+TOS4_FIX patches the following GEMDOS calls:
+
+  Ddelete() - allows a path specification with a trailing backslash.
+
+  Fopen()   - allows wildcards in file specification.
+
+  Frename() - allows wildcards in file specification.
+
+  Pexec()   - allows wildcards in file specification.
+
+  Fwrite()  - allows -3 as standard printer handle.  (Fixes LPRINT in GFA
+              Basic, and printing blocks of text in STalker.)
+
+
+Copyright
+---------
+
+Copyright 1994 CodeHead Technologies.  All Rights Reserved.
+
+TOS4_FIX and its accompanying text file may be freely distributed, but we
+retain the copyright.  To use in a commercial package or for any
+commercial purpose, you must obtain permission from:
+
+  CodeHead Technologies
+  P.O. Box 74090
+  Los Angeles, CA 90004
+
+  Voice: (213) 386-5735
+    FAX: (213) 386-5789

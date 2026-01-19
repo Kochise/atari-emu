@@ -1,0 +1,47 @@
+===========================
+MultiTOS Dosound() Fix v1.0
+===========================
+
+MultiTOS Dosound() fix makes an undocumented function of the TOS call
+Dosound() work under MultiTOS.
+
+Aladdin (and maybe other programs) use a method to determine whether a
+FM sound is already playing prior to playing their own sound. This feature 
+was never documented by Atari and went away in MiNT v1.00-v1.08 (Eric
+Smith mentioned that it would work normally in the next release). This
+patch program catches this call and mimics the undocumented behaviour
+to prevent Aladdin (and others from crashing).
+
+To use DSFIX.TOS, place it on your hard drive and add a line to your
+MINT.CNF file like (the example assumes you put in in the \MULTITOS
+directory):
+
+                     exec c:\multitos\dsfix.tos
+
+This causes MiNT to load it after it initializes.
+
+Remember, this program is only needed for MiNT v1.00 - v1.08. It won't
+install under any other circumstances.
+
+=======
+Support
+=======
+
+If you have any comments or questions about this program contact:
+
+Software Development Systems
+996 Redondo Ave. #404
+Long Beach, CA 90804
+310/430-0364
+GEnie: S.SANDERS2
+Compuserve: 71461,3645
+Internet: S.SANDERS2@genie.geis.com
+
+======================
+DISCLAIMER and LICENSE
+======================
+
+This program is FREEWARE. It is Copyright (c)1993 SDS and may be distributed
+freely as long as this text file accompanies it unmodified. SDS is not
+responsible for any damages resulting from the use of this product either
+incidental or consequential.

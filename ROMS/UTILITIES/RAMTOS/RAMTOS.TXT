@@ -1,0 +1,63 @@
+                          RAMTOS.PRG for Atari ST computers
+
+  Purpose of this program is making possible work with 
+diverse versions of TOS without changing (EP)ROM's in machine. 
+1 MB of RAM is minimum requirement for use, because used TOS
+is placed in RAM, and it decreases available RAM for 192-256KB.
+
+  Program supports following TOS versions:
+TOS 1.00 US, UK and German
+TOS 1.04 US, UK and German
+TOS 2.06 US, UK , German, Swedish  and UK 'Supertos' .
+
+
+       Instructions for RAMTOS:
+
+ Program will load first file in current DIR with extension IMG -
+if it is supported TOS version image file.
+
+ On request I made version which loads straight supported TOS image
+found in current DIR. It is RAMTOS7B.PRG, and TOS image file must
+have name RTOS.IMG. Of course you may run it from AUTO folder too.
+In that case place RAMTOS.PRG in AUTO folder of boot disk/partition
+and RTOS.IMG in ROOT folder of it. 
+  Version RAMTOS7B is little changed in compare to RAMTOS7 .
+With 7 there was problem by running from AUTO folder and if in
+ROOT DOR of boot partition was some file with extension IMG,
+what is not supported TOS image file.
+Therefore 7B is made to load specific filename (RTOS.IMG).
+
+   
+ If you want uninstall it, press shift+alt+control+delete keys
+simultaneous. It works not with TOS 1.00.
+Of course turning off machine also 'uninstalls'.
+
+     How to get ROM-TOS images:
+There is small program supplied with emulator Pacifist named
+'DUMP_ROM.PRG', with which you may record ROM-TOS to disk,
+on some real Atari.  
+There are also many TOS versions downloadable on the
+WEB, but you should look self about it, because copyright status
+is not exactly clear for me. E.g. if I have Atari with
+German TOS 1.04, may I use US TOS 1.04 ?
+
+  Note: ROM_TOS image files must have adequate length:
+TOS 1.00 and 1.04: 192KB or 196608 bytes.
+TOS 2.06: 256KB or 262144 bytes.
+
+
+
+  This program is freeware, open source.
+
+
+    P. Putnik,  March 13. 1999.
+   some additions in 2006, 2008, 2009.
+
+
+  http://petari.000space.com/atari
+
+
+
+
+
+ 
