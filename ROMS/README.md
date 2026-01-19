@@ -5,8 +5,8 @@
 | :---		| :---			| :---					| :---		| :---		| :---		| :---		| :---		| :---				|
 | 1.00		| 1985/05/29	| ST					| 			| RAM		| 0.D0		| 			| 1.01		| Disk				|
 | 1.00		| 1985/06/20	| ST					| 			| 			| 0.11		| 			| 1.01		| Mushroom TOS		|
-| 1.00		| 1985/11/20	| ST					| 192 KB	| $FC0000	| 0.13		| 			| 1.20		| Disk				|
-| 1.00		| 1986/02/06	| ST					| 192 KB	| $FC0000	| 0.13		| 			| 1.20		| ROM				|
+| 1.00		| 1985/11/20	| ST					| 192 KB	| $FC0000	| 0.13		| 			| 1.20		| Alpha				|
+| 1.00		| 1986/02/06	| ST					| 192 KB	| $FC0000	| 0.13		| 			| 1.20		| Beta				|
 | 1.00		| 1986/04/24	| ST					| 192 KB	| $FC0000	| 0.13		| 			| 1.20		| 					|
 | 1.02		| 1987/04/22	| STf - Mega ST			| 192 KB	| $FC0000	| 0.13		| 			| 1.20		| Blitter			|
 | 1.04		| 1988/05/18	| STf - Mega ST	- STacy	| 192 KB	| $FC0000	| 0.15		| 			| 1.40		| Beta				|
@@ -22,7 +22,7 @@
 | 2.05		| 1990/12/05	| STe - Mega STe		| 256 KB	| $E00000	| 0.19		| 			| 3.10		| 					|
 | 2.06		| 1991/11/14	| STe - Mega STe (- ST)	| 256 KB	| $E00000	| 0.20		| 			| 3.20		| Fuji boot logo	|
 | 2.07		| 1991			| Sparrow (aka "FX-1")	| 			| 			| 			| 			| 			| 					|
-| 2.08		| 1992/03/10	| STBook				| 512 KB	| $E00000	| 			| 			| 			| 					|
+| 2.08		| 1992/03/10	| STBook				| 512 KB	| $E00000	| 			| 			| 			| ROM disk as P:	|
 | 3.00		| 1989/05/23	| TT					| 512 KB	| $E00000	| 0.20		| 			| 3.20		| Beta				|
 | 3.00		| 1990/03/01	| TT					| 512 KB	| $E00000	| 0.20		| 			| 3.20		| Developer			|
 | 3.01		| 1990/08/09	| TT					| 512 KB	| $E00000	| 0.20		| 			| 3.20		| 					|
@@ -51,10 +51,16 @@ gitGraph
 	commit id: "1.04 dev" tag: "880808"
 	commit id: "1.04" tag: "890406"
 	branch KaOS
+	checkout ST
+	branch "Mega STe"
+	checkout ST
+	branch TT
+	checkout ST
+	checkout KaOS
 	commit id: "1.04 KaOS" tag: "890406"
 	commit id: "1.43 KaOS" tag: "890406"
 	checkout ST
-	branch TT
+	checkout TT
 	commit id: "3.00 beta" tag: "890523"
 	checkout ST
 	commit id: "1.06" tag: "890729"
@@ -64,7 +70,7 @@ gitGraph
 	commit id: "3.01 dev" tag: "900809"
 	commit id: "3.01" tag: "900829"
 	checkout ST
-	branch "Mega STe"
+	checkout "Mega STe"
 	commit id: "2.05" tag: "901205"
 	checkout TT
 	commit id: "3.05" tag: "901205"
@@ -72,8 +78,12 @@ gitGraph
 	checkout "Mega STe"
 	commit id: "2.06" tag: "911114"
 	commit id: "2.07 Sparrow" tag: "910101"
-	commit id: "2.08 STBook" tag: "920310"
+	checkout TT
+	merge "Mega STe"
 	branch Falcon030
+	checkout "Mega STe"
+	commit id: "2.08 STBook" tag: "920310"
+	checkout Falcon030
 	commit id: "4.00" tag: "920811"
 	commit id: "4.01" tag: "921021"
 	commit id: "4.02" tag: "930126"
