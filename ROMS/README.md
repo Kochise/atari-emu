@@ -38,8 +38,8 @@
 This doesn't include the releases of : EmuTOS, MiNT (Not), MultiTOS (Now), FreeMINT, ...
 
 ```mermaid
-%%{ init: { 'gitGraph': { 'mainBranchName': 'ST' }}}%%
-gitGraph
+%%{ init: { 'gitGraph': { 'mainBranchName': 'ST', 'rotateCommitLabel': true }, 'theme': 'base' }}%%
+gitGraph TB:
 	commit id: "1.00 Disk" tag: "850529"
 	commit id: "1.00 Mush" tag: "850620"
 	commit id: "1.00 alpha" tag: "851120"
