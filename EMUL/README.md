@@ -48,6 +48,6 @@ Old `Jaguar` emulator, not very stable, here for archival purpose.
 * In "General", change path for "EEPROMs" and "Software"
 * In "Controllers", change keys mapping
 
-* Select "Jaguar/Insert Cartidge..."
+* Select "Jaguar/Insert Cartridge..."
 * Click the wanted `ROM`
-* Click the "Insert cartidge" icon in the lower right corner
+* Click the "Insert cartridge" icon in the lower right corner
