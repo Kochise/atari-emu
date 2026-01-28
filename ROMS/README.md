@@ -1,5 +1,17 @@
 # TOS (The Operating System)
 
+* Other sources
+
+https://www.atariworld.org/tos-rom/
+
+https://avtandil33.pythonanywhere.com/tose
+
+https://mikro.naprvyraz.sk/docs/GEM/TOS.HTM
+
+https://home.deds.nl/~dwvdburg/atari/framesets/frameset_tos.html
+
+* Characteristics
+
 | Version	| Date			| Machine				| Size		| Address	| GEMDOS	| VDI		| AES		| Note				|
 | :---		| :---			| :---					| :---		| :---		| :---		| :---		| :---		| :---				|
 | 1.00		| 1985/05/29	| ST					| 			| RAM		| 0.D0		| 			| 1.01		| Disk				|
