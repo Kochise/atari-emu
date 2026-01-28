@@ -6,6 +6,8 @@ Patches have been made by Atari and third parties to correct some TOS flaws.
 | :---		| :---	| :---	| :---	| :---	| :---	| :---	| :---	| :---	| :---	| :---	| :---	| :---	| :---	| :---	| :---	| :---	|
 | AUTOSORT	| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		|
 | FOLDRXXX	| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		|
+| SERIALFX	| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| 		| 		| 		| 		| 		|
+| FATSPEED	| X		| X		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		|
 | CACHEXXX	| 		| 		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		| X		|
 | POOLFIX3	| 		| 		| X		| X		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		|
 | TOS14FIX	| 		| 		| X		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		|
@@ -13,7 +15,8 @@ Patches have been made by Atari and third parties to correct some TOS flaws.
 | STE_FIX	| 		| 		| 		| X		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		|
 | HD_FDC	| 		| 		| 		| 		| 		| 		| X		| 		| 		| 		| 		| 		| 		| 		| 		| 		|
 | SELTOS	| X		| 		| X		| 		| 		| 		| X		| 		| 		| 		| 		| 		| 		| 		| 		| 		|
-| SERPTCH2	| 		| 		| 		| 		| 		| X		| 		| 		| 		| X		| 		| 		| 		| 		| 		| 		|
+| SERPTCH2	| 		| 		| 		| 		| 		| X		| 		| X		| X		| X		| 		| 		| 		| 		| 		| 		|
+| PATCHX06	| 		| 		| 		| 		| 		| 		| X		| 		| 		| 		| X		| 		| 		| 		| 		| 		|
 | COLORTOS	| 		| 		| 		| 		| 		| 		| X		| 		| 		| 		| X		| 		| 		| 		| 		| 		|
 | BMAPFIX2	| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		| X		| X		| X		| X		| 		|
 | TOS4_FIX	| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		| 		| X		| X		| X		| X		| 		|
@@ -23,16 +26,19 @@ Patches have been made by Atari and third parties to correct some TOS flaws.
 
 * AUTOSORT: sorts the programs in the AUTO folder
 * FOLDRXXX: fixes 40 folders limit (unless using some HD driver that fixes it too)
+* SERIALFX: fixes RTS/CTS problem on ST-TT
+* FATSPEED: fixes FAT lookup
 * CACHEXXX: adds cache buffers
-* POOLFIX3: fixes Gemdos pools
+* POOLFIX3: fixes GEMDOS pools
 * TOS14FIX: fixes FOLDRXXX
 * TOS14FX5: fixes TOS14FIX
 * STE_FIX: fixes booting in Medium resolution
 * HD_FDC: fixes TOS 2.06 drive seek to 3 ms
 * SERPTCH2: fixes MFP and SCC serial ports
+* PATCHX06: fixes BIOS floppy disc routines
 * COLORTOS: adds support for colour DESKICON.RSC
 * BMAPFIX2: fixes Bconmap for TOS 4
-* TOS4_FIX: fixes Gemdos regression for TOS 4
+* TOS4_FIX: fixes GEMDOS regression for TOS 4
 * FPATCH2: fixes bugs in TOS 4
 * FWRITE-3: fixes something
 * V_FILL: fixes V_ContourFill when color is OTHER_COLOR
@@ -43,4 +49,4 @@ Patches have been made by Atari and third parties to correct some TOS flaws.
 * ARROWFIX: fixes the up/down arrow scroll click lock (included in WINX)
 * SHBUF: fixes the NEWDESK.INF 4KB limit (after GEMRAM)
 * WINX: adds desktop features (after GEMRAM)
-* Y2K-FIX: fixes Y2000 bug
+* Y2K-FIX: fixes Y2000 bug (GEMDOS and XBIOS)

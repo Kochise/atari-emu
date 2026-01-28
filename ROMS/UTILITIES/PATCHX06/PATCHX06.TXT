@@ -1,0 +1,130 @@
+Informationen zum Programm PATCHX06.PRG
+***************************************
+
+PATCHX06.PRG ist ein Fehlerkorrekturprogramm fÅr die leider sehr 
+reichlich vorkommenden Fehler in den BIOS-Diskettenroutinen des neuen 
+TOS2.06 (TOS-Erstellungsdatum ist der 14.11.91) und TOS3.06.
+
+PATCHX06.PRG ist ab dem Erstellungsdatum 18.05.1992 fÅr die 
+Allgemeinheit freigegeben. Das Erstellungsdatum ist normalerweise das 
+Datum der Datei, wird aber von PATCHX06 beim Starten noch einmal extra 
+ausgegeben. Versionen ab 18.05.1992 dÅrfen von jedermann/frau, aber nur 
+zusammen mit diesem Informationstext PATCHX06.TXT, kopiert und 
+weitergegeben werden. Die Ablage in Mailboxen ist ebenso wie die 
+öbersetzung in andere Sprachen ausdrÅcklich erwÅnscht.
+
+Der Autor hat das Programm sorgfÑltig auf Korrektheit ÅberprÅft, haftet 
+aber in keiner Weise fÅr etwa auftretende Datenverluste oder 
+SchÑdigungen bei der Nutzung dieses Programms oder des Infotextes. Der 
+Anwender trÑgt also das volle Risiko der Nutzung oder Nichtbenutzung 
+dieses Patchprogramms selbst.
+
+Bitte lesen Sie diese Datei bis zum Ende, sonst entgeht Ihnen 
+mîglicherweise etwas.
+
+
+Bedienung
+*********
+
+Praktischerweise packt man PATCHX06.PRG (mîglichst als erstes Programm) 
+in den AUTO-Ordner. Es installiert sich nur, wenn es ein TOS2.06 oder 
+3.06 findet und belegt dann etwas mehr als 1 KByte Speicher. Es ist 
+dabei egal, ob es sich um ein TOS im ROM oder um ein reloziertes TOS im 
+RAM handelt. Sowohl bei Installation als auch bei Nichtinstallation 
+wird eine entsprechende Meldung ausgegeben. PATCHX06 muû vor allen 
+Programmen gestartet werden, die den XBIOS-Vektor (trap#14) verbiegen. 
+Sonst erfolgt nur ein entsprechender Hinweis. Alle Meldungen sind in 
+Englisch gehalten, aber allgemeinverstÑndlich. PATCHX06 kann auch vom 
+Desktop aus gestartet werden. Eine mehrfache Installation schadet 
+ebenfalls nicht, kostet nur jeweils etwas mehr als 1 KByte Speicher.
+
+PATCHX06.PRG wurde fÅr die deutsche Version des TOS2.06 und 3.06 
+entwickelt. Aus Mangel an Gelegenheit wurde es noch nicht mit 
+anderssprachigen Versionen getestet. Es gibt aber keinen Grund, weshalb 
+sich diese in den ersten $7000 Byte vom deutschen TOS unterscheiden 
+sollten. Nur dann wÅrde das Programm nicht laufen, also abstÅrzen.
+
+
+Interna
+*******
+
+PATCHX06 hÑngt sich in den hdv_bpb und den hdv_rw Vektor mit der XBRA-
+Kennung T206 ein und ersetzt die Floppy-Getbpb-Routine des TOS 
+vollstÑndig sowie die Rwabs-Routine teilweise. Die Kennung T206 wird 
+auch beim TOS3.06 verwendet. Obwohl PATCHX06 den XBIOS-Vektor testet, 
+weil es ihn wÑhrend der Installation braucht, verÑndert es ihn nicht.
+
+
+Die (beseitigten) vier Fehler
+*****************************
+
+TOS2.06/3.06 berechnet von den ersten 6 Sektoren einer Diskette eine 
+PrÅfsumme, um die Diskettenwechselerkennung sicherer zu machen. Leider 
+wird dabei an zwei Stellen nicht zwischen Laufwerk A und B 
+unterschieden. Dieser Fehler macht sich nur bemerkbar, wenn man ein 
+Disklaufwerk B besitzt, z.B. so: eine lange Datei von einer 
+schreibgeschÅtzten Disk in Laufwerk B vom Desktop aus anzeigen lassen, 
+wenn die Floppy dann das zweite Mal anlÑuft um die nÑchste Portion Text 
+zu laden, gibt es nur die Meldung -LESEFEHLER- (hier wird ein 
+Diskwechsel erkannt, der nicht stattgefunden hat).
+
+TOS2.06/3.06 kann prinzipiell Medien mit nur einer FAT bearbeiten (das 
+GEMDOS arbeitet hier korrekt). Dazu muû in den Flags (Offset $10) im 
+BiosParameterBlock das Bit 1 auf 1 stehen. Die Floppy-Getbpb-Routine 
+setzt zwar dieses Bit, liefert jedoch hinsichtlich der Sektoraufteilung 
+der Diskette falsche Werte. Dieser Fehler macht sich also nur 
+bemerkbar, wenn man Disketten verwendet, die mit nur einer FAT 
+formatiert wurden. Normalerweise haben Disks zwei FATs.
+
+Auûerdem fehlt in der Rwabs-Routine noch eine Abbruchbedingung beim 
+Neuberechnen der SektorprÅfsummen fÅr die Sektoren 0 bis 5. Wenn man 
+mehr als einen Sektor mit Rwabs bei einem Startsektor von 0 bis 5 
+schreibt, kînnen eventuell VDI-Informationen Åber die Schriftart, 
+Schriftgrîûe und den Zeichensatz Åberschrieben werden. Das ergibt ein 
+recht merkwÅrdiges Desktopbild. Aufgrund des erstgenannten Fehlers 
+macht sich dieser Fehler nur bei Disketten mit mindestens 13 Sektoren 
+pro Spur bemerkbar. Das Gemdos selbst lîst diesen Fehler aber wohl nie 
+aus.
+
+
+Historie
+********
+
+Es existiert ein Programm PATCH206.PRG von mir, das ebenfalls korrekt 
+lÑuft. Dies tut es aber ohne Vorwarnung oder öberprÅfung nur auf 
+Computern, bei denen das TOS2.06 im ROM und nicht im RAM ist.
+
+Sollte Ihr PATCHX06.PRG als Erstellungdatum den 17.05.1992 zeigen, dann 
+haben Sie eine Version, die nicht in Umlauf sein sollte. Diese Version 
+stÅrzt mit dem TOS3.06 auf dem TT hîchstwahrscheinlich Åbelst ab. Bitte 
+kopieren Sie diese nicht weiter und besorgen sich eine neue.
+
+
+Ausblick
+********
+
+Beim Autor gibt es ein Programm, das das TOS2.06/3.06 korrigiert und 
+dann als Datei zum Programmieren auf EPROMs oder zum Relozieren im RAM 
+auf Diskette speichert. Dieses Korrekturprogramm wird 
+hîchstwahrscheinlich ebenfalls auf dem Weg zu erhalten sein, Åber den 
+Sie an PATCHX06 gekommen sind.
+
+
+Der Autor
+*********
+
+Ich bin Student und betreibe die Computerei neben dem Studium. FÅr 
+Hinweise auf eventuelle Fehler in meinem Programm oder im TOS2.06 bin 
+ich jederzeit dankbar, wenn sie in schriftlicher Form oder als Email 
+bei mir eintreffen.
+
+Berlin, 18.06.1992
+
+Harun Scheutzow
+Dresdener Straûe 83
+O-1020 Berlin
+
+oder in der Berliner Maus:
+Harun Scheutzow @ B
+
+
