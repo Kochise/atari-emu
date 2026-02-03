@@ -40,6 +40,41 @@ https://www.atari.org/services/systemdisks.php
 
 </details>
 
+* Machines
+
+| Version	| ST(f[^1])(m[^2])	| Mega ST			| STacy			| STe[^3]				| Mega STe				| ST Book				| TT							| Falcon030						|
+| :---		| :---				| :---				| :---			| :---					| :---					| :---					| :---							| :---							|
+| TOS		| 1.00				| 1.02				| 1.04			| 1.06					| 2.06					| 2.06					| 3.06							| 4.04							|
+| Processor	| 68000 @ 8 MHz		| 68000 @ 8 MHz		| 68000 @ 8 MHz	| 68000 @ 16 MHz		| 68000 @ 8/16 MHz		| 68000 @ 8 MHz			| 68030 @ 16/32 MHz				| 68030 @ 16 MHz				|
+| Cache		|					|					|				|						| 16 bytes				|						| 256 bytes						| 256 bytes						|
+| Bus		| 16 bits			| 16 bits			| 16 bits		| 16 bits				| 16 bits				| 16 bits				| 32 bits						| 16 bits						|
+| FPU		|					| 68881 (SFP004)	|				|						| 68881 (SFP004)		| 						| 68882 @ 32 MHz				| 68882 @ 16 MHz				|
+| DSP		|					|					|				|						|						|						|								| 56001 @ 32 MHz				|
+| BLiTTER	|					|					| Yes			| Yes					| Yes					|						|								| Yes							|
+| Memory	| 512KB / 1MB		| 1/2/4 MB			| 512KB / 1MB	| 1/2/4 MB				| 1/2/4 MB				| 512KB / 1MB			| 2/4 MB + 16/256 MB TT-RAM		| 1/4/14 MB						|
+| Video		| Shifter			| Shifter			| Shifter		| Shifter				| Shifter				| Shifter				| Shifter						| Videl							|
+| Palette	| 16/512 colors		| 16/512 colors		| monochrome	| 16/4096 colors		| 16/4096 colors		| monochrome			| 256/4096 colors				| 256/262144 colors				|
+| Genlock	|					|					|				| Yes					| Yes					|						|								| Yes							|
+| Cartridge	| 128 KB			| 128 KB			| 128 KB		| 128 KB				| 128 KB				| 						| 128 KB						| 128 KB						|
+| Sound PSG	| YM				| YM				| YM			| YM-3-8912				| YM					| YM-3-8912				| YM							| YM							|
+| Sound PCM	| 					| 					| 				| 2 ch 8 bits @ 50 kHz	| 2 ch 8 bits @ 50 kHz	| 2 ch 8 bits @ 50 kHz	| 2 ch 8 bits @ 50 kHz			| 2/8(DSP) ch 16 bits @ 50 kHz	|
+| Mic input	|					|					|				|						|						|						|								| 2 ch 16 bits @ 50 kHz			|
+| MIDI		| Yes				| Yes				| Yes			| Yes					| Yes					| Yes					| Yes							| Yes							|
+| Keyboard	| Internal			| External			| Internal		| Internal				| Internal				| Internal				| External						| Internal						|
+| Joypad	|					|					|				| 2 x DB15				| 2 x DB15				|						|								| 2 x DB15						|
+| Floppy	| DD (external)		| DD (internal)		| DD (internal)	| DD (internal)			| DD/HD (internal)		| (DD external)			| DD/HD (external + internal)	| HD (internal)					|
+| ACSI		| (external)		| (external)		| (external)	| (external)			| (external + internal)	| (external)			| Internal						| Internal (2.5" IDE laptop)	|
+| SCSI		| 					| 					| 				| 						| 						| 						| SCSI-1 (internal + DB-25 ext)	| SCSI-1 (external mini DB-50)	|
+| Parallel	| Yes				| Yes				| Yes			| Yes					| Yes					| Yes					| Yes							| Yes							|
+| VME		| 					| 					| 				| 						| Yes					| 						| Yes							| 								|
+| Serial	| 38400 bauds		| 38400 bauds		| 38400 bauds	| 38400 bauds			| 38400 bauds x 3		| 38400 bauds			| 115200 bauds (2 int)			| 115200 bauds					|
+| Modem		| 					| 					| 				| 						| 						| 						| 115200 bauds (2 BD-9 ext)		| 								|
+| LocalTalk	| 					| 					| 				| 						| Yes					| 						| Yes							| Yes							|
+
+[^1]: f = floppy drive (internal)
+[^2]: m = modulator output (TV)
+[^3]: e = enhanced, like the 130 XE vs XL
+
 * Characteristics
 
 | Version	| Date			| Machine					| Size		| Start		| End (+1)	| GEMDOS	| VDI		| AES		| Note				|
@@ -81,6 +116,38 @@ https://www.atari.org/services/systemdisks.php
 | 5.00		|				|							| 1024 KB	| $E00000	| $F00000	| 			| 			| 			| 					|
 
 This doesn't include the releases of : EmuTOS, MiNT (Not), MultiTOS (Now), FreeMINT, ...
+
+```mermaid
+gantt
+	dateFormat YYYY-MM-DD
+	section TOS
+	1.00: a1, 1985-05-29, until a2
+	1.02: a2, 1987-04-22, until a3
+	1.04: a3, 1988-05-18, until a4
+	1.06: a4, 1989-06-19, until a5
+	1.62: a5, 1990-01-01, until a6
+	2.05: a6, 1990-12-05, until a7
+	2.06: a7, 1991-11-14, 1996-07-30
+	3.00: a8, 1989-05-23, until a9
+	3.01: a9, 1990-08-09, until a10
+	3.05: a10, 1990-12-05, until a11
+	3.06: a11, 1991-09-24, 1996-07-30
+	4.00: a12, 1992-08-11, until a13
+	4.01: a13, 1992-10-21, until a14
+	4.02: a14, 1993-01-26, until a15
+	4.04: a15, 1993-03-08, until a16
+	4.92: a16, 1993-06-22, 1996-07-30
+	section AES
+	1.01: b1, 1985-05-29, until b2
+	1.20: b2, 1985-11-20, until b3
+	1.40: b3, 1988-05-18, until b4
+	3.10: b4, 1990-12-05, until b5
+	3.20: b5, 1991-11-14, until b6
+	3.30: b6, 1992-08-11, until b7
+	3.40: b7, 1992-10-21, until b8
+	4.00: b8, 1992-10-21, until b9
+	4.10: b9, 1992-10-21, 1996-07-30
+```
 
 ```mermaid
 %%{ init: { 'gitGraph': { 'mainBranchName': 'ST', 'rotateCommitLabel': true }, 'theme': 'base' }}%%
