@@ -44,7 +44,7 @@ https://www.atari.org/services/systemdisks.php
 
 | Version	| ST(f[^1])(m[^2])	| Mega ST			| STacy			| STe[^3]				| Mega STe				| ST Book				| TT							| Falcon030						|
 | :---		| :---				| :---				| :---			| :---					| :---					| :---					| :---							| :---							|
-| TOS		| 1.00				| 1.02				| 1.04			| 1.06					| 2.06					| 2.06					| 3.06							| 4.04							|
+| TOS		| 1.00				| 1.02				| 1.04			| 1.06					| 2.06					| 2.06 (dedicated)		| 3.06							| 4.04							|
 | Processor	| 68000 @ 8 MHz		| 68000 @ 8 MHz		| 68000 @ 8 MHz	| 68000 @ 16 MHz		| 68000 @ 8/16 MHz		| 68000 @ 8 MHz			| 68030 @ 16/32 MHz				| 68030 @ 16 MHz				|
 | Cache		|					|					|				|						| 16 bytes				|						| 256 bytes						| 256 bytes						|
 | Bus		| 16 bits			| 16 bits			| 16 bits		| 16 bits				| 16 bits				| 16 bits				| 32 bits						| 16 bits						|
@@ -60,7 +60,7 @@ https://www.atari.org/services/systemdisks.php
 | Sound PCM	| 					| 					| 				| 2 ch 8 bits @ 50 kHz	| 2 ch 8 bits @ 50 kHz	| 2 ch 8 bits @ 50 kHz	| 2 ch 8 bits @ 50 kHz			| 2/8(DSP) ch 16 bits @ 50 kHz	|
 | Mic input	|					|					|				|						|						|						|								| 2 ch 16 bits @ 50 kHz			|
 | MIDI		| Yes				| Yes				| Yes			| Yes					| Yes					| Yes					| Yes							| Yes							|
-| Keyboard	| Internal			| External			| Internal		| Internal				| Internal				| Internal				| External						| Internal						|
+| Keyboard	| Internal			| External			| Internal		| Internal				| External				| Internal				| External						| Internal						|
 | Joypad	|					|					|				| 2 x DB15				| 2 x DB15				|						|								| 2 x DB15						|
 | Floppy	| DD (external)		| DD (internal)		| DD (internal)	| DD (internal)			| DD/HD (internal)		| (DD external)			| DD/HD (external + internal)	| HD (internal)					|
 | ACSI		| (external)		| (external)		| (external)	| (external)			| (external + internal)	| (external)			| Internal						| Internal (2.5" IDE laptop)	|
@@ -79,7 +79,7 @@ https://www.atari.org/services/systemdisks.php
 
 | Version	| Date			| Machine					| Size		| Start		| End (+1)	| GEMDOS	| VDI		| AES		| Note				|
 | :---		| :---			| :---						| :---		| :---		| :---		| :---		| :---		| :---		| :---				|
-| 1.00		| 1985/05/29	| ST						| 			| RAM		| RAM		| 0.D0		| 			| 1.01		| Disk				|
+| 1.00		| 1985/05/29	| ST						| 			| RAM		| RAM		| 0.D0		| 			| 1.01		| Disk (preTOS)		|
 | 1.00		| 1985/06/20	| ST						| 			| 			| 			| 0.11		| 			| 1.01		| Mushroom TOS		|
 | 1.00		| 1985/11/20	| ST						| 192 KB	| $FC0000	| $FF0000	| 0.13		| 			| 1.20		| Alpha				|
 | 1.00		| 1986/02/06	| ST						| 192 KB	| $FC0000	| $FF0000	| 0.13		| 			| 1.20		| Beta				|
@@ -112,8 +112,8 @@ https://www.atari.org/services/systemdisks.php
 | 4.03		| 1993			| Falcon030					| 512 KB	| $E00000	| $E80000	| 0.30		| 			| 3.40		| 					|
 | 4.04		| 1993/03/08	| Falcon030					| 512 KB	| $E00000	| $E80000	| 0.30		| 			| 3.40		| 					|
 | 4.92		| 1993/06/22	| Falcon030					| 512 KB	| RAM		| RAM		| 0.30		| 			| 4.10		| Beta (MultiTOS)	|
-| 4.98		| 1993			| Falcon030					| 512 KB	| RAM		| RAM		| 			| 			| 			| 					|
-| 5.00		|				|							| 1024 KB	| $E00000	| $F00000	| 			| 			| 			| 					|
+| 4.98		| 1993			| Falcon030					| 512 KB	| RAM		| RAM		| 			| 			| 			| Never seen		|
+| 5.00		|				| Falcon040 - Microbox		| 1024 KB	| $E00000	| $F00000	| 			| 			| 			| Based on 4.92		|
 
 This doesn't include the releases of : EmuTOS, MiNT (Not), MultiTOS (Now), FreeMINT, ...
 
@@ -148,6 +148,12 @@ gantt
 	4.00: b8, 1992-10-21, until b9
 	4.10: b9, 1992-10-21, 1996-07-30
 ```
+
+First early beta of TOS (preTOS) on April, 1985.
+
+JTS acquired Atari on July 30, 1996.
+
+So it lasted a bit more than 11 years.
 
 ```mermaid
 %%{ init: { 'gitGraph': { 'mainBranchName': 'ST', 'rotateCommitLabel': true }, 'theme': 'base' }}%%
